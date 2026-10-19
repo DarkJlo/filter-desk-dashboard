@@ -28,7 +28,7 @@ Every number below uses the corrected method.
 | Passes made while RugCheck was down ("degraded") | 5 | 60.0% | 0% | | 2.57x | |
 
 The strict filter is about **2x better on hit rate** and about **3x lower on rug/dead** than the random-kill control.
-That matches the design intent. Warned passes have not done worse than clean ones (n=4 vs 5, so no conclusion).
+That matches the design intent. (At push time, ~09:35 MST, a new scan had grown the control group to n=31: 25.8% hit 2x, 38.7% rug/dead. The direction is the same. The live numbers are on the dashboard.) Warned passes have not done worse than clean ones (n=4 vs 5, so no conclusion).
 
 ## Case studies
 
