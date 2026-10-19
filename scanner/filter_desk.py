@@ -58,7 +58,7 @@ from concurrent.futures import ThreadPoolExecutor
 CACHE_TTL = 3600   # 60 min per-token cache
 CACHE_PATH = os.path.join(DATA_DIR, "token_cache.json")
 _cache_lock = threading.Lock(); _tcache = None
-STAGE_A_WORKERS = 6
+STAGE_A_WORKERS = 3
 
 def _tc():
     global _tcache
@@ -603,7 +603,7 @@ def holder_slot_bundles(mint, M):
         cur = by_owner.get(o)
         if not cur or amt > cur[0]: by_owner[o] = (amt, a.get("address"))
     top = sorted(by_owner.items(), key=lambda kv: -kv[1][0])[:BUNDLER_HOLDER_SCAN]
-    with ThreadPoolExecutor(6) as ex:
+    with ThreadPoolExecutor(3) as ex:
         res = list(ex.map(lambda kv: first_receipt_slot(kv[1][1], mint), top))
     rows = sorted((r[0], o, amt_ta[0]) for (o, amt_ta), r in zip(top, res) if r)
     adjacent = [(o, amt_ta[0]) for (o, amt_ta), r in zip(top, res) if r and r[1]]
