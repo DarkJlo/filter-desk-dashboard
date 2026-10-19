@@ -1,5 +1,8 @@
 name: Filter Desk scan
 on:
+  schedule:
+    # 8:00 and 20:00 America/Phoenix (UTC-7) → 15:00 and 03:00 UTC
+    - cron: "0 15,3 * * *"
   workflow_dispatch:
     inputs:
       mode:
@@ -35,8 +38,8 @@ jobs:
         env:
           HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
           FD_NO_PUSH: "1"
-          MODE: ${{ inputs.mode }}
-          N: ${{ inputs.N }}
+          MODE: ${{ inputs.mode || 'scan-all' }}
+          N: ${{ inputs.N || '40' }}
         run: |
           case "$N" in ''|*[!0-9]*) echo "N must be a number"; exit 1;; esac
           case "$MODE" in scan-all|bottoms) ;; *) echo "bad mode"; exit 1;; esac
@@ -50,7 +53,7 @@ jobs:
           git config merge.ours.driver true
           git add data index.html
           git diff --cached --quiet && { echo "no changes"; exit 0; }
-          git commit -qm "scan (${{ inputs.mode }} ${{ inputs.N }}) via Actions"
+          git commit -qm "scan (${{ inputs.mode || 'scan-all' }} ${{ inputs.N || '40' }}) via Actions"
           for i in 1 2; do
             git pull -q --rebase && python scanner/dashboard.py >/dev/null && git add index.html && \
               { git diff --cached --quiet || git commit -qm "rebuild page"; } && git push -q && exit 0
