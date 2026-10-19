@@ -1,0 +1,4 @@
+data/checks_log.jsonl merge=union
+data/checks.log merge=union
+index.html merge=ours
+data/names.json merge=ours

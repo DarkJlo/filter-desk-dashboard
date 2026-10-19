@@ -1,0 +1,60 @@
+name: Filter Desk scan
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Scan mode"
+        type: choice
+        options: [scan-all, bottoms]
+        default: scan-all
+      N:
+        description: "Max tokens to check"
+        default: "40"
+concurrency:
+  group: filter-desk-scan
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r scanner/requirements.txt
+      - name: Restore caches
+        uses: actions/cache@v4
+        with:
+          path: data/*cache*.json
+          key: fd-cache-${{ github.run_id }}
+          restore-keys: fd-cache-
+      - name: Run scanner
+        env:
+          HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
+          FD_NO_PUSH: "1"
+          MODE: ${{ inputs.mode }}
+          N: ${{ inputs.N }}
+        run: |
+          case "$N" in ''|*[!0-9]*) echo "N must be a number"; exit 1;; esac
+          case "$MODE" in scan-all|bottoms) ;; *) echo "bad mode"; exit 1;; esac
+          start=$(date +%s)
+          python scanner/filter_desk.py "--$MODE" "$N" 2>&1 | grep -v "fetch error" | tee scan_output.txt
+          echo "Runtime: $(( $(date +%s) - start ))s"
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config merge.ours.driver true
+          git add data index.html
+          git diff --cached --quiet && { echo "no changes"; exit 0; }
+          git commit -qm "scan (${{ inputs.mode }} ${{ inputs.N }}) via Actions"
+          for i in 1 2; do
+            git pull -q --rebase && python scanner/dashboard.py >/dev/null && git add index.html && \
+              { git diff --cached --quiet || git commit -qm "rebuild page"; } && git push -q && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1

@@ -11,7 +11,9 @@ table{width:100%;border-collapse:collapse} th{text-align:left;color:#6b7280;font
 td{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap} td.r{white-space:normal;color:#9aa4b2;max-width:520px}
 .nm{color:#6b7280} a{color:#8ab4f8;text-decoration:none} .pill{padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}
 .pill.pass{background:#0e3b2a;color:#26d07c} .pill.kill{background:#3b1216;color:#f6465d} .pill.error{background:#3a2f0b;color:#f0b90b}
-</style></head><body><h1>Filter Desk</h1><div class="sub">Updated Oct 18, 2026 20:12 MST · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button></div>
+</style></head><body><h1>Filter Desk</h1><div class="sub">Updated Oct 18, 2026 20:15 MST · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>
+<a href="https://github.com/DarkJlo/filter-desk-dashboard/actions/workflows/scan.yml" target="_blank"><button>▶ Run scan</button></a></div>
+<div class="sub">Last scan: <b style="color:#d1d4dc">Oct 18, 2026 18:00 MST</b> · ▶ Run scan opens GitHub Actions → click "Run workflow" (owner login required). A scan takes a few minutes; then hit ↻ Refresh (Pages may lag ~1 min).</div>
 <div class="cards"><div class="card"><span>Checked</span><b>491</b></div><div class="card"><span>Kills</span><b style="color:#f6465d">464</b></div>
 <div class="card"><span>Passes</span><b style="color:#26d07c">27</b></div><div class="card"><span>Kill rate</span><b>94.5%</b></div></div>
 <input id="q" placeholder="Filter by mint, verdict, reason…" oninput="for(const t of document.querySelectorAll('tbody tr'))t.style.display=t.innerText.toLowerCase().includes(this.value.toLowerCase())?'':'none'">
