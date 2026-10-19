@@ -203,7 +203,7 @@ def build():
         sym, nm = (names.get(mint) or ["", ""])
         tok = f'<b>{html.escape(sym)}</b> <span class="nm">{html.escape(nm if nm != sym else "")}</span>' if sym else '<span class="nm">unknown</span>'
         trs.append(f'<tr class="{v.lower()}"><td>{ts}</td><td><a href="https://gmgn.ai/sol/token/{mint}" target="_blank" title="{mint}">{short}</a></td>'
-                   f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get('rules_version') or 'pre-r8')}">{v}</span>{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
+                   f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
                    f'<td>{num(score,"{:.0f}")} / {num(norm,"{:.0f}")} / {num(lp)}</td><td>{"$"+num(liq,"{:,.0f}") if liq else "—"}</td></tr>')
     now = datetime.now(TZ).strftime("%b %d, %Y %H:%M MST")
     last = datetime.fromisoformat(max(r["timestamp"] for r in rows)).astimezone(TZ).strftime("%b %d, %Y %H:%M MST") if rows else "never"
