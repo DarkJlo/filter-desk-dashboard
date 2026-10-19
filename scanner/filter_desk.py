@@ -15,6 +15,9 @@ import sys, json, os, time, requests
 from collections import Counter
 from datetime import datetime, timezone
 
+# ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
+FILTER_VERSION = "r8-2026-10-19"
+
 # ---------------- thresholds ----------------
 MAX_SCORE_NORM = 50
 MAX_SCORE_RAW = 5000
@@ -27,6 +30,10 @@ MIN_VOLUME_24H = 10_000
 MIN_SELL_BUY_RATIO = 0.5      # h24 sells/buys < 0.5 (buys > 2x sells) = kill
 MAX_SELL_BUY_RATIO = 4.0      # h24 sells/buys > 4 = kill
 H1_ZERO_SELL_MAX_BUYS = 20    # h1 sells == 0 with h1 buys > 20 = kill
+# r8: buy-heavy h24 flow on an AGED pair is momentum, not a fake-volume launch -> WARN instead of KILL
+# (startupSI killed at 5-9h with sells/buys 0.40-0.47, ran to ~20x; rugs Vader/CATONICE had 0.25-0.31)
+LOPSIDED_SOFT_MIN_AGE_H = 4.0     # pair age >= 4h ...
+LOPSIDED_SOFT_MIN_RATIO = 0.38    # ... and h24 sells/buys >= 0.38 (buys <= ~2.6x sells) -> LOPSIDED WARN
 SELL_QUOTE_USD = 100
 SELL_SLIPPAGE_BPS = 1500
 MAX_SELL_IMPACT_PCT = 15.0
@@ -83,12 +90,13 @@ def cache_flush():
 
 def cached(kind, mint, fn, M, mkey):
     """Cache a verdict function's (reasons, metric, warns) for 60 min."""
-    hit = cache_get(kind, mint)
+    ck = f"{FILTER_VERSION}:{mint}"   # never reuse a verdict cached under older rules
+    hit = cache_get(kind, ck)
     if hit is not None:
         M[mkey] = hit["m"]; M.setdefault("warns", []).extend(hit["w"]); M[f"{mkey}_cached"] = True
         return hit["r"]
     w0 = len(M.get("warns") or []); R = fn()
-    cache_put(kind, mint, {"r": R, "m": M.get(mkey), "w": (M.get("warns") or [])[w0:]})
+    cache_put(kind, ck, {"r": R, "m": M.get(mkey), "w": (M.get("warns") or [])[w0:]})
     return R
 
 RC_STATE = {"consec_fail": 0, "fails": 0, "ok": 0, "dead": False, "skipped": 0}
@@ -818,7 +826,11 @@ def evaluate_stage_a(mint, rep, pair):
         if b is None or s is None: R.append("missing data: txns h24")
         else:
             ratio = s / b if b else float("inf")
-            if not (MIN_SELL_BUY_RATIO <= ratio <= MAX_SELL_BUY_RATIO):
+            M["sell_buy_ratio_h24"] = ratio if b else None
+            if ratio < MIN_SELL_BUY_RATIO and age is not None and age >= LOPSIDED_SOFT_MIN_AGE_H * 60 \
+                    and ratio >= LOPSIDED_SOFT_MIN_RATIO:
+                M["warns"].append(f"LOPSIDED WARN: h24 buys/sells {b}/{s} (ratio {ratio:.2f}, pair {age/60:.1f}h old)")
+            elif not (MIN_SELL_BUY_RATIO <= ratio <= MAX_SELL_BUY_RATIO):
                 R.append(f"lopsided h24 buys/sells {b}/{s}")
         t1 = (pair.get("txns") or {}).get("h1") or {}
         b1, s1 = t1.get("buys"), t1.get("sells")
@@ -850,7 +862,23 @@ def evaluate(mint, rep, pair):
     if not R: R = evaluate_stage_b(mint, rep, pair, M)
     return ("KILL" if R else "PASS"), R, M
 
+WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
+             ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"),
+             ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
+DEGRADED_TAGS = {"rc_down", "lp_unverified"}   # a data source was skipped, not a risk signal by itself
+
+def warn_tags(warns):
+    return sorted({tag for w in warns or [] for pfx, tag in WARN_TAGS if w.startswith(pfx)})
+
+def pass_tier(warns):
+    """clean | warn | degraded | degraded+warn  (lets outcomes segment clean vs warn passes)."""
+    t = set(warn_tags(warns)); risk, deg = t - DEGRADED_TAGS, t & DEGRADED_TAGS
+    return "+".join(x for x, on in (("degraded", deg), ("warn", risk)) if on) or "clean"
+
 def log_check(mint, verdict, reasons, metrics):
+    metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
+    metrics["warn_tags"] = warn_tags(metrics.get("warns"))
+    if verdict == "PASS": metrics["pass_tier"] = pass_tier(metrics.get("warns"))
     with open(LOG_PATH, "a") as f:
         f.write(json.dumps({"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint,
                             "verdict": verdict, "reasons": reasons, "metrics": metrics}, default=str) + "\n")
@@ -1096,7 +1124,7 @@ def older_mints(min_h=None, max_h=None):
     return keep, {m: dex[m] for m in keep}
 
 def report(mints, label):
-    print(f"Scanning {len(mints)} {label} Solana mints...")
+    print(f"Filter rules {FILTER_VERSION}. Scanning {len(mints)} {label} Solana mints...")
     surv, tally = run(mints, quiet=True)
     print(f"\nChecked {len(mints)} | PASS {len(surv)} | KILL {len(mints)-len(surv)}")
     for m, M in surv:

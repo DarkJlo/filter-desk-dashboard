@@ -24,11 +24,47 @@ USER_NOTES = {
 
 def ts(s): return datetime.fromisoformat(s).timestamp()
 
+# Rule versions before FILTER_VERSION was logged (r8), inferred from check timestamps (UTC).
+# See docs/RULES_CHANGELOG.md.
+_VERSION_STARTS = [("2026-10-18T22:31:00", "r3-inferred"), ("2026-10-18T22:56:00", "r4-inferred"),
+                   ("2026-10-18T23:26:00", "r5-inferred"), ("2026-10-19T00:07:00", "r6-inferred"),
+                   ("2026-10-19T00:56:00", "r7-inferred")]
+
+def rules_version(e):
+    mt = e.get("metrics") or {}
+    if mt.get("rules_version"): return mt["rules_version"]
+    if "metrics" not in e: return "r1-v1-loose"
+    v = "r2-inferred"
+    for start, name in _VERSION_STARTS:
+        if e["timestamp"][:19] >= start: v = name
+    return v
+
+_WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
+              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"),
+              ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
+
+def tier_of(warns):
+    t = {tag for w in warns or [] for pfx, tag in _WARN_TAGS if w.startswith(pfx)}
+    risk, deg = t - {"rc_down", "lp_unverified"}, t & {"rc_down", "lp_unverified"}
+    return "+".join(x for x, on in (("degraded", deg), ("warn", risk)) if on) or "clean"
+
+def enroll_meta(e):
+    mt = e.get("metrics") or {}
+    w = mt.get("warns") or []
+    return {"rules_version": rules_version(e),
+            "pass_tier": (mt.get("pass_tier") or tier_of(w)) if e.get("verdict") == "PASS" else None,
+            "warns_at_entry": w, "entry_fdv": mt.get("fdv"),
+            "entry_bundler_pct": (mt.get("bundler") or {}).get("bundler_pct")}
+
+BY_T0 = {}   # (mint, timestamp) -> log entry, to backfill enrollment metadata
+
 def load_candidates():
     passes, kills_by_scan = {}, {}
+    BY_T0.clear()
     for line in open(LOG):
         try: e = json.loads(line)
         except Exception: continue
+        BY_T0[(e.get("mint"), e.get("timestamp"))] = e
         v, m = e.get("verdict"), e.get("mint")
         if v == "PASS" and m not in passes:
             loose = "lpLockedPct" in e and "metrics" not in e   # v1 filter format
@@ -75,7 +111,7 @@ def update():
         if m not in T or T[m]["group"].startswith("kill"):
             mt = e.get("metrics") or {}
             T[m] = {"group": grp, "symbol": mt.get("symbol"), "t0": e["timestamp"],
-                    "entry_mcap": mt.get("fdv"), "entry_liq": mt.get("liquidity_usd"), "snapshots": []}
+                    "entry_mcap": mt.get("fdv"), "entry_liq": mt.get("liquidity_usd"), "snapshots": [], **enroll_meta(e)}
     rnd = random.Random(42)
     for scan, kills in sorted(kbs.items()):
         if scan in O["control_scans"]: continue
@@ -85,8 +121,14 @@ def update():
             mt = kills[m].get("metrics") or {}
             T[m] = {"group": "kill_control", "symbol": mt.get("symbol"), "t0": kills[m]["timestamp"],
                     "entry_mcap": mt.get("fdv"), "entry_liq": mt.get("liquidity_usd"),
-                    "kill_reason": (kills[m].get("reasons") or [""])[0], "snapshots": []}
+                    "kill_reason": (kills[m].get("reasons") or [""])[0], "snapshots": [], **enroll_meta(kills[m])}
         O["control_scans"].append(scan)
+    for m, t in T.items():   # backfill metadata for tokens enrolled before r8
+        e = BY_T0.get((m, t["t0"]))
+        if e and ("rules_version" not in t or (t["group"] == "kill_control" and t.get("pass_tier"))): t.update(enroll_meta(e))
+        if t["group"] == "pass":   # any PASS check of this token (entry or recheck) carried a risk WARN
+            t["warn_any_pass"] = any(x.get("verdict") == "PASS" and "warn" in tier_of((x.get("metrics") or {}).get("warns"))
+                                     for (mm, _), x in BY_T0.items() if mm == m)
     now = time.time()
     live = [m for m, t in T.items() if not t.get("final")]
     dex = dex_batch(live)
@@ -98,6 +140,7 @@ def update():
             t["snapshots"].append([int(now), price, mc, liq])
             t["symbol"] = t.get("symbol") or (p.get("baseToken") or {}).get("symbol")
             t["pool"] = p.get("pairAddress"); t["cur_liq"] = liq; t["cur_mcap"] = mc; t["cur_price"] = price
+            if p.get("fdv") and price: t["units"] = float(p["fdv"]) / price   # token supply as priced by DexScreener
         else:
             t["snapshots"].append([int(now), None, None, None]); t["cur_liq"] = 0
         # history from candles
@@ -118,6 +161,12 @@ def update():
             t["min_price"] = min([x[3] for x in after] + ([t["min_price"]] if t.get("min_price") else []))
         elif t.get("entry_price") is None and t.get("cur_price"):
             t["entry_price"] = t["cur_price"]; t["entry_approx"] = True   # first observation
+        # r8 fix: the price the scanner actually saw = FDV logged at check time / supply. The old fallback
+        # (close of the hourly candle containing t0) mis-stated fast movers (Vader showed 3.4x peak, really <1x).
+        units = t.get("units") or ((t["cur_mcap"] / t["cur_price"]) if t.get("cur_mcap") and t.get("cur_price") else None)
+        if t.get("entry_fdv") and units:
+            t["entry_price"] = t["entry_fdv"] / units; t["entry_approx"] = False; t["entry_src"] = "fdv_at_check"
+            t["entry_mcap"] = t["entry_fdv"]
         # snapshot fallbacks for horizons
         for h in HORIZONS_H:
             if f"p{h}h" not in t and t0 + h * 3600 <= now:
@@ -131,7 +180,7 @@ def update():
                 t["entry_mcap"] = t["cur_mcap"] / t["cur_price"] * ep
             t["peak_price"] = max(t.get("peak_price") or 0, *(s[1] for s in t["snapshots"] if s[1])) if any(s[1] for s in t["snapshots"]) else t.get("peak_price")
             t["cur_mult"] = (t.get("cur_price") or 0) / ep
-            t["peak_mult"] = (t.get("peak_price") or ep) / ep
+            t["peak_mult"] = max(1.0, (t.get("peak_price") or ep) / ep)   # entry itself is the floor for "peak"
             t["max_drawdown"] = ((t.get("min_price") or t.get("cur_price") or ep) / ep) - 1
             for h in HORIZONS_H:
                 if t.get(f"p{h}h"): t[f"m{h}h"] = t[f"p{h}h"] / ep
@@ -150,14 +199,23 @@ def update():
 
 def summarize(T):
     out = {}
-    for g in ("pass", "pass_v1_loose", "kill_control"):
-        xs = [t for t in T.values() if t["group"] == g and t.get("entry_price")]
+    segs = {"pass": lambda t: t["group"] == "pass", "pass_v1_loose": lambda t: t["group"] == "pass_v1_loose",
+            "kill_control": lambda t: t["group"] == "kill_control",
+            "pass_clean": lambda t: t["group"] == "pass" and "warn" not in (t.get("pass_tier") or "clean"),
+            "pass_warn": lambda t: t["group"] == "pass" and "warn" in (t.get("pass_tier") or ""),
+            "pass_warn_any": lambda t: t["group"] == "pass" and t.get("warn_any_pass"),
+            "pass_never_warn": lambda t: t["group"] == "pass" and not t.get("warn_any_pass"),
+            "pass_degraded": lambda t: t["group"] == "pass" and "degraded" in (t.get("pass_tier") or "")}
+    for g, f in segs.items():
+        xs = [t for t in T.values() if f(t) and t.get("entry_price")]
         m24 = [t["m24h"] for t in xs if t.get("m24h")]
         n = len(xs) or 1
         out[g] = dict(tracked=len(xs), hit2x=round(100 * sum((t.get("peak_mult") or 0) >= 2 for t in xs) / n, 1),
                       rugged_or_dead=round(100 * sum(t.get("status") in ("RUGGED", "DEAD") for t in xs) / n, 1),
                       median_24h=round(statistics.median(m24), 2) if m24 else None,
-                      median_cur=round(statistics.median([t["cur_mult"] for t in xs]), 2) if xs else None)
+                      median_cur=round(statistics.median([t["cur_mult"] for t in xs]), 2) if xs else None,
+                      median_peak=round(statistics.median([t.get("peak_mult") or 1 for t in xs]), 2) if xs else None,
+                      rugged=round(100 * sum(t.get("status") == "RUGGED" for t in xs) / n, 1))
     return out
 
 if __name__ == "__main__":
