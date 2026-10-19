@@ -649,3 +649,4 @@
 2026-10-19T16:07:47+00:00 | KILL  | 4j63mR9Ee341iV8V6PjnKVmm6GcEgfJG3SYCoJ7Vpump | high risk score (raw=18898, norm=59); LP locked only 0.0%; danger: Large Amount of LP Unlocked; danger: Single holder ownership; danger: Low Liquidity; warn: High holder concentration; top10 non-LP holders 70.1% > 30.0%; single holder 47.2% > 10.0%; graph-detected insiders: 17; insider networks detected; missing data: liquidity (dex); 24h volume $0 < $10,000; missing data: fdv; holder data mismatch (rugcheck 70.1% vs on-chain 24.4%)
 2026-10-19T16:07:47+00:00 | KILL  | z1YjH3V5CVxK4HkUSJbTJbbCN9qY8SURNrB5T3kpump | missing data: liquidity (dex); pair age 26m < 30m
 2026-10-19T16:07:47+00:00 | KILL  | C8rL5GEsVHMmbg3jTvtsSa93bUxpUyLCThE6HKttpump | missing data: liquidity (dex); pair age 22m < 30m
+2026-10-19T19:11:41+00:00 | KILL  | FhTRVAkQeiaLRJHYc13DBNhgw9N8ZPacvonaKfXxpump | bundlers: same-slot buyer groups hold 26.1% >= 20.0%
