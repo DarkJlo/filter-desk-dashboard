@@ -223,7 +223,7 @@ h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{
 .pill.pass{{background:#0e3b2a;color:#26d07c}} .pill.kill{{background:#3b1216;color:#f6465d}} .pill.error{{background:#3a2f0b;color:#f0b90b}}
 </style></head><body><h1>Filter Desk <span class="ver" title="current filter rules version (docs/RULES_CHANGELOG.md)">rules {filter_version()}</span></h1><div class="sub">Updated {now} · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>
 <a href="{RUN_URL}" target="_blank"><button>▶ Run scan</button></a></div>
-<div class="sub">Last scan: <b style="color:#d1d4dc">{last}</b> · Auto-scan every 12h (8:00 &amp; 20:00 MST). ▶ Run scan still works on demand. Takes a few minutes; then ↻ Refresh (Pages may lag ~1 min).</div>
+<div class="sub">Last scan: <b style="color:#d1d4dc">{last}</b> · Auto-scan 3×/day (8:00, 14:00 &amp; 20:00 MST). ▶ Run scan still works on demand. Takes a few minutes; then ↻ Refresh (Pages may lag ~1 min).</div>
 <div class="cards"><div class="card"><span>Checked</span><b>{total}</b></div><div class="card"><span>Kills</span><b style="color:#f6465d">{kills}</b></div>
 <div class="card"><span>Passes</span><b style="color:#26d07c">{passes}</b></div><div class="card"><span>Kill rate</span><b>{rate}</b></div></div>
 {outcomes_html(OC)}

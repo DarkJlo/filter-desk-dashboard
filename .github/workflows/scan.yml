@@ -1,8 +1,8 @@
 name: Filter Desk scan
 on:
   schedule:
-    # 8:00 and 20:00 America/Phoenix (UTC-7) → 15:00 and 03:00 UTC
-    - cron: "0 15,3 * * *"
+    # 8:00, 14:00, 20:00 America/Phoenix (UTC-7) → 15:00, 21:00, 03:00 UTC
+    - cron: "0 15,21,3 * * *"
   workflow_dispatch:
     inputs:
       mode:
