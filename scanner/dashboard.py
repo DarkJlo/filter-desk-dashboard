@@ -56,8 +56,44 @@ def num(v, f="{:.1f}"):
     try: return f.format(float(v))
     except Exception: return "—"
 
+def oc_badge(OC, mint):
+    t = OC["tokens"].get(mint)
+    if not t or t.get("cur_mult") is None: return ""
+    col = {"WINNER": "#26d07c", "RUGGED": "#f6465d", "DEAD": "#f0b90b"}.get(t["status"], "#9aa4b2")
+    return f' <span class="nm" style="color:{col}" title="outcome: peak {t.get("peak_mult",0):.2f}x">{t["status"]} {t["cur_mult"]:.2f}x</span>'
+
+def outcomes_html(OC):
+    S = OC.get("summary") or {}
+    if not S: return ""
+    lab = {"pass": "Passes (strict filter)", "kill_control": "Kill control (random 5/scan)", "pass_v1_loose": "Passes (old v1 filter)"}
+    cards = ""
+    for g in ("pass", "kill_control", "pass_v1_loose"):
+        x = S.get(g) or {}
+        if not x.get("tracked"): continue
+        cards += (f'<div class="card"><span>{lab[g]}</span><b>{x["tracked"]}</b>'
+                  f'<div class="nm">hit 2x: {x["hit2x"]}% · rugged/dead: {x["rugged_or_dead"]}%<br>'
+                  f'median 24h: {num(x["median_24h"],"{:.2f}")}x · median now: {num(x["median_cur"],"{:.2f}")}x</div></div>')
+    f = lambda t, k: (f'{t[k]:.2f}x' if t.get(k) is not None else "—")
+    rows = ""
+    for m, t in sorted(OC["tokens"].items(), key=lambda kv: kv[1]["t0"], reverse=True):
+        if t["group"] != "pass": continue
+        when = datetime.fromisoformat(t["t0"]).astimezone(TZ).strftime("%b %d %H:%M")
+        col = {"WINNER": "#26d07c", "RUGGED": "#f6465d", "DEAD": "#f0b90b"}.get(t.get("status"), "#9aa4b2")
+        rows += (f'<tr><td><a href="https://gmgn.ai/sol/token/{m}" target="_blank" title="{m}"><b>{html.escape(t.get("symbol") or m[:6])}</b></a></td>'
+                 f'<td>{when}</td><td>${num(t.get("entry_mcap"),"{:,.0f}")}{"*" if t.get("entry_approx") else ""}</td>'
+                 f'<td>{f(t,"m1h")}</td><td>{f(t,"m6h")}</td><td>{f(t,"m24h")}</td><td>{f(t,"peak_mult")}</td><td>{f(t,"cur_mult")}</td>'
+                 f'<td style="color:{col}">{t.get("status")}{" (final)" if t.get("final") else ""}</td><td class="r">{html.escape(t.get("note",""))}</td></tr>')
+    upd = datetime.fromisoformat(OC["updated"]).astimezone(TZ).strftime("%b %d %H:%M MST") if OC.get("updated") else "—"
+    return (f'<h2 style="font-size:15px;color:#fff;margin:6px 0 8px">Outcomes <span class="nm" style="font-size:12px">updated {upd} · hourly · 7-day window · multiples vs price at pass time</span></h2>'
+            f'<div class="cards">{cards}</div>'
+            f'<table style="margin-bottom:26px"><thead><tr><th>Token</th><th>Passed (MST)</th><th>Entry mcap</th><th>+1h</th><th>+6h</th><th>+24h</th><th>Peak</th><th>Now</th><th>Status</th><th>Note</th></tr></thead>'
+            f'<tbody>{rows or "<tr><td colspan=10>No passes tracked yet.</td></tr>"}</tbody></table>'
+            f'<div class="nm" style="margin:-18px 0 22px">* entry approximated from first observation</div>')
+
 def build():
     rows = load()
+    try: OC = json.load(open(os.path.join(D, "outcomes.json")))
+    except Exception: OC = {"tokens": {}, "summary": {}}
     kills = sum(r["verdict"] == "KILL" for r in rows); passes = sum(r["verdict"] == "PASS" for r in rows)
     total = len(rows); rate = f"{100*kills/total:.1f}%" if total else "—"
     names = names_for(rows)
@@ -79,7 +115,7 @@ def build():
         sym, nm = (names.get(mint) or ["", ""])
         tok = f'<b>{html.escape(sym)}</b> <span class="nm">{html.escape(nm if nm != sym else "")}</span>' if sym else '<span class="nm">unknown</span>'
         trs.append(f'<tr class="{v.lower()}"><td>{ts}</td><td><a href="https://gmgn.ai/sol/token/{mint}" target="_blank" title="{mint}">{short}</a></td>'
-                   f'<td>{tok}</td><td><span class="pill {v.lower()}">{v}</span></td><td class="r">{html.escape(main)}</td>'
+                   f'<td>{tok}</td><td><span class="pill {v.lower()}">{v}</span>{oc_badge(OC, mint)}</td><td class="r">{html.escape(main)}</td>'
                    f'<td>{num(score,"{:.0f}")} / {num(norm,"{:.0f}")} / {num(lp)}</td><td>{"$"+num(liq,"{:,.0f}") if liq else "—"}</td></tr>')
     now = datetime.now(TZ).strftime("%b %d, %Y %H:%M MST")
     last = datetime.fromisoformat(max(r["timestamp"] for r in rows)).astimezone(TZ).strftime("%b %d, %Y %H:%M MST") if rows else "never"
@@ -101,6 +137,7 @@ td{{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap}} td.r{{w
 <div class="sub">Last scan: <b style="color:#d1d4dc">{last}</b> · ▶ Run scan opens GitHub Actions → click "Run workflow" (owner login required). A scan takes a few minutes; then hit ↻ Refresh (Pages may lag ~1 min).</div>
 <div class="cards"><div class="card"><span>Checked</span><b>{total}</b></div><div class="card"><span>Kills</span><b style="color:#f6465d">{kills}</b></div>
 <div class="card"><span>Passes</span><b style="color:#26d07c">{passes}</b></div><div class="card"><span>Kill rate</span><b>{rate}</b></div></div>
+{outcomes_html(OC)}
 <input id="q" placeholder="Filter by mint, verdict, reason…" oninput="for(const t of document.querySelectorAll('tbody tr'))t.style.display=t.innerText.toLowerCase().includes(this.value.toLowerCase())?'':'none'">
 <table><thead><tr><th>Time (MST)</th><th>Mint</th><th>Token</th><th>Verdict</th><th>Main reasons / warnings</th><th>Score / Norm / LP%</th><th>Liquidity</th></tr></thead>
 <tbody>{''.join(trs) or '<tr><td colspan=7>No checks yet.</td></tr>'}</tbody></table></body></html>"""

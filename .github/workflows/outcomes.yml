@@ -1,0 +1,41 @@
+name: Filter Desk outcomes
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+concurrency:
+  group: filter-desk-scan
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  outcomes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r scanner/requirements.txt
+      - name: Update outcomes
+        run: |
+          start=$(date +%s)
+          python scanner/outcomes.py
+          python scanner/dashboard.py
+          echo "Runtime: $(( $(date +%s) - start ))s"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config merge.ours.driver true
+          git add data/outcomes.json data/names.json index.html
+          git diff --cached --quiet && { echo "no changes"; exit 0; }
+          git commit -qm "outcomes update"
+          for i in 1 2; do
+            git pull -q --rebase -X theirs && python scanner/dashboard.py >/dev/null && git add index.html && \
+              { git diff --cached --quiet || git commit -qm "rebuild page"; } && git push -q && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
