@@ -98,3 +98,38 @@ That matches the design intent. (At push time, ~09:35 MST, a new scan had grown 
 - Do not relax graph-insider / insider-network kills (0 winners in control; the RugCheck-down passes are confounded).
 - Do not relax the bundle ≥5% @ ≥3x rule. It fires on rechecks of runners and means "late entry is risky", which is correct.
 - Do not change liquidity, age or volume minimums. Micro-cap "winners" in the control group are not tradeable.
+
+## Addendum ~12:30 MST: Doomsday post-mortem (r9, WARN only)
+
+**What happened.** Doomsday `GaPbQwLDPjSXGR9JxxG1aJLNthuxG58dM2XukBi8pump` was a graduated pump.fun token on PumpSwap (pool `5u57Wo…`).
+At ~11:51 MST Oct 19 it had FDV ~$210k and liq ~$41k. By 12:00 MST it had FDV ~$2.9k and pool ~$1.5–3.3k.
+RugCheck now reports `lpLockedPct 100`, `lpCurrentSupply 0` (**LP burned**), mint and freeze authority null, metadata immutable, creator balance 0.
+The pool holds **86.5% of supply** against ~7 SOL. **Nobody pulled the LP.** About 80% of the supply was sold into the pool within minutes.
+That supply sat in many small wallets: at pass time the largest non-LP holder had 0.54%, top10 was 4.8%, and there were ~2,955 holders.
+The visible 18-wallet bundle (8.5%) is too small by itself to explain a −99% move.
+
+**Its checks (times MST).**
+- 15:48–16:31 Oct 18: KILL ×4. Reasons: `lopsided h24` (0.33–0.49 at 1.1–1.8h old), RugCheck missing, uniform cluster 18.
+- **20:23 and 20:53 Oct 18: PASS** (r7). WARNs: `rugcheck unavailable`, `FUNDING WARN: 4 clusters hold 5.7% (largest 2.5%)`, `BUNDLE WARN: 18 wallets hold 8.47% (sold 10%), 1.37x/1.91x`. Other metrics: lp_status burned (PumpSwap), liq $56k/$67k, FDV $415k/$579k (FDV/liq 7.4/8.7), pair age 5.5h/6.1h, on-chain top10 4.84%, top holder 0.54%, Token-2022 with metadata extensions only (no fee, hook or delegate), authorities null, bundler (same-slot) 2.9%, sell impact 1.6%/0.7%, h1 buys/sells 2753/4165 then 3065/597.
+- 08:24 and 09:07 Oct 19: KILL by `bundle: cluster of 18 holds 8.5% at 3.6x / 4.1x` (FDV $1.1–1.2M, liq $96–101k, RugCheck back: score 1, LP 100%, insiders 0, creator 0%).
+- The GMGN tags the user saw (DEV 25 = serial deployer, "Renames 2") are not collected by the scanner, so they cannot be replayed.
+
+**Signals tested against the log and outcomes (liq ≥ $15k unless noted).**
+| Signal at check time | Rugs caught | Winners hit | Verdict |
+|---|---|---|---|
+| Flat distribution: top10 < 7% and top1 < 1% | 6 rugged to ~0 (Doomsday, Vader, CATONICE, Piccolo, 3oUzvv, PIERRE-v1). 3 more fell 60–97% | **startupSI 24x** (identical numbers to Vader) | **WARN only** (r9 `FLAT WARN`) |
+| Bundle held ≥ 5% regardless of multiple (drop the ≥3x condition) | 1 tracked pass (Doomsday). Note it also peaked 3.4x after the pass | 0 ≥2x winners. Kills MOMO (1.2x) and ZeroFee (1.25x) | Not adopted: n=1, and the bundle was not the wallets that dumped |
+| Funding WARN ≥ 5% linked | Doomsday only | n/a | Too thin |
+| LP lock / burn | none (LP burned) | n/a | Cannot catch this mechanism |
+| Uniform cluster ≥ 18 | Doomsday, Vader, CATONICE, MINTER | startupSI (19) | Same problem as flat distribution |
+No wallet overlap was found between Doomsday's holders or cluster and any other logged token.
+
+**Decision.** There is no new KILL. Every clean discriminator also fires on startupSI.
+The flat-distribution profile is a strong **exit-risk** marker (9 of 10 went to ~0 or −60% or worse), so it is surfaced as a WARN.
+The rule for a FLAT WARN pass: small size, take profits into strength, and do not hold through a sell-heavy hour.
+
+**Outcomes.** `outcomes.py` marks RUGGED when liq < $1,000 **or** the current multiple is ≤ 0.10.
+Doomsday now has liq ~$3.3k on DexScreener's largest pair, so the liquidity test alone would not fire.
+Its multiple is 0.007x vs the $415k entry, so the next hourly run marks it **RUGGED**. No fix was needed.
+
+**PIERRE.** Not a rug as of 12:15 MST: liquidity $82k (PumpSwap) plus about $88k on Meteora, and −48% over 6h. Its top10 is about 20%, so it is not flat.

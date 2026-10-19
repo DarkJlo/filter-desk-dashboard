@@ -40,7 +40,7 @@ def rules_version(e):
     return v
 
 _WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
-              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"),
+              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
               ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 
 def tier_of(warns):

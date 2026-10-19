@@ -16,7 +16,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r8-2026-10-19"
+FILTER_VERSION = "r9-2026-10-19"
 
 # ---------------- thresholds ----------------
 MAX_SCORE_NORM = 50
@@ -34,6 +34,12 @@ H1_ZERO_SELL_MAX_BUYS = 20    # h1 sells == 0 with h1 buys > 20 = kill
 # (startupSI killed at 5-9h with sells/buys 0.40-0.47, ran to ~20x; rugs Vader/CATONICE had 0.25-0.31)
 LOPSIDED_SOFT_MIN_AGE_H = 4.0     # pair age >= 4h ...
 LOPSIDED_SOFT_MIN_RATIO = 0.38    # ... and h24 sells/buys >= 0.38 (buys <= ~2.6x sells) -> LOPSIDED WARN
+# r9 (WARN only, no verdict change): supply spread so thin that no non-LP wallet holds >= 1% and top10 < 7% at a
+# tradeable size looks like a wallet farm. Of 10 such tokens with liq >= $15k in the log, 6 went to ~$2-3k FDV
+# (supply dumped into a burned-LP pool: Doomsday, Vader, CATONICE, Piccolo, 3oUzvv, PIERRE-v1), 3 fell 60-97%
+# (MINTER, FTR, WORTHLESS), and 1 ran 24x (startupSI, identical profile). It cannot be a KILL; treat it as an exit-risk flag.
+FLAT_WARN_MAX_TOP10_PCT = 7.0
+FLAT_WARN_MAX_TOP1_PCT = 1.0
 SELL_QUOTE_USD = 100
 SELL_SLIPPAGE_BPS = 1500
 MAX_SELL_IMPACT_PCT = 15.0
@@ -841,8 +847,19 @@ def evaluate_stage_a(mint, rep, pair):
         elif liq:
             if fdv / liq > MAX_FDV_LIQ_RATIO: R.append(f"FDV/liq {fdv/liq:.0f} > {MAX_FDV_LIQ_RATIO}")
     R += onchain_checks(mint, rep, M)
+    flat_warn(M)
     if M.get("cluster_flag") and R: M["bundle_status"] = "not analyzed (already killed)"
     return R, M
+
+def flat_warn(M):
+    """r9: FLAT WARN when the non-LP holder distribution is suspiciously flat (possible wallet farm). WARN only."""
+    t10, t1 = M.get("oc_top10_pct"), M.get("oc_top_holder_pct")
+    if not t1:   # on-chain holders missing (or empty): fall back to RugCheck's numbers
+        t10, t1 = M.get("top10_pct"), M.get("top_holder_pct")
+    if t10 is None or not t1: return
+    if t10 < FLAT_WARN_MAX_TOP10_PCT and t1 < FLAT_WARN_MAX_TOP1_PCT:
+        M["warns"].append(f"FLAT WARN: top10 {t10:.1f}% / top holder {t1:.2f}% (possible wallet farm; "
+                          f"6/10 past cases dumped to ~0 with LP burned, 1/10 ran 24x) -- size small, take profit early")
 
 def evaluate_stage_b(mint, rep, pair, M):
     """Expensive checks, stop at first kill. Order: OHLCV/dead pump, sell quote, funding trace, bundler, bundle."""
@@ -863,7 +880,7 @@ def evaluate(mint, rep, pair):
     return ("KILL" if R else "PASS"), R, M
 
 WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
-             ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"),
+             ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
              ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 DEGRADED_TAGS = {"rc_down", "lp_unverified"}   # a data source was skipped, not a risk signal by itself
 

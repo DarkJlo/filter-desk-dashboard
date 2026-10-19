@@ -74,7 +74,7 @@ def oc_badge(OC, mint):
 
 def warn_html(w):
     """Colour a warning; bundler WARN band (10-20%) is highlighted so it is visible before it becomes a KILL."""
-    col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch")) else "#9aa4b2"
+    col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch", "FLAT WARN")) else "#9aa4b2"
     return f'<span style="color:{col}">{html.escape(w)}</span>'
 
 def load_all():
@@ -144,7 +144,7 @@ def outcomes_html(OC):
     by = load_all()
     f = lambda t, k: (f'{t[k]:.2f}x' if t.get(k) is not None else "—")
     TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"), ("LOPSIDED WARN", "lopsided"),
-            ("bundled launch", "bundled launch"), ("rugcheck unavailable", "RC down"), ("LP lock unverified", "LP unverified")]
+            ("bundled launch", "bundled launch"), ("FLAT WARN", "flat"), ("rugcheck unavailable", "RC down"), ("LP lock unverified", "LP unverified")]
     rows = ""
     for m, t in sorted(OC["tokens"].items(), key=lambda kv: kv[1]["t0"], reverse=True):
         if t["group"] != "pass": continue
