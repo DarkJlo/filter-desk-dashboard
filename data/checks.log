@@ -489,3 +489,43 @@
 2026-10-19T01:00:01+00:00 | KILL  | HqmFi85adLD8BQA7en1HfajdAfzVFps5REgQaYuw6Ax8 | bundlers: same-slot buyer groups hold 24.9% >= 20.0%
 2026-10-19T01:00:01+00:00 | KILL  | Ez7eEs53hQiXgCGmcbhdX5i1jgg2gC3F6MoeosuVpump | missing data: sell quote inputs (non-SOL quote pair)
 2026-10-19T01:00:01+00:00 | PASS  | ErvkxE8gc7EwmaQfvoGfVfcDJbVG4EcHQr3yweTkpump | clean
+2026-10-19T03:23:32+00:00 | KILL  | 3ZAnpeVBHAvZsySNMXp4g9nYaE1jsx6khgh29VYKpump | dead pump: -61% from ATH, volume declining
+2026-10-19T03:23:32+00:00 | KILL  | 3NxfWMHmfQg8NJFW5AG1ti2xACdczWz24e9SKyk1pump | dead pump: -81% from ATH, lower lows
+2026-10-19T03:23:32+00:00 | KILL  | 3A3qjns31YZA6Ung91ZpoPD7J3p1bDFbTJ4ANFAPpump | dead pump: -90% from ATH, volume declining
+2026-10-19T03:23:32+00:00 | KILL  | AcV6CcpMGFrA1dhRFiCKNiVNje8QE6ZXR9ep9jh7pump | dead pump: -93% from ATH, lower lows
+2026-10-19T03:23:32+00:00 | KILL  | 8RpybikpGLbKsYJ4FXz12ExDz89R7VXAUZ3JXNcKpump | lopsided h24 buys/sells 3714/1523
+2026-10-19T03:23:32+00:00 | KILL  | ArpPsesHXKbGeJsHdquM6acT3uNs7BChyetJjiNYpump | dead pump: -82% from ATH, volume declining
+2026-10-19T03:23:32+00:00 | PASS  | D3S6J9s1byrNBt3ZKwEDiPsNRqHtoEP8zQKdhyBdpump | clean
+2026-10-19T03:23:32+00:00 | KILL  | HqmFi85adLD8BQA7en1HfajdAfzVFps5REgQaYuw6Ax8 | missing data: holder owner programs
+2026-10-19T03:23:32+00:00 | KILL  | 7UAWdJjrBykopzco6bCBmMLdggaiec6bd4bTKmQqpump | dead pump: -79% from ATH, volume declining
+2026-10-19T03:23:32+00:00 | KILL  | 6yMZv1NgnQWBeocyfCNKmdqGr3Enu3Lrdpz3TJRvpump | lopsided h24 buys/sells 69928/19218
+2026-10-19T03:23:32+00:00 | KILL  | 6vwkHvvoJujaPy6SWdjqE2fFc1V3AW6pj6KTh9jipump | missing data: holder owner programs
+2026-10-19T03:23:32+00:00 | KILL  | 9tpHqTJ2d8jMZJjZzsf9MCfnCEmbAjsqjPJ56PzSpump | missing data: holder owner programs
+2026-10-19T03:23:32+00:00 | KILL  | AHK1P9qNCujgmNp2JxRk5Q71AvJhzJPnFf2TWTkppump | missing data: on-chain holders
+2026-10-19T03:23:32+00:00 | KILL  | Ez7eEs53hQiXgCGmcbhdX5i1jgg2gC3F6MoeosuVpump | missing data: sell quote inputs (non-SOL quote pair)
+2026-10-19T03:23:32+00:00 | KILL  | EKosQw4oJFbXmeJ4qRnbH1quGFRTc3Eok6nwnFKDpump | lopsided h24 buys/sells 28491/13181
+2026-10-19T03:23:33+00:00 | KILL  | ErvkxE8gc7EwmaQfvoGfVfcDJbVG4EcHQr3yweTkpump | dead pump: -64% from ATH, volume declining
+2026-10-19T03:23:33+00:00 | KILL  | 8j2G4CUi8vswXykzyp4PYNGKF9wuLBmYoT6Y4Fcnpump | dead pump: -73% from ATH, volume declining
+2026-10-19T03:23:33+00:00 | KILL  | GoLdZWYNg9jg4z5SGCLJx69xag2vMjLaSQK5S7TUGoLd | missing data: sell quote inputs (non-SOL quote pair)
+2026-10-19T03:23:33+00:00 | KILL  | J4dyfXc8EY3TXAeFdpAKZqWyW4S8XpdoABib7JMnpump | dead pump: -84% from ATH, volume declining
+2026-10-19T03:23:33+00:00 | PASS  | GaPbQwLDPjSXGR9JxxG1aJLNthuxG58dM2XukBi8pump | clean
+2026-10-19T03:23:33+00:00 | KILL  | Dk8hNqi3iM31m9wgQ9YpZQxXSu7aXZ8Srk5YxcXqpump | missing data: liquidity (dex); pair age 19m < 30m
+2026-10-19T03:23:33+00:00 | KILL  | 672KGJCguSdSrnLjU8SGdbPgmHTbFbeooZ4arSpNpump | pair age 16m < 30m; lopsided h24 buys/sells 2631/665; on-chain top10 53.7% > 30.0%
+2026-10-19T03:23:33+00:00 | KILL  | EUyBEjcYpre3Usr64fNwBmCUWVFPFA3BAcLjVQDgpump | missing data: liquidity (dex)
+2026-10-19T03:23:33+00:00 | KILL  | BDLiN5QpxAcD4DA8KSjJeae2on3LCyhRVDGGHEbYpump | missing data: liquidity (dex); pair age 11m < 30m
+2026-10-19T03:23:33+00:00 | KILL  | HanvWGAuxkD5tz7R3wECotDjNbD2JHCpMDyULvJPpump | missing data: liquidity (dex); pair age 10m < 30m
+2026-10-19T03:23:33+00:00 | KILL  | 2gEVZYoeQkny1UV4BGXVSpCiJ1cqRPeV5VKKefWioErp | pair age 24m < 30m; on-chain token2022: transfer fee 1.0%
+2026-10-19T03:23:33+00:00 | KILL  | 4sDXjyUx2XGmuJbAUZLwZbGD58zsERtP3YyL4L5xNZh3 | liquidity $6,804 < $15,000; 24h volume $200 < $10,000; lopsided h24 buys/sells 4/0; on-chain top10 81.6% > 30.0%; on-chain single holder 80.0% > 10.0%
+2026-10-19T03:23:33+00:00 | KILL  | Gy2dA5zViRxjzK9bfZd6dSN35eq3kRZSFetycCABpump | missing data: liquidity (dex); 24h volume $0 < $10,000; missing data: fdv
+2026-10-19T03:23:33+00:00 | KILL  | CLSq3Sdv6hzoC9MEhHVGMTRUF6A4FifLUXs72XZBpump | missing data: ohlcv
+2026-10-19T03:23:33+00:00 | KILL  | 26patTNXrNpcicoFTQnXTT3tysVKTpEuiiUSWDhYyThZ | missing data: liquidity (dex); 24h volume $0 < $10,000; lopsided h24 buys/sells 341/155; missing data: fdv; on-chain top10 66.9% > 30.0%; on-chain single holder 45.1% > 10.0%
+2026-10-19T03:23:33+00:00 | KILL  | 5eCYAtpc41G9Mpi5NyoMqP9bo8Fx8PaoBB56K8sypump | liquidity $2,503 < $15,000; pair age 12m < 30m
+2026-10-19T03:23:34+00:00 | KILL  | FvcHJY4sUiAK2c9c9kStWAWhraLhYfrgsC6ZNjYpump | liquidity $2,356 < $15,000; pair age 27m < 30m
+2026-10-19T03:23:34+00:00 | KILL  | LqbSzVCimk2PcS7shoSt5Nfa5xYYCHW2fiCVg7Xpump | missing data: liquidity (dex)
+2026-10-19T03:23:34+00:00 | KILL  | DaAbbS4zUNggwS3Ue3SGvKWen6DpaekbPtrxEkjypump | liquidity $2,974 < $15,000
+2026-10-19T03:23:34+00:00 | KILL  | 2obGYb3b6nHFNetu9Kka92vhuks5wX2kVGeUGmZjzsqu | missing data: ohlcv
+2026-10-19T03:23:34+00:00 | KILL  | 3goEJAqwmQNFjHpw77yNjWdm3ZXvPyfAqk53ruBypump | liquidity $3,055 < $15,000
+2026-10-19T03:23:34+00:00 | KILL  | 4Z7vcfssq4r8v14wfb653P4MPKMwL6JcNoE796S2gUsH | liquidity $2,673 < $15,000
+2026-10-19T03:23:34+00:00 | KILL  | 63dz3RGFGaobG4MpRzFpkeFMuWzPfmC6EfuqSQY9pump | missing data: liquidity (dex)
+2026-10-19T03:23:34+00:00 | KILL  | ApCA3M9LJhjqtaTQyBJv45d5vwDv1Y7qJaYaYjcWpump | missing data: liquidity (dex)
+2026-10-19T03:23:34+00:00 | KILL  | 4QDygCVJRrSQTBKXGTWVSYuxnwJyAZ3rcKvyLoytPriv | missing data: liquidity (dex)
