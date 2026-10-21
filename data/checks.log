@@ -890,3 +890,43 @@
 2026-10-21T15:30:21+00:00 | KILL  | Ac4UPAYTpiNPpwXQ7cqTZnRVtPH3yeC9md8oJLo4pump | graph-detected insiders: 155; insider networks detected
 2026-10-21T15:30:21+00:00 | KILL  | G9suJiq45Pwu9awpx6Qr8bwhH53HQb3v7EHgGX4Vpump | top10 non-LP holders 44.0% > 30.0%; single holder 18.6% > 10.0%; creator still holds 18.641%; missing data: liquidity (dex); 24h volume $6,128 < $10,000; lopsided h24 buys/sells 120/41; on-chain top10 44.0% > 30.0%; on-chain single holder 18.6% > 10.0%
 2026-10-21T15:30:21+00:00 | KILL  | KoLoaG4ktXXA2g5FjrwNAHeNy5wPfQ2RzVUxscgZrpc | warn: High holder correlation; graph-detected insiders: 105; insider networks detected
+2026-10-21T21:24:51+00:00 | KILL  | CSocnzcRpgSCr1naKcNTieWZUxb6rABe45j844m7pump | high risk score (raw=15404, norm=56); danger: Top 10 holders high ownership; danger: Single holder ownership; top10 non-LP holders 78.2% > 30.0%; single holder 75.3% > 10.0%; on-chain top10 78.2% > 30.0%; on-chain single holder 75.3% > 10.0%
+2026-10-21T21:24:51+00:00 | KILL  | Cbkg5w7V7W2J2sUmecnyN825CbvwvXwasfhduVtNpump | graph-detected insiders: 43; insider networks detected
+2026-10-21T21:24:51+00:00 | KILL  | 54UN9YwDyazXjRXhxMvzWG7yNstGqjtHnh1WGgpepump | graph-detected insiders: 89; insider networks detected
+2026-10-21T21:24:51+00:00 | KILL  | fpam8wyNiDSHtwx1znYeipGgRNnBcBTcN1iechcpump | dead pump: -88% from ATH, lower lows
+2026-10-21T21:24:51+00:00 | KILL  | 4wopERxtKHjzaANSywo9BVVycGJ7q7uXJ38Q6EoCpump | dead pump: -72% from ATH, lower lows
+2026-10-21T21:24:51+00:00 | KILL  | FjLFsaPKSxJGh25iTKCLEkthbeHKLJrxvHyJG9wqpump | dead pump: -82% from ATH, lower lows
+2026-10-21T21:24:51+00:00 | KILL  | METvsvVRapdj9cFLzq4Tr43xK4tAjQfwX76z3n6mWQL | top10 non-LP holders 81.6% > 30.0%; single holder 28.9% > 10.0%; graph-detected insiders: 908; insider networks detected; creator still holds 1.094%; FDV/liq 949 > 50; on-chain top10 81.6% > 30.0%; on-chain single holder 28.9% > 10.0%
+2026-10-21T21:24:52+00:00 | KILL  | 9EQbGTfud1wELEndcU92G4xabRrPNSqxijrA5o3ipump | high risk score (raw=19808, norm=60); danger: Top 10 holders high ownership; danger: Single holder ownership; danger: High ownership; top10 non-LP holders 92.9% > 30.0%; single holder 90.1% > 10.0%; graph-detected insiders: 6; insider networks detected; on-chain top10 92.9% > 30.0%; on-chain single holder 90.1% > 10.0%
+2026-10-21T21:24:52+00:00 | KILL  | EHPugw1ghE46BeySAa7cHvoZHwYometbp1aK1Q7jpump | graph-detected insiders: 310; insider networks detected
+2026-10-21T21:24:52+00:00 | KILL  | YKVRK6dCgdxbY4YhNf7Csr7a8JP9v78AWgtMqnwpump | graph-detected insiders: 21; insider networks detected
+2026-10-21T21:24:52+00:00 | KILL  | HFgAnkovdLoHDh3FC5AqPvvUtUwQNC9c3rBqeMbB91HM | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers
+2026-10-21T21:24:52+00:00 | KILL  | 9NtAFuX7LFMCicCf69WnabrMm8Q2xzg6NVFfCgEHgWwt | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers
+2026-10-21T21:24:52+00:00 | KILL  | 8QFDPXSaKAzExGBfWvrmtZxzMSTAaRRqD32NJHiKpump | creator still holds 3.207%; missing data: liquidity (dex); pair age 11m < 30m; 24h volume $0 < $10,000; missing data: fdv
+2026-10-21T21:24:52+00:00 | KILL  | 2jZHjmLaANPW9KktREEYEJvjkZrght3PBBgKLqH8pump | graph-detected insiders: 5; insider networks detected; missing data: liquidity (dex); pair age 10m < 30m
+2026-10-21T21:24:52+00:00 | KILL  | Frgk1pecAmUwLr7PkoXgNMAkotroeyheW8EiLuZspump | graph-detected insiders: 7; insider networks detected; missing data: liquidity (dex); pair age 20m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | FbbLXqtZsudDQZoDbfKrKBgMAF9rgiEKLbHpJKNepump | missing data: liquidity (dex); pair age 20m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | CpP1UwqY6seNcHnaYFudoKZ1SAEBDaoCCtyMUAiWesj1 | missing data: liquidity (dex); pair age 18m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | HBR5eSdfHb7HVXk11gZMrDsxEBspPEMeHfPxcuMHpump | danger: Low Liquidity; liquidity $2,402 < $15,000; pair age 10m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | Drbm99ax2TyFQ2UbnRMAjbHCe8retrpCzqi4YHSQpump | pair age 27m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | 8R8yNhPb6wFQC6fdQ57suud6dcMYrwi5ejWnKoEypump | warn: Low Liquidity; liquidity $7,204 < $15,000; pair age 18m < 30m
+2026-10-21T21:24:53+00:00 | KILL  | 9XHTDNC9M3C4pNkptVe7czXzhqzd4TvUiDnWcajrpump | top10 non-LP holders 38.1% > 30.0%; creator still holds 1.001%; missing data: liquidity (dex); 24h volume $0 < $10,000; missing data: fdv; on-chain top10 38.1% > 30.0%
+2026-10-21T21:24:53+00:00 | KILL  | 2QWrgr4eaHSs7g2yNEZjiNWP5froX8NQiGtRPJy3pump | graph-detected insiders: 166; insider networks detected; pair age 20m < 30m
+2026-10-21T21:24:54+00:00 | KILL  | BodwAyiqYqnQKzxY6Ntwy9dUfRmittMbYCdnc55Kpump | danger: Low Liquidity; liquidity $2,567 < $15,000
+2026-10-21T21:24:54+00:00 | KILL  | D25wGmiwJruat7EuYQTFWrk2pDpAoKprdxfNXDH9pump | pair age 29m < 30m; lopsided h24 buys/sells 9659/2287
+2026-10-21T21:24:54+00:00 | KILL  | 7FEDPFqWaLre7KAkK1SKyJdFdAWKgghpAzgATZdhpump | missing data: liquidity (dex)
+2026-10-21T21:24:54+00:00 | KILL  | 7CZWZbDDnai4yCNGYAW1KSYB6htoDNE273g72FEapump | creator still holds 1.024%
+2026-10-21T21:24:54+00:00 | KILL  | crim79iMw63ZRV9dZmcKWmdvoGYgJ8JpRX6pYUA9EUp | warn: Copycat token; top10 non-LP holders 30.7% > 30.0%; graph-detected insiders: 10; insider networks detected; missing data: liquidity (dex); pair age 29m < 30m; on-chain top10 30.7% > 30.0%
+2026-10-21T21:24:54+00:00 | KILL  | KaEE36UcWo3hCgks3PVU8vYZ8ykkp8jyf8pBtVupump | missing data: lpLockedPct; top10 non-LP holders 31.0% > 30.0%; single holder 17.8% > 10.0%; pair age 28m < 30m; holder data mismatch (rugcheck 31.0% vs on-chain 14.4%)
+2026-10-21T21:24:54+00:00 | KILL  | HQp1VjjRDNRgNixrn4drusfrFUHUJivnD2eshXHYuTbJ | graph-detected insiders: 5; insider networks detected; missing data: liquidity (dex)
+2026-10-21T21:24:54+00:00 | KILL  | HdwQV48YV523GT3nLrpqmWfStqu7PqSBfsTW3iEXJZjD | LP locked only 0.0%; warn: Fee config enabled; token2022: transfer fee 1.0%; missing data: dexscreener pair; on-chain token2022: transfer fee 1.0%
+2026-10-21T21:24:55+00:00 | KILL  | CjDQzMzg6HCCKZpKYtQ2reu7zK468Gg771CzFR61STNK | LP locked only 0.0%; warn: Fee config enabled; token2022: transfer fee 1.0%; missing data: dexscreener pair; on-chain token2022: transfer fee 1.0%
+2026-10-21T21:24:55+00:00 | KILL  | JDroFYxg9y1Mmcyd8N3rYnzfXSScSpzBhHnEXaUBpump | danger: Low Liquidity; graph-detected insiders: 16; insider networks detected; missing data: liquidity (dex)
+2026-10-21T21:24:55+00:00 | KILL  | FtByUFQUdgnEBc7eZU1o3H9Tpu9WC5ZK9d1a6ppbpump | danger: Low Liquidity; graph-detected insiders: 1043; insider networks detected; liquidity $3,213 < $15,000; lopsided h24 buys/sells 4684/2334
+2026-10-21T21:24:55+00:00 | KILL  | Cm95GKvJsCpmzn2CD1ZwWotPi5mvQ91qjJbqtLLXpump | missing data: liquidity (dex)
+2026-10-21T21:24:55+00:00 | KILL  | GNE7e774tkGyxMMzP36ofhNuRrUZ15H4e1LE1xekpump | lopsided h24 buys/sells 12016/5681
+2026-10-21T21:24:55+00:00 | KILL  | YoLKW1YwxrihuaHjzyrMUtTNaktLKrbLZa4JQpNLabS | danger: Low Liquidity; graph-detected insiders: 8; insider networks detected; liquidity $2,523 < $15,000
+2026-10-21T21:24:55+00:00 | KILL  | B9cyjXHJAwaRwdJ8T2WtAjq1usSiUQnm9NaaukLhpump | creator still holds 3.221%; missing data: liquidity (dex); 24h volume $3,001 < $10,000; lopsided h24 buys/sells 347/102
+2026-10-21T21:24:55+00:00 | KILL  | A6kBEdrgadYzdV157v8ANz5XiCqCB9aBsrND9H291Kut | warn: Low Liquidity; liquidity $4,620 < $15,000
+2026-10-21T21:24:56+00:00 | KILL  | HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump | graph-detected insiders: 6; insider networks detected; creator still holds 6.116%
+2026-10-21T21:24:56+00:00 | KILL  | HCNU8p6zbaTpTSVMx7D3j4c9dJySmsgMw6oKmDxSpump | top10 non-LP holders 33.1% > 30.0%; creator still holds 3.570%; liquidity $10,775 < $15,000; on-chain top10 33.1% > 30.0%
