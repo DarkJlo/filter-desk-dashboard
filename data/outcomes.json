@@ -810,6 +810,12 @@
 5.652e-06,
 5652,
 7141.87
+],
+[
+1792856364,
+5.652e-06,
+5652,
+7141.87
 ]
 ],
 "pool": "A3dwRKvuiTj1ZRo6xQzG75Jx3BHpU7eSV6Xb5S3dwuHp",
@@ -1646,6 +1652,12 @@
 ],
 [
 1792852706,
+2.508e-06,
+2407,
+2478.79
+],
+[
+1792856364,
 2.508e-06,
 2407,
 2478.79
@@ -2488,25 +2500,31 @@
 3.654e-06,
 3527,
 3853.71
+],
+[
+1792856364,
+3.56e-06,
+3436,
+3755.51
 ]
 ],
 "pool": "FCMBiqvofAy6DsmmsZyRXTW7Qb5XwsdwmpBSPSXkMFVd",
-"cur_liq": 3853.71,
-"cur_mcap": 3527,
-"cur_price": 3.654e-06,
+"cur_liq": 3755.51,
+"cur_mcap": 3436,
+"cur_price": 3.56e-06,
 "entry_price": 2.118e-05,
 "entry_approx": true,
 "peak_price": 3.488e-05,
-"cur_mult": 0.1725212464589235,
+"cur_mult": 0.1680830972615675,
 "peak_mult": 1.6468366383380546,
-"max_drawdown": -0.8274787535410765,
+"max_drawdown": -0.8319169027384326,
 "status": "DEAD",
 "rules_version": "r1-v1-loose",
 "pass_tier": "clean",
 "warns_at_entry": [],
 "entry_fdv": null,
 "entry_bundler_pct": null,
-"units": 965243568.6918446,
+"units": 965168539.3258427,
 "p24h": 7.721e-06,
 "m24h": 0.36454202077431536,
 "p72h": 6.502e-06,
@@ -3319,6 +3337,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -4157,19 +4181,25 @@ null
 3.813e-06,
 3359,
 3443.66
+],
+[
+1792856364,
+3.303e-06,
+2910,
+3078.08
 ]
 ],
 "pool": "zMatMZhtShcDKuFJKHzfRb8XCTRT9zSPbgmDtGrj7wm",
-"cur_liq": 3443.66,
-"cur_mcap": 3359,
-"cur_price": 3.813e-06,
+"cur_liq": 3078.08,
+"cur_mcap": 2910,
+"cur_price": 3.303e-06,
 "entry_price": 5.6286757615560564e-06,
 "entry_approx": false,
 "p1h": 6.162856808172636e-06,
 "p6h": 6.011390595861495e-06,
 "peak_price": 4.2930609897858654e-05,
 "min_price": 2.8443049834772548e-06,
-"cur_mult": 0.6774239912774599,
+"cur_mult": 0.5868165337501836,
 "peak_mult": 7.62712433909862,
 "max_drawdown": -0.4946759941469888,
 "m1h": 1.0949035029278191,
@@ -4180,7 +4210,7 @@ null
 "warns_at_entry": [],
 "entry_fdv": null,
 "entry_bundler_pct": null,
-"units": 880933648.0461578,
+"units": 881017257.0390555,
 "p24h": 3.6766361816955677e-06,
 "m24h": 0.6531973660318205,
 "p72h": 2.849e-06,
@@ -4993,6 +5023,12 @@ null
 ],
 [
 1792852706,
+4.553e-06,
+4359,
+4051.21
+],
+[
+1792856364,
 4.553e-06,
 4359,
 4051.21
@@ -5835,6 +5871,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "pool": "7Wz852S1zFSj9rq9FmWm4RtX9xoEGZkXMyo3V8VyxvW2",
@@ -6672,19 +6714,25 @@ null
 3.826e-06,
 3687,
 3519.91
+],
+[
+1792856364,
+4.371e-06,
+4212,
+3866.34
 ]
 ],
 "pool": "AeFvY8SygSpxZmt2nQmbER6FEtbyc7YX8UwNE3Qm1Akj",
-"cur_liq": 3519.91,
-"cur_mcap": 3687,
-"cur_price": 3.826e-06,
+"cur_liq": 3866.34,
+"cur_mcap": 4212,
+"cur_price": 4.371e-06,
 "entry_price": 3.613048572372419e-05,
 "entry_approx": false,
 "p1h": 3.91638975820476e-05,
 "p6h": 1.626845042216994e-05,
 "peak_price": 6.241569777291016e-05,
 "min_price": 3.7669402390150287e-06,
-"cur_mult": 0.10589395418749524,
+"cur_mult": 0.12097816878032977,
 "peak_mult": 1.7275078516845523,
 "max_drawdown": -0.8957406698647962,
 "m1h": 1.0839571292099068,
@@ -6695,7 +6743,7 @@ null
 "warns_at_entry": [],
 "entry_fdv": null,
 "entry_bundler_pct": null,
-"units": 963669628.8552011,
+"units": 963623884.6945778,
 "p24h": 2.3010053825131975e-05,
 "m24h": 0.6368597975980985,
 "p72h": 4.733955620641821e-06,
@@ -7511,19 +7559,25 @@ null
 0.0001847,
 173510,
 36594.49
+],
+[
+1792856364,
+0.0001723,
+161900,
+35030.09
 ]
 ],
 "pool": "2uFvHE5j37CUUtQU8jrbU2ijQcXFPP6MJRCsqehZsXKV",
-"cur_liq": 36594.49,
-"cur_mcap": 173510,
-"cur_price": 0.0001847,
+"cur_liq": 35030.09,
+"cur_mcap": 161900,
+"cur_price": 0.0001723,
 "entry_price": 4.139120854258538e-05,
 "entry_approx": false,
 "p1h": 4.8283743238485085e-05,
 "p6h": 2.7862212073840285e-05,
 "peak_price": 0.0002632957167324928,
 "min_price": 1.62729433694628e-05,
-"cur_mult": 4.462300244506542,
+"cur_mult": 4.162719719157971,
 "peak_mult": 6.361150737157161,
 "max_drawdown": -0.6068502480974827,
 "m1h": 1.1665217068694265,
@@ -7534,7 +7588,7 @@ null
 "warns_at_entry": [],
 "entry_fdv": null,
 "entry_bundler_pct": null,
-"units": 939415268.0021657,
+"units": 939640162.5072548,
 "p24h": 7.671106695493917e-05,
 "m24h": 1.853317882129847,
 "p72h": 0.00018400889395934466,
@@ -8347,6 +8401,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -9187,6 +9247,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "pool": "EiL2wJH8fFZaSzNisQJo4kM4EK4Ykcmx8mrC7jCf5aWN",
@@ -10021,6 +10087,12 @@ null
 ],
 [
 1792852706,
+2.15e-06,
+2031,
+2139.89
+],
+[
+1792856364,
 2.15e-06,
 2031,
 2139.89
@@ -10861,6 +10933,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "pool": "A8SSCeBRG1SHAbNGvFf3tFhooeXF5C6gqSbzNUm61gt3",
@@ -11698,23 +11776,29 @@ null
 7.379e-06,
 7191,
 7573.87
+],
+[
+1792856364,
+6.851e-06,
+6677,
+7201.47
 ]
 ],
 "pool": "psEVxbyorPSLZ55VNJsbAW7A1YAnPDsymyJijp1CuJz",
-"cur_liq": 7573.87,
-"cur_mcap": 7191,
-"cur_price": 7.379e-06,
-"entry_price": 0.00012036564052287582,
+"cur_liq": 7201.47,
+"cur_mcap": 6677,
+"cur_price": 6.851e-06,
+"entry_price": 0.00012035576591283512,
 "entry_approx": false,
 "p1h": 0.00012029278594993135,
 "p6h": 0.00011100322628012363,
 "peak_price": 0.0002919552952862483,
 "min_price": 6.6543887138449164e-06,
-"cur_mult": 0.0613048704592537,
-"peak_mult": 2.425570071475351,
-"max_drawdown": -0.9447152137026992,
-"m1h": 0.9993947228409371,
-"m6h": 0.9222168867952576,
+"cur_mult": 0.05692290641863954,
+"peak_mult": 2.4257690777996475,
+"max_drawdown": -0.9447106778526573,
+"m1h": 0.9994767183572295,
+"m6h": 0.9222925502423802,
 "status": "RUGGED",
 "note": "user bought ~17:05 MST Oct 18",
 "rules_version": "r2-inferred",
@@ -11723,12 +11807,12 @@ null
 "entry_fdv": 117299,
 "entry_bundler_pct": null,
 "warn_any_pass": true,
-"units": 974522292.9936305,
+"units": 974602247.8470296,
 "entry_src": "fdv_at_check",
 "p24h": 0.00011253040983862224,
-"m24h": 0.9349047564552737,
+"m24h": 0.9349814608809003,
 "p72h": 0.0001708360545195388,
-"m72h": 1.4193091465090566,
+"m72h": 1.4194255939782965,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -12539,6 +12623,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -13386,36 +13476,42 @@ null
 6.451e-06,
 6427,
 7083.92
+],
+[
+1792856364,
+6.366e-06,
+6342,
+6972.75
 ]
 ],
 "pool": "AscPffyZxMnHHFHqQWawtcrmasgUzCJtwyu6oS6CQD2R",
-"cur_liq": 7083.92,
-"cur_mcap": 6427,
-"cur_price": 6.451e-06,
-"entry_price": 0.0015221188199782169,
+"cur_liq": 6972.75,
+"cur_mcap": 6342,
+"cur_price": 6.366e-06,
+"entry_price": 0.0015221947171239357,
 "entry_approx": false,
 "p1h": 0.004018450952352789,
 "peak_price": 0.03702112089394165,
 "min_price": 5.961946032713288e-06,
-"cur_mult": 0.004238171104206123,
-"peak_mult": 24.322096545965746,
-"max_drawdown": -0.996083127049964,
-"m1h": 2.640037623613574,
+"cur_mult": 0.00418211936251365,
+"peak_mult": 24.320883837969216,
+"max_drawdown": -0.99608332234658,
+"m1h": 2.639905990440782,
 "status": "RUGGED",
 "p6h": 0.004566505447157561,
-"m6h": 3.00009788146691,
+"m6h": 2.9999482955673407,
 "rules_version": "r3-inferred",
 "pass_tier": "clean",
 "warns_at_entry": [],
 "entry_fdv": 1516456,
 "entry_bundler_pct": null,
 "warn_any_pass": false,
-"units": 996279646.5664239,
+"units": 996229971.724788,
 "entry_src": "fdv_at_check",
 "p24h": 0.02362856542310953,
-"m24h": 15.523469727184427,
+"m24h": 15.522695721710164,
 "p72h": 8.074319453342039e-06,
-"m72h": 0.005304657788448862,
+"m72h": 0.005304393296409421,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -14229,36 +14325,42 @@ null
 4.659e-05,
 44841,
 19049.57
+],
+[
+1792856364,
+5.205e-05,
+50102,
+20071.04
 ]
 ],
 "pool": "CEXh16Ug4DRAXhxk62B7qgV6Qpwfq9SHfocuSEgB6ggT",
-"cur_liq": 19049.57,
-"cur_mcap": 44841,
-"cur_price": 4.659e-05,
-"entry_price": 4.4502639994647754e-05,
+"cur_liq": 20071.04,
+"cur_mcap": 50102,
+"cur_price": 5.205e-05,
+"entry_price": 4.449733743163945e-05,
 "entry_approx": false,
 "p1h": 4.657964326211429e-05,
 "peak_price": 0.00019010264846126178,
 "min_price": 1.583175367344763e-05,
-"cur_mult": 1.0469041837878221,
-"peak_mult": 4.271716205693079,
-"max_drawdown": -0.6442513595743604,
-"m1h": 1.0466714619113908,
+"cur_mult": 1.1697329099738514,
+"peak_mult": 4.27222524838286,
+"max_drawdown": -0.6442089664854734,
+"m1h": 1.046796189405127,
 "status": "WINNER",
 "p6h": 3.5697200298973466e-05,
-"m6h": 0.8021366890428681,
+"m6h": 0.8022322763427027,
 "rules_version": "r4-inferred",
 "pass_tier": "clean",
 "warns_at_entry": [],
 "entry_fdv": 42832,
 "entry_bundler_pct": null,
 "warn_any_pass": false,
-"units": 962459755.3122988,
+"units": 962574447.6464938,
 "entry_src": "fdv_at_check",
 "p24h": 2.4923470254961966e-05,
-"m24h": 0.5600447581977038,
+"m24h": 0.5601114964069815,
 "p72h": 4.355011124118587e-05,
-"m72h": 0.9785961292728601,
+"m72h": 0.9787127445117634,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -15072,24 +15174,30 @@ null
 0.0001463,
 138683,
 32874.61
+],
+[
+1792856364,
+0.000151,
+143083,
+33130.39
 ]
 ],
 "pool": "E5bdE27ATDTeg1ZPNFhjnU5fcVKjccQ5iFZLaX8fscgx",
-"cur_liq": 32874.61,
-"cur_mcap": 138683,
-"cur_price": 0.0001463,
-"entry_price": 0.0010509077240901912,
+"cur_liq": 33130.39,
+"cur_mcap": 143083,
+"cur_price": 0.000151,
+"entry_price": 0.0010513138737655767,
 "entry_approx": false,
 "p1h": 0.0013014307040212824,
 "peak_price": 0.003845004020637846,
 "min_price": 9.972680323346501e-05,
-"cur_mult": 0.1392129838294387,
-"peak_mult": 3.6587456086752095,
-"max_drawdown": -0.9051041295563774,
-"m1h": 1.2383872286674626,
+"cur_mult": 0.14362979864343556,
+"peak_mult": 3.657332140843801,
+"max_drawdown": -0.9051407902796285,
+"m1h": 1.2379088077282208,
 "status": "WINNER",
 "p6h": 0.0018081623496333187,
-"m6h": 1.7205719476452703,
+"m6h": 1.7199072463077807,
 "rules_version": "r5-inferred",
 "pass_tier": "degraded",
 "warns_at_entry": [
@@ -15099,12 +15207,12 @@ null
 "entry_fdv": 996193,
 "entry_bundler_pct": null,
 "warn_any_pass": false,
-"units": 947935748.4620643,
+"units": 947569536.423841,
 "entry_src": "fdv_at_check",
 "p24h": 0.0017007496577056806,
-"m24h": 1.6183625057833513,
+"m24h": 1.617737290590456,
 "p72h": 0.00032306451024610716,
-"m72h": 0.3074147261842573,
+"m72h": 0.3072959639436324,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -15918,24 +16026,30 @@ null
 0.0001022,
 98348,
 27570.78
+],
+[
+1792856364,
+0.0001107,
+106528,
+28568.23
 ]
 ],
 "pool": "9TM5TKGS8D7RVS666AVhqBYeSxvQDEoPQ55ozJtRcJwE",
-"cur_liq": 27570.78,
-"cur_mcap": 98348,
-"cur_price": 0.0001022,
-"entry_price": 0.00014475908610241185,
+"cur_liq": 28568.23,
+"cur_mcap": 106528,
+"cur_price": 0.0001107,
+"entry_price": 0.00014475858084259536,
 "entry_approx": false,
 "p1h": 0.0001203452828234549,
 "peak_price": 0.00020092296641610185,
 "min_price": 6.337911651375172e-05,
-"cur_mult": 0.7060005886448963,
-"peak_mult": 1.3879817276129809,
-"max_drawdown": -0.5621752097211137,
-"m1h": 0.8313487330136564,
+"cur_mult": 0.764721506356647,
+"peak_mult": 1.3879865721713407,
+"max_drawdown": -0.5621736815542036,
+"m1h": 0.8313516347214919,
 "status": "open",
 "p6h": 0.00013490742732544952,
-"m6h": 0.9319444530756941,
+"m6h": 0.9319477058989851,
 "rules_version": "r6-inferred",
 "pass_tier": "degraded+warn",
 "warns_at_entry": [
@@ -15945,12 +16059,12 @@ null
 "entry_fdv": 139303,
 "entry_bundler_pct": null,
 "warn_any_pass": true,
-"units": 962309197.6516634,
+"units": 962312556.458898,
 "entry_src": "fdv_at_check",
 "p24h": 8.039983736859917e-05,
-"m24h": 0.5554044276828273,
+"m24h": 0.5554063662452087,
 "p72h": 0.00011722653317344054,
-"m72h": 0.8098043192294471,
+"m72h": 0.8098071457394843,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -16764,24 +16878,30 @@ null
 1.442e-05,
 14022,
 10127.87
+],
+[
+1792856364,
+1.451e-05,
+14106,
+10096.66
 ]
 ],
 "pool": "CkEeZKJpcro2dEp8RXJpSYfjF3TPoijmH8xVGuEAxoue",
-"cur_liq": 10127.87,
-"cur_mcap": 14022,
-"cur_price": 1.442e-05,
-"entry_price": 0.00013657556126087575,
+"cur_liq": 10096.66,
+"cur_mcap": 14106,
+"cur_price": 1.451e-05,
+"entry_price": 0.00013660960300581314,
 "entry_approx": false,
 "p1h": 0.00012870531760879648,
 "peak_price": 0.00017221148333447064,
 "min_price": 7.882007734958365e-06,
-"cur_mult": 0.10558257910034186,
-"peak_mult": 1.2609245881517996,
-"max_drawdown": -0.9422883006140258,
-"m1h": 0.9423744366896932,
+"cur_mult": 0.1062150806439468,
+"peak_mult": 1.2606103783724674,
+"max_drawdown": -0.9423026817915359,
+"m1h": 0.942139606417857,
 "status": "DEAD",
 "p6h": 7.591574602561212e-05,
-"m6h": 0.5558516130173825,
+"m6h": 0.5557131003622174,
 "rules_version": "r7-inferred",
 "pass_tier": "degraded",
 "warns_at_entry": [
@@ -16790,12 +16910,12 @@ null
 "entry_fdv": 132806,
 "entry_bundler_pct": 1.0286029855242839e-13,
 "warn_any_pass": false,
-"units": 972399445.2149793,
+"units": 972157133.011716,
 "entry_src": "fdv_at_check",
 "p24h": 2.270365880251567e-05,
-"m24h": 0.16623514919443713,
+"m24h": 0.16619372506008648,
 "p72h": 1.5600403196015766e-05,
-"m72h": 0.11422543720114844,
+"m72h": 0.11419697336615438,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -17609,24 +17729,30 @@ null
 6.954e-05,
 66029,
 25971.46
+],
+[
+1792856364,
+6.55e-05,
+62186,
+24990.47
 ]
 ],
 "pool": "HRMcDD9XawGTXH6QkBZs1mtiwyjTfg4bDMrL5DcjwXnb",
-"cur_liq": 25971.46,
-"cur_mcap": 66029,
-"cur_price": 6.954e-05,
-"entry_price": 0.0009822676393705795,
+"cur_liq": 24990.47,
+"cur_mcap": 62186,
+"cur_price": 6.55e-05,
+"entry_price": 0.000982377818158428,
 "entry_approx": false,
 "p1h": 0.0010654745273343702,
 "peak_price": 0.0025204270783413733,
 "min_price": 3.761892800302435e-05,
-"cur_mult": 0.07079536901425365,
-"peak_mult": 2.56592702163783,
-"max_drawdown": -0.9617019572922815,
-"m1h": 1.0847089781122266,
+"cur_mult": 0.06667495823835554,
+"peak_mult": 2.5656392395607863,
+"max_drawdown": -0.9617062526172008,
+"m1h": 1.0845873223519196,
 "status": "RUGGED",
 "p6h": 0.0013069744093503974,
-"m6h": 1.3305685303731318,
+"m6h": 1.3304193001837727,
 "rules_version": "r7-inferred",
 "pass_tier": "degraded",
 "warns_at_entry": [
@@ -17635,12 +17761,12 @@ null
 "entry_fdv": 932674,
 "entry_bundler_pct": 0.0,
 "warn_any_pass": true,
-"units": 949511072.7638769,
+"units": 949404580.1526717,
 "entry_src": "fdv_at_check",
 "p24h": 0.00043149297078239334,
-"m24h": 0.43928248624670846,
+"m24h": 0.4392332184283975,
 "p72h": 7.444146754880698e-05,
-"m72h": 0.07578532017659445,
+"m72h": 0.07577682045829928,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -18454,24 +18580,30 @@ null
 2.302e-06,
 2275,
 2645.12
+],
+[
+1792856364,
+2.248e-06,
+2221,
+2581.76
 ]
 ],
 "pool": "5u57WosVAF9uyvbtw1pzYUeSeU2sqNQiQUt1bcd5MJDL",
-"cur_liq": 2645.12,
-"cur_mcap": 2275,
-"cur_price": 2.302e-06,
-"entry_price": 0.00041998902241758245,
+"cur_liq": 2581.76,
+"cur_mcap": 2221,
+"cur_price": 2.248e-06,
+"entry_price": 0.00042010879063484913,
 "entry_approx": false,
 "peak_price": 0.0014335523525541227,
-"min_price": 2.242557119795052e-06,
-"cur_mult": 0.005481095640902706,
-"peak_mult": 3.4133091010383234,
-"max_drawdown": -0.99466043872555,
+"min_price": 2.2304789176458962e-06,
+"cur_mult": 0.005350994909206554,
+"peak_mult": 3.4123360056041774,
+"max_drawdown": -0.9946907111506158,
 "status": "RUGGED",
 "p1h": 0.0006103437777346298,
-"m1h": 1.4532374542108468,
+"m1h": 1.4528231528131232,
 "p6h": 0.0007243474269674843,
-"m6h": 1.7246818090575888,
+"m6h": 1.7241901219750335,
 "rules_version": "r7-inferred",
 "pass_tier": "degraded+warn",
 "warns_at_entry": [
@@ -18482,12 +18614,12 @@ null
 "entry_fdv": 415063,
 "entry_bundler_pct": 2.875797339847878,
 "warn_any_pass": true,
-"units": 988271068.6359687,
+"units": 987989323.8434165,
 "entry_src": "fdv_at_check",
 "p24h": 2.4838954645950014e-06,
-"m24h": 0.005914191400282217,
+"m24h": 0.005912505331872376,
 "p72h": 2.3988473095310628e-06,
-"m72h": 0.005711690500200648,
+"m72h": 0.005710062162484234,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -19302,30 +19434,36 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+2.536e-06,
+2388,
+2472.21
 ]
 ],
 "pool": "3BQQbVoZFGKzMj2TQoXueAnPQnqc2ZfSoWwVjxh8RAPr",
-"cur_liq": 0,
-"cur_mcap": 2056,
-"cur_price": 2.184e-06,
+"cur_liq": 2472.21,
+"cur_mcap": 2388,
+"cur_price": 2.536e-06,
 "entry_price": 5.240633047130344e-06,
 "entry_approx": false,
 "p1h": 3.903871759034684e-06,
 "p6h": 3.419877762607632e-06,
 "peak_price": 1.2711371529845828e-05,
-"min_price": 2.183790876709272e-06,
-"cur_mult": 0.41674354612481607,
+"min_price": 2.145285287058021e-06,
+"cur_mult": 0.4839110041083029,
 "peak_mult": 2.4255412305210524,
-"max_drawdown": -0.5832963580792843,
+"max_drawdown": -0.5906438653947099,
 "m1h": 0.7449236998519403,
 "m6h": 0.6525695907062758,
-"status": "RUGGED",
+"status": "WINNER",
 "rules_version": "r1-v1-loose",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": null,
 "entry_bundler_pct": null,
-"units": 941391941.3919413,
+"units": 941640378.548896,
 "p24h": 2.3742753137662976e-06,
 "m24h": 0.45305124255291995,
 "p72h": 2.223e-06,
@@ -20139,6 +20277,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -20981,6 +21125,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "pool": "dCobDuz3aRHzxWE18xZB56DeBAUVW49KVDxoaFYYem5",
@@ -21820,6 +21970,12 @@ null
 9.057e-06,
 8673,
 7065.89
+],
+[
+1792856364,
+9.057e-06,
+8673,
+7065.89
 ]
 ],
 "pool": "HzzfJytFrGy3wfkhe4QhMstNps6UrmywSJUBBam7Rs5M",
@@ -22655,6 +22811,12 @@ null
 ],
 [
 1792852706,
+2.88e-06,
+2880.58,
+null
+],
+[
+1792856364,
 2.88e-06,
 2880.58,
 null
@@ -23499,6 +23661,12 @@ null
 2.117e-05,
 20151,
 10551.44
+],
+[
+1792856364,
+2.117e-05,
+20151,
+10551.44
 ]
 ],
 "pool": "5q1we1ABBcvTgbH7rxHqjPbiuqbmhwR26qMGtWvGV1Ae",
@@ -24337,6 +24505,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -25183,35 +25357,41 @@ null
 0.0006287,
 593102,
 80676.29
+],
+[
+1792856364,
+0.0006647,
+627099,
+82390.54
 ]
 ],
 "pool": "FJ1Gf7yYZQnpjAd2Go6Rws14WmStjZyo8XgxmLPHHaEU",
-"cur_liq": 80676.29,
-"cur_mcap": 593102,
-"cur_price": 0.0006287,
-"entry_price": 0.0012778032655428578,
+"cur_liq": 82390.54,
+"cur_mcap": 627099,
+"cur_price": 0.0006647,
+"entry_price": 0.001277731178649623,
 "entry_approx": false,
 "p1h": 0.0011758090574622926,
 "peak_price": 0.0014410101987833576,
 "min_price": 0.0005079953230002096,
-"cur_mult": 0.49201627273421095,
-"peak_mult": 1.1277246174286175,
-"max_drawdown": -0.6024463728503664,
-"m1h": 0.9201800380145105,
+"cur_mult": 0.5202189718047671,
+"peak_mult": 1.1277882412686344,
+"max_drawdown": -0.6024239437147592,
+"m1h": 0.9202319526279016,
 "status": "open",
 "p6h": 0.0010807494120580112,
-"m6h": 0.8457870168291276,
+"m6h": 0.8458347343454568,
 "rules_version": "r4-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 1205452,
 "entry_bundler_pct": null,
-"units": 943378399.8727533,
+"units": 943431623.2887018,
 "entry_src": "fdv_at_check",
 "p24h": 0.0009095183037062083,
-"m24h": 0.7117827354430899,
+"m24h": 0.7118228927210163,
 "p72h": 0.0006551352167558064,
-"m72h": 0.5127042905759682
+"m72h": 0.5127332162686908
 },
 "DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump": {
 "group": "kill_control",
@@ -26024,35 +26204,41 @@ null
 0.001425,
 1344333,
 123580.19
+],
+[
+1792856364,
+0.001356,
+1279196,
+120532.55
 ]
 ],
 "pool": "B4Cp45PGifVM5FAXfh6AeV8QZ3eUNQnqGBw7KuC7MHnB",
-"cur_liq": 123580.19,
-"cur_mcap": 1344333,
-"cur_price": 0.001425,
-"entry_price": 0.0009278289307783116,
+"cur_liq": 120532.55,
+"cur_mcap": 1279196,
+"cur_price": 0.001356,
+"entry_price": 0.0009278601058790053,
 "entry_approx": false,
 "p1h": 0.0009757135015320215,
 "peak_price": 0.0015969331637435357,
 "min_price": 0.0007721844665841543,
-"cur_mult": 1.5358434650282302,
-"peak_mult": 1.7211504306121865,
-"max_drawdown": -0.1677512513687136,
-"m1h": 1.0516092667142227,
+"cur_mult": 1.4614272037436051,
+"peak_mult": 1.721092601810578,
+"max_drawdown": -0.1677792140307317,
+"m1h": 1.051573933774944,
 "status": "open",
 "p6h": 0.0013973017389869872,
-"m6h": 1.5059906978917514,
+"m6h": 1.5059400982255378,
 "rules_version": "r4-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 875306,
 "entry_bundler_pct": null,
-"units": 943391578.9473684,
+"units": 943359882.0058997,
 "entry_src": "fdv_at_check",
 "p24h": 0.0008972711739673393,
-"m24h": 0.9670653115059271,
+"m24h": 0.9670328191525298,
 "p72h": 0.001017935354909996,
-"m72h": 1.0971153422173399
+"m72h": 1.0970784803229126
 },
 "2j5SaS7xy776qCBpyPQbZjyQSAtKiFgrwjfErthnW2ZM": {
 "group": "kill_control",
@@ -26865,35 +27051,41 @@ null
 0.002516,
 2380776,
 216919.89
+],
+[
+1792856364,
+0.003077,
+2911785,
+238484.02
 ]
 ],
 "pool": "Fe7bpDYCs74GqiCUF14HwgUMToPKV1d9mDYVX5BTohFr",
-"cur_liq": 216919.89,
-"cur_mcap": 2380776,
-"cur_price": 0.002516,
-"entry_price": 0.007485238863294993,
+"cur_liq": 238484.02,
+"cur_mcap": 2911785,
+"cur_price": 0.003077,
+"entry_price": 0.0074848267918132694,
 "entry_approx": false,
 "p1h": 0.008354537400217712,
 "peak_price": 0.009282385787931705,
 "min_price": 0.0018843250346983723,
-"cur_mult": 0.33612821794339637,
-"peak_mult": 1.2400921276472947,
-"max_drawdown": -0.7482612019319188,
-"m1h": 1.1161350429557375,
+"cur_mult": 0.41109835746173196,
+"peak_mult": 1.2401603999820763,
+"max_drawdown": -0.7482473426426643,
+"m1h": 1.1161964909269124,
 "status": "open",
 "p6h": 0.008073234643685215,
-"m6h": 1.0785540436489673,
+"m6h": 1.0786134226266308,
 "rules_version": "r4-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 7082940,
 "entry_bundler_pct": null,
-"units": 946254372.0190779,
+"units": 946306467.3383166,
 "entry_src": "fdv_at_check",
 "p24h": 0.005160523236562976,
-"m24h": 0.6894266610339433,
+"m24h": 0.6894646168976731,
 "p72h": 0.003339257530641203,
-"m72h": 0.4461123541448704
+"m72h": 0.44613691452334014
 },
 "2gLnaQN8Y73Qc62gMmX6WtJQjFnbvE7vgzUJ37WJpump": {
 "group": "kill_control",
@@ -27706,35 +27898,41 @@ null
 2.754e-06,
 2643,
 2828.21
+],
+[
+1792856364,
+2.735e-06,
+2624,
+2807.9
 ]
 ],
 "pool": "8Xev4PoVsLfyt1A31cGUcGU9tW738MaGsB2MczezcgVf",
-"cur_liq": 2828.21,
-"cur_mcap": 2643,
-"cur_price": 2.754e-06,
-"entry_price": 0.00012259415891032916,
+"cur_liq": 2807.9,
+"cur_mcap": 2624,
+"cur_price": 2.735e-06,
+"entry_price": 0.00012262993711890244,
 "entry_approx": false,
 "p1h": 6.845780915295007e-05,
 "peak_price": 0.000176587188822452,
-"min_price": 2.7531288323880304e-06,
-"cur_mult": 0.022464365549539747,
-"peak_mult": 1.4404209008980253,
-"max_drawdown": -0.9775427405607326,
-"m1h": 0.5584100397721491,
+"min_price": 2.7304762478079804e-06,
+"cur_mult": 0.022302873704877903,
+"peak_mult": 1.4400006472418918,
+"max_drawdown": -0.977734015755382,
+"m1h": 0.5582471194335942,
 "status": "RUGGED",
 "p6h": 3.414018619535014e-06,
-"m6h": 0.027848134445232254,
+"m6h": 0.027840009542080813,
 "rules_version": "r4-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 117653,
 "entry_bundler_pct": null,
-"units": 959694989.1067538,
+"units": 959414990.8592322,
 "entry_src": "fdv_at_check",
 "p24h": 3.040386021688321e-06,
-"m24h": 0.02480041503373905,
+"m24h": 0.024793179325700476,
 "p72h": 2.9885678305224957e-06,
-"m72h": 0.02437773428266242
+"m72h": 0.02437062189491926
 },
 "3A3qjns31YZA6Ung91ZpoPD7J3p1bDFbTJ4ANFAPpump": {
 "group": "kill_control",
@@ -28547,24 +28745,30 @@ null
 7.512e-05,
 71549,
 25762.57
+],
+[
+1792856364,
+7.496e-05,
+71396,
+25555.6
 ]
 ],
 "pool": "Af7W724Kw2A7Z5PbaCAS6RNQ8ubiKEWqiSa715bxgbFA",
-"cur_liq": 25762.57,
-"cur_mcap": 71549,
-"cur_price": 7.512e-05,
-"entry_price": 0.0001783891330416917,
+"cur_liq": 25555.6,
+"cur_mcap": 71396,
+"cur_price": 7.496e-05,
+"entry_price": 0.00017839064709507536,
 "entry_approx": false,
 "p1h": 0.0001468442532254465,
 "peak_price": 0.000198256913459975,
 "min_price": 2.40043525341402e-05,
-"cur_mult": 0.42110188394964365,
-"peak_mult": 1.1113732662944216,
-"max_drawdown": -0.8654382577859713,
-"m1h": 0.8231681533601446,
+"cur_mult": 0.4202014019269138,
+"peak_mult": 1.1113638337457887,
+"max_drawdown": -0.8654393998506726,
+"m1h": 0.8231611668922539,
 "status": "open",
 "p6h": 0.00011426208207861098,
-"m6h": 0.6405215392347164,
+"m6h": 0.6405161029418414,
 "rules_version": "r6-inferred",
 "pass_tier": null,
 "warns_at_entry": [
@@ -28572,12 +28776,12 @@ null
 ],
 "entry_fdv": 169909,
 "entry_bundler_pct": null,
-"units": 952462726.3045794,
+"units": 952454642.4759872,
 "entry_src": "fdv_at_check",
 "p24h": 5.269701212902861e-05,
-"m24h": 0.29540483341388674,
+"m24h": 0.2954023262270198,
 "p72h": 3.4670402858729495e-05,
-"m72h": 0.19435266188903225
+"m72h": 0.19435101236137958
 },
 "4JvNN2YrBJcnW3Dfupx99jXUaHE4GV9rJrj4mq4rpump": {
 "group": "kill_control",
@@ -29387,6 +29591,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -30233,6 +30443,12 @@ null
 2.575e-06,
 2486,
 2825.17
+],
+[
+1792856364,
+2.575e-06,
+2486,
+2825.17
 ]
 ],
 "pool": "234BuVQcVJKPo9M82aRVgtWV6uSHGjaQVHbff9dJ1vBT",
@@ -31070,6 +31286,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -31917,6 +32139,12 @@ null
 2.338e-06,
 2184,
 2306.07
+],
+[
+1792856364,
+2.338e-06,
+2184,
+2306.07
 ]
 ],
 "pool": "Dz8Y9PFyD5Nxz4Xo9TgcVpUK495YTW4oX4u7ptv4Hamk",
@@ -32760,24 +32988,30 @@ null
 8.61e-06,
 7810,
 6076.96
+],
+[
+1792856364,
+8.454e-06,
+7669,
+5970.41
 ]
 ],
 "pool": "29PgPjhhVKNophe99cysvYXEtte1CCnoLGjh9a5RyMab",
-"cur_liq": 6076.96,
-"cur_mcap": 7810,
-"cur_price": 8.61e-06,
-"entry_price": 4.515454417413573e-05,
+"cur_liq": 5970.41,
+"cur_mcap": 7669,
+"cur_price": 8.454e-06,
+"entry_price": 4.515156943538923e-05,
 "entry_approx": false,
 "p1h": 5.97854457479839e-05,
 "peak_price": 7.192621093434892e-05,
-"min_price": 8.583189028306102e-06,
-"cur_mult": 0.1906784833614102,
-"peak_mult": 1.5928897578274714,
-"max_drawdown": -0.8099152768499763,
-"m1h": 1.324018364960678,
+"min_price": 8.44868272353941e-06,
+"cur_mult": 0.18723601650430918,
+"peak_mult": 1.592994702814783,
+"max_drawdown": -0.812881748537462,
+"m1h": 1.3241055957874373,
 "status": "DEAD",
 "p6h": 4.8400683794146994e-05,
-"m6h": 1.0718895446600618,
+"m6h": 1.0719601643838133,
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [
@@ -32785,12 +33019,12 @@ null
 ],
 "entry_fdv": 40959,
 "entry_bundler_pct": null,
-"units": 907084785.1335655,
+"units": 907144546.9600189,
 "entry_src": "fdv_at_check",
 "p24h": 2.0801077381537558e-05,
-"m24h": 0.46066409841985073,
+"m24h": 0.46069444853524705,
 "p72h": 1.1477083108097727e-05,
-"m72h": 0.2541733798449401
+"m72h": 0.25419012565047483
 },
 "Ez7eEs53hQiXgCGmcbhdX5i1jgg2gC3F6MoeosuVpump": {
 "group": "kill_control",
@@ -33603,24 +33837,30 @@ null
 0.0005592,
 543907,
 77546.72
+],
+[
+1792856364,
+0.0005187,
+504519,
+74460.32
 ]
 ],
 "pool": "2CTtz7kNDKnfrUDte7Wo3TZKvWAPz1ZFRYUzYahFKroB",
-"cur_liq": 77546.72,
-"cur_mcap": 543907,
-"cur_price": 0.0005592,
-"entry_price": 0.0002911236487120041,
+"cur_liq": 74460.32,
+"cur_mcap": 504519,
+"cur_price": 0.0005187,
+"entry_price": 0.0002911211062417867,
 "entry_approx": false,
 "p1h": 0.0004159377389209172,
 "peak_price": 0.001529857878366535,
 "min_price": 0.0002720511474288889,
-"cur_mult": 1.9208333039037724,
-"peak_mult": 5.255010663458524,
-"max_drawdown": -0.06551340424419727,
-"m1h": 1.4287322268771996,
+"cur_mult": 1.781732718373228,
+"peak_mult": 5.25505655744497,
+"max_drawdown": -0.06550524302095606,
+"m1h": 1.428744704533603,
 "status": "WINNER",
 "p6h": 0.00037436690924304224,
-"m6h": 1.2859378167982054,
+"m6h": 1.2859490473772686,
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [
@@ -33628,12 +33868,12 @@ null
 ],
 "entry_fdv": 283162,
 "entry_bundler_pct": null,
-"units": 972652002.8612303,
+"units": 972660497.3973396,
 "entry_src": "fdv_at_check",
 "p24h": 0.0007737504935348582,
-"m24h": 2.657807075990229,
+"m24h": 2.657830287619992,
 "p72h": 0.000419402606951012,
-"m72h": 1.4406339327173956
+"m72h": 1.4406465143158764
 },
 "672KGJCguSdSrnLjU8SGdbPgmHTbFbeooZ4arSpNpump": {
 "group": "kill_control",
@@ -34443,6 +34683,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -35289,24 +35535,30 @@ null
 2.889e-06,
 2795,
 2914.08
+],
+[
+1792856364,
+2.783e-06,
+2692,
+2810.85
 ]
 ],
 "pool": "GMUBXfXB8176mmfvBig7vRGBoBSNzX8sGvGMseHdJy6r",
-"cur_liq": 2914.08,
-"cur_mcap": 2795,
-"cur_price": 2.889e-06,
-"entry_price": 1.60336915921288e-05,
+"cur_liq": 2810.85,
+"cur_mcap": 2692,
+"cur_price": 2.783e-06,
+"entry_price": 1.6036365527488855e-05,
 "entry_approx": false,
 "peak_price": 4.074832796325146e-05,
-"min_price": 2.8885897456899237e-06,
-"cur_mult": 0.1801830840639505,
-"peak_mult": 2.5414189694939298,
-"max_drawdown": -0.8198425029512243,
+"min_price": 2.777823753309812e-06,
+"cur_mult": 0.1735430634347602,
+"peak_mult": 2.5409952082597775,
+"max_drawdown": -0.8267797183502593,
 "status": "WINNER",
 "p1h": 1.0741088617467452e-05,
-"m1h": 0.6699073981652751,
+"m1h": 0.669795696478453,
 "p6h": 8.941249236934195e-06,
-"m6h": 0.5576538120094313,
+"m6h": 0.557560827707967,
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [
@@ -35314,12 +35566,12 @@ null
 ],
 "entry_fdv": 15512,
 "entry_bundler_pct": null,
-"units": 967462789.8926964,
+"units": 967301473.230327,
 "entry_src": "fdv_at_check",
 "p24h": 4.965044841529551e-06,
-"m24h": 0.30966323712793453,
+"m24h": 0.3096116032662565,
 "p72h": 3.201e-06,
-"m72h": 0.19964210871883195
+"m72h": 0.19960881999808386
 },
 "FvcHJY4sUiAK2c9c9kStWAWhraLhYfrgsC6ZNjYpump": {
 "group": "kill_control",
@@ -36129,6 +36381,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -36975,6 +37233,12 @@ null
 2.509e-06,
 2490,
 3048.75
+],
+[
+1792856364,
+2.509e-06,
+2490,
+3048.75
 ]
 ],
 "pool": "2aegSTad7cZTrd536XtXkjkY88hvthvwsDA5TuCtQD6v",
@@ -37818,6 +38082,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "pool": "8DNmbUK4SN2dGfCNyY7mGgDa1KyKSZuDVDXjQjqPG3YU",
@@ -38580,6 +38850,12 @@ null
 0.0,
 null,
 null
+],
+[
+1792856364,
+0.0,
+null,
+null
 ]
 ],
 "pool": "CVqenaoqatenqu9r9mpf78s9Zu7PLmKLCttgKN1Vq5gN",
@@ -39323,6 +39599,12 @@ null
 ],
 [
 1792852706,
+6.501e-06,
+6471,
+6303.05
+],
+[
+1792856364,
 6.501e-06,
 6471,
 6303.05
@@ -40089,35 +40371,41 @@ null
 8.489e-05,
 80874,
 24680.16
+],
+[
+1792856364,
+8.593e-05,
+81866,
+24583.85
 ]
 ],
 "pool": "85rtDkpkSGiaWZDwzBs62XuPEtvGCq7KJjCu1gfyrAcd",
-"cur_liq": 24680.16,
-"cur_mcap": 80874,
-"cur_price": 8.489e-05,
-"entry_price": 0.00011850318186314514,
+"cur_liq": 24583.85,
+"cur_mcap": 81866,
+"cur_price": 8.593e-05,
+"entry_price": 0.00011850144394498327,
 "entry_approx": false,
 "peak_price": 0.00015941434235592326,
 "min_price": 4.024924293453143e-05,
-"cur_mult": 0.7163520731286039,
-"peak_mult": 1.3452325908010208,
-"max_drawdown": -0.6603530613970031,
+"cur_mult": 0.7251388433705058,
+"peak_mult": 1.345252319709578,
+"max_drawdown": -0.6603480802038331,
 "status": "open",
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 112897,
 "entry_bundler_pct": null,
-"units": 952691718.6947815,
+"units": 952705690.6784592,
 "entry_src": "fdv_at_check",
 "p1h": 8.171954084261126e-05,
-"m1h": 0.6895978619121476,
+"m1h": 0.6896079754146391,
 "p6h": 5.554230276441653e-05,
-"m6h": 0.46869883062347006,
+"m6h": 0.46870570446553533,
 "p24h": 5.854760740823404e-05,
-"m24h": 0.49405937028634783,
+"m24h": 0.49406661606094837,
 "p72h": 0.00010994175883079263,
-"m72h": 0.9277536442672082
+"m72h": 0.9277672505141402
 },
 "8RpybikpGLbKsYJ4FXz12ExDz89R7VXAUZ3JXNcKpump": {
 "group": "kill_control",
@@ -40852,35 +41140,41 @@ null
 2.291e-05,
 22213,
 11323.62
+],
+[
+1792856364,
+2.323e-05,
+22528,
+11334.39
 ]
 ],
 "pool": "C1gR6idrfxx3NeG8qCkAK452QTNBiu4oRzM13NRZT4i8",
-"cur_liq": 11323.62,
-"cur_mcap": 22213,
-"cur_price": 2.291e-05,
-"entry_price": 0.0002042871075496331,
+"cur_liq": 11334.39,
+"cur_mcap": 22528,
+"cur_price": 2.323e-05,
+"entry_price": 0.00020424416548295456,
 "entry_approx": false,
 "peak_price": 0.00024784928841436495,
 "min_price": 1.697127952840871e-05,
-"cur_mult": 0.11214608829112646,
-"peak_mult": 1.213239990458762,
-"max_drawdown": -0.916924373094443,
+"cur_mult": 0.11373641907993053,
+"peak_mult": 1.2134950725681781,
+"max_drawdown": -0.9169069065533475,
 "status": "DEAD",
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 198072,
 "entry_bundler_pct": null,
-"units": 969576604.1030118,
+"units": 969780456.3065002,
 "entry_src": "fdv_at_check",
 "p1h": 0.00016947717327142603,
-"m1h": 0.8296028824542943,
+"m1h": 0.8297773053672368,
 "p6h": 9.346387260948931e-05,
-"m6h": 0.4575123400128496,
+"m6h": 0.45760853137951424,
 "p24h": 1.861028855016896e-05,
-"m24h": 0.09109869327239582,
+"m24h": 0.09111784665262374,
 "p72h": 3.75783198852855e-05,
-"m72h": 0.18394856305925017
+"m72h": 0.1839872380022608
 },
 "8NfX91yvHXyHKn8cnMjg9Q4bCeRLKFDoVtEomXstpump": {
 "group": "kill_control",
@@ -41615,35 +41909,41 @@ null
 1.322e-05,
 12288,
 9413.7
+],
+[
+1792856364,
+1.341e-05,
+12461,
+9451.77
 ]
 ],
 "pool": "9cBefgu7crLYTN7tfDR52o5yn4pPj8Vy1wvDszK9gzSg",
-"cur_liq": 9413.7,
-"cur_mcap": 12288,
-"cur_price": 1.322e-05,
-"entry_price": 6.729526529947917e-05,
+"cur_liq": 9451.77,
+"cur_mcap": 12461,
+"cur_price": 1.341e-05,
+"entry_price": 6.731473477249018e-05,
 "entry_approx": false,
 "peak_price": 0.0001211340362599437,
 "min_price": 1.0066475724730032e-05,
-"cur_mult": 0.19644769867787884,
-"peak_mult": 1.8000380223017147,
-"max_drawdown": -0.850413313924361,
+"cur_mult": 0.1992134418314655,
+"peak_mult": 1.7995173964415307,
+"max_drawdown": -0.8504565789532912,
 "status": "DEAD",
 "rules_version": "r7-inferred",
 "pass_tier": null,
 "warns_at_entry": [],
 "entry_fdv": 62551,
 "entry_bundler_pct": null,
-"units": 929500756.429652,
+"units": 929231916.4802386,
 "entry_src": "fdv_at_check",
 "p1h": 7.600895968486029e-05,
-"m1h": 1.1294845090007923,
+"m1h": 1.1291578276547443,
 "p6h": 3.956964745581266e-05,
-"m6h": 0.5880004674878502,
+"m6h": 0.5878303998307332,
 "p24h": 2.485043657588932e-05,
-"m24h": 0.36927466539138004,
+"m24h": 0.3691678599028672,
 "p72h": 1.3960870918793038e-05,
-"m72h": 0.2074569563945398
+"m72h": 0.20739695351958054
 },
 "6vwkHvvoJujaPy6SWdjqE2fFc1V3AW6pj6KTh9jipump": {
 "group": "kill_control",
@@ -42372,6 +42672,12 @@ null
 1.765e-05,
 16855,
 11396.12
+],
+[
+1792856364,
+1.726e-05,
+16474,
+11179.73
 ]
 ],
 "rules_version": "r7-inferred",
@@ -42380,27 +42686,27 @@ null
 "entry_fdv": 57426,
 "entry_bundler_pct": null,
 "pool": "w6RsQbTcRXtXgdKc3TG19Q4abQv2y1zYbtKx98635HJ",
-"cur_liq": 11396.12,
-"cur_mcap": 16855,
-"cur_price": 1.765e-05,
-"units": 954957507.0821531,
-"entry_price": 6.013461287451794e-05,
+"cur_liq": 11179.73,
+"cur_mcap": 16474,
+"cur_price": 1.726e-05,
+"units": 954461181.9235226,
+"entry_price": 6.016588320990652e-05,
 "entry_approx": false,
 "peak_price": 6.0801079800892276e-05,
 "min_price": 9.14873841600766e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.2935081670323547,
-"peak_mult": 1.011082917050868,
-"max_drawdown": -0.8478623544962665,
+"cur_mult": 0.28687354160136525,
+"peak_mult": 1.0105574215335573,
+"max_drawdown": -0.8479414258062236,
 "status": "DEAD",
 "p1h": 4.0000619572864215e-05,
-"m1h": 0.6651846193195415,
+"m1h": 0.664838899369435,
 "p6h": 3.754343436333509e-05,
-"m6h": 0.6243232070301418,
+"m6h": 0.6239987241997876,
 "p24h": 2.7775458901789904e-05,
-"m24h": 0.4618880470678105,
+"m24h": 0.461647987529527,
 "p72h": 1.3193741213125227e-05,
-"m72h": 0.21940344474581425
+"m72h": 0.21928941302324026
 },
 "C4Q1PjZWQ3mYwNPBvtHzbqUEvJ1FULQX46NNMVzMpump": {
 "group": "kill_control",
@@ -43126,6 +43432,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -43886,6 +44198,12 @@ null
 2.301e-05,
 22437,
 13871.6
+],
+[
+1792856364,
+1.984e-05,
+19346,
+12706.63
 ]
 ],
 "rules_version": "r7-inferred",
@@ -43894,27 +44212,27 @@ null
 "entry_fdv": 29299,
 "entry_bundler_pct": null,
 "pool": "9HGwPeDLTpVyKbumkofHhbNWQGm2SJdemHEPLX3rocBD",
-"cur_liq": 13871.6,
-"cur_mcap": 22437,
-"cur_price": 2.301e-05,
-"units": 975097783.5723598,
-"entry_price": 3.0047242946918038e-05,
+"cur_liq": 12706.63,
+"cur_mcap": 19346,
+"cur_price": 1.984e-05,
+"units": 975100806.451613,
+"entry_price": 3.004714979840794e-05,
 "entry_approx": false,
 "peak_price": 5.061733709544264e-05,
 "min_price": 1.2179985590515913e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.7657940544045873,
-"peak_mult": 1.6845917339192842,
-"max_drawdown": -0.5946388288591642,
+"cur_mult": 0.6602955732277552,
+"peak_mult": 1.6845969562851721,
+"max_drawdown": -0.5946375722078879,
 "status": "open",
 "p1h": 2.695185822408423e-05,
-"m1h": 0.8969827372081304,
+"m1h": 0.8969855179246414,
 "p6h": 3.6052323007511214e-05,
-"m6h": 1.1998546113266315,
+"m6h": 1.199858330969597,
 "p24h": 2.1619776203482657e-05,
-"m24h": 0.7195261223026856,
+"m24h": 0.7195283528898369,
 "p72h": 1.4970108688804341e-05,
-"m72h": 0.49821904509677595
+"m72h": 0.4982205896147108
 },
 "A8mGLUsfGQPrcwE83B7bvQykTW5Y8kRAeKzgPzjwpump": {
 "group": "kill_control",
@@ -44643,6 +44961,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r7-inferred",
@@ -45361,6 +45685,12 @@ null
 ],
 [
 1792852706,
+2.619e-06,
+2505,
+2547.61
+],
+[
+1792856364,
 2.619e-06,
 2505,
 2547.61
@@ -46085,6 +46415,12 @@ null
 2.122e-06,
 2014,
 2173.76
+],
+[
+1792856364,
+2.101e-06,
+1994,
+2152.24
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -46093,27 +46429,27 @@ null
 "entry_fdv": 17708,
 "entry_bundler_pct": null,
 "pool": "Bh3LLpkN25uziKxza6JS6REnCpKnAs721sietDHQkaxo",
-"cur_liq": 2173.76,
-"cur_mcap": 2014,
-"cur_price": 2.122e-06,
-"units": 949104618.2846371,
-"entry_price": 1.865758490566038e-05,
+"cur_liq": 2152.24,
+"cur_mcap": 1994,
+"cur_price": 2.101e-06,
+"units": 949071870.5378392,
+"entry_price": 1.8658228686058175e-05,
 "entry_approx": false,
 "peak_price": 4.001805732192498e-05,
 "min_price": 2.104671289627666e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.11373390557939915,
-"peak_mult": 2.1448680268250695,
-"max_drawdown": -0.8871948700611757,
+"cur_mult": 0.1126044725547775,
+"peak_mult": 2.144794020657884,
+"max_drawdown": -0.8871987622704871,
 "status": "WINNER",
 "p1h": 5.415846484586274e-06,
-"m1h": 0.2902758589587446,
+"m1h": 0.29026584332912103,
 "p6h": 3.507223092023007e-06,
-"m6h": 0.18797840716024172,
+"m6h": 0.18797192118476277,
 "p24h": 3.0704965301045522e-06,
-"m24h": 0.16457095308048247,
+"m24h": 0.1645652747518789,
 "p72h": 2.1895708644569954e-06,
-"m72h": 0.11735553532401284
+"m72h": 0.11735148610827614
 },
 "C1EHrSomehCaCiaNYkbubH1vjZiiYHyxMxQSRMrHepsX": {
 "group": "kill_control",
@@ -46803,6 +47139,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -47524,6 +47866,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -48203,6 +48551,12 @@ null
 ],
 [
 1792852706,
+2.125e-06,
+2102,
+2371.96
+],
+[
+1792856364,
 2.125e-06,
 2102,
 2371.96
@@ -48897,6 +49251,12 @@ null
 2.741e-06,
 2608,
 2771.43
+],
+[
+1792856364,
+2.741e-06,
+2608,
+2771.43
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -49581,6 +49941,12 @@ null
 0.0001724,
 166921,
 46619.92
+],
+[
+1792856364,
+0.0001883,
+182309,
+48557.08
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -49589,27 +49955,27 @@ null
 "entry_fdv": 701042,
 "entry_bundler_pct": null,
 "pool": "CxyUG8PvWbbKW41MLAq7J87ft3dryDJZV2A5pgwb31an",
-"cur_liq": 46619.92,
-"cur_mcap": 166921,
-"cur_price": 0.0001724,
-"units": 968219257.5406033,
-"entry_price": 0.0007240529400135393,
+"cur_liq": 48557.08,
+"cur_mcap": 182309,
+"cur_price": 0.0001883,
+"units": 968183749.3361657,
+"entry_price": 0.0007240794947040465,
 "entry_approx": false,
 "peak_price": 0.0028228255009556855,
 "min_price": 0.00016664596108551807,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.23810413641408074,
-"peak_mult": 3.898645174899643,
-"max_drawdown": -0.7698428500512657,
+"cur_mult": 0.26005431914207705,
+"peak_mult": 3.898502197068101,
+"max_drawdown": -0.7698512907707303,
 "status": "WINNER",
 "p1h": 0.0007995097637281636,
-"m1h": 1.1042145118742468,
+"m1h": 1.1041740162175808,
 "p6h": 0.0013260430238915032,
-"m6h": 1.8314172218770455,
+"m6h": 1.831350056989941,
 "p24h": 0.0007832615005217275,
-"m24h": 1.0817738002791357,
+"m24h": 1.0817341276069012,
 "p72h": 0.00022654975607029742,
-"m72h": 0.3128911486307356
+"m72h": 0.3128796737475562
 },
 "Cf1MxDWr92j1JXMfM8qu8H9HRRHMQ2PN5cqKgFnHpump": {
 "group": "kill_control",
@@ -50263,6 +50629,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -50951,6 +51323,12 @@ null
 2.3e-06,
 2106,
 2279.01
+],
+[
+1792856364,
+2.3e-06,
+2106,
+2279.01
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -51564,6 +51942,12 @@ null
 6.121e-06,
 5849,
 5438.61
+],
+[
+1792856364,
+5.96e-06,
+5696,
+5328.96
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -51572,27 +51956,27 @@ null
 "entry_fdv": 35542,
 "entry_bundler_pct": null,
 "pool": "HNB2hfCs2ptY575vnV5Wi9bkyvPDxwsnZg5FQhuDJTLv",
-"cur_liq": 5438.61,
-"cur_mcap": 5849,
-"cur_price": 6.121e-06,
-"units": 955562816.5332462,
-"entry_price": 3.719483364677723e-05,
+"cur_liq": 5328.96,
+"cur_mcap": 5696,
+"cur_price": 5.96e-06,
+"units": 955704697.9865773,
+"entry_price": 3.7189311797752804e-05,
 "entry_approx": false,
 "peak_price": 5.3194416206822065e-05,
 "min_price": 5.726097317533849e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.16456586573631196,
-"peak_mult": 1.4301560456483215,
-"max_drawdown": -0.8460512722838864,
+"cur_mult": 0.16026109954420123,
+"peak_mult": 1.4303683944491918,
+"max_drawdown": -0.8460284140595511,
 "status": "DEAD",
 "p1h": 2.5412829611976725e-05,
-"m1h": 0.6832354690253772,
+"m1h": 0.6833369154605414,
 "p6h": 2.4241785099211666e-05,
-"m6h": 0.651751405300669,
+"m6h": 0.6518481769989757,
 "p24h": 1.6145428523410172e-05,
-"m24h": 0.43407718063041,
+"m24h": 0.43414163217684965,
 "p72h": 7.080110394722067e-06,
-"m72h": 0.1903519844169414
+"m72h": 0.19038024777726295
 },
 "2XfPRhRUWjW6L3BEYg7HJedpw5j92PjTvLV1Q8cbCARD": {
 "group": "kill_control",
@@ -52174,6 +52558,12 @@ null
 ],
 [
 1792852706,
+4.173e-06,
+4173.14,
+null
+],
+[
+1792856364,
 4.173e-06,
 4173.14,
 null
@@ -52790,6 +53180,12 @@ null
 0.0001866,
 186666,
 59606.05
+],
+[
+1792856364,
+0.0001867,
+186766,
+59327.74
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -52798,27 +53194,27 @@ null
 "entry_fdv": 522001,
 "entry_bundler_pct": null,
 "pool": "3oxwfRK3GdRK8sEkSrMTKdSJGJ5FRX1nkQycqicYuj76",
-"cur_liq": 59606.05,
-"cur_mcap": 186666,
-"cur_price": 0.0001866,
-"units": 1000353697.749196,
-"entry_price": 0.0005218164347015526,
+"cur_liq": 59327.74,
+"cur_mcap": 186766,
+"cur_price": 0.0001867,
+"units": 1000353508.3020889,
+"entry_price": 0.0005218165335232324,
 "entry_approx": false,
 "peak_price": 0.0006109484439063407,
 "min_price": 0.00018223118882576176,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.3575970160976703,
-"peak_mult": 1.1708110424995837,
-"max_drawdown": -0.6507752981563584,
+"cur_mult": 0.357788586611903,
+"peak_mult": 1.1708108207712433,
+"max_drawdown": -0.6507753642925758,
 "status": "open",
 "p1h": 0.0005397856092366098,
-"m1h": 1.0344358156241946,
+"m1h": 1.0344356197226117,
 "p6h": 0.0003195899689169041,
-"m6h": 0.6124566948522621,
+"m6h": 0.6124565788651373,
 "p24h": 0.0003652350847673919,
-"m24h": 0.6999302062540139,
+"m24h": 0.6999300737011447,
 "p72h": 0.00023803537187853385,
-"m72h": 0.4561668741128778
+"m72h": 0.45616678772393865
 },
 "Ap9xRRidyRX3dDiRiCCsAh4QwEnd9cAJgDXaJb9Epump": {
 "group": "kill_control",
@@ -53400,6 +53796,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -54016,6 +54418,12 @@ null
 3.046e-06,
 3046.58,
 null
+],
+[
+1792856364,
+3.046e-06,
+3046.58,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -54592,6 +55000,12 @@ null
 2.387e-06,
 2352,
 2785.38
+],
+[
+1792856364,
+2.387e-06,
+2352,
+2785.38
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -54614,11 +55028,11 @@ null
 "entry_price": 0.0008247024107142858,
 "entry_approx": false,
 "peak_price": 0.0009056468409910605,
-"min_price": 2.3530886633894772e-06,
+"min_price": 2.317369280123072e-06,
 "entry_src": "fdv_at_check",
 "cur_mult": 0.002894377376601322,
 "peak_mult": 1.0981498649999915,
-"max_drawdown": -0.9971467421062206,
+"max_drawdown": -0.997190053951563,
 "status": "RUGGED",
 "p1h": 0.0005192039880386742,
 "m1h": 0.6295652605028579,
@@ -55175,6 +55589,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -55755,6 +56175,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -56327,6 +56753,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -56909,6 +57341,12 @@ null
 3.064e-06,
 3064.72,
 null
+],
+[
+1792856364,
+3.064e-06,
+3064.72,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -57450,6 +57888,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -57982,6 +58426,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -58526,6 +58976,12 @@ null
 2.255e-06,
 2237,
 2654.28
+],
+[
+1792856364,
+2.255e-06,
+2237,
+2654.28
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -58543,11 +58999,11 @@ null
 "entry_price": 0.000832015364327224,
 "entry_approx": false,
 "peak_price": 0.0009259598150022067,
-"min_price": 2.2482746068323693e-06,
+"min_price": 2.21613005199237e-06,
 "entry_src": "fdv_at_check",
 "cur_mult": 0.002710286488307119,
 "peak_mult": 1.112911918100151,
-"max_drawdown": -0.997297796767671,
+"max_drawdown": -0.9973364313364762,
 "status": "RUGGED",
 "p1h": 0.00033911707433048827,
 "m1h": 0.40758511064840947,
@@ -59069,6 +59525,12 @@ null
 2.204e-06,
 2037,
 2199.04
+],
+[
+1792856364,
+2.212e-06,
+2044,
+2201.13
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -59077,27 +59539,27 @@ null
 "entry_fdv": 11182.94,
 "entry_bundler_pct": null,
 "pool": "8H67PLbXrj63GnfSCrjpTzs24GUFDkfv84L8p1cWp8GG",
-"cur_liq": 2199.04,
-"cur_mcap": 2037,
-"cur_price": 2.204e-06,
-"units": 924228675.1361161,
-"entry_price": 1.2099754423171331e-05,
+"cur_liq": 2201.13,
+"cur_mcap": 2044,
+"cur_price": 2.212e-06,
+"units": 924050632.9113923,
+"entry_price": 1.2102085753424659e-05,
 "entry_approx": false,
 "peak_price": 4.3832068632996445e-05,
 "min_price": 2.206680977666511e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.1821524572250231,
-"peak_mult": 3.6225585330109626,
-"max_drawdown": -0.8176259698758297,
+"cur_mult": 0.18277841068627748,
+"peak_mult": 3.621860687988664,
+"max_drawdown": -0.8176611021747171,
 "status": "WINNER",
 "p1h": 1.852790771283354e-05,
-"m1h": 1.5312631202954117,
+"m1h": 1.5309681397349624,
 "p6h": 9.145016452835547e-06,
-"m6h": 0.7558018231611885,
+"m6h": 0.7556562264688698,
 "p24h": 5.393121185018145e-06,
-"m24h": 0.4457215408182321,
+"m24h": 0.4456356775931781,
 "p72h": 2.204e-06,
-"m72h": 0.1821524572250231
+"m72h": 0.1821173676096544
 },
 "9Mxu4MMPv4cdCnAUqMqGxHtopZZv756aM36CtZ34pump": {
 "group": "kill_control",
@@ -59610,6 +60072,12 @@ null
 4.158e-06,
 3405,
 3689.32
+],
+[
+1792856364,
+4.158e-06,
+3405,
+3689.32
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -60079,6 +60547,12 @@ null
 2.017e-06,
 1946,
 2045.5
+],
+[
+1792856364,
+2.017e-06,
+1946,
+2045.5
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -60105,7 +60579,9 @@ null
 "p6h": 2.347679693192578e-06,
 "m6h": 0.4703155119763527,
 "p24h": 2.1026771668775924e-06,
-"m24h": 0.42123365088028697
+"m24h": 0.42123365088028697,
+"p72h": 2.017555480505659e-06,
+"m72h": 0.404181047996516
 },
 "2iZ5QFMkaQmweT2xnvAA6co4TAnDYT9jqk7NXKCyghCX": {
 "group": "kill_control",
@@ -60543,6 +61019,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -61010,6 +61492,12 @@ null
 ],
 [
 1792852706,
+null,
+null,
+null
+],
+[
+1792856364,
 null,
 null,
 null
@@ -61482,6 +61970,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -61949,6 +62443,12 @@ null
 1.992e-06,
 1985,
 2178.49
+],
+[
+1792856364,
+1.992e-06,
+1985,
+2178.49
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -61977,7 +62477,9 @@ null
 "p6h": 2.1423134374970183e-06,
 "m6h": 0.015751036482821862,
 "p24h": 2.068199310672596e-06,
-"m24h": 0.015206123541946195
+"m24h": 0.015206123541946195,
+"p72h": 1.992e-06,
+"m72h": 0.014645879601277917
 },
 "8R8yNhPb6wFQC6fdQ57suud6dcMYrwi5ejWnKoEypump": {
 "group": "kill_control",
@@ -62379,6 +62881,12 @@ null
 ],
 [
 1792852706,
+2.626e-06,
+2386,
+2645.78
+],
+[
+1792856364,
 2.626e-06,
 2386,
 2645.78
@@ -62813,6 +63321,12 @@ null
 null,
 null,
 null
+],
+[
+1792856364,
+null,
+null,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -63241,6 +63755,12 @@ null
 ],
 [
 1792852706,
+2.919e-06,
+2919.02,
+null
+],
+[
+1792856364,
 2.919e-06,
 2919.02,
 null
@@ -63677,6 +64197,12 @@ null
 0.0001136,
 110943,
 35499.57
+],
+[
+1792856364,
+0.0001276,
+124619,
+37362.86
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -63685,25 +64211,25 @@ null
 "entry_fdv": 542378,
 "entry_bundler_pct": null,
 "pool": "YQ4NNeQxHAtdcB8ohx21eJ9U8eTzxNRvGNHkRaA4Pnw",
-"cur_liq": 35499.57,
-"cur_mcap": 110943,
-"cur_price": 0.0001136,
-"units": 976610915.4929578,
-"entry_price": 0.0005553675382854258,
+"cur_liq": 37362.86,
+"cur_mcap": 124619,
+"cur_price": 0.0001276,
+"units": 976637931.0344827,
+"entry_price": 0.0005553521758319358,
 "entry_approx": false,
 "peak_price": 0.00213822897399701,
 "min_price": 0.000100152281731066,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.2045492258166814,
-"peak_mult": 3.8501151518475827,
-"max_drawdown": -0.8196648618673968,
+"cur_mult": 0.22976411285118498,
+"peak_mult": 3.8502216558238436,
+"max_drawdown": -0.8196598733388689,
 "status": "WINNER",
 "p1h": 0.0003044222810152316,
-"m1h": 0.5481456153434318,
+"m1h": 0.5481607784451318,
 "p6h": 0.000992713405811916,
-"m6h": 1.7874890723298282,
+"m6h": 1.7875385188233013,
 "p24h": 0.0005806915829210475,
-"m24h": 1.045598712365876
+"m24h": 1.045627636285304
 },
 "CSocnzcRpgSCr1naKcNTieWZUxb6rABe45j844m7pump": {
 "group": "kill_control",
@@ -64108,6 +64634,12 @@ null
 0.006268,
 6241841,
 272687.69
+],
+[
+1792856364,
+0.006087,
+6061717,
+266681.45
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -64116,25 +64648,25 @@ null
 "entry_fdv": 26626661,
 "entry_bundler_pct": null,
 "pool": "6DNxwecbtdNNstpB5tdnxZsfGe3HmsNgEUZhdue4b1PH",
-"cur_liq": 272687.69,
-"cur_mcap": 6241841,
-"cur_price": 0.006268,
-"units": 995826579.4511806,
-"entry_price": 0.026738250966021084,
+"cur_liq": 266681.45,
+"cur_mcap": 6061717,
+"cur_price": 0.006087,
+"units": 995846393.9543288,
+"entry_price": 0.026737718951082675,
 "entry_approx": false,
 "peak_price": 0.03189462654873459,
 "min_price": 0.005309888665840807,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.23442071839199063,
-"peak_mult": 1.192846405296525,
-"max_drawdown": -0.8014122661729594,
+"cur_mult": 0.22765591975651772,
+"peak_mult": 1.1928701400103203,
+"max_drawdown": -0.8014083147647942,
 "status": "DEAD",
 "p1h": 0.027148100986634137,
-"m1h": 1.015328228504321,
+"m1h": 1.0153484310423886,
 "p6h": 0.0241113865907621,
-"m6h": 0.9017563123856831,
+"m6h": 0.9017742551215564,
 "p24h": 0.013958929524592165,
-"m24h": 0.5220584376416821
+"m24h": 0.5220688253223985
 },
 "6mYfg1EmMVjbQv38QGY5XdRUQ4SyNpFauL1aiRiWpump": {
 "group": "kill_control",
@@ -64503,6 +65035,12 @@ null
 2.499e-05,
 24079,
 14089.4
+],
+[
+1792856364,
+2.344e-05,
+22584,
+13527.59
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -64511,25 +65049,25 @@ null
 "entry_fdv": 325710,
 "entry_bundler_pct": null,
 "pool": "FNYUadkhuYaNvbr25VxRhT2s3n9S3TKcJ3NBvy7sqJWJ",
-"cur_liq": 14089.4,
-"cur_mcap": 24079,
-"cur_price": 2.499e-05,
-"units": 963545418.167267,
-"entry_price": 0.0003380328460484239,
+"cur_liq": 13527.59,
+"cur_mcap": 22584,
+"cur_price": 2.344e-05,
+"units": 963481228.668942,
+"entry_price": 0.00033805536663124335,
 "entry_approx": false,
 "peak_price": 0.0008453665847702333,
 "min_price": 2.097507615824685e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.07392772711921648,
-"peak_mult": 2.5008415444016725,
-"max_drawdown": -0.9379495915753638,
+"cur_mult": 0.06933775444413742,
+"peak_mult": 2.500674943262693,
+"max_drawdown": -0.9379537252513822,
 "status": "RUGGED",
 "p1h": 0.0004020399939632071,
-"m1h": 1.1893518593326697,
+"m1h": 1.189272627053897,
 "p6h": 0.00017575129598637645,
-"m6h": 0.5199237235105837,
+"m6h": 0.5198890872159678,
 "p24h": 0.00012049385388146236,
-"m24h": 0.3564560523926168
+"m24h": 0.35643230599234693
 },
 "2CvGN3ynUisRVdgeycFS6GrZZtyjxwtTPr9U1XPhpump": {
 "group": "kill_control",
@@ -64898,6 +65436,12 @@ null
 3.551e-06,
 3395,
 3427.37
+],
+[
+1792856364,
+3.38e-06,
+3232,
+3281.29
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -64906,24 +65450,24 @@ null
 "entry_fdv": 21748,
 "entry_bundler_pct": null,
 "pool": "9zP33cKBJEnNi1jGWsuk8EKh2JX1oU3kwoRT1PVd3SMM",
-"cur_liq": 3427.37,
-"cur_mcap": 3395,
-"cur_price": 3.551e-06,
-"units": 956068713.0385807,
-"entry_price": 2.2747318998527247e-05,
+"cur_liq": 3281.29,
+"cur_mcap": 3232,
+"cur_price": 3.38e-06,
+"units": 956213017.7514794,
+"entry_price": 2.2743886138613858e-05,
 "entry_approx": false,
 "entry_src": "fdv_at_check",
 "peak_price": 3.505e-05,
-"cur_mult": 0.15610630862608055,
-"peak_mult": 1.5408409229355458,
-"max_drawdown": -0.8438936913739195,
+"cur_mult": 0.14861136656244253,
+"peak_mult": 1.5410734905365713,
+"max_drawdown": -0.8513886334375574,
 "status": "DEAD",
 "p1h": 2.472e-05,
-"m1h": 1.0867214726096062,
+"m1h": 1.0868854974625977,
 "p6h": 8.245e-06,
-"m6h": 0.36246029699296933,
+"m6h": 0.36251500512051443,
 "p24h": 9.528e-06,
-"m24h": 0.4188625481805957
+"m24h": 0.418925769410341
 },
 "BvzwP111BGSRHWepDRZqe5Ug875iqp7SYLbEb3Nvpump": {
 "group": "kill_control",
@@ -65292,6 +65836,12 @@ null
 3.941e-05,
 37395,
 15044.25
+],
+[
+1792856364,
+4.113e-05,
+39027,
+15525.87
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -65300,24 +65850,24 @@ null
 "entry_fdv": 44907,
 "entry_bundler_pct": null,
 "pool": "8R13ybAbNuAhaCY6QWu3qPVer3Mb9xYkcPkV89iZcSoo",
-"cur_liq": 15044.25,
-"cur_mcap": 37395,
-"cur_price": 3.941e-05,
-"units": 948870844.9632074,
-"entry_price": 4.732677817890092e-05,
+"cur_liq": 15525.87,
+"cur_mcap": 39027,
+"cur_price": 4.113e-05,
+"units": 948869438.3661561,
+"entry_price": 4.732684833576755e-05,
 "entry_approx": false,
 "entry_src": "fdv_at_check",
 "peak_price": 4.94e-05,
-"cur_mult": 0.8327209566437304,
-"peak_mult": 1.0438065277391597,
-"max_drawdown": -0.16727904335626964,
+"cur_mult": 0.8690627296412586,
+"peak_mult": 1.0438049804103617,
+"max_drawdown": -0.13093727035874136,
 "status": "open",
 "p1h": 4.659e-05,
-"m1h": 0.9844321078414463,
+"m1h": 0.9844306485287196,
 "p6h": 3.966e-05,
-"m6h": 0.8380033783428152,
+"m6h": 0.8380021360946345,
 "p24h": 2.893e-05,
-"m24h": 0.6112818390180949
+"m24h": 0.6112809328597523
 },
 "AyCogdFp27VYW7ZdNLFFykjhCaxo716SA9NzahKFpump": {
 "group": "kill_control",
@@ -65686,6 +66236,12 @@ null
 6.689e-06,
 6427,
 5686.34
+],
+[
+1792856364,
+6.773e-06,
+6508,
+5713.46
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -65694,25 +66250,25 @@ null
 "entry_fdv": 107744,
 "entry_bundler_pct": null,
 "pool": "A6YLbfck844X3sMr8mk7Lrfa3CU27GkauWT4ARqUPZj5",
-"cur_liq": 5686.34,
-"cur_mcap": 6427,
-"cur_price": 6.689e-06,
-"units": 960831215.4283152,
-"entry_price": 0.00011213624023650225,
+"cur_liq": 5713.46,
+"cur_mcap": 6508,
+"cur_price": 6.773e-06,
+"units": 960874058.7627344,
+"entry_price": 0.00011213124031960664,
 "entry_approx": false,
 "peak_price": 0.00013605974485759315,
-"min_price": 6.657900905738252e-06,
+"min_price": 6.612474384007135e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.059650653400653404,
-"peak_mult": 1.2133432026134883,
-"max_drawdown": -0.9406266797273002,
+"cur_mult": 0.0604024354024354,
+"peak_mult": 1.2133973054233889,
+"max_drawdown": -0.9410291515088957,
 "status": "RUGGED",
 "p1h": 6.929833056707221e-05,
-"m1h": 0.6179833604276169,
+"m1h": 0.6180109162223821,
 "p6h": 3.820230980567703e-05,
-"m6h": 0.340677641100736,
+"m6h": 0.3406928318708447,
 "p24h": 1.1237670595768532e-05,
-"m24h": 0.10021444068454222
+"m24h": 0.10021890923294796
 },
 "Air8Q9i3cqx7ppNDriR1AhVoExs3ZsgDP91J466Qpump": {
 "group": "kill_control",
@@ -66081,6 +66637,12 @@ null
 2.928e-06,
 2928.89,
 null
+],
+[
+1792856364,
+2.928e-06,
+2928.89,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -66401,6 +66963,12 @@ null
 ],
 [
 1792852706,
+2.115e-06,
+2023,
+2103.54
+],
+[
+1792856364,
 2.115e-06,
 2023,
 2103.54
@@ -66727,6 +67295,12 @@ null
 3.286e-06,
 3286.17,
 null
+],
+[
+1792856364,
+3.286e-06,
+3286.17,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -67047,6 +67621,12 @@ null
 ],
 [
 1792852706,
+3.252e-06,
+3252.34,
+null
+],
+[
+1792856364,
 3.252e-06,
 3252.34,
 null
@@ -67373,6 +67953,12 @@ null
 6.518e-06,
 6256,
 5687.32
+],
+[
+1792856364,
+7.198e-06,
+6910,
+6037.15
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -67381,25 +67967,25 @@ null
 "entry_fdv": 40921,
 "entry_bundler_pct": null,
 "pool": "C1Mvc74o3CDzeuvxSoSxhC262crLWgRCKidkh8av2xgm",
-"cur_liq": 5687.32,
-"cur_mcap": 6256,
-"cur_price": 6.518e-06,
-"units": 959803620.7425591,
-"entry_price": 4.263476310741688e-05,
+"cur_liq": 6037.15,
+"cur_mcap": 6910,
+"cur_price": 7.198e-06,
+"units": 959988885.8016115,
+"entry_price": 4.262653516642547e-05,
 "entry_approx": false,
 "peak_price": 5.7300624266903054e-05,
 "min_price": 6.046754950652993e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.15287993939542044,
-"peak_mult": 1.343988334649263,
-"max_drawdown": -0.8581731312680595,
+"cur_mult": 0.16886195352019745,
+"peak_mult": 1.344247756548497,
+"max_drawdown": -0.8581457552896374,
 "status": "DEAD",
 "p1h": 3.866818153215771e-05,
-"m1h": 0.9069636773806975,
+"m1h": 0.9071387430666535,
 "p6h": 2.361752929617031e-05,
-"m6h": 0.5539500533090033,
+"m6h": 0.5540569789207853,
 "p24h": 1.3726443888962783e-05,
-"m24h": 0.32195426662461946
+"m24h": 0.3220164114998099
 },
 "Baw61KXAJk4MMnNJPBa87S8F77oNhMy7gQ63S8SLpump": {
 "group": "pass",
@@ -67659,6 +68245,12 @@ null
 2.796e-06,
 2757,
 3108.68
+],
+[
+1792856364,
+2.804e-06,
+2764,
+3102.91
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -67672,25 +68264,25 @@ null
 "entry_bundler_pct": 3.6213785300022563,
 "warn_any_pass": true,
 "pool": "HfT2fJjb1SmDsdjHbCkJuvnVdzDSY1525j4rhYXwdTDt",
-"cur_liq": 3108.68,
-"cur_mcap": 2757,
-"cur_price": 2.796e-06,
-"units": 986051502.1459228,
-"entry_price": 0.0037770552470076167,
+"cur_liq": 3102.91,
+"cur_mcap": 2764,
+"cur_price": 2.804e-06,
+"units": 985734664.7646219,
+"entry_price": 0.003778269277858177,
 "entry_approx": false,
 "peak_price": 0.004125238634146163,
 "min_price": 2.3484358774669827e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.0007402592276655576,
-"peak_mult": 1.0921838216198707,
-"max_drawdown": -0.9993782362915322,
+"cur_mult": 0.0007421387396690609,
+"peak_mult": 1.0918328818756604,
+"max_drawdown": -0.9993784360762137,
 "status": "RUGGED",
 "p1h": 0.003202871444384659,
-"m1h": 0.847981095040149,
+"m1h": 0.8477086223458115,
 "p6h": 0.0038279319264685613,
-"m6h": 1.0134699325622127,
+"m6h": 1.0131442851099637,
 "p24h": 3.2900634572188e-06,
-"m24h": 0.0008710657488596076,
+"m24h": 0.000870785858620397,
 "entry_label": null,
 "entry_reasons": null
 },
@@ -67950,6 +68542,12 @@ null
 ],
 [
 1792852706,
+2.518e-06,
+2206,
+2526.31
+],
+[
+1792856364,
 2.518e-06,
 2206,
 2526.31
@@ -68236,6 +68834,12 @@ null
 ],
 [
 1792852706,
+2.879e-06,
+2879.24,
+null
+],
+[
+1792856364,
 2.879e-06,
 2879.24,
 null
@@ -68526,6 +69130,12 @@ null
 8.61e-05,
 84292,
 29816.06
+],
+[
+1792856364,
+8.64e-05,
+84592,
+29654.27
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -68534,25 +69144,25 @@ null
 "entry_fdv": 189100,
 "entry_bundler_pct": null,
 "pool": "4SMPAuRkMTMFiMnW1oDcDQdi54CC9R4of9xtr4phiYiG",
-"cur_liq": 29816.06,
-"cur_mcap": 84292,
-"cur_price": 8.61e-05,
-"units": 979001161.4401858,
-"entry_price": 0.00019315605276894605,
+"cur_liq": 29654.27,
+"cur_mcap": 84592,
+"cur_price": 8.64e-05,
+"units": 979074074.074074,
+"entry_price": 0.00019314166824285986,
 "entry_approx": false,
 "peak_price": 0.00028547243346620037,
 "min_price": 7.31551871438119e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.44575356953992595,
-"peak_mult": 1.4779367737840632,
-"max_drawdown": -0.6212638118499947,
+"cur_mult": 0.44734003172924375,
+"peak_mult": 1.4780468454235474,
+"max_drawdown": -0.6212356048834309,
 "status": "open",
 "p1h": 0.00026112829946814826,
-"m1h": 1.35190327056699,
+"m1h": 1.3520039556653345,
 "p6h": 0.00017492628325692497,
-"m6h": 0.9056215466681358,
+"m6h": 0.9056889942411053,
 "p24h": 0.00010544090089312122,
-"m24h": 0.5458845290199111
+"m24h": 0.5459251846190843
 },
 "BjVsSDQoNbxswtPLtpAr5QXZTEXQsfEQTAz7A7iipump": {
 "group": "kill_control",
@@ -68813,6 +69423,12 @@ null
 1.027e-05,
 10275.55,
 null
+],
+[
+1792856364,
+1.022e-05,
+10220.45,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -68822,24 +69438,24 @@ null
 "entry_bundler_pct": null,
 "pool": "FaoXrx3Jbw7RZXAZqPu5Vb39YVUaM6EE15GicqWy4XqL",
 "cur_liq": null,
-"cur_mcap": 10275.55,
-"cur_price": 1.027e-05,
-"units": 1000540408.9581304,
-"entry_price": 2.1296461201590187e-05,
+"cur_mcap": 10220.45,
+"cur_price": 1.022e-05,
+"units": 1000044031.3111546,
+"entry_price": 2.1307031823452003e-05,
 "entry_approx": false,
 "peak_price": 3.542383827078776e-05,
 "min_price": 1.0242758461390283e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.4822397440957537,
-"peak_mult": 1.6633673517618361,
-"max_drawdown": -0.5190394138991756,
+"cur_mult": 0.47965385721868387,
+"peak_mult": 1.6625421393418964,
+"max_drawdown": -0.5192780230366771,
 "status": "RUGGED",
 "p1h": 1.8709427934309743e-05,
-"m1h": 0.878522856788654,
+"m1h": 0.878087013213959,
 "p6h": 2.0442791735025436e-05,
-"m6h": 0.9599149615288661,
+"m6h": 0.9594387385541273,
 "p24h": 1.1234081373364515e-05,
-"m24h": 0.5275093015230942
+"m24h": 0.5272475991235673
 },
 "4vT4trZuQpoPxBAKNwBF4gVhZdy6UCUqxeeYNmuQtfQd": {
 "group": "kill_control",
@@ -69064,6 +69680,12 @@ null
 1.096e-05,
 10681,
 8126.19
+],
+[
+1792856364,
+1.032e-05,
+10063,
+7781.5
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -69072,25 +69694,25 @@ null
 "entry_fdv": 42475,
 "entry_bundler_pct": null,
 "pool": "7F5PZ3MgwTV9Pkp6J7vNBnrW374LdrTJdy9NQMZ7NqTm",
-"cur_liq": 8126.19,
-"cur_mcap": 10681,
-"cur_price": 1.096e-05,
-"units": 974543795.620438,
-"entry_price": 4.358449583372343e-05,
+"cur_liq": 7781.5,
+"cur_mcap": 10063,
+"cur_price": 1.032e-05,
+"units": 975096899.2248063,
+"entry_price": 4.355977342740733e-05,
 "entry_approx": false,
 "peak_price": 6.027287664490161e-05,
 "min_price": 9.319959795031872e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.2514655679811654,
-"peak_mult": 1.3828971860738049,
-"max_drawdown": -0.7861634139215953,
+"cur_mult": 0.23691583284284873,
+"peak_mult": 1.3836820511784063,
+"max_drawdown": -0.7860420506878061,
 "status": "DEAD",
 "p1h": 4.170921370275221e-05,
-"m1h": 0.9569736417710211,
+"m1h": 0.957516773411618,
 "p6h": 4.605059387758765e-05,
-"m6h": 1.0565820023081713,
+"m6h": 1.0571816668039216,
 "p24h": 1.200128340162098e-05,
-"m24h": 0.27535671050105404
+"m24h": 0.27551298956183057
 },
 "2nEwN3ZLGWfTmG8AsRt47WDQTvc6QLP9poQVJ7a7pump": {
 "group": "kill_control",
@@ -69315,6 +69937,12 @@ null
 5.472e-06,
 5195,
 4469.65
+],
+[
+1792856364,
+4.873e-06,
+4626,
+4102.84
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -69323,25 +69951,25 @@ null
 "entry_fdv": 12509.77,
 "entry_bundler_pct": null,
 "pool": "8Togi8iqFLmPgwvBRTJsXQEPpxT2Z1x5S8TvwRPfSrC5",
-"cur_liq": 4469.65,
-"cur_mcap": 5195,
-"cur_price": 5.472e-06,
-"units": 949378654.9707602,
-"entry_price": 1.3176797197305101e-05,
+"cur_liq": 4102.84,
+"cur_mcap": 4626,
+"cur_price": 4.873e-06,
+"units": 949312538.4773241,
+"entry_price": 1.3177714917855597e-05,
 "entry_approx": false,
 "peak_price": 5.3592329081150565e-05,
 "min_price": 3.6254312906532676e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.41527542073115653,
-"peak_mult": 4.067174160661074,
-"max_drawdown": -0.7248624808921902,
+"cur_mult": 0.3697909713767719,
+"peak_mult": 4.066890915095894,
+"max_drawdown": -0.7248816419802142,
 "status": "WINNER",
 "p1h": 6.495354019078859e-06,
-"m1h": 0.49293875604363696,
+"m1h": 0.4929044268728075,
 "p6h": 1.06094078817895e-05,
-"m6h": 0.8051583190457937,
+"m6h": 0.8051022463245064,
 "p24h": 5.021295785996307e-06,
-"m24h": 0.38107103803823095
+"m24h": 0.3810444995431287
 },
 "9RhEr8CvHZ92bKsnrwodi2qkcNxYyghjAzCSJgQPpump": {
 "group": "kill_control",
@@ -69566,6 +70194,12 @@ null
 0.0002011,
 195945,
 185986.73
+],
+[
+1792856364,
+2.3e-06,
+2241,
+2505.42
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -69574,25 +70208,25 @@ null
 "entry_fdv": 93728,
 "entry_bundler_pct": null,
 "pool": "RTmsLPPy6vJckdZgjFFQMFhZSdn1r7e2AhhKbZHMQjR",
-"cur_liq": 185986.73,
-"cur_mcap": 195945,
-"cur_price": 0.0002011,
-"units": 974365987.0711088,
-"entry_price": 9.619383398402614e-05,
+"cur_liq": 2505.42,
+"cur_mcap": 2241,
+"cur_price": 2.3e-06,
+"units": 974347826.0869565,
+"entry_price": 9.619562695225346e-05,
 "entry_approx": false,
 "peak_price": 0.0002032,
-"min_price": 2.2879795599511956e-06,
+"min_price": 2.2786304882795418e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 2.0905705872311366,
-"peak_mult": 2.1124015083310144,
-"max_drawdown": -0.976214904165987,
-"status": "WINNER",
+"cur_mult": 0.023909610788665075,
+"peak_mult": 2.1123621357638016,
+"max_drawdown": -0.9763125356061089,
+"status": "RUGGED",
 "p1h": 0.0001024657786096731,
-"m1h": 1.065201108697762,
+"m1h": 1.0651812546586117,
 "p6h": 8.22983887272917e-05,
-"m6h": 0.8555474433107437,
+"m6h": 0.8555314969581764,
 "p24h": 8.370765274647008e-05,
-"m24h": 0.8701976964591149
+"m24h": 0.8701814770438394
 },
 "8FnhV1WE8vGMEfbzNRYbmZsRDtsVPDfbK3v6uvLppump": {
 "group": "kill_control",
@@ -69817,6 +70451,12 @@ null
 2.403e-06,
 2277,
 2368.99
+],
+[
+1792856364,
+2.403e-06,
+2277,
+2368.99
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -69996,6 +70636,12 @@ null
 1.667e-05,
 16671,
 0
+],
+[
+1792856364,
+1.667e-05,
+16671,
+0
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70020,7 +70666,9 @@ null
 "p1h": 0.0001386292019351328,
 "m1h": 1.438014272775686,
 "p6h": 1.667e-05,
-"m6h": 0.17291954070678048
+"m6h": 0.17291954070678048,
+"p24h": 1.667e-05,
+"m24h": 0.17291954070678048
 },
 "2JSj9dzLQwAi3q1dHYjCPF5Gveg81hBTRy8EeM3Fpump": {
 "group": "kill_control",
@@ -70173,6 +70821,12 @@ null
 0.0001516,
 142617,
 32180.84
+],
+[
+1792856364,
+0.0001271,
+119610,
+29154.8
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70183,23 +70837,25 @@ null
 "entry_fdv": 81570,
 "entry_bundler_pct": null,
 "pool": "5SpztG8hdXCG3YWx7hWjHGHF8CYGNRSWZ1smmfQQkAMX",
-"cur_liq": 32180.84,
-"cur_mcap": 142617,
-"cur_price": 0.0001516,
-"units": 940745382.585752,
-"entry_price": 8.670783987883633e-05,
+"cur_liq": 29154.8,
+"cur_mcap": 119610,
+"cur_price": 0.0001271,
+"units": 941070023.6034619,
+"entry_price": 8.667792826686731e-05,
 "entry_approx": false,
-"peak_price": 0.0001634635511298988,
+"peak_price": 0.00016933024733762695,
 "min_price": 6.983658701632471e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 1.7484001471129091,
-"peak_mult": 1.885222274690723,
-"max_drawdown": -0.19457586402898686,
+"cur_mult": 1.4663479220301583,
+"peak_mult": 1.9535566980360504,
+"max_drawdown": -0.19429792090427955,
 "status": "open",
 "p1h": 9.518361077557205e-05,
-"m1h": 1.097750917432375,
+"m1h": 1.0981297393555267,
 "p6h": 0.00012241683151565427,
-"m6h": 1.411831175666663
+"m6h": 1.4123183832769128,
+"p24h": 0.00012669446454433332,
+"m24h": 1.4616692747231055
 },
 "8swwWxfw3r7dms2CmSqJELkfsb9XifnnsteSj1fKpump": {
 "group": "kill_control",
@@ -70352,6 +71008,12 @@ null
 4.033e-06,
 4033.23,
 null
+],
+[
+1792856364,
+4.031e-06,
+4031.85,
+null
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70361,22 +71023,24 @@ null
 "entry_bundler_pct": null,
 "pool": "SgV1fKDVpdmrX8GBprhTJdfwy87nPHpmoWVmiSWsAUZ",
 "cur_liq": null,
-"cur_mcap": 4033.23,
-"cur_price": 4.033e-06,
-"units": 1000057029.5065707,
-"entry_price": 1.0350629708695016e-05,
+"cur_mcap": 4031.85,
+"cur_price": 4.031e-06,
+"units": 1000210865.7901264,
+"entry_price": 1.0349037741979488e-05,
 "entry_approx": false,
 "peak_price": 3.008175642238512e-05,
 "min_price": 4.006917978948275e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.38963812961177524,
-"peak_mult": 2.906273074102441,
-"max_drawdown": -0.6128817191110338,
+"cur_mult": 0.3895048119931757,
+"peak_mult": 2.906720138855277,
+"max_drawdown": -0.6128221696694807,
 "status": "RUGGED",
 "p1h": 4.261871266868369e-06,
-"m1h": 0.4117499501782193,
+"m1h": 0.4118132886481473,
 "p6h": 4.613535179593738e-06,
-"m6h": 0.44572507271882705
+"m6h": 0.4457936374972863,
+"p24h": 4.021052048511123e-06,
+"m24h": 0.3885435678913666
 },
 "7rN6DLfo2bo8T5JFzy9P7iSNvUiqydwVXsqVNub6pump": {
 "group": "kill_control",
@@ -70529,6 +71193,12 @@ null
 2.039e-06,
 2014,
 2102.98
+],
+[
+1792856364,
+2.039e-06,
+2014,
+2102.98
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70553,7 +71223,9 @@ null
 "p1h": 1.969041312993901e-06,
 "m1h": 0.979798020309189,
 "p6h": 2.12140478487985e-06,
-"m6h": 1.0556143209302773
+"m6h": 1.0556143209302773,
+"p24h": 2.039e-06,
+"m24h": 1.014609571788413
 },
 "79hQSeQtMsVLFH8vCT8LysFnJDqiwSxQyTA7cMVgyaHB": {
 "group": "kill_control",
@@ -70706,6 +71378,12 @@ null
 0.0004902,
 490259,
 63810.8
+],
+[
+1792856364,
+0.0004322,
+432239,
+58739.43
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70714,23 +71392,25 @@ null
 "entry_fdv": 163955,
 "entry_bundler_pct": null,
 "pool": "5XYnvLwVEa32t7CjfkKc7K2PUHPrmTHrSaV6pLpAD7eg",
-"cur_liq": 63810.8,
-"cur_mcap": 490259,
-"cur_price": 0.0004902,
-"units": 1000120359.0371277,
-"entry_price": 0.00016393526890888285,
+"cur_liq": 58739.43,
+"cur_mcap": 432239,
+"cur_price": 0.0004322,
+"units": 1000090236.001851,
+"entry_price": 0.00016394020669120555,
 "entry_approx": false,
 "peak_price": 0.12437779643842088,
-"min_price": 0.10633592038486252,
+"min_price": 0.10208538141581323,
 "entry_src": "fdv_at_check",
-"cur_mult": 2.9902046293190203,
-"peak_mult": 758.7006582918501,
-"max_drawdown": 647.6457800850973,
+"cur_mult": 2.63632704095636,
+"peak_mult": 758.6778066755544,
+"max_drawdown": 621.6988697659701,
 "status": "WINNER",
 "p1h": 0.12339897657292544,
-"m1h": 752.7298878041432,
+"m1h": 752.7072160239327,
 "p6h": 0.12014070044012336,
-"m6h": 732.8545055603561
+"m6h": 732.8324324149349,
+"p24h": 0.1034603969334821,
+"m24h": 631.0861686807434
 },
 "6LGGCwCUHDvcipZNtqWrb4MRtsPygNGbUx1df7LYpump": {
 "group": "pass",
@@ -70846,6 +71526,12 @@ null
 3.147e-06,
 3128,
 3863.3
+],
+[
+1792856364,
+2.861e-06,
+2844,
+3594.34
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -70860,25 +71546,25 @@ null
 "entry_bundler_pct": 4.565222579495231,
 "warn_any_pass": true,
 "pool": "DNm2wASF4PP9XivPucrwm3CV9AnAsuugEgANqUDtLgs",
-"cur_liq": 3863.3,
-"cur_mcap": 3128,
-"cur_price": 3.147e-06,
-"units": 993962503.9720368,
-"entry_price": 0.0025717288024296675,
+"cur_liq": 3594.34,
+"cur_mcap": 2844,
+"cur_price": 2.861e-06,
+"units": 994058021.6707445,
+"entry_price": 0.002571481688466948,
 "entry_approx": false,
 "peak_price": 0.0030004088385632,
-"min_price": 3.058824726357822e-06,
+"min_price": 2.810130127951421e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.0012236904595176751,
-"peak_mult": 1.1666894408650448,
-"max_drawdown": -0.9988105959215187,
+"cur_mult": 0.0011125881287942032,
+"peak_mult": 1.1668015572578188,
+"max_drawdown": -0.9989071941905887,
 "status": "RUGGED",
 "p1h": 0.0018337209649606466,
-"m1h": 0.7130304576548739,
+"m1h": 0.7130989783768845,
 "entry_label": null,
 "entry_reasons": null,
 "p6h": 0.001927634526067707,
-"m6h": 0.7495481344092558
+"m6h": 0.7496201644029259
 },
 "4D5a3BsY5skYpQCsg5Cd7smymFEzuB59QP8Hzhi4pump": {
 "group": "kill_control",
@@ -70992,6 +71678,12 @@ null
 ],
 [
 1792852706,
+0.0,
+null,
+null
+],
+[
+1792856364,
 0.0,
 null,
 null
@@ -71134,6 +71826,12 @@ null
 2.934e-06,
 2834,
 2836.87
+],
+[
+1792856364,
+2.983e-06,
+2881,
+2870.72
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71142,23 +71840,23 @@ null
 "entry_fdv": 3695,
 "entry_bundler_pct": null,
 "pool": "GoXKqRCdCt1KrxWz1GGwyy92zKApYtB3AR7j2TkX5V5N",
-"cur_liq": 2836.87,
-"cur_mcap": 2834,
-"cur_price": 2.934e-06,
-"units": 965916837.0824811,
-"entry_price": 3.825381086803106e-06,
+"cur_liq": 2870.72,
+"cur_mcap": 2881,
+"cur_price": 2.983e-06,
+"units": 965806235.3335568,
+"entry_price": 3.8258191600138845e-06,
 "entry_approx": false,
 "peak_price": 5.439773997648382e-06,
 "min_price": 2.7585042654887592e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.7669824086603517,
-"peak_mult": 1.4220214598787684,
-"max_drawdown": -0.27889425840340054,
+"cur_mult": 0.7797023004059539,
+"peak_mult": 1.4218586321337363,
+"max_drawdown": -0.2789768281993893,
 "status": "open",
 "p1h": 2.7585042654887592e-06,
-"m1h": 0.7211057415965995,
+"m1h": 0.7210231718006107,
 "p6h": 2.9499470610485835e-06,
-"m6h": 0.7711511596126681
+"m6h": 0.7710628593950263
 },
 "8idEA8QovsZJka6d9Z35fejE5MbL37BJxvw5k5r6pump": {
 "group": "kill_control",
@@ -71275,6 +71973,12 @@ null
 0.0003566,
 345888,
 62856.77
+],
+[
+1792856364,
+0.0003046,
+295490,
+57549.33
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71283,23 +71987,23 @@ null
 "entry_fdv": 652570,
 "entry_bundler_pct": null,
 "pool": "6KGbV6LxuATyk32jUaRuujgW63jmEJLezgyUxMqFWER7",
-"cur_liq": 62856.77,
-"cur_mcap": 345888,
-"cur_price": 0.0003566,
-"units": 969960740.3252945,
-"entry_price": 0.0006727798073364788,
+"cur_liq": 57549.33,
+"cur_mcap": 295490,
+"cur_price": 0.0003046,
+"units": 970091923.8345371,
+"entry_price": 0.0006726888287251683,
 "entry_approx": false,
 "peak_price": 0.00101176249011061,
 "min_price": 0.0002308574695774013,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.5300396892287418,
-"peak_mult": 1.5038538301500999,
-"max_drawdown": -0.6568602876305678,
+"cur_mult": 0.45280966026633157,
+"peak_mult": 1.5040572206736802,
+"max_drawdown": -0.6568138792866445,
 "status": "open",
 "p1h": 0.0005132028410541499,
-"m1h": 0.762809518742706,
+"m1h": 0.762912685835344,
 "p6h": 0.0002652095936197342,
-"m6h": 0.3941996931651285
+"m6h": 0.3942530071776878
 },
 "AFYC4gSWuRZysQQ7q3Kn9qJEHyjmAegF4KThbAjKpump": {
 "group": "pass",
@@ -71379,6 +72083,12 @@ null
 2.11e-06,
 2083,
 2317.21
+],
+[
+1792856364,
+2.097e-06,
+2070,
+2298.73
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71394,23 +72104,23 @@ null
 "entry_reasons": null,
 "warn_any_pass": true,
 "pool": "9nc82YaQaGPHDeUmA1JgERbqCQz69HvCkn2gzEC43Rua",
-"cur_liq": 2317.21,
-"cur_mcap": 2083,
-"cur_price": 2.11e-06,
-"units": 987203791.4691943,
-"entry_price": 0.0012193591742678828,
+"cur_liq": 2298.73,
+"cur_mcap": 2070,
+"cur_price": 2.097e-06,
+"units": 987124463.5193133,
+"entry_price": 0.0012194571652173912,
 "entry_approx": false,
 "peak_price": 0.001341192141380133,
-"min_price": 2.100873681584872e-06,
+"min_price": 2.082790652863001e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.0017304171277235587,
-"peak_mult": 1.0999155701480658,
-"max_drawdown": -0.9982770673925128,
+"cur_mult": 0.0017196175969216355,
+"peak_mult": 1.0998271851074328,
+"max_drawdown": -0.9982920345935302,
 "status": "RUGGED",
 "p1h": 0.0004183389465850618,
-"m1h": 0.3430809850069298,
+"m1h": 0.34305341632109315,
 "p6h": 7.002654609659918e-05,
-"m6h": 0.05742897382032158
+"m6h": 0.05742435904594946
 },
 "z1gC6KiMdhnp5RjRtH63JjXhrWKpqK1qaDVBLfCpump": {
 "group": "kill_control",
@@ -71491,6 +72201,12 @@ null
 3.567e-05,
 33523,
 15891.5
+],
+[
+1792856364,
+2.873e-05,
+27003,
+13980.55
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71501,23 +72217,23 @@ null
 "entry_label": null,
 "entry_reasons": null,
 "pool": "HchM41tYxTJMFwMDaK4iFMVKASr7Uq13UPPxj5G6v3hC",
-"cur_liq": 15891.5,
-"cur_mcap": 33523,
-"cur_price": 3.567e-05,
-"units": 939809363.6108774,
-"entry_price": 3.3534460519643234e-05,
+"cur_liq": 13980.55,
+"cur_mcap": 27003,
+"cur_price": 2.873e-05,
+"units": 939888618.1691611,
+"entry_price": 3.3531632781542796e-05,
 "entry_approx": false,
 "peak_price": 7.022835063552984e-05,
-"min_price": 2.775810159714722e-05,
+"min_price": 2.2242089388345516e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 1.0636819393324026,
-"peak_mult": 2.0942144154784508,
-"max_drawdown": -0.17225143428541034,
+"cur_mult": 0.8568028937682446,
+"peak_mult": 2.0943910215486565,
+"max_drawdown": -0.3366833779538321,
 "status": "WINNER",
 "p1h": 5.019563513082255e-05,
-"m1h": 1.4968374130074293,
+"m1h": 1.4969636419987373,
 "p6h": 4.691252080498018e-05,
-"m6h": 1.398934710087272
+"m6h": 1.3990526828983638
 },
 "4CZpvvrdqESTBfLvf6db7x7pH5CQHpigG2ywdm9xpump": {
 "group": "kill_control",
@@ -71598,6 +72314,12 @@ null
 4.911e-05,
 47301,
 17133.68
+],
+[
+1792856364,
+1.425e-05,
+13729,
+8365.64
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71608,23 +72330,23 @@ null
 "entry_label": null,
 "entry_reasons": null,
 "pool": "A7hb4z5tTpwusbx9T35memEzUrujTejEDiQ7M1ArhJfP",
-"cur_liq": 17133.68,
-"cur_mcap": 47301,
-"cur_price": 4.911e-05,
-"units": 963164324.9847281,
-"entry_price": 3.3792572207775734e-05,
+"cur_liq": 8365.64,
+"cur_mcap": 13729,
+"cur_price": 1.425e-05,
+"units": 963438596.491228,
+"entry_price": 3.3782952145094325e-05,
 "entry_approx": false,
 "peak_price": 0.00011919875070499415,
-"min_price": 2.5305940224678556e-05,
+"min_price": 8.678730167364761e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 1.4532779481255262,
-"peak_mult": 3.5273654213740584,
-"max_drawdown": -0.2511389760719188,
+"cur_mult": 0.42181038349750216,
+"peak_mult": 3.52836987700328,
+"max_drawdown": -0.7431032631461424,
 "status": "WINNER",
 "p1h": 2.652735041495602e-05,
-"m1h": 0.785005363067687,
+"m1h": 0.7852289018740506,
 "p6h": 6.600098293328314e-05,
-"m6h": 1.9531210150997678
+"m6h": 1.9536771875298424
 },
 "2TKDNLwVTbhVVy7jCvSDz6ic4REAqQshZ9n9ZTxmpump": {
 "group": "kill_control",
@@ -71705,6 +72427,12 @@ null
 0.0003001,
 299078,
 60028.58
+],
+[
+1792856364,
+0.0002955,
+294468,
+59732.52
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71715,23 +72443,23 @@ null
 "entry_label": null,
 "entry_reasons": null,
 "pool": "BcbQfEr3NKp8tJfbCmveqSS1o87npjfSbxuuLDSHwpsU",
-"cur_liq": 60028.58,
-"cur_mcap": 299078,
-"cur_price": 0.0003001,
-"units": 996594468.5104966,
-"entry_price": 0.00043771264419315356,
+"cur_liq": 59732.52,
+"cur_mcap": 294468,
+"cur_price": 0.0002955,
+"units": 996507614.2131978,
+"entry_price": 0.00043775079465340893,
 "entry_approx": false,
 "peak_price": 0.0004728301922869926,
 "min_price": 0.0001830921091353082,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.6856096207894146,
-"peak_mult": 1.0802296862101666,
-"max_drawdown": -0.5817070592676015,
+"cur_mult": 0.6750416072550215,
+"peak_mult": 1.0801355430122244,
+"max_drawdown": -0.5817435139546185,
 "status": "open",
 "p1h": 0.00035967285089847517,
-"m1h": 0.8217099863803774,
+"m1h": 0.8216383734568607,
 "p6h": 0.0003270142624311716,
-"m6h": 0.7470980488442709
+"m6h": 0.7470329384326682
 },
 "9daaq4QBFia2C9BcAEwMP2RfWqseDsTYudqM4Lfmpump": {
 "group": "kill_control",
@@ -71812,6 +72540,12 @@ null
 1.75e-05,
 17068,
 10386.16
+],
+[
+1792856364,
+2.281e-05,
+22241,
+12027.51
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71822,23 +72556,23 @@ null
 "entry_label": null,
 "entry_reasons": null,
 "pool": "78TxeedEi2hCvcdd6Aqi2ZeMUscQ7MWnsXvUBUixJaTo",
-"cur_liq": 10386.16,
-"cur_mcap": 17068,
-"cur_price": 1.75e-05,
-"units": 975314285.7142859,
-"entry_price": 6.479142254511366e-05,
+"cur_liq": 12027.51,
+"cur_mcap": 22241,
+"cur_price": 2.281e-05,
+"units": 975054800.526085,
+"entry_price": 6.480866507800908e-05,
 "entry_approx": false,
 "peak_price": 0.01066,
-"min_price": 1.522827128836329e-05,
+"min_price": 1.4955713121894526e-05,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.2700974806937587,
-"peak_mult": 164.5279510968839,
-"max_drawdown": -0.7649647022681129,
+"cur_mult": 0.3519591087479428,
+"peak_mult": 164.484177959363,
+"max_drawdown": -0.7692328162616435,
 "status": "WINNER",
 "p1h": 7.753679782650673e-05,
-"m1h": 1.1967139288000443,
+"m1h": 1.1963955395960866,
 "p6h": 6.362828336719651e-05,
-"m6h": 0.9820479450484783
+"m6h": 0.9817866683507249
 },
 "9J4SKB6wmPEN268c1Fa2jWza9yM1hzwibqyLwc7Kpump": {
 "group": "kill_control",
@@ -71919,6 +72653,12 @@ null
 6.977e-06,
 6568,
 5263.29
+],
+[
+1792856364,
+6.407e-06,
+6033,
+4945.72
 ]
 ],
 "rules_version": "r9-2026-10-19",
@@ -71929,23 +72669,134 @@ null
 "entry_label": null,
 "entry_reasons": null,
 "pool": "D34SygpkaTt2j4B5PTX27bpnvK3NpYzBbvAR9fEo7pS3",
-"cur_liq": 5263.29,
-"cur_mcap": 6568,
-"cur_price": 6.977e-06,
-"units": 941378816.110076,
-"entry_price": 1.4121201552984166e-05,
+"cur_liq": 4945.72,
+"cur_mcap": 6033,
+"cur_price": 6.407e-06,
+"units": 941626346.1838614,
+"entry_price": 1.4117489441405603e-05,
 "entry_approx": false,
 "peak_price": 4.631215068041257e-05,
-"min_price": 6.6395956079018595e-06,
+"min_price": 6.419241762368037e-06,
 "entry_src": "fdv_at_check",
-"cur_mult": 0.4940797689078791,
-"peak_mult": 3.279618275161978,
-"max_drawdown": -0.5298136930494597,
+"cur_mult": 0.4538342335294206,
+"peak_mult": 3.2804806316753665,
+"max_drawdown": -0.5452986319549953,
 "status": "WINNER",
 "p1h": 1.3582225055800654e-05,
-"m1h": 0.9618321079009305,
+"m1h": 0.9620850160486002,
 "p6h": 2.140697724099259e-05,
-"m6h": 1.5159458747664964
+"m6h": 1.5163444839000504
+},
+"47AmA4QkNjWGsHULTtNsTCHBNusYk6xnZeZx7DTpLENJ": {
+"group": "kill_control",
+"symbol": "ELON",
+"t0": "2026-10-24T15:20:47.924559+00:00",
+"entry_mcap": 90709,
+"entry_liq": 152423.32,
+"kill_reason": "high risk score (raw=11400, norm=52)",
+"snapshots": [
+[
+1792856364,
+9.516e-05,
+95169,
+157076
+]
+],
+"rules_version": "r10-2026-10-23",
+"pass_tier": null,
+"warns_at_entry": [],
+"entry_fdv": 90709,
+"entry_bundler_pct": null,
+"entry_label": null,
+"entry_reasons": null,
+"pool": "B4PEJ1q2ReoqWTU5TYkLYKiMompqzP2TKv98E2wxu9in",
+"cur_liq": 157076,
+"cur_mcap": 95169,
+"cur_price": 9.516e-05,
+"units": 1000094577.5535939,
+"entry_price": 9.07004217759985e-05,
+"entry_approx": false,
+"peak_price": 9.702574470502491e-05,
+"min_price": 8.736101532117673e-05,
+"entry_src": "fdv_at_check",
+"cur_mult": 1.0491682192505705,
+"peak_mult": 1.0697386275076866,
+"max_drawdown": -0.03681798154223637,
+"status": "open"
+},
+"6bW6xsZxYqcvqabk9rRgQwgjPNwe8SACPusx5o1wpump": {
+"group": "kill_control",
+"symbol": "TRUTH",
+"t0": "2026-10-24T15:20:45.480362+00:00",
+"entry_mcap": 43023,
+"entry_liq": 20548.45,
+"kill_reason": "graph-detected insiders: 73",
+"snapshots": [
+[
+1792856364,
+4.455e-05,
+43592,
+20697.04
+]
+],
+"rules_version": "r10-2026-10-23",
+"pass_tier": null,
+"warns_at_entry": [],
+"entry_fdv": 43023,
+"entry_bundler_pct": null,
+"entry_label": null,
+"entry_reasons": null,
+"pool": "GUkDEvSyoJJ5yFHUYKuePjwTTAZYLBmWsHQ2fYaCMKYm",
+"cur_liq": 20697.04,
+"cur_mcap": 43592,
+"cur_price": 4.455e-05,
+"units": 978496071.8294052,
+"entry_price": 4.396849536612222e-05,
+"entry_approx": false,
+"peak_price": 5.034075435110538e-05,
+"min_price": 3.972687471487479e-05,
+"entry_src": "fdv_at_check",
+"cur_mult": 1.0132254840434187,
+"peak_mult": 1.1449278382605967,
+"max_drawdown": -0.0964695429290402,
+"status": "open"
+},
+"6StXMqDn4Lwi8xio3Px7F2TM5agj8ANSmkJb2NsFpump": {
+"group": "kill_control",
+"symbol": "SOLCODE",
+"t0": "2026-10-24T15:20:49.681327+00:00",
+"entry_mcap": 3070.1,
+"entry_liq": null,
+"kill_reason": "missing data: liquidity (dex)",
+"snapshots": [
+[
+1792856364,
+2.927e-06,
+2927.17,
+null
+]
+],
+"rules_version": "r10-2026-10-23",
+"pass_tier": null,
+"warns_at_entry": [],
+"entry_fdv": 3070.1,
+"entry_bundler_pct": null,
+"entry_label": null,
+"entry_reasons": null,
+"pool": "AMSXvHZm8FFJVsdKLHkwEQnoWPyfeaEgpFxZ8vqdBriK",
+"cur_liq": null,
+"cur_mcap": 2927.17,
+"cur_price": 2.927e-06,
+"units": 1000058079.9453365,
+"entry_price": 3.069921699115528e-06,
+"entry_approx": false,
+"peak_price": 3.1085389521612084e-06,
+"min_price": 2.9205198238477545e-06,
+"entry_src": "fdv_at_check",
+"cur_mult": 0.9534445132080388,
+"peak_mult": 1.0125792306223336,
+"max_drawdown": -0.0486663471940727,
+"status": "RUGGED"
 }
 },
 "control_scans": [
@@ -71971,9 +72822,10 @@ null
 "2026-10-23T03",
 "2026-10-23T15",
 "2026-10-23T21",
-"2026-10-24T03"
+"2026-10-24T03",
+"2026-10-24T15"
 ],
-"updated": "2026-10-24T15:03:58+00:00",
+"updated": "2026-10-24T16:05:01+00:00",
 "summary": {
 "pass": {
 "tracked": 14,
@@ -71994,13 +72846,13 @@ null
 "rugged": 61.5
 },
 "kill_control": {
-"tracked": 93,
-"hit2x": 39.8,
-"rugged_or_dead": 61.3,
-"median_24h": 0.56,
-"median_cur": 0.48,
-"median_peak": 1.54,
-"rugged": 49.5
+"tracked": 96,
+"hit2x": 38.5,
+"rugged_or_dead": 60.4,
+"median_24h": 0.58,
+"median_cur": 0.45,
+"median_peak": 1.51,
+"rugged": 49.0
 },
 "pass_clean": {
 "tracked": 7,
