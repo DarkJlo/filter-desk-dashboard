@@ -77,6 +77,15 @@ def warn_html(w):
     col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch", "FLAT WARN")) else "#9aa4b2"
     return f'<span style="color:{col}">{html.escape(w)}</span>'
 
+ENTRY_BADGE = {"OK": ("entry-ok", "ENTRY OK"), "WAIT": ("entry-wait", "WAIT"), "UNKNOWN": ("entry-unk", "ENTRY ?")}
+
+def entry_badge(label, reasons):
+    """r10 entry-timing badge on a PASS (older records have no label -> nothing shown)."""
+    if not label: return ""
+    cls, txt = ENTRY_BADGE.get(label, ENTRY_BADGE["UNKNOWN"])
+    tip = html.escape("entry timing: " + ("; ".join(reasons or []) or label))
+    return f' <span class="pill {cls}" title="{tip}">{txt}</span>'
+
 def load_all():
     """Every log entry incl. sub-tool runs (BUNDLERS/TRACE/BUNDLE) grouped by mint, oldest first."""
     by = {}
@@ -138,7 +147,8 @@ def outcomes_html(OC):
              + card("Median now", f'{mx(P.get("median_cur"))}', f'control {mx(K.get("median_cur"))}'))
     seg = []
     for g, lab in (("pass_clean", "clean at entry"), ("pass_warn", "warn at entry"), ("pass_never_warn", "never warned"),
-                   ("pass_warn_any", "warned on any pass check"), ("pass_degraded", "RugCheck-down pass")):
+                   ("pass_warn_any", "warned on any pass check"), ("pass_degraded", "RugCheck-down pass"),
+                   ("pass_entry_ok", "entry OK"), ("pass_entry_wait", "entry WAIT"), ("pass_entry_unknown", "entry ?")):
         x = S.get(g) or {}
         if x.get("tracked"): seg.append(f'{lab}: n={x["tracked"]} · 2x {x["hit2x"]}% · rug/dead {x["rugged_or_dead"]}% · med peak {mx(x.get("median_peak"))}')
     by = load_all()
@@ -153,7 +163,7 @@ def outcomes_html(OC):
         ws = t.get("warns_at_entry") or []
         wtxt = ", ".join(lab for pfx, lab in TAGS if any(w.startswith(pfx) for w in ws)) or "none"
         tier = t.get("pass_tier") or "—"
-        rows += (f'<tr><td><a href="https://gmgn.ai/sol/token/{m}" target="_blank" title="{m}"><b>{html.escape(t.get("symbol") or m[:6])}</b></a></td>'
+        rows += (f'<tr><td><a href="https://gmgn.ai/sol/token/{m}" target="_blank" title="{m}"><b>{html.escape(t.get("symbol") or m[:6])}</b></a>{entry_badge(t.get("entry_label"), t.get("entry_reasons"))}</td>'
                  f'<td>{when}</td><td>{_age(t["t0"])}</td><td>${num(t.get("entry_mcap"),"{:,.0f}")}{"*" if t.get("entry_approx") else ""}</td>'
                  f'<td>{f(t,"m1h")}</td><td>{f(t,"m24h")}</td><td><b>{f(t,"peak_mult")}</b></td><td>{f(t,"cur_mult")}</td>'
                  f'<td style="color:{col}">{t.get("status")}{" (final)" if t.get("final") else ""}</td>'
@@ -195,7 +205,12 @@ def build():
         reasons = r.get("reasons") or []
         warns = m.get("warns") or []
         main = html.escape("; ".join(reasons[:3]) + (f" (+{len(reasons)-3})" if len(reasons) > 3 else ""))
-        if r["verdict"] == "PASS": main = "; ".join(warn_html(w) for w in warns[:4]) or "clean"
+        ebadge = ""
+        if r["verdict"] == "PASS":
+            main = "; ".join(warn_html(w) for w in warns[:4]) or "clean"
+            el, er = r.get("entry") or m.get("entry"), r.get("entry_reasons") or m.get("entry_reasons") or []
+            ebadge = entry_badge(el, er)
+            if el and er: main = f'<span class="nm">entry: {html.escape("; ".join(er))}</span><br>' + main
         score = r.get("score", m.get("rc_score")); norm = r.get("score_normalised", m.get("rc_score_norm"))
         lp = r.get("lpLockedPct", m.get("rc_lpLockedPct", m.get("lp_locked_pct")))
         liq = m.get("liquidity_usd") or m.get("dex_liquidity_usd")
@@ -203,7 +218,7 @@ def build():
         sym, nm = (names.get(mint) or ["", ""])
         tok = f'<b>{html.escape(sym)}</b> <span class="nm">{html.escape(nm if nm != sym else "")}</span>' if sym else '<span class="nm">unknown</span>'
         trs.append(f'<tr class="{v.lower()}"><td>{ts}</td><td><a href="https://gmgn.ai/sol/token/{mint}" target="_blank" title="{mint}">{short}</a></td>'
-                   f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
+                   f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{ebadge}{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
                    f'<td>{num(score,"{:.0f}")} / {num(norm,"{:.0f}")} / {num(lp)}</td><td>{"$"+num(liq,"{:,.0f}") if liq else "—"}</td></tr>')
     now = datetime.now(TZ).strftime("%b %d, %Y %H:%M MST")
     last = datetime.fromisoformat(max(r["timestamp"] for r in rows)).astimezone(TZ).strftime("%b %d, %Y %H:%M MST") if rows else "never"
@@ -220,6 +235,7 @@ table{{width:100%;border-collapse:collapse}} th{{text-align:left;color:#6b7280;f
 td{{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap}} td.r{{white-space:normal;color:#9aa4b2;max-width:520px}}
 .nm{{color:#6b7280}} a{{color:#8ab4f8;text-decoration:none}} .pill{{padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}}
 h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{padding:4px 8px;font-size:12px}} .ver{{background:#1f2630;border:1px solid #2d3643;border-radius:10px;padding:1px 8px;font-size:11px;color:#8ab4f8;margin-left:8px;vertical-align:middle}}
+.pill.entry-ok{{background:#0e3b2a;color:#26d07c;border:1px solid #26d07c;cursor:help}} .pill.entry-wait{{background:#3a2f0b;color:#f0b90b;border:1px solid #f0b90b;cursor:help}} .pill.entry-unk{{background:#1f2630;color:#9aa4b2;border:1px solid #4b5563;cursor:help}}
 .pill.pass{{background:#0e3b2a;color:#26d07c}} .pill.kill{{background:#3b1216;color:#f6465d}} .pill.error{{background:#3a2f0b;color:#f0b90b}}
 </style></head><body><h1>Filter Desk <span class="ver" title="current filter rules version (docs/RULES_CHANGELOG.md)">rules {filter_version()}</span></h1><div class="sub">Updated {now} · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>
 <a href="{RUN_URL}" target="_blank"><button>▶ Run scan</button></a></div>

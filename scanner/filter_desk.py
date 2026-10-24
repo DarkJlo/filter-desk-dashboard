@@ -9,6 +9,7 @@ Usage:
   python filter_desk.py --bundle <mint>   # bundle/cluster analysis via Helius
   python filter_desk.py --trace <mint>    # funding-source cluster trace via Helius
   python filter_desk.py --scan-all [N]    # both, deduped
+  python filter_desk.py --entry <mint>... # r10 entry-timing label only (no Helius, not logged)
 Read-only: no keys, no signing. Every check appended to checks_log.jsonl.
 """
 import sys, json, os, time, requests
@@ -16,7 +17,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r9-2026-10-19"
+FILTER_VERSION = "r10-2026-10-23"
 
 # ---------------- thresholds ----------------
 MAX_SCORE_NORM = 50
@@ -895,10 +896,14 @@ def pass_tier(warns):
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
     metrics["warn_tags"] = warn_tags(metrics.get("warns"))
-    if verdict == "PASS": metrics["pass_tier"] = pass_tier(metrics.get("warns"))
+    rec = {"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint, "verdict": verdict, "reasons": reasons}
+    if verdict == "PASS":
+        metrics["pass_tier"] = pass_tier(metrics.get("warns"))
+        rec["entry"] = metrics.get("entry") or "UNKNOWN"          # r10 entry timing (PASS only)
+        rec["entry_reasons"] = metrics.get("entry_reasons") or []
+    rec["metrics"] = metrics
     with open(LOG_PATH, "a") as f:
-        f.write(json.dumps({"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint,
-                            "verdict": verdict, "reasons": reasons, "metrics": metrics}, default=str) + "\n")
+        f.write(json.dumps(rec, default=str) + "\n")
     if verdict in ("PASS", "KILL", "ERROR"):
         ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
         with open(os.path.join(DATA_DIR, "checks.log"), "a") as f:
@@ -1004,6 +1009,104 @@ def dead_pump(pair, M):
             return [f"dead pump: -{M['drawdown']*100:.0f}% from ATH, " + ("lower lows" if lower else "volume declining")]
     return []
 
+# ---------------- r10 entry timing (label on PASS only; never changes the safety verdict) ----------------
+# A PASS says "probably not a rug". It says nothing about WHERE you buy. r10 adds entry = OK | WAIT | UNKNOWN:
+#   WAIT  if price >= ENTRY_NEAR_ATH_FRAC x ATH (buying the top, e.g. MCRIBINU passed -10% from ATH)
+#   WAIT  if the 15m (or 5m) chart has no held higher low (still sliding, e.g. ODIE passed -54% and went to -80%)
+#   OK    only if neither fires; UNKNOWN if candles are missing.
+# Swing low (fractal): candle i is a swing low if its low is strictly below the lows of the K candles before it
+# and <= the lows of the K candles after it (so only CONFIRMED lows count; the newest K candles can't be one).
+# "Held higher low" on a timeframe = within the window there are >= 2 swing lows, the latest is above the one
+# before it, no candle after the latest swing low has traded below it, and the current price is above it.
+ENTRY_NEAR_ATH_FRAC = 0.75        # price >= 0.75x ATH (within 25% of the high) -> WAIT
+ENTRY_TFS = [                     # (label, aggregate minutes, window hours, fractal K)
+    ("15m", 15, 6.0, 2),          # last 6h = 24 candles, swing low = lowest of a 5-candle (75 min) span
+    ("5m", 5, 3.0, 3),            # last 3h = 36 candles, swing low = lowest of a 7-candle (35 min) span
+]
+ENTRY_OHLCV_URL = "https://api.geckoterminal.com/api/v2/networks/solana/pools/{pool}/ohlcv/minute?aggregate={agg}&limit={lim}"
+ENTRY_CACHE_TTL = 300             # entry timing needs fresh candles: 5 min cache
+
+def swing_lows(rows, k):
+    """Indices of confirmed fractal swing lows in rows ([ts, o, h, l, c, v], oldest first)."""
+    out = []
+    for i in range(k, len(rows) - k):
+        lo = rows[i][3]
+        if all(lo < rows[j][3] for j in range(i - k, i)) and all(lo <= rows[j][3] for j in range(i + 1, i + k + 1)):
+            out.append(i)
+    return out
+
+def higher_low_state(rows, k, cur):
+    """(held: bool, reason: str, detail: dict) for one timeframe."""
+    if len(rows) < 2 * k + 3: return None, "too few candles", {"candles": len(rows)}
+    sw = swing_lows(rows, k)
+    lows = [rows[i][3] for i in sw]
+    d = {"candles": len(rows), "swing_lows": [round(x, 12) for x in lows[-3:]]}
+    win_lo_i = min(range(len(rows)), key=lambda i: rows[i][3])
+    if win_lo_i >= len(rows) - k:
+        return False, "still making lower lows (new low in the last candles)", d
+    if len(sw) < 2: return False, "no confirmed higher low yet", d
+    last_i, last, prev = sw[-1], lows[-1], lows[-2]
+    after = min(r[3] for r in rows[last_i + 1:])
+    d.update(last_low=last, prev_low=prev, cur=cur)
+    if last <= prev: return False, "still making lower lows", d
+    if after < last: return False, "broke below its latest higher low", d
+    if cur is not None and cur <= last: return False, "price back at/below latest low", d
+    return True, f"higher low held (+{(last / prev - 1) * 100:.0f}% over prior low)", d
+
+def entry_timing(pair, M):
+    """Set M['entry'] (OK/WAIT/UNKNOWN), M['entry_reasons'], M['entry_detail']. Never raises."""
+    try:
+        return _entry_timing(pair, M)
+    except Exception as e:
+        M.update(entry="UNKNOWN", entry_reasons=[f"entry check error: {str(e)[:80]}"]); return M["entry"]
+
+def _entry_timing(pair, M):
+    pool = (pair or {}).get("pairAddress")
+    if not pool:
+        M.update(entry="UNKNOWN", entry_reasons=["no pool for OHLCV"]); return M["entry"]
+    if M.get("ath_price") is None: price_action(pair, M)   # hourly ATH (already done by dead_pump in default scans)
+    try: cur = float(pair.get("priceUsd"))
+    except Exception: cur = M.get("cur_price")
+    tf_rows = {}
+    for lab, agg, win_h, k in ENTRY_TFS:
+        lim = int(win_h * 60 / agg) + 2 * k + 2   # a few spare candles; only the window itself is judged
+        j = gecko_get(ENTRY_OHLCV_URL.format(pool=pool, agg=agg, lim=lim), cache_ttl=ENTRY_CACHE_TTL)
+        try:
+            rows = sorted(j["data"]["attributes"]["ohlcv_list"])
+            cut = time.time() - win_h * 3600
+            tf_rows[lab] = (rows, [r for r in rows if r[0] >= cut], k)
+        except Exception:
+            tf_rows[lab] = None
+    highs = [M["ath_price"]] if M.get("ath_price") else []
+    highs += [max(r[2] for r in v[0]) for v in tf_rows.values() if v and v[0]]
+    ath = max(highs) if highs else None
+    if cur is None and tf_rows.get("15m"): cur = tf_rows["15m"][0][-1][4]
+    W, notes, det = [], [], {"ath": ath, "cur": cur}
+    dd = (1 - cur / ath) if (ath and cur) else None
+    det["drawdown"] = dd
+    if dd is not None and cur >= ENTRY_NEAR_ATH_FRAC * ath:
+        W.append(f"near ATH: -{max(dd, 0) * 100:.0f}% from high")
+    held_tfs = []
+    for lab, agg, win_h, k in ENTRY_TFS:
+        v = tf_rows.get(lab)
+        if not v or not v[1]:
+            det[lab] = "unavailable"; continue
+        held, why, d = higher_low_state(v[1], k, cur)
+        det[lab] = dict(d, held=held, why=why)
+        if held is False: W.append(f"{lab}: {why}")
+        elif held: held_tfs.append(lab); notes.append(f"{lab} {why}")
+    M["entry_detail"] = det
+    if W:
+        M.update(entry="WAIT", entry_reasons=W)
+    elif dd is None or "15m" not in held_tfs:
+        miss = [lab for lab, *_ in ENTRY_TFS if not isinstance(det.get(lab), dict)]
+        M.update(entry="UNKNOWN", entry_reasons=["OHLCV unavailable: " + (", ".join(miss) or "ATH") +
+                                                 (" (no WAIT signal on the rest)" if held_tfs else "")])
+    else:
+        extra = "" if "5m" in held_tfs else " (5m unavailable)"
+        M.update(entry="OK", entry_reasons=[f"pulled back -{dd * 100:.0f}% and holding higher low{extra}"] + notes)
+    return M["entry"]
+
 def prev_log(mint):
     """Most recent earlier log metrics for this mint (for holder/liquidity trend)."""
     last = None
@@ -1074,6 +1177,9 @@ def run(mints, quiet=False):
             ok, BR = bottom_check(m, rep, dex.get(m), M)
             M["bottom_verdict"] = "BOTTOM CANDIDATE" if ok else "NOT BOTTOM"
             if not ok: v, R = "NOT_BOTTOM", ["bottom: " + r for r in BR]
+        if v == "PASS":
+            et = entry_timing(dex.get(m), M)   # r10: entry-timing label, does not change the verdict
+            print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
         M["stage_b_secs"] = round(time.time() - tb, 1)
         results[m] = (v, R, M)
     t3 = time.time(); print(f"[stage B] expensive checks on {len(surv_a)} tokens: {t3-t2:.1f}s")
@@ -1150,6 +1256,7 @@ def report(mints, label):
         print(f"  PASS [{M.get('source')}] {m} {M.get('symbol','')}{bw} liq=${M.get('liquidity_usd'):,.0f} age={M.get('pair_age_min')/60:.1f}h "
               f"top10_oc={M.get('oc_top10_pct'):.1f}% sell_impact={M.get('sell_impact_pct'):.2f}% return={M.get('sell_return_frac',0)*100:.0f}%")
         for w in M.get("warns") or []: print(f"      WARN: {w}")
+        print(f"      ENTRY {M.get('entry') or 'UNKNOWN'}: {'; '.join(M.get('entry_reasons') or [])}")
     print(f"\nRugCheck: ok {RC_STATE['ok']} | failed {RC_STATE['fails']} | skipped (down) {RC_STATE['skipped']}")
     print("\nKill-reason tally:")
     for k, c in tally.most_common(): print(f"  {c:3d}  {k}")
@@ -1233,6 +1340,12 @@ if __name__ == "__main__":
         print(f"\nRugCheck: ok {RC_STATE['ok']} | failed {RC_STATE['fails']}")
         print("\nRejection tally:")
         for k, c in tally.most_common(): print(f"  {c:3d}  {k}")
+    elif a[0] == "--entry":   # r10 entry timing only (DexScreener + GeckoTerminal, no Helius, nothing logged)
+        for m in a[1:]:
+            pair = fetch_dex([m]).get(m); M = {}
+            et = entry_timing(pair, M)
+            print(f"{m} {((pair or {}).get('baseToken') or {}).get('symbol', '')} ENTRY {et}: {'; '.join(M.get('entry_reasons') or [])}")
+            print("   " + json.dumps(M.get("entry_detail"), default=str))
     elif a[0] == "--scan-all":
         f = fresh_mints(); o, _ = older_mints()
         allm = list(dict.fromkeys(o + f))

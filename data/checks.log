@@ -1210,3 +1210,6 @@
 2026-10-24T03:26:26+00:00 | KILL  | 7Qet1qXDQ97HLjHapNfsiZZavBpVkGsXN7MRyy4Jpump | missing data: liquidity (dex)
 2026-10-24T03:26:26+00:00 | KILL  | BpX1Xb5GH19s8mZPh6pyi3qdvZ5baSwfAiEvgzuZpump | missing data: liquidity (dex)
 2026-10-24T03:26:26+00:00 | KILL  | FUMMypMwEQqvx2zNXBA5gororx5nEjPtV9WUPxN8kRuu | graph-detected insiders: 25; insider networks detected
+2026-10-24T03:35:56+00:00 | KILL  | AFYC4gSWuRZysQQ7q3Kn9qJEHyjmAegF4KThbAjKpump | warn: High holder correlation
+2026-10-24T03:35:56+00:00 | KILL  | 6LGGCwCUHDvcipZNtqWrb4MRtsPygNGbUx1df7LYpump | dead pump: -78% from ATH, lower lows
+2026-10-24T03:35:56+00:00 | KILL  | Baw61KXAJk4MMnNJPBa87S8F77oNhMy7gQ63S8SLpump | danger: Low Liquidity; liquidity $3,654 < $15,000; lopsided h24 buys/sells 2436/10922
