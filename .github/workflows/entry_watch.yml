@@ -1,0 +1,60 @@
+name: Filter Desk entry watch
+# Hourly at :47 (scan runs at :00, outcomes at :17). Re-checks the r10 entry label on WAIT / ENTRY ? passes from the
+# last 24h (DexScreener + GeckoTerminal only, no Helius, no secrets). First flip to ENTRY OK opens a GitHub issue
+# labelled entry-ok that @mentions DarkJlo, so GitHub emails / pushes the alert.
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+    inputs:
+      test_issue:
+        description: "Also open + immediately close one [TEST] issue (notification check)"
+        type: boolean
+        default: false
+      dry_run:
+        description: "Dry run (no issues, no commit)"
+        type: boolean
+        default: false
+concurrency:
+  group: filter-desk-entry-watch
+  cancel-in-progress: false
+permissions:
+  contents: write
+  issues: write
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -q -r scanner/requirements.txt
+      - name: Entry watch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEST_ISSUE: ${{ inputs.test_issue && '1' || '' }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: |
+          args=""
+          [ -n "$TEST_ISSUE" ] && args="$args --test-issue"
+          [ -n "$DRY_RUN" ] && args="$args --dry-run"
+          python scanner/entry_watch.py $args
+          [ -n "$DRY_RUN" ] || python scanner/dashboard.py
+      - name: Commit
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config merge.ours.driver true
+          git add data/entry_watch.json data/names.json index.html
+          git diff --cached --quiet && { echo "no changes"; exit 0; }
+          git commit -qm "entry watch update"
+          for i in 1 2 3; do
+            git pull -q --rebase -X theirs && python scanner/dashboard.py >/dev/null && git add index.html && \
+              { git diff --cached --quiet || git commit -qm "rebuild page"; } && git push -q && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 7
+          done
+          exit 1

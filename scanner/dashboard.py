@@ -86,6 +86,50 @@ def entry_badge(label, reasons):
     tip = html.escape("entry timing: " + ("; ".join(reasons or []) or label))
     return f' <span class="pill {cls}" title="{tip}">{txt}</span>'
 
+# ---------------- entry watch (scanner/entry_watch.py, hourly) ----------------
+WATCH_STYLE = {"watching": ("entry-unk", "watching"), "flipped": ("entry-ok", "flipped OK"), "expired": ("entry-unk", "watch expired"),
+               "killed": ("entry-unk", "watch: killed"), "low_liq": ("entry-wait", "watch: low liq")}
+
+def load_watch():
+    try: return json.load(open(os.path.join(D, "entry_watch.json")))
+    except Exception: return {}
+
+def _mst(s, fmt="%b %d %H:%M"):
+    try: return datetime.fromisoformat(s).astimezone(TZ).strftime(fmt)
+    except Exception: return "—"
+
+def watch_badge(rec):
+    """Small pill on a WAIT/UNKNOWN pass: watching / flipped OK at <time MST> / expired."""
+    if not rec: return ""
+    st = rec.get("status") or "watching"
+    cls, txt = WATCH_STYLE.get(st, WATCH_STYLE["watching"])
+    if st == "flipped": txt = "flipped OK " + _mst(rec.get("flipped_at")) + " MST"
+    tip = "entry watch (hourly re-check): " + st + " · now " + str(rec.get("label") or "—") + " · " + "; ".join(rec.get("reasons") or [])
+    tip += " · last check " + _mst(rec.get("last_check")) + " MST"
+    return f' <span class="pill {cls}" style="font-weight:500" title="{html.escape(tip)}">{html.escape(txt)}</span>'
+
+def watch_html(W):
+    T = W.get("tokens") or {}
+    if not T: return ""
+    order = {"flipped": 0, "watching": 1, "low_liq": 2, "killed": 3, "expired": 4}
+    rows = ""
+    for m, r in sorted(T.items(), key=lambda kv: (order.get(kv[1].get("status"), 9), kv[1].get("first_wait") or "")):
+        lab = r.get("label")
+        lab_html = entry_badge(lab, r.get("reasons")) if lab else '<span class="nm">—</span>'
+        iss = r.get("issue")
+        iss_html = f'<a href="https://github.com/DarkJlo/filter-desk-dashboard/issues/{iss}" target="_blank">#{iss}</a>' if iss else ""
+        flip = ""
+        if r.get("flipped_at"):
+            flip = _mst(r["flipped_at"]) + " · FDV $" + num(r.get("fdv_at_flip"), "{:,.0f}") + " · liq $" + num(r.get("liq_at_flip"), "{:,.0f}")
+        rows += (f'<tr><td><a href="https://dexscreener.com/solana/{m}" target="_blank" title="{m}"><b>{html.escape(r.get("symbol") or m[:6])}</b></a></td>'
+                 f'<td>{watch_badge(r)}</td><td>{lab_html}</td><td class="r">{html.escape("; ".join(r.get("reasons") or []))}</td>'
+                 f'<td>{_mst(r.get("first_wait"))}</td><td>{_mst(r.get("last_check"))}</td><td>{flip or "—"} {iss_html}</td></tr>')
+    upd = _mst(W.get("updated"), "%b %d %H:%M MST")
+    return (f'<h2>Entry watch <span class="nm" style="font-size:12px">updated {upd} · hourly at :47 · WAIT/ENTRY ? passes from the last 24h are re-checked; '
+            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo</span></h2>'
+            f'<table class="small" style="margin-bottom:22px"><thead><tr><th>Token</th><th>Watch</th><th>Label now</th><th>Reasons</th>'
+            f'<th>First WAIT (MST)</th><th>Last check</th><th>Flipped (MST) · at flip</th></tr></thead><tbody>{rows}</tbody></table>')
+
 SRC_SHORT = {"jup-trend-1h": "jupT1h", "jup-trend-6h": "jupT6h", "jup-traded-1h": "jupV1h",
              "gecko-trend-5m": "gkT5m", "gecko-trend-1h": "gkT1h", "gecko-trend-6h": "gkT6h", "gecko-trend-24h": "gkT24h",
              "gecko-new": "gkNew", "gecko-top-vol": "gkVol", "dex-search": "dxSearch", "dex-profiles": "dxProfile",
@@ -212,6 +256,7 @@ def build():
     kills = sum(r["verdict"] == "KILL" for r in rows); passes = sum(r["verdict"] == "PASS" for r in rows)
     total = len(rows); rate = f"{100*kills/total:.1f}%" if total else "—"
     names = names_for(rows)
+    W = load_watch(); WT = W.get("tokens") or {}
     trs = []
     order = list(reversed(rows))
     order.sort(key=lambda r: r["verdict"] != "PASS")  # stable: passes first, newest first within each
@@ -227,6 +272,8 @@ def build():
             main = "; ".join(warn_html(w) for w in warns[:4]) or "clean"
             el, er = r.get("entry") or m.get("entry"), r.get("entry_reasons") or m.get("entry_reasons") or []
             ebadge = entry_badge(el, er)
+            wr = WT.get(mint)
+            if wr and r["timestamp"] >= (wr.get("first_wait") or ""): ebadge += watch_badge(wr)
             if el and er: main = f'<span class="nm">entry: {html.escape("; ".join(er))}</span><br>' + main
         score = r.get("score", m.get("rc_score")); norm = r.get("score_normalised", m.get("rc_score_norm"))
         lp = r.get("lpLockedPct", m.get("rc_lpLockedPct", m.get("lp_locked_pct")))
@@ -261,6 +308,7 @@ h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{
 <div class="sub">Last scan: <b style="color:#d1d4dc">{last}</b> · Auto-scan 3×/day (8:00, 14:00 &amp; 20:00 MST). ▶ Run scan still works on demand. Takes a few minutes; then ↻ Refresh (Pages may lag ~1 min).</div>
 <div class="cards"><div class="card"><span>Checked</span><b>{total}</b></div><div class="card"><span>Kills</span><b style="color:#f6465d">{kills}</b></div>
 <div class="card"><span>Passes</span><b style="color:#26d07c">{passes}</b></div><div class="card"><span>Kill rate</span><b>{rate}</b></div></div>
+{watch_html(W)}
 {outcomes_html(OC)}
 <input id="q" placeholder="Filter by mint, verdict, reason…" oninput="for(const t of document.querySelectorAll('tbody tr'))t.style.display=t.innerText.toLowerCase().includes(this.value.toLowerCase())?'':'none'">
 <table><thead><tr><th>Time (MST)</th><th>Mint</th><th>Token</th><th>Verdict</th><th>Main reasons / warnings</th><th>Score / Norm / LP%</th><th>Liquidity</th></tr></thead>
