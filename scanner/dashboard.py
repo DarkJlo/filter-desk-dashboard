@@ -98,7 +98,8 @@ def entry_badge(label, reasons):
 
 # ---------------- entry watch (scanner/entry_watch.py, hourly) ----------------
 WATCH_STYLE = {"watching": ("entry-unk", "watching"), "flipped": ("entry-ok", "flipped OK"), "expired": ("entry-unk", "watch expired"),
-               "killed": ("entry-unk", "watch: killed"), "low_liq": ("entry-wait", "watch: low liq")}
+               "killed": ("entry-unk", "watch: killed"), "low_liq": ("entry-wait", "watch: low liq"),
+               "suppressed": ("entry-sup", "OK suppressed")}   # r10.3 gate: flip had risk flags, no issue opened
 
 def load_watch():
     try: return json.load(open(os.path.join(D, "entry_watch.json")))
@@ -114,14 +115,18 @@ def watch_badge(rec):
     st = rec.get("status") or "watching"
     cls, txt = WATCH_STYLE.get(st, WATCH_STYLE["watching"])
     if st == "flipped": txt = "flipped OK " + _mst(rec.get("flipped_at")) + " MST"
+    if st == "suppressed": txt = "OK suppressed " + _mst(rec.get("suppressed_at")) + " MST"
     tip = "entry watch (hourly re-check): " + st + " · now " + str(rec.get("label") or "—") + " · " + "; ".join(rec.get("reasons") or [])
     tip += " · last check " + _mst(rec.get("last_check")) + " MST"
+    g = rec.get("gate") or {}
+    if g.get("reasons"): tip += " · GATE: " + " | ".join(g["reasons"])
+    elif g.get("flags"): tip += " · flags: " + g["flags"]
     return f' <span class="pill {cls}" style="font-weight:500" title="{html.escape(tip)}">{html.escape(txt)}</span>'
 
 def watch_html(W):
     T = W.get("tokens") or {}
     if not T: return ""
-    order = {"flipped": 0, "watching": 1, "low_liq": 2, "killed": 3, "expired": 4}
+    order = {"flipped": 0, "suppressed": 1, "watching": 2, "low_liq": 3, "killed": 4, "expired": 5}
     rows = ""
     for m, r in sorted(T.items(), key=lambda kv: (order.get(kv[1].get("status"), 9), kv[1].get("first_wait") or "")):
         lab = r.get("label")
@@ -131,12 +136,19 @@ def watch_html(W):
         flip = ""
         if r.get("flipped_at"):
             flip = _mst(r["flipped_at"]) + " · FDV $" + num(r.get("fdv_at_flip"), "{:,.0f}") + " · liq $" + num(r.get("liq_at_flip"), "{:,.0f}")
+        g = r.get("gate") or {}
+        if r.get("status") == "suppressed":
+            flip += ' <span style="color:#f6465d">no issue: ' + html.escape("; ".join(r.get("suppressed_reasons") or g.get("reasons") or [])) + "</span>"
+        elif g.get("block"):
+            flip += ' <span style="color:#f6465d">r10.3 gate would block: ' + html.escape("; ".join(g.get("reasons") or [])) + "</span>"
+        elif g.get("flags"):
+            flip += ' <span style="color:#f0b90b">flags: ' + html.escape(g["flags"]) + "</span>"
         rows += (f'<tr><td><a href="https://dexscreener.com/solana/{m}" target="_blank" title="{m}"><b>{html.escape(r.get("symbol") or m[:6])}</b></a></td>'
                  f'<td>{watch_badge(r)}</td><td>{lab_html}</td><td class="r">{html.escape("; ".join(r.get("reasons") or []))}</td>'
                  f'<td>{_mst(r.get("first_wait"))}</td><td>{_mst(r.get("last_check"))}</td><td>{flip or "—"} {iss_html}</td></tr>')
     upd = _mst(W.get("updated"), "%b %d %H:%M MST")
     return (f'<h2>Entry watch <span class="nm" style="font-size:12px">updated {upd} · hourly at :47 · WAIT/ENTRY ? passes from the last 24h are re-checked; '
-            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo</span></h2>'
+            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo, unless the r10.3 gate suppresses it (trader_cluster or 3+ prior KILLs)</span></h2>'
             f'<table class="small" style="margin-bottom:22px"><thead><tr><th>Token</th><th>Watch</th><th>Label now</th><th>Reasons</th>'
             f'<th>First WAIT (MST)</th><th>Last check</th><th>Flipped (MST) · at flip</th></tr></thead><tbody>{rows}</tbody></table>')
 
@@ -311,7 +323,7 @@ table{{width:100%;border-collapse:collapse}} th{{text-align:left;color:#6b7280;f
 td{{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap}} td.r{{white-space:normal;color:#9aa4b2;max-width:520px}}
 .nm{{color:#6b7280}} a{{color:#8ab4f8;text-decoration:none}} .pill{{padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}}
 h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{padding:4px 8px;font-size:12px}} .ver{{background:#1f2630;border:1px solid #2d3643;border-radius:10px;padding:1px 8px;font-size:11px;color:#8ab4f8;margin-left:8px;vertical-align:middle}}
-.pill.entry-ok{{background:#0e3b2a;color:#26d07c;border:1px solid #26d07c;cursor:help}} .pill.entry-wait{{background:#3a2f0b;color:#f0b90b;border:1px solid #f0b90b;cursor:help}} .pill.entry-unk{{background:#1f2630;color:#9aa4b2;border:1px solid #4b5563;cursor:help}}
+.pill.entry-ok{{background:#0e3b2a;color:#26d07c;border:1px solid #26d07c;cursor:help}} .pill.entry-wait{{background:#3a2f0b;color:#f0b90b;border:1px solid #f0b90b;cursor:help}} .pill.entry-unk{{background:#1f2630;color:#9aa4b2;border:1px solid #4b5563;cursor:help}} .pill.entry-sup{{background:#3b1216;color:#f6465d;border:1px solid #f6465d;cursor:help}}
 .src{{color:#6b7280;font-size:10px;cursor:help}} .src.hot{{color:#c792ea}}
 .pill.pass{{background:#0e3b2a;color:#26d07c}} .pill.kill{{background:#3b1216;color:#f6465d}} .pill.error{{background:#3a2f0b;color:#f0b90b}}
 </style></head><body><h1>Filter Desk <span class="ver" title="current filter rules version (docs/RULES_CHANGELOG.md)">rules {filter_version()}</span></h1><div class="sub">Updated {now} · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>

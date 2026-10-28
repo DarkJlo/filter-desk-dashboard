@@ -1,7 +1,9 @@
 name: Filter Desk entry watch
 # Hourly at :47 (scan runs at :00, outcomes at :17). Re-checks the r10 entry label on WAIT / ENTRY ? passes from the
 # last 24h (DexScreener + GeckoTerminal only, no Helius, no secrets). First flip to ENTRY OK opens a GitHub issue
-# labelled entry-ok that @mentions DarkJlo, so GitHub emails / pushes the alert.
+# labelled entry-ok that @mentions DarkJlo, so GitHub emails / pushes the alert. r10.3 gate: no issue (status
+# "suppressed", SUPPRESSED line in the log) when the PASS has trader_cluster or the mint has 3+ prior KILLs.
+# HELIUS_API_KEY is used only to run the top-traders check at flip time for a PASS that lacks one (~151 credits).
 on:
   schedule:
     - cron: "47 * * * *"
@@ -34,6 +36,7 @@ jobs:
       - name: Entry watch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HELIUS_API_KEY: ${{ secrets.HELIUS_API_KEY }}
           TEST_ISSUE: ${{ inputs.test_issue && '1' || '' }}
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
         run: |

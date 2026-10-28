@@ -18,7 +18,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.2-2026-10-28"   # r10.2: top-traders WARN on PASS (no verdict change); sourcing = r10.1 (SOURCING_VERSION)
+FILTER_VERSION = "r10.3-2026-10-28"   # r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
