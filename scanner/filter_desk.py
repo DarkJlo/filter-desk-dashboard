@@ -8,7 +8,8 @@ Usage:
   python filter_desk.py --bottoms [N]     # safety + bottom-candidate price action (1-14d, liq>=$15k)
   python filter_desk.py --bundle <mint>   # bundle/cluster analysis via Helius
   python filter_desk.py --trace <mint>    # funding-source cluster trace via Helius
-  python filter_desk.py --scan-all [N]    # both, deduped
+  python filter_desk.py --scan-all [N]    # fresh + older + trending feeds, prefiltered, ranked, top N checked
+  python filter_desk.py --sources [N]     # r10.1 dry run: list scan-all candidates + source tags (no RugCheck/Helius)
   python filter_desk.py --entry <mint>... # r10 entry-timing label only (no Helius, not logged)
 Read-only: no keys, no signing. Every check appended to checks_log.jsonl.
 """
@@ -17,7 +18,8 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10-2026-10-23"
+FILTER_VERSION = "r10-2026-10-23"   # verdict rules unchanged; candidate sourcing = r10.1 (SOURCING_VERSION)
+SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
 MAX_SCORE_NORM = 50
@@ -897,6 +899,7 @@ def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
     metrics["warn_tags"] = warn_tags(metrics.get("warns"))
     rec = {"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint, "verdict": verdict, "reasons": reasons}
+    if metrics.get("sources"): rec["sources"] = metrics["sources"]   # r10.1: feed tags this mint came from
     if verdict == "PASS":
         metrics["pass_tier"] = pass_tier(metrics.get("warns"))
         rec["entry"] = metrics.get("entry") or "UNKNOWN"          # r10 entry timing (PASS only)
@@ -955,7 +958,8 @@ BOTTOM_MIN_VOL24 = 20_000
 BOTTOM_MAX_SELL_BUY = 1.1      # sells/buys h24 <= 1.1 = balanced or buyer-leaning
 BOTTOM_MIN_AGE_D, BOTTOM_MAX_AGE_D = 1, 14
 BOTTOM_FRESH_MIN_AGE_H = 6     # fresh-feed tokens also eligible for --bottoms once >= 6h old
-SOURCE = {}                    # mint -> "new" | "older"
+SOURCE = {}                    # mint -> "new" | "older" | "trending" (r10.1)
+SOURCE_VERDICT = {}
 OHLCV_URL = "https://api.geckoterminal.com/api/v2/networks/solana/pools/{pool}/ohlcv/hour?limit=1000"
 _last_gecko = [0.0]
 OHLCV_MIN_HOURLY = 12
@@ -1150,7 +1154,12 @@ def bottom_check(mint, rep, pair, M):
     if M["liquidity_trend"] == "draining": R.append(f"liquidity draining (${pl:,.0f}->${cl:,.0f})")
     return (not R), R
 
-MODE = {"dead_pump": True, "bottoms": False}
+MODE = {"dead_pump": True, "bottoms": False, "stage_b_max": None}
+# r10.1 Helius guard: scan-all now feeds only DexScreener-viable candidates, so more of the 40 can survive stage A.
+# Stage B (trace + bundler) is where nearly all Helius credits go; r10 scans sent 2-5 tokens/scan to it.
+# Cap it at 5 per scan-all (highest-ranked survivors first); the rest are logged as DEFERRED (not shown on the
+# dashboard, re-eligible next scan). Override with env FD_STAGE_B_MAX (0 = no cap).
+STAGE_B_MAX_SCAN_ALL = int(os.environ.get("FD_STAGE_B_MAX") or 5)
 
 def run(mints, quiet=False):
     t0 = time.time()
@@ -1170,7 +1179,10 @@ def run(mints, quiet=False):
     results = {}
     for m, rep, R, M in A:
         if R: results[m] = ("KILL", R, M)
-    for m, rep, R, M in surv_a:
+    cap = MODE.get("stage_b_max")
+    for k, (m, rep, R, M) in enumerate(surv_a):
+        if cap and k >= cap:
+            results[m] = ("DEFERRED", [f"stage-B Helius budget ({cap}/scan) reached; re-eligible next scan"], M); continue
         tb = time.time()
         R = evaluate_stage_b(m, rep, dex.get(m), M); v = "KILL" if R else "PASS"
         if v == "PASS" and MODE["bottoms"]:
@@ -1182,7 +1194,8 @@ def run(mints, quiet=False):
             print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
         M["stage_b_secs"] = round(time.time() - tb, 1)
         results[m] = (v, R, M)
-    t3 = time.time(); print(f"[stage B] expensive checks on {len(surv_a)} tokens: {t3-t2:.1f}s")
+    nb = min(len(surv_a), cap) if cap else len(surv_a)
+    t3 = time.time(); print(f"[stage B] expensive checks on {nb} tokens: {t3-t2:.1f}s" + (f" ({len(surv_a)-nb} deferred, cap {cap})" if nb < len(surv_a) else ""))
     tally, survivors = Counter(), []
     for i, m in enumerate(mints, 1):
         v, R, M = results[m]
@@ -1190,9 +1203,11 @@ def run(mints, quiet=False):
             b = M["bundle"]; mu = b.get("multiple")
             print(f"  BUNDLE WARN {m}: {b['wallets']} wallets hold {b['held_pct']:.2f}% (sold {b.get('sold_pct') or 0:.0f}%), "
                   f"multiple {('%.2fx' % mu) if mu else 'unknown'}")
-        M["source"] = SOURCE.get(m)
+        M["source"] = SOURCE.get(m); SOURCE_VERDICT[m] = v
+        if SOURCES.get(m): M["sources"] = SOURCES[m]; M["sourcing_version"] = SOURCING_VERSION
         log_check(m, v, R, M)
-        for r in R: tally[tag(r)] += 1
+        if v != "DEFERRED":
+            for r in R: tally[tag(r)] += 1
         if v == "PASS": survivors.append((m, M))
         if not quiet or v == "PASS":
             print(f"[{i}/{len(mints)}] {m} -> {v}")
@@ -1209,12 +1224,25 @@ GECKO_DELAY = 3.0   # free tier ~30 req/min; keep well under
 DEX_SEARCH_QUERIES = ["pumpswap SOL", "raydium SOL", "meteora SOL"]
 SKIP_MINTS = {SOL, "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v", "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB"}
 
+SOURCES = {}                   # r10.1: mint -> [feed tags it appeared in], logged as `sources`
+DEX_FEED_TAGS = {"token-profiles/latest": "dex-profiles", "token-boosts/latest": "dex-boosts-latest",
+                 "token-boosts/top": "dex-boosts-top"}
+GECKO_LIST_TAGS = {"trending_pools": "gecko-trend-24h", "new_pools": "gecko-new",
+                   "pools?sort=h24_volume_usd_desc": "gecko-top-vol"}
+
+def add_src(m, tag):
+    L = SOURCES.setdefault(m, [])
+    if tag not in L: L.append(tag)
+
 def fresh_mints():
     seen = []
     for u in DEX_FEEDS:
+        tg = next((v for k, v in DEX_FEED_TAGS.items() if k in u), "dex-feed")
         for t in get_json(u) or []:
             a = t.get("tokenAddress")
-            if t.get("chainId") == "solana" and a and a not in seen: seen.append(a)
+            if t.get("chainId") == "solana" and a and a not in SKIP_MINTS:
+                add_src(a, tg)
+                if a not in seen: seen.append(a)
     return seen
 
 def older_mints(min_h=None, max_h=None):
@@ -1228,11 +1256,13 @@ def older_mints(min_h=None, max_h=None):
                 for side in ("base_token", "quote_token"):
                     tid = (((pool.get("relationships") or {}).get(side) or {}).get("data") or {}).get("id", "")
                     m = tid.replace("solana_", "")
+                    if m and m not in SKIP_MINTS: add_src(m, GECKO_LIST_TAGS.get(lst, "gecko"))
                     if m and m not in SKIP_MINTS and m not in raw:
                         raw.append(m); src["geckoterminal"] += 1
     for q in DEX_SEARCH_QUERIES:
         for pr in (get_json("https://api.dexscreener.com/latest/dex/search?q=" + requests.utils.quote(q)) or {}).get("pairs") or []:
             m = (pr.get("baseToken") or {}).get("address")
+            if pr.get("chainId") == "solana" and m and m not in SKIP_MINTS: add_src(m, "dex-search")
             if pr.get("chainId") == "solana" and m and m not in SKIP_MINTS and m not in raw:
                 raw.append(m); src["dexscreener search"] += 1
     dex = fetch_dex(raw); now = time.time() * 1000; keep = []
@@ -1246,10 +1276,111 @@ def older_mints(min_h=None, max_h=None):
     print(f"Older-source raw candidates: {len(raw)} ({dict(src)}); after age & liq>=${MIN_LIQUIDITY_USD:,} prefilter ({min_h or OLDER_MIN_AGE_H}-{max_h or OLDER_MAX_AGE_H}h): {len(keep)}")
     return keep, {m: dex[m] for m in keep}
 
+# ---------------- r10.1 sourcing: free, no-key trending feeds + ranking ----------------
+# Jupiter Tokens API v2 (lite-api is the free no-key host; api.jup.ag currently also answers without a key).
+JUP_TOKENS_HOSTS = ["https://lite-api.jup.ag/tokens/v2/", "https://api.jup.ag/tokens/v2/"]
+JUP_TRENDING = [("toptrending", "1h", "jup-trend-1h"), ("toptrending", "6h", "jup-trend-6h"),
+                ("toptraded", "1h", "jup-traded-1h")]
+GECKO_TRENDING_DURATIONS = ["5m", "1h", "6h"]   # plain trending_pools (24h default) is already in GECKO_LISTS
+GECKO_TRENDING_PAGES = 2                        # 20 pools/page
+TRENDING_MIN_AGE_H, TRENDING_MAX_AGE_H = MIN_PAIR_AGE_MIN / 60, 168   # trending-only mints: 30m..7d (skip blue chips)
+TREND_W, OTHER_W = 2, 1                         # rank score per feed hit
+
+def is_trending_tag(t): return t.startswith(("jup-", "gecko-trend"))
+
+def jup_list(cat, iv):
+    """One Jupiter top list (100 tokens). lite-api allows only a few req per window; back off on 429."""
+    for host in JUP_TOKENS_HOSTS:
+        for t in range(3):
+            try:
+                r = requests.get(f"{host}{cat}/{iv}", params={"limit": 100}, timeout=20)
+                if r.status_code == 429: time.sleep(8 * (t + 1)); continue
+                if r.status_code != 200: break
+                j = r.json()
+                return j if isinstance(j, list) else []
+            except Exception:
+                time.sleep(2)
+    print(f"  jupiter {cat}/{iv} unavailable"); return []
+
+def trending_mints():
+    """r10.1: Solana mints from Jupiter top-trending/top-traded and GeckoTerminal trending (5m/1h/6h). No Helius."""
+    out, cnt = [], Counter()
+    for cat, iv, tg in JUP_TRENDING:
+        for t in jup_list(cat, iv):
+            m = t.get("id")
+            if not m or m in SKIP_MINTS: continue
+            add_src(m, tg); cnt[tg] += 1
+            if m not in out: out.append(m)
+        time.sleep(1.5)
+    for d in GECKO_TRENDING_DURATIONS:
+        tg = f"gecko-trend-{d}"
+        for pg in range(1, GECKO_TRENDING_PAGES + 1):
+            j = gecko_get(f"{GECKO_BASE}trending_pools?duration={d}&page={pg}", cache_ttl=GECKO_PAGE_CACHE_TTL)
+            for pool in (j or {}).get("data") or []:
+                for side in ("base_token", "quote_token"):
+                    tid = (((pool.get("relationships") or {}).get(side) or {}).get("data") or {}).get("id", "")
+                    m = tid.replace("solana_", "") if tid.startswith("solana_") else ""
+                    if not m or m in SKIP_MINTS: continue
+                    add_src(m, tg); cnt[tg] += 1
+                    if m not in out: out.append(m)
+    print(f"Trending-source raw: {len(out)} unique ({dict(cnt)})")
+    return out
+
+def rank_score(m):
+    tags = SOURCES.get(m) or []
+    return sum(TREND_W if is_trending_tag(t) else OTHER_W for t in tags)
+
+def cheap_prefilter(m, p, max_age_h=None):
+    """Same DexScreener hard limits stage A enforces (liq, age, 24h volume, FDV/liq). Free; no RugCheck/Helius."""
+    if not p: return False
+    liq = (p.get("liquidity") or {}).get("usd") or 0
+    vol = (p.get("volume") or {}).get("h24") or 0
+    fdv, c = p.get("fdv"), p.get("pairCreatedAt")
+    if liq < MIN_LIQUIDITY_USD or vol < MIN_VOLUME_24H or not c: return False
+    age_h = (time.time() * 1000 - c) / 3.6e6
+    if age_h < MIN_PAIR_AGE_MIN / 60: return False
+    if max_age_h is not None and age_h > max_age_h: return False
+    if fdv and fdv / liq > MAX_FDV_LIQ_RATIO: return False
+    return True
+
+def scan_all_candidates():
+    """r10.1 scan-all sourcing. Returns (ranked mints, dex pairs). Order of cost: free feeds -> DexScreener prefilter -> rank.
+    Only the top N of the returned list reach RugCheck/Helius, so Helius per scan stays ~N-bound."""
+    f = fresh_mints(); o, odex = older_mints(); tr = trending_mints()
+    pool = list(dict.fromkeys(o + f + tr))
+    dex = dict(odex); dex.update(fetch_dex([m for m in pool if m not in odex]))
+    fs, os_ = set(f), set(o)
+    keep = []
+    for m in pool:
+        if m in os_: keep.append(m); continue                       # already age(2-48h)+liq prefiltered
+        max_age = None if m in fs else TRENDING_MAX_AGE_H          # fresh feeds: no max age (as before)
+        if cheap_prefilter(m, dex.get(m), max_age): keep.append(m)
+    for m in pool:
+        SOURCE[m] = "older" if m in os_ else ("new" if m in fs else "trending")
+    vol1 = lambda m: (((dex.get(m) or {}).get("volume") or {}).get("h1")) or 0
+    ranked = sorted(keep, key=lambda m: (-rank_score(m), -vol1(m)))
+    tonly = [m for m in pool if m not in fs and m not in os_]
+    print(f"Sourcing {SOURCING_VERSION}: pool {len(pool)} unique (older {len(o)}, fresh {len(f)}, trending {len(tr)}, "
+          f"trending-only {len(tonly)}); after DexScreener prefilter: {len(keep)} "
+          f"(trending-only {sum(1 for m in keep if m in set(tonly))})")
+    return ranked, dex
+
+def print_candidates(ranked, dex, n):
+    print(f"Top {min(n, len(ranked))} of {len(ranked)} ranked candidates (score = {TREND_W}/trending feed + {OTHER_W}/other feed; tie: h1 volume):")
+    for i, m in enumerate(ranked[:n], 1):
+        p = dex.get(m) or {}
+        age = (time.time() * 1000 - p["pairCreatedAt"]) / 3.6e6 if p.get("pairCreatedAt") else 0
+        sym = (p.get("baseToken") or {}).get("symbol") or ""
+        liq = (p.get("liquidity") or {}).get("usd") or 0
+        v1 = (p.get("volume") or {}).get("h1") or 0
+        tags = ",".join(SOURCES.get(m) or [])
+        print(f"  {i:2d}. score {rank_score(m):2d} {sym[:12]:<12} {m} liq ${liq:>10,.0f} vol1h ${v1:>10,.0f} age {age:6.1f}h  [{tags}]")
+
 def report(mints, label):
     print(f"Filter rules {FILTER_VERSION}. Scanning {len(mints)} {label} Solana mints...")
     surv, tally = run(mints, quiet=True)
-    print(f"\nChecked {len(mints)} | PASS {len(surv)} | KILL {len(mints)-len(surv)}")
+    nd = sum(1 for m in mints if (SOURCE_VERDICT.get(m) == "DEFERRED"))
+    print(f"\nChecked {len(mints)} | PASS {len(surv)} | KILL {len(mints)-len(surv)-nd}" + (f" | DEFERRED {nd} (stage-B cap)" if nd else ""))
     for m, M in surv:
         b = M.get("bundle") or {}
         bw = ""
@@ -1269,8 +1400,10 @@ def _publish_dashboard():
         print(f"(dashboard publish failed: {e})")
 
 if __name__ == "__main__":
-    import atexit; atexit.register(_publish_dashboard)
-    if not os.environ.get("FD_NO_PUSH"):
+    DRY = sys.argv[1:2] == ["--sources"]   # r10.1 dry run: no git pull, no dashboard build/push
+    if not DRY:
+        import atexit; atexit.register(_publish_dashboard)
+    if not os.environ.get("FD_NO_PUSH") and not DRY:
         try:
             import dashboard; print("Sync:", dashboard.git_sync_pull())
         except Exception as e: print(f"(git pull failed: {e})")
@@ -1347,8 +1480,10 @@ if __name__ == "__main__":
             print(f"{m} {((pair or {}).get('baseToken') or {}).get('symbol', '')} ENTRY {et}: {'; '.join(M.get('entry_reasons') or [])}")
             print("   " + json.dumps(M.get("entry_detail"), default=str))
     elif a[0] == "--scan-all":
-        f = fresh_mints(); o, _ = older_mints()
-        allm = list(dict.fromkeys(o + f))
-        SOURCE.update({m: "new" for m in f}); SOURCE.update({m: "older" for m in o})
-        report(allm[:n], f"combined (older first; {len(allm)} unique)")
+        MODE["stage_b_max"] = STAGE_B_MAX_SCAN_ALL or None
+        ranked, _dex = scan_all_candidates()
+        tn = sum(1 for m in ranked[:n] if SOURCE.get(m) == "trending")
+        report(ranked[:n], f"combined (ranked by source score; {len(ranked)} prefiltered; {tn} trending-only in top {n})")
+    elif a[0] == "--sources":   # r10.1 dry run: sourcing only, no RugCheck/Helius, nothing logged
+        ranked, dex = scan_all_candidates(); print_candidates(ranked, dex, n)
     else: run(a)

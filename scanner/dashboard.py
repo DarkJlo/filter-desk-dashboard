@@ -86,6 +86,23 @@ def entry_badge(label, reasons):
     tip = html.escape("entry timing: " + ("; ".join(reasons or []) or label))
     return f' <span class="pill {cls}" title="{tip}">{txt}</span>'
 
+SRC_SHORT = {"jup-trend-1h": "jupT1h", "jup-trend-6h": "jupT6h", "jup-traded-1h": "jupV1h",
+             "gecko-trend-5m": "gkT5m", "gecko-trend-1h": "gkT1h", "gecko-trend-6h": "gkT6h", "gecko-trend-24h": "gkT24h",
+             "gecko-new": "gkNew", "gecko-top-vol": "gkVol", "dex-search": "dxSearch", "dex-profiles": "dxProfile",
+             "dex-boosts-latest": "dxBoost", "dex-boosts-top": "dxBoostTop"}
+
+def src_html(r, m):
+    """r10.1 feed tags under the token name. Older records: fall back to metrics.source (new/older) or nothing."""
+    tags = r.get("sources") or m.get("sources")
+    if not tags:
+        s0 = m.get("source")
+        return f'<br><span class="src">src {html.escape(s0)}</span>' if isinstance(s0, str) and s0 else ""
+    trend = sum(1 for t in tags if t.startswith(("jup-", "gecko-trend")))
+    short = " ".join(SRC_SHORT.get(t, t) for t in tags[:4]) + (f" +{len(tags)-4}" if len(tags) > 4 else "")
+    tip = html.escape("sources: " + ", ".join(tags))
+    hot = ' class="src hot"' if trend >= 2 else ' class="src"'
+    return f'<br><span{hot} title="{tip}">src {html.escape(short)}</span>'
+
 def load_all():
     """Every log entry incl. sub-tool runs (BUNDLERS/TRACE/BUNDLE) grouped by mint, oldest first."""
     by = {}
@@ -217,6 +234,7 @@ def build():
         v = r["verdict"]
         sym, nm = (names.get(mint) or ["", ""])
         tok = f'<b>{html.escape(sym)}</b> <span class="nm">{html.escape(nm if nm != sym else "")}</span>' if sym else '<span class="nm">unknown</span>'
+        tok += src_html(r, m)
         trs.append(f'<tr class="{v.lower()}"><td>{ts}</td><td><a href="https://gmgn.ai/sol/token/{mint}" target="_blank" title="{mint}">{short}</a></td>'
                    f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{ebadge}{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
                    f'<td>{num(score,"{:.0f}")} / {num(norm,"{:.0f}")} / {num(lp)}</td><td>{"$"+num(liq,"{:,.0f}") if liq else "—"}</td></tr>')
@@ -236,6 +254,7 @@ td{{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap}} td.r{{w
 .nm{{color:#6b7280}} a{{color:#8ab4f8;text-decoration:none}} .pill{{padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}}
 h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{padding:4px 8px;font-size:12px}} .ver{{background:#1f2630;border:1px solid #2d3643;border-radius:10px;padding:1px 8px;font-size:11px;color:#8ab4f8;margin-left:8px;vertical-align:middle}}
 .pill.entry-ok{{background:#0e3b2a;color:#26d07c;border:1px solid #26d07c;cursor:help}} .pill.entry-wait{{background:#3a2f0b;color:#f0b90b;border:1px solid #f0b90b;cursor:help}} .pill.entry-unk{{background:#1f2630;color:#9aa4b2;border:1px solid #4b5563;cursor:help}}
+.src{{color:#6b7280;font-size:10px;cursor:help}} .src.hot{{color:#c792ea}}
 .pill.pass{{background:#0e3b2a;color:#26d07c}} .pill.kill{{background:#3b1216;color:#f6465d}} .pill.error{{background:#3a2f0b;color:#f0b90b}}
 </style></head><body><h1>Filter Desk <span class="ver" title="current filter rules version (docs/RULES_CHANGELOG.md)">rules {filter_version()}</span></h1><div class="sub">Updated {now} · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>
 <a href="{RUN_URL}" target="_blank"><button>▶ Run scan</button></a></div>
