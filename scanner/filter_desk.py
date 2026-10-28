@@ -18,7 +18,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10-2026-10-23"   # verdict rules unchanged; candidate sourcing = r10.1 (SOURCING_VERSION)
+FILTER_VERSION = "r10.2-2026-10-28"   # r10.2: top-traders WARN on PASS (no verdict change); sourcing = r10.1 (SOURCING_VERSION)
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -884,6 +884,7 @@ def evaluate(mint, rep, pair):
 
 WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
+             ("TRADER CLUSTER WARN", "trader_cluster"),
              ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 DEGRADED_TAGS = {"rc_down", "lp_unverified"}   # a data source was skipped, not a risk signal by itself
 
@@ -895,11 +896,39 @@ def pass_tier(warns):
     t = set(warn_tags(warns)); risk, deg = t - DEGRADED_TAGS, t & DEGRADED_TAGS
     return "+".join(x for x, on in (("degraded", deg), ("warn", risk)) if on) or "clean"
 
+# ---------------- r10.2 top traders (PASS only; WARN only; never changes the verdict) ----------------
+# scanner/top_traders.py: GeckoTerminal recent trades (keyless) -> top 15 wallets by USD volume -> Helius first tx
+# (age + funder, 10 credits each, cached per wallet) + one batched balance call. ~151 Helius credits per PASS,
+# hard cap TT_MAX_CREDITS (170). WARN "TRADER CLUSTER WARN" (tag trader_cluster) when >= 5 of the top 15 share a
+# non-CEX funder or >= 8 are wallets < 7 days old. Disable with env FD_TOP_TRADERS=0.
+TT_SUMMARY_KEYS = ("n", "fresh_lt7d", "shared_funder_max", "cex_funded", "still_holding", "sold_out", "window_hours",
+                   "helius_credits_est", "error")
+
+def trader_check(mint, pair, M):
+    if os.environ.get("FD_TOP_TRADERS", "1") == "0": return None
+    try:
+        import top_traders as tt
+        s = tt.top_traders(mint, pair)
+        summ = {k: s.get(k) for k in TT_SUMMARY_KEYS}
+        summ["line"] = tt.summary_line(s)
+        if s.get("shared_funder"): summ["shared_funder"] = s["shared_funder"]
+        M["top_traders"] = summ; M["top_traders_line"] = summ["line"]
+        M["top_traders_detail"] = [{"w": r["wallet"], "vol": round(r["buy_usd"] + r["sell_usd"]), "net": round(r["net_usd"]),
+                                    "n": r["trades"], "age_d": r.get("age_d"), "funder": r.get("funder"),
+                                    "fk": r.get("funder_kind"), "hold": r.get("holding")} for r in s.get("wallets") or []]
+        if tt.is_cluster_warn(s): M.setdefault("warns", []).append(tt.warn_text(s))
+        print(f"  {summ['line']} (Helius ~{s.get('helius_credits_est')} credits, {s.get('secs')}s)")
+        return s
+    except Exception as e:
+        M["top_traders"] = {"n": 0, "error": f"top traders failed: {type(e).__name__}"}
+        print(f"  top traders failed: {type(e).__name__}"); return None
+
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
     metrics["warn_tags"] = warn_tags(metrics.get("warns"))
     rec = {"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint, "verdict": verdict, "reasons": reasons}
     if metrics.get("sources"): rec["sources"] = metrics["sources"]   # r10.1: feed tags this mint came from
+    if metrics.get("top_traders"): rec["top_traders"] = metrics.pop("top_traders")   # r10.2 summary (PASS only)
     if verdict == "PASS":
         metrics["pass_tier"] = pass_tier(metrics.get("warns"))
         rec["entry"] = metrics.get("entry") or "UNKNOWN"          # r10 entry timing (PASS only)
@@ -1192,6 +1221,7 @@ def run(mints, quiet=False):
         if v == "PASS":
             et = entry_timing(dex.get(m), M)   # r10: entry-timing label, does not change the verdict
             print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
+            trader_check(m, dex.get(m), M)   # r10.2: top traders, WARN only, best-effort, never changes the verdict
         M["stage_b_secs"] = round(time.time() - tb, 1)
         results[m] = (v, R, M)
     nb = min(len(surv_a), cap) if cap else len(surv_a)
@@ -1388,6 +1418,7 @@ def report(mints, label):
               f"top10_oc={M.get('oc_top10_pct'):.1f}% sell_impact={M.get('sell_impact_pct'):.2f}% return={M.get('sell_return_frac',0)*100:.0f}%")
         for w in M.get("warns") or []: print(f"      WARN: {w}")
         print(f"      ENTRY {M.get('entry') or 'UNKNOWN'}: {'; '.join(M.get('entry_reasons') or [])}")
+        if M.get("top_traders_line"): print(f"      {M['top_traders_line']}")
     print(f"\nRugCheck: ok {RC_STATE['ok']} | failed {RC_STATE['fails']} | skipped (down) {RC_STATE['skipped']}")
     print("\nKill-reason tally:")
     for k, c in tally.most_common(): print(f"  {c:3d}  {k}")
@@ -1400,7 +1431,7 @@ def _publish_dashboard():
         print(f"(dashboard publish failed: {e})")
 
 if __name__ == "__main__":
-    DRY = sys.argv[1:2] == ["--sources"]   # r10.1 dry run: no git pull, no dashboard build/push
+    DRY = sys.argv[1:2] in (["--sources"], ["--traders"])   # dry runs: no git pull, no dashboard build/push
     if not DRY:
         import atexit; atexit.register(_publish_dashboard)
     if not os.environ.get("FD_NO_PUSH") and not DRY:
@@ -1479,6 +1510,18 @@ if __name__ == "__main__":
             et = entry_timing(pair, M)
             print(f"{m} {((pair or {}).get('baseToken') or {}).get('symbol', '')} ENTRY {et}: {'; '.join(M.get('entry_reasons') or [])}")
             print("   " + json.dumps(M.get("entry_detail"), default=str))
+    elif a[0] == "--traders":   # r10.2 top traders only, any verdict (GeckoTerminal + Helius ~151 credits/mint, not logged)
+        for m in a[1:]:
+            import top_traders as tt
+            pair = fetch_dex([m]).get(m); s = tt.top_traders(m, pair)
+            print(f"{m} {((pair or {}).get('baseToken') or {}).get('symbol', '')}  pool {s.get('pool')}  "
+                  f"trades {s.get('trades_seen')} (>${s.get('usd_min')})  Helius ~{s.get('helius_credits_est')} credits  {s.get('secs')}s")
+            print("  " + tt.summary_line(s))
+            if tt.is_cluster_warn(s): print("  " + tt.warn_text(s))
+            for r in s.get("wallets") or []:
+                fd = r.get("funder") or "?"
+                print(f"   {r['wallet'][:6]}… vol ${r['buy_usd'] + r['sell_usd']:>9,.0f} buy ${r['buy_usd']:>8,.0f} sell ${r['sell_usd']:>8,.0f} "
+                      f"n={r['trades']:<3} age {r.get('age_d')}d funder {fd[:6]}…({r.get('funder_kind')}) holding={r.get('holding')}")
     elif a[0] == "--scan-all":
         MODE["stage_b_max"] = STAGE_B_MAX_SCAN_ALL or None
         ranked, _dex = scan_all_candidates()

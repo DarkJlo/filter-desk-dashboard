@@ -74,8 +74,18 @@ def oc_badge(OC, mint):
 
 def warn_html(w):
     """Colour a warning; bundler WARN band (10-20%) is highlighted so it is visible before it becomes a KILL."""
-    col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch", "FLAT WARN")) else "#9aa4b2"
+    col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch", "FLAT WARN", "TRADER CLUSTER WARN")) else "#9aa4b2"
     return f'<span style="color:{col}">{html.escape(w)}</span>'
+
+def traders_html(tt):
+    """r10.2 top-traders line on a PASS (older records have none -> nothing shown)."""
+    if not tt or not tt.get("line"): return ""
+    hot = (tt.get("shared_funder_max") or 0) >= 5 or (tt.get("fresh_lt7d") or 0) >= 8
+    tip = "top 15 traders by USD volume in GeckoTerminal's recent trades (last 300, 24h max); age/funder/balance via Helius"
+    if tt.get("shared_funder"): tip += " · biggest shared funder " + tt["shared_funder"]
+    if tt.get("helius_credits_est") is not None: tip += f" · ~{tt['helius_credits_est']} Helius credits"
+    col = "#f0b90b" if hot else "#6b7280"
+    return f'<br><span class="nm" style="color:{col};font-size:11px" title="{html.escape(tip)}">{html.escape(tt["line"])}</span>'
 
 ENTRY_BADGE = {"OK": ("entry-ok", "ENTRY OK"), "WAIT": ("entry-wait", "WAIT"), "UNKNOWN": ("entry-unk", "ENTRY ?")}
 
@@ -275,6 +285,7 @@ def build():
             wr = WT.get(mint)
             if wr and r["timestamp"] >= (wr.get("first_wait") or ""): ebadge += watch_badge(wr)
             if el and er: main = f'<span class="nm">entry: {html.escape("; ".join(er))}</span><br>' + main
+            main += traders_html(r.get("top_traders") or m.get("top_traders"))
         score = r.get("score", m.get("rc_score")); norm = r.get("score_normalised", m.get("rc_score_norm"))
         lp = r.get("lpLockedPct", m.get("rc_lpLockedPct", m.get("lp_locked_pct")))
         liq = m.get("liquidity_usd") or m.get("dex_liquidity_usd")
