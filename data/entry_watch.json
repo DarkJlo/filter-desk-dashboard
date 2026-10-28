@@ -2,17 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 11,
-   "fdv": 2743613,
+   "checks": 12,
+   "fdv": 2496066,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-28T23:16:22+00:00",
-   "liq": 144983.96,
+   "last_check": "2026-10-28T23:44:21+00:00",
+   "liq": 138131,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-28T21:37:39.458376+00:00",
    "reasons": [
-    "near ATH: -7% from high",
+    "near ATH: -15% from high",
     "15m: still making lower lows",
     "5m: broke below its latest higher low"
    ],
@@ -27,6 +27,23 @@
    "first_wait": "2026-10-28T21:37:43.115488+00:00",
    "flipped_at": "2026-10-28T23:16:22+00:00",
    "flipped_by": "watch",
+   "gate": {
+    "block": true,
+    "flags": "bundle, flat, lopsided, 6x killed, traders unchecked",
+    "gate_version": "r10.3-2026-10-28",
+    "note": "issue opened before the r10.3 gate; it would be suppressed now",
+    "prior_kills": 6,
+    "reasons": [
+     "repeat-killed: 6 KILL verdicts before this PASS (limit 3)"
+    ],
+    "tags": [
+     "bundle",
+     "flat",
+     "lopsided"
+    ],
+    "tt_checked": false,
+    "tt_line": ""
+   },
    "issue": 4,
    "label": "OK",
    "last_check": "2026-10-28T23:16:22+00:00",
@@ -50,6 +67,20 @@
    "first_wait": "2026-10-28T21:37:38.056712+00:00",
    "flipped_at": "2026-10-28T22:18:42+00:00",
    "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle, flat, lopsided, traders unchecked",
+    "gate_version": "r10.3-2026-10-28",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "flat",
+     "lopsided"
+    ],
+    "tt_checked": false,
+    "tt_line": ""
+   },
    "issue": 3,
    "label": "OK",
    "last_check": "2026-10-28T22:18:42+00:00",
@@ -73,6 +104,21 @@
    "first_wait": "2026-10-28T07:50:45.513266+00:00",
    "flipped_at": "2026-10-28T14:32:36+00:00",
    "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle, bundled_launch, bundler, funding, traders unchecked",
+    "gate_version": "r10.3-2026-10-28",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "bundled_launch",
+     "bundler",
+     "funding"
+    ],
+    "tt_checked": false,
+    "tt_line": ""
+   },
    "issue": 2,
    "label": "OK",
    "last_check": "2026-10-28T14:32:36+00:00",
@@ -89,6 +135,6 @@
    "symbol": "ENVAR"
   }
  },
- "updated": "2026-10-28T23:16:22+00:00",
+ "updated": "2026-10-28T23:44:21+00:00",
  "window_h": 24
 }
