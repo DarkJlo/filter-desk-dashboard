@@ -2,39 +2,41 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 3,
-   "fdv": 2577172,
+   "checks": 4,
+   "fdv": 2348089,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-28T09:28:31+00:00",
-   "liq": 140070.61,
+   "last_check": "2026-10-28T10:25:45+00:00",
+   "liq": 133971.68,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-28T07:50:42.004107+00:00",
    "reasons": [
-    "near ATH: -0% from high"
+    "near ATH: -19% from high",
+    "15m: no confirmed higher low yet",
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "JOB"
   },
   "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump": {
-   "checks": 3,
-   "fdv": 136911,
+   "checks": 4,
+   "fdv": 131299,
    "first_label": "WAIT",
    "first_wait": "2026-10-28T07:50:45.513266+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-28T09:28:31+00:00",
-   "liq": 31599.05,
+   "last_check": "2026-10-28T10:25:45+00:00",
+   "liq": 30966.99,
    "mint": "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump",
    "pass_ts": "2026-10-28T07:50:45.513266+00:00",
    "reasons": [
     "15m: still making lower lows",
-    "5m: broke below its latest higher low"
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "ENVAR"
   }
  },
- "updated": "2026-10-28T09:28:31+00:00",
+ "updated": "2026-10-28T10:25:45+00:00",
  "window_h": 24
 }
