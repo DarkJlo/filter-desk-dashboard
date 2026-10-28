@@ -2,37 +2,44 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 10,
-   "fdv": 2884270,
+   "checks": 11,
+   "fdv": 2743613,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-28T22:18:42+00:00",
-   "liq": 148755.06,
+   "last_check": "2026-10-28T23:16:22+00:00",
+   "liq": 144983.96,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-28T21:37:39.458376+00:00",
    "reasons": [
-    "near ATH: -2% from high",
+    "near ATH: -7% from high",
     "15m: still making lower lows",
-    "5m: still making lower lows"
+    "5m: broke below its latest higher low"
    ],
    "status": "watching",
    "symbol": "JOB"
   },
   "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump": {
-   "checks": 1,
-   "fdv": 3459892,
+   "checks": 2,
+   "fdv": 3432908,
+   "fdv_at_flip": 3432908,
    "first_label": "WAIT",
    "first_wait": "2026-10-28T21:37:43.115488+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-28T22:18:42+00:00",
-   "liq": 172666.24,
+   "flipped_at": "2026-10-28T23:16:22+00:00",
+   "flipped_by": "watch",
+   "issue": 4,
+   "label": "OK",
+   "last_check": "2026-10-28T23:16:22+00:00",
+   "liq": 172018.72,
+   "liq_at_flip": 172018.72,
    "mint": "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump",
    "pass_ts": "2026-10-28T21:37:43.115488+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "pulled back -59% and holding higher low",
+    "15m higher low held (+2% over prior low)",
+    "5m higher low held (+0% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "CHICO"
   },
   "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump": {
@@ -82,6 +89,6 @@
    "symbol": "ENVAR"
   }
  },
- "updated": "2026-10-28T22:18:42+00:00",
+ "updated": "2026-10-28T23:16:22+00:00",
  "window_h": 24
 }
