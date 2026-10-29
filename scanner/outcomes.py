@@ -41,18 +41,38 @@ def rules_version(e):
 
 _WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
               ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
+              ("\U0001F6A9 FUNDER CLUSTER", "trader_cluster_funder"), ("Fresh buyers:", "trader_fresh"),
+              ("TRADER CLUSTER WARN", "trader_cluster"),
               ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 
-def tier_of(warns):
-    t = {tag for w in warns or [] for pfx, tag in _WARN_TAGS if w.startswith(pfx)}
+def _tags(warns):
+    return {tag for w in warns or [] for pfx, tag in _WARN_TAGS if w.startswith(pfx)}
+
+def tier_of(warns, tt=None):
+    """Same tiers as filter_desk.pass_tier; r10.4 high_risk also re-derived for legacy trader_cluster records."""
+    t = _tags(warns)
     risk, deg = t - {"rc_down", "lp_unverified"}, t & {"rc_down", "lp_unverified"}
-    return "+".join(x for x, on in (("degraded", deg), ("warn", risk)) if on) or "clean"
+    high = "trader_cluster_funder" in t
+    if not high and ("trader_cluster" in t or tt):
+        try:
+            import top_traders as _tt
+            high = _tt.trader_tier(tt, t) == _tt.TIER_FUNDER
+        except Exception:
+            high = "trader_cluster" in t
+    if high: risk = risk | {"trader_cluster_funder"}
+    return "+".join(x for x, on in (("degraded", deg), ("high_risk" if high else "warn", risk)) if on) or "clean"
+
+def eff_tier(e):
+    mt = e.get("metrics") or {}
+    stored = mt.get("pass_tier")
+    t = tier_of(mt.get("warns"), e.get("top_traders") or mt.get("top_traders"))
+    return t if (not stored or "high_risk" in t) else stored
 
 def enroll_meta(e):
     mt = e.get("metrics") or {}
     w = mt.get("warns") or []
     return {"rules_version": rules_version(e),
-            "pass_tier": (mt.get("pass_tier") or tier_of(w)) if e.get("verdict") == "PASS" else None,
+            "pass_tier": eff_tier(e) if e.get("verdict") == "PASS" else None,
             "warns_at_entry": w, "entry_fdv": mt.get("fdv"),
             "entry_bundler_pct": (mt.get("bundler") or {}).get("bundler_pct"),
             # r10 entry timing at the enrolling PASS (None for older records) -> compare OK vs WAIT later
@@ -132,8 +152,9 @@ def update():
         if e and t["group"] == "pass" and "entry_label" not in t:
             t["entry_label"] = e.get("entry") or (e.get("metrics") or {}).get("entry")   # r10 (None before r10)
             t["entry_reasons"] = e.get("entry_reasons") or (e.get("metrics") or {}).get("entry_reasons")
+        if e and t["group"] == "pass": t["pass_tier"] = eff_tier(e)   # r10.4: legacy trader_cluster -> high_risk when numbers say so
         if t["group"] == "pass":   # any PASS check of this token (entry or recheck) carried a risk WARN
-            t["warn_any_pass"] = any(x.get("verdict") == "PASS" and "warn" in tier_of((x.get("metrics") or {}).get("warns"))
+            t["warn_any_pass"] = any(x.get("verdict") == "PASS" and tier_of((x.get("metrics") or {}).get("warns")) not in ("clean", "degraded")
                                      for (mm, _), x in BY_T0.items() if mm == m)
     now = time.time()
     live = [m for m, t in T.items() if not t.get("final")]
@@ -207,8 +228,9 @@ def summarize(T):
     out = {}
     segs = {"pass": lambda t: t["group"] == "pass", "pass_v1_loose": lambda t: t["group"] == "pass_v1_loose",
             "kill_control": lambda t: t["group"] == "kill_control",
-            "pass_clean": lambda t: t["group"] == "pass" and "warn" not in (t.get("pass_tier") or "clean"),
-            "pass_warn": lambda t: t["group"] == "pass" and "warn" in (t.get("pass_tier") or ""),
+            "pass_clean": lambda t: t["group"] == "pass" and not any(k in (t.get("pass_tier") or "clean") for k in ("warn", "high_risk")),
+            "pass_warn": lambda t: t["group"] == "pass" and any(k in (t.get("pass_tier") or "") for k in ("warn", "high_risk")),
+            "pass_high_risk": lambda t: t["group"] == "pass" and "high_risk" in (t.get("pass_tier") or ""),
             "pass_warn_any": lambda t: t["group"] == "pass" and t.get("warn_any_pass"),
             "pass_never_warn": lambda t: t["group"] == "pass" and not t.get("warn_any_pass"),
             "pass_degraded": lambda t: t["group"] == "pass" and "degraded" in (t.get("pass_tier") or ""),

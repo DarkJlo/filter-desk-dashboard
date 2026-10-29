@@ -75,17 +75,47 @@ def oc_badge(OC, mint):
 def warn_html(w):
     """Colour a warning; bundler WARN band (10-20%) is highlighted so it is visible before it becomes a KILL."""
     col = "#f0b90b" if w.startswith(("BUNDLER WARN", "BUNDLE WARN", "LOPSIDED WARN", "FUNDING WARN", "bundled launch", "FLAT WARN", "TRADER CLUSTER WARN")) else "#9aa4b2"
+    if w.startswith("\U0001F6A9 FUNDER CLUSTER"): col = "#f6465d"
+    elif w.startswith("Fresh buyers:"): col = "#b8962e"
     return f'<span style="color:{col}">{html.escape(w)}</span>'
 
-def traders_html(tt):
+try:
+    import sys as _sys
+    if _HERE not in _sys.path: _sys.path.insert(0, _HERE)
+    import top_traders as _tt   # r10.4 tier helpers (pure functions; no network at import)
+except Exception:  # pragma: no cover
+    _tt = None
+LEGACY_TT_PREFIX = ("TRADER CLUSTER WARN", "\U0001F6A9 FUNDER CLUSTER", "Fresh buyers:")
+
+def record_tier(r, m):
+    """r10.4 trader tier of a logged PASS ('funder' | 'fresh' | None), legacy trader_cluster re-read from stored numbers."""
+    if not _tt: return None
+    tt = r.get("top_traders") or m.get("top_traders")
+    tags = m.get("warn_tags")
+    if tags is None:
+        tags = ["trader_cluster" for w in (m.get("warns") or []) if w.startswith("TRADER CLUSTER WARN")]
+    return _tt.trader_tier(tt, tags)
+
+def tier_html(tier, tt):
+    """HIGH = red banner at the top of the card; LOW = amber/grey note."""
+    if not tier or not _tt: return ""
+    txt = html.escape(_tt.tier_warn(tier, tt if (tt and tt.get("n")) else None))
+    if tier == _tt.TIER_FUNDER:
+        return (f'<div style="background:#3b1216;border:1px solid #f6465d;color:#ff6b7f;font-weight:700;border-radius:6px;'
+                f'padding:4px 8px;margin:2px 0 4px" title="r10.4 HIGH tier: shared non-exchange funder among top traders. Verdict stays PASS; entry-watch alerts are suppressed.">{txt}</div>')
+    return f'<div style="color:#c9a227;font-size:12px;margin:2px 0" title="r10.4 LOW tier: fresh wallets but no shared funder (annotation only)">{txt}</div>'
+
+def traders_html(tt, tier=None):
     """r10.2 top-traders line on a PASS (older records have none -> nothing shown)."""
     if not tt or not tt.get("line"): return ""
-    hot = (tt.get("shared_funder_max") or 0) >= 5 or (tt.get("fresh_lt7d") or 0) >= 8
+    hot = tier is not None
     tip = "top 15 traders by USD volume in GeckoTerminal's recent trades (last 300, 24h max); age/funder/balance via Helius"
     if tt.get("shared_funder"): tip += " · biggest shared funder " + tt["shared_funder"]
     if tt.get("helius_credits_est") is not None: tip += f" · ~{tt['helius_credits_est']} Helius credits"
-    col = "#f0b90b" if hot else "#6b7280"
-    return f'<br><span class="nm" style="color:{col};font-size:11px" title="{html.escape(tip)}">{html.escape(tt["line"])}</span>'
+    col = "#f6465d" if tier == "funder" else ("#b8962e" if hot else "#6b7280")
+    line = tt["line"]
+    if "tier:" not in line and tier: line += " \u00b7 tier: " + ("HIGH (funder cluster)" if tier == "funder" else "LOW (fresh buyers, no shared funder)")
+    return f'<br><span class="nm" style="color:{col};font-size:11px" title="{html.escape(tip)}">{html.escape(line)}</span>'
 
 ENTRY_BADGE = {"OK": ("entry-ok", "ENTRY OK"), "WAIT": ("entry-wait", "WAIT"), "UNKNOWN": ("entry-unk", "ENTRY ?")}
 
@@ -140,7 +170,7 @@ def watch_html(W):
         if r.get("status") == "suppressed":
             flip += ' <span style="color:#f6465d">no issue: ' + html.escape("; ".join(r.get("suppressed_reasons") or g.get("reasons") or [])) + "</span>"
         elif g.get("block"):
-            flip += ' <span style="color:#f6465d">r10.3 gate would block: ' + html.escape("; ".join(g.get("reasons") or [])) + "</span>"
+            flip += ' <span style="color:#f6465d">gate would block now: ' + html.escape("; ".join(g.get("reasons") or [])) + "</span>"
         elif g.get("flags"):
             flip += ' <span style="color:#f0b90b">flags: ' + html.escape(g["flags"]) + "</span>"
         rows += (f'<tr><td><a href="https://dexscreener.com/solana/{m}" target="_blank" title="{m}"><b>{html.escape(r.get("symbol") or m[:6])}</b></a></td>'
@@ -148,7 +178,7 @@ def watch_html(W):
                  f'<td>{_mst(r.get("first_wait"))}</td><td>{_mst(r.get("last_check"))}</td><td>{flip or "—"} {iss_html}</td></tr>')
     upd = _mst(W.get("updated"), "%b %d %H:%M MST")
     return (f'<h2>Entry watch <span class="nm" style="font-size:12px">updated {upd} · hourly at :47 · WAIT/ENTRY ? passes from the last 24h are re-checked; '
-            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo, unless the r10.3 gate suppresses it (trader_cluster or 3+ prior KILLs)</span></h2>'
+            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo, unless the r10.4 gate suppresses it (HIGH funder cluster or 3+ prior KILLs; fresh-only buyers are only noted)</span></h2>'
             f'<table class="small" style="margin-bottom:22px"><thead><tr><th>Token</th><th>Watch</th><th>Label now</th><th>Reasons</th>'
             f'<th>First WAIT (MST)</th><th>Last check</th><th>Flipped (MST) · at flip</th></tr></thead><tbody>{rows}</tbody></table>')
 
@@ -231,13 +261,15 @@ def outcomes_html(OC):
     seg = []
     for g, lab in (("pass_clean", "clean at entry"), ("pass_warn", "warn at entry"), ("pass_never_warn", "never warned"),
                    ("pass_warn_any", "warned on any pass check"), ("pass_degraded", "RugCheck-down pass"),
-                   ("pass_entry_ok", "entry OK"), ("pass_entry_wait", "entry WAIT"), ("pass_entry_unknown", "entry ?")):
+                   ("pass_high_risk", "HIGH RISK (funder cluster)"), ("pass_entry_ok", "entry OK"), ("pass_entry_wait", "entry WAIT"), ("pass_entry_unknown", "entry ?")):
         x = S.get(g) or {}
         if x.get("tracked"): seg.append(f'{lab}: n={x["tracked"]} · 2x {x["hit2x"]}% · rug/dead {x["rugged_or_dead"]}% · med peak {mx(x.get("median_peak"))}')
     by = load_all()
     f = lambda t, k: (f'{t[k]:.2f}x' if t.get(k) is not None else "—")
     TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"), ("LOPSIDED WARN", "lopsided"),
-            ("bundled launch", "bundled launch"), ("FLAT WARN", "flat"), ("rugcheck unavailable", "RC down"), ("LP lock unverified", "LP unverified")]
+            ("bundled launch", "bundled launch"), ("FLAT WARN", "flat"),
+            ("\U0001F6A9 FUNDER CLUSTER", "\U0001F6A9 FUNDER CLUSTER"), ("Fresh buyers:", "fresh buyers"), ("TRADER CLUSTER WARN", "trader cluster (legacy)"),
+            ("rugcheck unavailable", "RC down"), ("LP lock unverified", "LP unverified")]
     rows = ""
     for m, t in sorted(OC["tokens"].items(), key=lambda kv: kv[1]["t0"], reverse=True):
         if t["group"] != "pass": continue
@@ -291,13 +323,17 @@ def build():
         main = html.escape("; ".join(reasons[:3]) + (f" (+{len(reasons)-3})" if len(reasons) > 3 else ""))
         ebadge = ""
         if r["verdict"] == "PASS":
-            main = "; ".join(warn_html(w) for w in warns[:4]) or "clean"
+            tier = record_tier(r, m); tt_rec = r.get("top_traders") or m.get("top_traders")
+            rest = [w for w in warns if not (tier and w.startswith(LEGACY_TT_PREFIX))]   # tier text replaces old cluster warn
+            main = "; ".join(warn_html(w) for w in rest[:4]) or ("" if tier else "clean")
+            main = tier_html(tier, tt_rec) + main
             el, er = r.get("entry") or m.get("entry"), r.get("entry_reasons") or m.get("entry_reasons") or []
             ebadge = entry_badge(el, er)
             wr = WT.get(mint)
             if wr and r["timestamp"] >= (wr.get("first_wait") or ""): ebadge += watch_badge(wr)
             if el and er: main = f'<span class="nm">entry: {html.escape("; ".join(er))}</span><br>' + main
-            main += traders_html(r.get("top_traders") or m.get("top_traders"))
+            main += traders_html(tt_rec, tier)
+            if tier == "funder": ebadge = ' <span class="pill entry-sup" title="r10.4 HIGH tier: funder cluster">\U0001F6A9 HIGH RISK</span>' + ebadge
         score = r.get("score", m.get("rc_score")); norm = r.get("score_normalised", m.get("rc_score_norm"))
         lp = r.get("lpLockedPct", m.get("rc_lpLockedPct", m.get("lp_locked_pct")))
         liq = m.get("liquidity_usd") or m.get("dex_liquidity_usd")

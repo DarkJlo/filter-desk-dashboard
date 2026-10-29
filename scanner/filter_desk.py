@@ -18,7 +18,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.3-2026-10-28"   # r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.4-2026-10-29"   # r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -884,23 +884,34 @@ def evaluate(mint, rep, pair):
 
 WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
-             ("TRADER CLUSTER WARN", "trader_cluster"),
+             ("\U0001F6A9 FUNDER CLUSTER", "trader_cluster_funder"), ("Fresh buyers:", "trader_fresh"),   # r10.4 tiers
+             ("TRADER CLUSTER WARN", "trader_cluster"),   # legacy r10.2/r10.3 (read via top_traders.trader_tier)
              ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 DEGRADED_TAGS = {"rc_down", "lp_unverified"}   # a data source was skipped, not a risk signal by itself
 
 def warn_tags(warns):
     return sorted({tag for w in warns or [] for pfx, tag in WARN_TAGS if w.startswith(pfx)})
 
+HIGH_RISK_TAGS = {"trader_cluster_funder"}   # r10.4: shared non-exchange funder among top traders
+
 def pass_tier(warns):
-    """clean | warn | degraded | degraded+warn  (lets outcomes segment clean vs warn passes)."""
+    """clean | warn | degraded | degraded+warn | high_risk | degraded+high_risk  (outcomes segments clean vs warn).
+    r10.4: high_risk = a HIGH-severity tag fired (funder cluster); verdict is still PASS."""
     t = set(warn_tags(warns)); risk, deg = t - DEGRADED_TAGS, t & DEGRADED_TAGS
-    return "+".join(x for x, on in (("degraded", deg), ("warn", risk)) if on) or "clean"
+    top = "high_risk" if t & HIGH_RISK_TAGS else "warn"
+    return "+".join(x for x, on in (("degraded", deg), (top, risk)) if on) or "clean"
+
+def order_warns(warns):
+    """r10.4: the HIGH funder-cluster warning always comes first."""
+    w = list(warns or [])
+    return [x for x in w if x.startswith("\U0001F6A9 FUNDER CLUSTER")] + [x for x in w if not x.startswith("\U0001F6A9 FUNDER CLUSTER")]
 
 # ---------------- r10.2 top traders (PASS only; WARN only; never changes the verdict) ----------------
 # scanner/top_traders.py: GeckoTerminal recent trades (keyless) -> top 15 wallets by USD volume -> Helius first tx
 # (age + funder, 10 credits each, cached per wallet) + one batched balance call. ~151 Helius credits per PASS,
-# hard cap TT_MAX_CREDITS (170). WARN "TRADER CLUSTER WARN" (tag trader_cluster) when >= 5 of the top 15 share a
-# non-CEX funder or >= 8 are wallets < 7 days old. Disable with env FD_TOP_TRADERS=0.
+# hard cap TT_MAX_CREDITS (170). r10.4 tiers: HIGH "🚩 FUNDER CLUSTER (HIGH RISK)" (tag trader_cluster_funder, pass_tier
+# high_risk, first warning) when >= 5 of the top 15 share a non-CEX funder (any age); LOW "Fresh buyers:" (tag trader_fresh)
+# when >= 8 are wallets < 7 days old with no such cluster. Disable with env FD_TOP_TRADERS=0.
 TT_SUMMARY_KEYS = ("n", "fresh_lt7d", "shared_funder_max", "cex_funded", "still_holding", "sold_out", "window_hours",
                    "helius_credits_est", "error")
 
@@ -910,13 +921,16 @@ def trader_check(mint, pair, M):
         import top_traders as tt
         s = tt.top_traders(mint, pair)
         summ = {k: s.get(k) for k in TT_SUMMARY_KEYS}
-        summ["line"] = tt.summary_line(s)
+        summ["line"] = tt.summary_line(s); summ["tier"] = tt.cluster_tier(s)   # r10.4: funder | fresh | None
         if s.get("shared_funder"): summ["shared_funder"] = s["shared_funder"]
         M["top_traders"] = summ; M["top_traders_line"] = summ["line"]
         M["top_traders_detail"] = [{"w": r["wallet"], "vol": round(r["buy_usd"] + r["sell_usd"]), "net": round(r["net_usd"]),
                                     "n": r["trades"], "age_d": r.get("age_d"), "funder": r.get("funder"),
                                     "fk": r.get("funder_kind"), "hold": r.get("holding")} for r in s.get("wallets") or []]
-        if tt.is_cluster_warn(s): M.setdefault("warns", []).append(tt.warn_text(s))
+        if tt.is_cluster_warn(s):
+            W = M.setdefault("warns", [])
+            if summ["tier"] == tt.TIER_FUNDER: W.insert(0, tt.warn_text(s))   # r10.4: HIGH tier is the first warning
+            else: W.append(tt.warn_text(s))
         print(f"  {summ['line']} (Helius ~{s.get('helius_credits_est')} credits, {s.get('secs')}s)")
         return s
     except Exception as e:
@@ -925,6 +939,7 @@ def trader_check(mint, pair, M):
 
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
+    if metrics.get("warns"): metrics["warns"] = order_warns(metrics["warns"])
     metrics["warn_tags"] = warn_tags(metrics.get("warns"))
     rec = {"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint, "verdict": verdict, "reasons": reasons}
     if metrics.get("sources"): rec["sources"] = metrics["sources"]   # r10.1: feed tags this mint came from

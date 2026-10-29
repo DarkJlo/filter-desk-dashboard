@@ -16,11 +16,14 @@ token the alert is only printed. Open entry-ok issues older than ISSUE_MAX_AGE_D
 r10.3 gate (risk flags, not just price structure): before any flip issue goes out, the latest PASS and the log for
 the mint are checked (gate()). The issue is NEVER opened, and the record gets status "suppressed" + gate reasons
 (printed as a SUPPRESSED line in the job output and shown on the dashboard), when:
-  - the latest PASS has WARN tag trader_cluster, or its top_traders summary meets the cluster thresholds
-    (>= 5 of the top traders share a non-CEX funder, or >= 8 are wallets < 7d old), or
+  - the latest PASS is in the r10.4 HIGH trader tier: WARN tag trader_cluster_funder, or its top_traders summary has
+    >= 5 of the top traders sharing one non-CEX funder (any wallet age), or a legacy trader_cluster tag whose stored
+    numbers show that (legacy tag without numbers = HIGH), or
   - the mint has >= MAX_PRIOR_KILLS (3) KILL verdicts logged before that PASS (repeat-killed token).
 If the PASS has no top-traders summary (older rules or a failed check) and HELIUS_API_KEY is set, the top-traders
 check is run once at flip time (~151 Helius credits, only for that flip) and gated the same way.
+r10.4: the LOW tier (trader_fresh: >= 8 fresh wallets < 7d, no shared funder, e.g. DESSA) does NOT block; the issue
+opens with a "fresh buyers" flag in the title and the note in the body.
 Flips that do go out carry the flags in the body (top-traders line, WARN tags, prior KILL count, X-check reminder)
 and a short flag summary in the title.
   python scanner/entry_watch.py --gate <mint>   # print the gate decision for a mint from the current log (offline)
@@ -93,6 +96,18 @@ try:
     TT_FRESH, TT_SHARED = _tt.WARN_FRESH, _tt.WARN_SHARED
 except Exception:
     _tt = None
+TRADER_TAGS = {"trader_cluster", "trader_cluster_funder", "trader_fresh"}
+
+def trader_tier(tt, tags):
+    """r10.4 tier 'funder' (HIGH) | 'fresh' (LOW) | None. Legacy trader_cluster: stored numbers decide, else HIGH."""
+    if _tt: return _tt.trader_tier(tt, tags)
+    tags = set(tags or [])
+    if "trader_cluster_funder" in tags: return "funder"
+    if tt and tt.get("n"):
+        if (tt.get("shared_funder_max") or 0) >= TT_SHARED: return "funder"
+        if (tt.get("fresh_lt7d") or 0) >= TT_FRESH: return "fresh"
+    if "trader_fresh" in tags: return "fresh"
+    return "funder" if "trader_cluster" in tags else None
 
 def pass_tags(pas):
     met = pas.get("metrics") or {}
@@ -101,9 +116,8 @@ def pass_tags(pas):
     return sorted(set(tags or []))
 
 def tt_flagged(tt):
-    """True when a top_traders summary meets the r10.2 cluster thresholds."""
-    if not tt or not tt.get("n"): return False
-    return (tt.get("shared_funder_max") or 0) >= TT_SHARED or (tt.get("fresh_lt7d") or 0) >= TT_FRESH
+    """True when a top_traders summary is in the r10.4 HIGH tier (>= TT_SHARED share one non-CEX funder)."""
+    return trader_tier(tt, ()) == "funder"
 
 def prior_kills(rows, mint, before):
     return sum(1 for e in rows if e.get("mint") == mint and e.get("verdict") == "KILL" and e["timestamp"] < before)
@@ -118,17 +132,26 @@ def gate(pas, rows, tt_override=None):
     line = (tt or {}).get("line") or (pas.get("metrics") or {}).get("top_traders_line") or ""
     if tt and not line and _tt: line = _tt.summary_line(tt)
     pk = prior_kills(rows, m, pas.get("timestamp") or "9999")
+    tier = trader_tier(tt, tags)
+    if line and tier and "tier:" not in line:   # legacy line: say which r10.4 tier the stored numbers put it in
+        line += " \u00b7 tier: " + ("HIGH (funder cluster)" if tier == "funder" else "LOW (fresh buyers, no shared funder)")
+    tier_text = (_tt.tier_warn(tier, tt if (tt and tt.get("n")) else None) if (_tt and tier) else "")
     reasons = []
-    if "trader_cluster" in tags or tt_flagged(tt):
-        reasons.append("trader_cluster: " + (line or "top traders flagged"))
+    if tier == "funder":   # r10.4 HIGH tier blocks; LOW fresh-only tier is annotated only
+        reasons.append("trader_cluster_funder (HIGH): " + (tier_text or line or "top traders share a non-exchange funder"))
     if pk >= MAX_PRIOR_KILLS:
         reasons.append(f"repeat-killed: {pk} KILL verdicts before this PASS (limit {MAX_PRIOR_KILLS})")
-    risk = [t for t in tags if t not in fd.DEGRADED_TAGS]
-    flags = list(risk)
-    if "trader_cluster" not in flags and tt_flagged(tt): flags.append("trader_cluster")
+    risk = [t for t in tags if t not in fd.DEGRADED_TAGS and t not in TRADER_TAGS]
+    flags = []
+    if tier == "funder": flags.append("FUNDER CLUSTER HIGH RISK")
+    elif tier == "fresh":
+        k = (tt or {}).get("fresh_lt7d")
+        flags.append("fresh buyers" + (f" {k}/{(tt or {}).get('n') or 15}" if isinstance(k, int) else "") + " (no shared funder)")
+    flags += risk
     if pk: flags.append(f"{pk}x killed")
     if not tt_ok: flags.append("traders unchecked")
     return {"block": bool(reasons), "reasons": reasons, "tags": tags, "tt_line": line, "tt_checked": tt_ok,
+            "trader_tier": tier, "trader_note": tier_text,
             "prior_kills": pk, "flags": ", ".join(flags), "gate_version": GATE_VERSION}
 
 def live_traders(mint, pair):
@@ -137,7 +160,7 @@ def live_traders(mint, pair):
     try:
         s = _tt.top_traders(mint, pair)
         summ = {k: s.get(k) for k in fd.TT_SUMMARY_KEYS}
-        summ["line"] = _tt.summary_line(s); summ["at_flip"] = True
+        summ["line"] = _tt.summary_line(s); summ["tier"] = _tt.cluster_tier(s); summ["at_flip"] = True
         return summ
     except Exception as e:
         print(f"  top traders at flip failed: {type(e).__name__}"); return None
@@ -184,7 +207,9 @@ def issue_body(rec, pas, test=False):
         f"- Warns at PASS: " + ("; ".join(warns) or "none"),
         f"- First WAIT seen: " + ts(rec["first_wait"]).astimezone(fd_tz()).strftime("%b %d %H:%M MST"),
         "",
-        "**Risk flags (r10.3 gate)**",
+        "**Risk flags (r10.4 gate)**",
+    ] + ([f"- **{g['trader_note']}**" if g.get("trader_tier") == "funder" else f"- {g['trader_note']} (low tier, annotation only: not gated)"]
+         if g.get("trader_note") else []) + [
         "- WARN tags: " + (", ".join(g.get("tags") or []) or "none"),
         "- " + (g.get("tt_line") or "Top traders: not checked on this PASS")
         + ("" if g.get("tt_checked") else (" (incomplete: treat as unknown)" if g.get("tt_line") else " (treat as unknown)")),

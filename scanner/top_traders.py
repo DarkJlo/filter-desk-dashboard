@@ -1,4 +1,4 @@
-"""r10.2 top-traders check (WARN only, never changes a verdict).
+"""r10.2 top-traders check (WARN only, never changes a verdict). r10.4: two tiers, see cluster_tier().
 
 Keyless GeckoTerminal trades + a small Helius budget (~151 credits for 15 wallets, hard cap TT_MAX_CREDITS).
   1. Main pool = highest-liquidity Solana pair on DexScreener (passed in, or fetched here).
@@ -44,7 +44,7 @@ MULTI_TOKEN_FUNDER = 3            # funder seen behind top traders of >= 3 mints
 CO_CREATED_MIN, CO_CREATED_SECS = 3, 120  # ... unless >= 3 of its wallets here were born within 2 min of each other
                                   # (bundled wallet creation, e.g. CHICO: 15 wallets in ONE dev tx) -> never "exchange"
 DUST_USD = 1.0                    # remaining position worth < $1 counts as sold out
-WARN_SHARED, WARN_FRESH = 5, 8    # trader_cluster WARN thresholds (of the top 15)
+WARN_SHARED, WARN_FRESH = 5, 8    # r10.4: HIGH tier >= 5 share a non-CEX funder; LOW tier >= 8 fresh (no cluster)
 TT_MAX_CREDITS = int(os.environ.get("TT_MAX_CREDITS") or 170)
 TT_MAX_SECS = int(os.environ.get("TT_MAX_SECS") or 150)
 HELIUS_WORKERS = 3
@@ -219,6 +219,57 @@ def aggregate(trades, exclude):
     return rows
 
 # ---------------- main entry ----------------
+# ---------------- r10.4 tiers ----------------
+# HIGH  'trader_cluster_funder': >= WARN_SHARED of the top traders share one non-exchange funder (any wallet age).
+#       CHICO / DUBBLE / CATBOT pattern: all dumped 58-94% after flagging. Gates entry-watch alerts.
+# LOW   'trader_fresh': >= WARN_FRESH top traders are wallets < 7d old but no shared-funder cluster
+#       (DESSA: 15/15 fresh, no shared funder, kept pumping ~2x). Annotation only.
+# Legacy r10.2/r10.3 tag 'trader_cluster' is re-read from the stored numbers when present, else treated as HIGH.
+TIER_FUNDER, TIER_FRESH = "funder", "fresh"
+TAG_FUNDER, TAG_FRESH, TAG_LEGACY = "trader_cluster_funder", "trader_fresh", "trader_cluster"
+TIER_TAG = {TIER_FUNDER: TAG_FUNDER, TIER_FRESH: TAG_FRESH}
+FUNDER_PREFIX = "\U0001F6A9 FUNDER CLUSTER (HIGH RISK)"
+FRESH_PREFIX = "Fresh buyers:"
+DUMP_EVIDENCE = "CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
+
+def _num(s, k):
+    v = (s or {}).get(k)
+    return v if isinstance(v, (int, float)) else None
+
+def cluster_tier(s):
+    """'funder' (HIGH) | 'fresh' (LOW) | None, from a top-traders summary's numbers."""
+    if not s or not s.get("n"): return None
+    if (_num(s, "shared_funder_max") or 0) >= WARN_SHARED: return TIER_FUNDER
+    if (_num(s, "fresh_lt7d") or 0) >= WARN_FRESH: return TIER_FRESH
+    return None
+
+def trader_tier(tt=None, tags=()):
+    """Effective tier for a logged PASS (new or legacy). tags = its warn tags, tt = its top_traders summary."""
+    tags = set(tags or [])
+    if TAG_FUNDER in tags: return TIER_FUNDER
+    has_nums = bool(tt and tt.get("n") and (_num(tt, "shared_funder_max") is not None or _num(tt, "fresh_lt7d") is not None))
+    t = cluster_tier(tt) if has_nums else None
+    if TAG_FRESH in tags: return t or TIER_FRESH
+    if TAG_LEGACY in tags: return t or TIER_FUNDER   # legacy tag: numbers decide; no usable numbers -> HIGH
+    return t
+
+def tier_label(tier):
+    return {TIER_FUNDER: "HIGH (funder cluster)", TIER_FRESH: "LOW (fresh buyers, no shared funder)"}.get(tier, "none")
+
+def tier_warn(tier, s=None):
+    """Exact warning string for a tier (s = summary for the counts; may be None for legacy records)."""
+    s = s or {}
+    n = s.get("n") or TOP_N
+    if tier == TIER_FUNDER:
+        k = _num(s, "shared_funder_max")
+        cnt = f"{k}/{n}" if k else "5+/15"
+        return f"{FUNDER_PREFIX}: {cnt} top traders funded by one non-exchange wallet \u2014 {DUMP_EVIDENCE}"
+    if tier == TIER_FRESH:
+        k = _num(s, "fresh_lt7d")
+        cnt = f"{k}/{n}" if k is not None else "8+/15"
+        return f"{FRESH_PREFIX} {cnt} top traders <7d old, no shared funder (could be new money chasing news)"
+    return ""
+
 def summary_line(s):
     if not s: return ""
     if not s.get("n"):
@@ -228,17 +279,16 @@ def summary_line(s):
     line = (f"Top traders ({s['n']}{win}): {s.get('fresh_lt7d', '?')} fresh <7d, "
             f"{s.get('shared_funder_max', '?')} share a non-CEX funder, {s.get('cex_funded', '?')} CEX-funded, "
             f"{s.get('still_holding', '?')} still holding, {s.get('sold_out', '?')} sold out")
+    line += " \u00b7 tier: " + tier_label(cluster_tier(s))
     if s.get("error"): line += f" [partial: {s['error']}]"
     return line
 
 def is_cluster_warn(s):
-    return bool(s) and ((s.get("shared_funder_max") or 0) >= WARN_SHARED or (s.get("fresh_lt7d") or 0) >= WARN_FRESH)
+    """Any r10.4 tier fired (HIGH funder cluster or LOW fresh-only)."""
+    return cluster_tier(s) is not None
 
 def warn_text(s):
-    why = []
-    if (s.get("shared_funder_max") or 0) >= WARN_SHARED: why.append(f"{s['shared_funder_max']} of top {s['n']} traders share a non-CEX funder")
-    if (s.get("fresh_lt7d") or 0) >= WARN_FRESH: why.append(f"{s['fresh_lt7d']} of top {s['n']} traders are wallets <7d old")
-    return "TRADER CLUSTER WARN: " + "; ".join(why)
+    return tier_warn(cluster_tier(s), s)
 
 def top_traders(mint, pair=None, record_funders=True):
     """Best-effort summary dict. Never raises."""
