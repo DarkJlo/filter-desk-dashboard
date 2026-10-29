@@ -2,18 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 19,
-   "fdv": 2672974,
+   "checks": 20,
+   "fdv": 2679649,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T06:21:28+00:00",
-   "liq": 142812.45,
+   "last_check": "2026-10-29T07:42:26+00:00",
+   "liq": 142964.58,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-29T03:46:14.426091+00:00",
    "reasons": [
     "near ATH: -9% from high",
-    "15m: still making lower lows",
     "5m: still making lower lows"
    ],
    "status": "watching",
@@ -179,6 +178,6 @@
    "symbol": "CATBOT"
   }
  },
- "updated": "2026-10-29T06:21:28+00:00",
+ "updated": "2026-10-29T07:42:26+00:00",
  "window_h": 24
 }
