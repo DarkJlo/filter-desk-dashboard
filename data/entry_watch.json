@@ -2,18 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 30,
-   "fdv": 3701266,
+   "checks": 31,
+   "fdv": 3659356,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T17:29:57+00:00",
-   "liq": 171186.64,
+   "last_check": "2026-10-29T18:23:43+00:00",
+   "liq": 170010.9,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-29T15:50:31.624484+00:00",
    "reasons": [
-    "near ATH: -7% from high",
-    "5m: no confirmed higher low yet"
+    "near ATH: -8% from high"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -178,23 +177,23 @@
    "symbol": "CATBOT"
   },
   "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
-   "checks": 2,
-   "fdv": 9270838,
+   "checks": 3,
+   "fdv": 10626492,
    "first_label": "WAIT",
    "first_wait": "2026-10-29T15:50:34.580664+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T17:29:57+00:00",
-   "liq": 276028.37,
+   "last_check": "2026-10-29T18:23:43+00:00",
+   "liq": 295781.16,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
    "pass_ts": "2026-10-29T15:50:34.580664+00:00",
    "reasons": [
-    "near ATH: -1% from high",
+    "near ATH: -10% from high",
     "15m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-29T17:29:57+00:00",
+ "updated": "2026-10-29T18:23:43+00:00",
  "window_h": 24
 }
