@@ -2,17 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 28,
-   "fdv": 2735527,
+   "checks": 29,
+   "fdv": 3571873,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T15:33:31+00:00",
-   "liq": 146947.99,
+   "last_check": "2026-10-29T16:33:13+00:00",
+   "liq": 168647.16,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
-   "pass_ts": "2026-10-29T03:46:14.426091+00:00",
+   "pass_ts": "2026-10-29T15:50:31.624484+00:00",
    "reasons": [
-    "near ATH: -11% from high",
+    "near ATH: -4% from high",
     "15m: still making lower lows",
     "5m: no confirmed higher low yet"
    ],
@@ -165,7 +165,7 @@
    "liq": 152086.03,
    "liq_at_flip": 152086.03,
    "mint": "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump",
-   "pass_ts": "2026-10-29T03:46:15.479616+00:00",
+   "pass_ts": "2026-10-29T15:50:28.705567+00:00",
    "reasons": [
     "pulled back -33% and holding higher low",
     "15m higher low held (+18% over prior low)",
@@ -177,8 +177,25 @@
     "trader_cluster: Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
    ],
    "symbol": "CATBOT"
+  },
+  "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
+   "checks": 1,
+   "fdv": 6853405,
+   "first_label": "WAIT",
+   "first_wait": "2026-10-29T15:50:34.580664+00:00",
+   "label": "WAIT",
+   "last_check": "2026-10-29T16:33:13+00:00",
+   "liq": 236663.22,
+   "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
+   "pass_ts": "2026-10-29T15:50:34.580664+00:00",
+   "reasons": [
+    "near ATH: -22% from high",
+    "15m: no confirmed higher low yet"
+   ],
+   "status": "watching",
+   "symbol": "DESSA"
   }
  },
- "updated": "2026-10-29T15:33:31+00:00",
+ "updated": "2026-10-29T16:33:13+00:00",
  "window_h": 24
 }
