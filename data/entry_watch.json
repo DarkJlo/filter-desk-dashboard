@@ -2,17 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 18,
-   "fdv": 2777094,
+   "checks": 19,
+   "fdv": 2672974,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T05:24:42+00:00",
-   "liq": 145876.71,
+   "last_check": "2026-10-29T06:21:28+00:00",
+   "liq": 142812.45,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-29T03:46:14.426091+00:00",
    "reasons": [
-    "near ATH: -5% from high",
+    "near ATH: -9% from high",
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
@@ -135,23 +135,50 @@
    "symbol": "ENVAR"
   },
   "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump": {
-   "checks": 2,
-   "fdv": 3018566,
+   "checks": 3,
+   "fdv": 2909770,
+   "fdv_at_flip": 2909770,
    "first_label": "WAIT",
    "first_wait": "2026-10-29T03:46:15.479616+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-29T05:24:42+00:00",
-   "liq": 155280.12,
+   "flipped_at": "2026-10-29T06:21:28+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": true,
+    "flags": "bundle, bundled_launch, flat, lopsided, trader_cluster, 1x killed",
+    "gate_version": "r10.3-2026-10-28",
+    "prior_kills": 1,
+    "reasons": [
+     "trader_cluster: Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
+    ],
+    "tags": [
+     "bundle",
+     "bundled_launch",
+     "flat",
+     "lopsided",
+     "trader_cluster"
+    ],
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
+   },
+   "label": "OK",
+   "last_check": "2026-10-29T06:21:28+00:00",
+   "liq": 152086.03,
+   "liq_at_flip": 152086.03,
    "mint": "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump",
    "pass_ts": "2026-10-29T03:46:15.479616+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "pulled back -33% and holding higher low",
+    "15m higher low held (+18% over prior low)",
+    "5m higher low held (+19% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-10-29T06:21:28+00:00",
+   "suppressed_reasons": [
+    "trader_cluster: Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
+   ],
    "symbol": "CATBOT"
   }
  },
- "updated": "2026-10-29T05:24:42+00:00",
+ "updated": "2026-10-29T06:21:28+00:00",
  "window_h": 24
 }
