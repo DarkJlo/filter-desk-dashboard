@@ -2,17 +2,17 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 33,
-   "fdv": 3408682,
+   "checks": 34,
+   "fdv": 2883416,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T20:23:57+00:00",
-   "liq": 162704,
+   "last_check": "2026-10-29T21:20:53+00:00",
+   "liq": 147870.69,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-29T15:50:31.624484+00:00",
    "reasons": [
-    "near ATH: -14% from high",
+    "15m: still making lower lows",
     "5m: still making lower lows"
    ],
    "status": "watching",
@@ -178,22 +178,45 @@
    "symbol": "CATBOT"
   },
   "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
-   "checks": 5,
-   "fdv": 7650997,
+   "checks": 6,
+   "fdv": 7520889,
+   "fdv_at_flip": 7520889,
    "first_label": "WAIT",
    "first_wait": "2026-10-29T15:50:34.580664+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-29T20:23:57+00:00",
-   "liq": 249196.93,
+   "flipped_at": "2026-10-29T21:20:53+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "fresh buyers 15/15 (no shared funder), bundle, flat",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "flat",
+     "trader_cluster"
+    ],
+    "trader_note": "Fresh buyers: 15/15 top traders <7d old, no shared funder (could be new money chasing news)",
+    "trader_tier": "fresh",
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~0h): 15 fresh <7d, 0 share a non-CEX funder, 2 CEX-funded, 15 still holding, 0 sold out \u00b7 tier: LOW (fresh buyers, no shared funder)"
+   },
+   "issue": 5,
+   "label": "OK",
+   "last_check": "2026-10-29T21:20:53+00:00",
+   "liq": 244272.3,
+   "liq_at_flip": 244272.3,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
    "pass_ts": "2026-10-29T15:50:34.580664+00:00",
    "reasons": [
-    "15m: no confirmed higher low yet"
+    "pulled back -38% and holding higher low",
+    "15m higher low held (+20% over prior low)",
+    "5m higher low held (+1% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-29T20:23:57+00:00",
+ "updated": "2026-10-29T21:20:53+00:00",
  "window_h": 24
 }
