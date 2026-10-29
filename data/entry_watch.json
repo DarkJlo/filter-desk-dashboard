@@ -2,13 +2,13 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 14,
-   "fdv": 2776315,
+   "checks": 15,
+   "fdv": 2792047,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-29T01:38:52+00:00",
-   "liq": 145692.24,
+   "last_check": "2026-10-29T02:27:30+00:00",
+   "liq": 145192.91,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-28T21:37:39.458376+00:00",
    "reasons": [
@@ -133,6 +133,6 @@
    "symbol": "ENVAR"
   }
  },
- "updated": "2026-10-29T01:38:52+00:00",
+ "updated": "2026-10-29T02:27:30+00:00",
  "window_h": 24
 }
