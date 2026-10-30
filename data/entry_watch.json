@@ -2,18 +2,18 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 37,
-   "fdv": 2724130,
+   "checks": 38,
+   "fdv": 2611476,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T00:14:50+00:00",
-   "liq": 142714.04,
+   "last_check": "2026-10-30T01:41:04+00:00",
+   "liq": 139116.21,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-29T15:50:31.624484+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "15m: broke below its latest higher low",
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -217,6 +217,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T00:14:50+00:00",
+ "updated": "2026-10-30T01:41:04+00:00",
  "window_h": 24
 }
