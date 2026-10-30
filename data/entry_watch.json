@@ -2,13 +2,13 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 46,
-   "fdv": 2615404,
+   "checks": 47,
+   "fdv": 2582821,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T09:31:30+00:00",
-   "liq": 141911.01,
+   "last_check": "2026-10-30T10:28:45+00:00",
+   "liq": 140966.58,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-30T03:44:37.552331+00:00",
    "reasons": [
@@ -254,6 +254,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T09:31:30+00:00",
+ "updated": "2026-10-30T10:28:45+00:00",
  "window_h": 24
 }
