@@ -60,7 +60,7 @@
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "killed",
    "symbol": "JOB"
   },
   "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump": {
@@ -102,6 +102,23 @@
    ],
    "status": "flipped",
    "symbol": "CHICO"
+  },
+  "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS": {
+   "checks": 1,
+   "fdv": 61574,
+   "first_label": "WAIT",
+   "first_wait": "2026-10-30T21:33:48.527323+00:00",
+   "label": "WAIT",
+   "last_check": "2026-10-30T22:17:36+00:00",
+   "liq": 19856.82,
+   "mint": "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS",
+   "pass_ts": "2026-10-30T21:33:48.527323+00:00",
+   "reasons": [
+    "15m: no confirmed higher low yet",
+    "5m: broke below its latest higher low"
+   ],
+   "status": "watching",
+   "symbol": "TRK"
   },
   "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump": {
    "checks": 1,
@@ -289,7 +306,7 @@
    "liq": 244272.3,
    "liq_at_flip": 244272.3,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
-   "pass_ts": "2026-10-30T15:49:27.127943+00:00",
+   "pass_ts": "2026-10-30T21:33:49.473046+00:00",
    "reasons": [
     "pulled back -38% and holding higher low",
     "15m higher low held (+20% over prior low)",
@@ -299,6 +316,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T21:17:31+00:00",
+ "updated": "2026-10-30T22:17:36+00:00",
  "window_h": 24
 }
