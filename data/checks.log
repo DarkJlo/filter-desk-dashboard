@@ -2035,3 +2035,41 @@
 2026-10-30T15:49:34+00:00 | KILL  | gL9Q3xjXM1BdopmHn1R7Kb3Eim5NAQ1eWGNaTj3pump | graph-detected insiders: 17; insider networks detected
 2026-10-30T15:49:34+00:00 | KILL  | C6NniJqUMTMhGGgr1RNyDsUgbLQwrLfrxhm8kG3opump | high risk score (raw=30540, norm=65); LP locked only 0.0%; danger: Large Amount of LP Unlocked; danger: Top 10 holders high ownership; danger: Single holder ownership; danger: Low Liquidity; danger: High ownership; warn: Low amount of LP Providers; top10 non-LP holders 81.8% > 30.0%; single holder 64.6% > 10.0%; graph-detected insiders: 11; insider networks detected; on-chain top10 70.9% > 30.0%; on-chain single holder 64.6% > 10.0%; holder data mismatch (rugcheck 81.8% vs on-chain 70.9%)
 2026-10-30T15:49:35+00:00 | KILL  | kziXxCJLQMpkiuoyAkgHELxGcKDs4hNoeWdnpgkpump | lopsided h24 buys/sells 4495/828
+2026-10-30T21:33:43+00:00 | KILL  | 3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump | dead pump: -71% from ATH, lower lows
+2026-10-30T21:33:44+00:00 | KILL  | 3w2TvVmTrtq4kSkoFVrTFQgz6MX7ThzDVrx9r5c3pump | graph-detected insiders: 39; insider networks detected
+2026-10-30T21:33:44+00:00 | KILL  | 8Xg89xT8Ve34sKiYqYuMs46mycREsCA2F362UscRpump | graph-detected insiders: 18; insider networks detected
+2026-10-30T21:33:44+00:00 | KILL  | HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump | graph-detected insiders: 10; insider networks detected
+2026-10-30T21:33:45+00:00 | KILL  | 22rWiyDiY9GgxSrFiWC2vX1GxNxjkvrRPmZJDzv9pq6X | graph-detected insiders: 12; insider networks detected
+2026-10-30T21:33:45+00:00 | KILL  | 9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump | bundle: cluster of 12 holds 6.2% at 3.1x
+2026-10-30T21:33:45+00:00 | KILL  | FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump | graph-detected insiders: 124; insider networks detected
+2026-10-30T21:33:46+00:00 | KILL  | 2gTbp2gwH46rqExzabSyrdR3294SLwCp2rSqWDS6Sim1 | graph-detected insiders: 14; insider networks detected
+2026-10-30T21:33:46+00:00 | KILL  | qhbbjGBKJxW3AZGqngWM5tHcrENR3pVoRB9MCf1pump | graph-detected insiders: 232; insider networks detected
+2026-10-30T21:33:46+00:00 | KILL  | Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr | graph-detected insiders: 17; insider networks detected
+2026-10-30T21:33:46+00:00 | KILL  | 8uBobWMhu6hRUn4jaA4kjcgWCjTxgHwHJtPgBePXpump | graph-detected insiders: 22; insider networks detected
+2026-10-30T21:33:47+00:00 | KILL  | 4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz | graph-detected insiders: 2730; insider networks detected; FDV/liq 122 > 50
+2026-10-30T21:33:47+00:00 | KILL  | HAsTKXYvv65zM7J6Cu5o5PcZsiKMQYo5oz4WPjgqwP6k | top10 non-LP holders 38.7% > 30.0%; single holder 10.3% > 10.0%; graph-detected insiders: 4; insider networks detected; on-chain top10 38.7% > 30.0%; on-chain single holder 10.3% > 10.0%
+2026-10-30T21:33:47+00:00 | KILL  | 5wCqCq6jbppuTocMeq6zd4UywAm64L1QNNxvEDAHpump | graph-detected insiders: 52; insider networks detected
+2026-10-30T21:33:48+00:00 | KILL  | DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump | lopsided h24 buys/sells 33295/13516
+2026-10-30T21:33:48+00:00 | PASS  | E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS | clean
+2026-10-30T21:33:48+00:00 | KILL  | CqpUBhhSxHsXbq6AGPKnbxDpWgECUXAVy3BCrwhGpump | graph-detected insiders: 7; insider networks detected
+2026-10-30T21:33:49+00:00 | KILL  | ABkr21iDncsKabf4CVfXuvkUjCWQkJszGyASL9M7pump | top10 non-LP holders 33.2% > 30.0%; on-chain top10 33.2% > 30.0%
+2026-10-30T21:33:49+00:00 | PASS  | npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump | clean
+2026-10-30T21:33:49+00:00 | KILL  | 2gLhk8p2KvUFeUXur2hiF4hxjdRM1vBcbgo9Q7DMZfiw | graph-detected insiders: 102; insider networks detected
+2026-10-30T21:33:50+00:00 | KILL  | 9hhLCxn41KZcmK1vAf7u5M6vKLHRcsVn1VmVgUrhpump | graph-detected insiders: 33; insider networks detected
+2026-10-30T21:33:50+00:00 | KILL  | EwX2T1p2PmgTsSq2Bi6XtQYxPC5krR4P2fxPfN4Qpump | graph-detected insiders: 65; insider networks detected
+2026-10-30T21:33:50+00:00 | KILL  | C31uUcfLGPpQDHHieNtDkSWvp4PhNxeSs81cFQFdZVUQ | graph-detected insiders: 8; insider networks detected
+2026-10-30T21:33:51+00:00 | KILL  | 2fnGKgfwYjqv99ppnKCq5nCLLhRSJAPAhSMVkqjipump | graph-detected insiders: 41; insider networks detected
+2026-10-30T21:33:51+00:00 | KILL  | 5wsjHxT5nW5jQuVupXUNnYszF3WoWCfGGk9LMcsCJzY8 | missing data: sell quote inputs (non-SOL quote pair)
+2026-10-30T21:33:51+00:00 | KILL  | 2WVthqDUqTfmKniBvXz2guGwCAJSNTHKGnebUeBvpump | graph-detected insiders: 30; insider networks detected
+2026-10-30T21:33:51+00:00 | KILL  | Njyn9BkwE4H9ESEmBhtnwsQd5gmPQm4rwYXofUe6p6U | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers
+2026-10-30T21:33:52+00:00 | KILL  | 4H6M5tPECFCKwP6zmQYtxrhMz4QNJxCpVyBqtNhkLG6A | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers
+2026-10-30T21:33:52+00:00 | KILL  | 13sKRRvk1ea2YBypBHYCgeaTv7rT86ePUNNipBsWpump | danger: Low Liquidity; lopsided h24 buys/sells 14548/6669
+2026-10-30T21:33:52+00:00 | KILL  | Fp4JkqEcKYKBKhb9iMu9NSDeo71HWgq2q9QtXaaKpump | graph-detected insiders: 28; insider networks detected
+2026-10-30T21:33:53+00:00 | KILL  | 3qjBR3LfzEAKVS6QXuR2QZ1RFUsXzATWvmjbGB5Dpump | graph-detected insiders: 10; insider networks detected; lopsided h24 buys/sells 1961/10592
+2026-10-30T21:33:53+00:00 | KILL  | 8THZ69JP2ErZuHVj4G5rcwkFfsQafp5mQsaoQReApump | graph-detected insiders: 41; insider networks detected
+2026-10-30T21:33:53+00:00 | KILL  | DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump | top10 non-LP holders 37.0% > 30.0%; single holder 15.0% > 10.0%; on-chain top10 37.0% > 30.0%; on-chain single holder 15.0% > 10.0%
+2026-10-30T21:33:54+00:00 | KILL  | 147a97vXeJMM8pgFrEeMVmts4MciKAEEwRN6anYQszec | token2022: transfer fee 5.0%; on-chain token2022: transfer fee 5.0%
+2026-10-30T21:33:54+00:00 | KILL  | 57vAaMsnAJXkvULtAz7fsi6gRn3bHRJFJsJV1okNpump | graph-detected insiders: 34; insider networks detected
+2026-10-30T21:33:54+00:00 | KILL  | FBACZF1nWvsGubj2sJZsaAjgmKnxkUfYGYXZ1Zyjpump | warn: High holder concentration; top10 non-LP holders 62.4% > 30.0%; single holder 17.2% > 10.0%; on-chain top10 62.4% > 30.0%; on-chain single holder 17.2% > 10.0%
+2026-10-30T21:33:55+00:00 | KILL  | GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun | top10 non-LP holders 69.1% > 30.0%; single holder 22.4% > 10.0%; on-chain top10 69.1% > 30.0%; on-chain single holder 22.4% > 10.0%
+2026-10-30T21:33:55+00:00 | KILL  | GyWkSn2ah7dqLyPeZAjEZmfxuU2H4nwfGvgJhfYDVegn | graph-detected insiders: 14; insider networks detected
