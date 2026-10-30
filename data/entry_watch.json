@@ -2,18 +2,18 @@
  "min_liq": 10000,
  "tokens": {
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 43,
-   "fdv": 2842479,
+   "checks": 44,
+   "fdv": 2759616,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T06:20:44+00:00",
-   "liq": 148505.72,
+   "last_check": "2026-10-30T07:41:52+00:00",
+   "liq": 146175.53,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-30T03:44:37.552331+00:00",
    "reasons": [
     "15m: no confirmed higher low yet",
-    "5m: broke below its latest higher low"
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -96,20 +96,40 @@
    "symbol": "DUBBLE"
   },
   "Fek7BGWxw9MabKejxFdhEftygFkJXcQjezk99fkTmKaX": {
-   "checks": 3,
-   "fdv": 127778,
+   "checks": 4,
+   "fdv": 107220,
+   "fdv_at_flip": 107220,
    "first_label": "WAIT",
    "first_wait": "2026-10-30T03:44:42.758128+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-30T06:20:44+00:00",
-   "liq": 30549.01,
+   "flipped_at": "2026-10-30T07:41:52+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~23h): 2 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 8 still holding, 7 sold out \u00b7 tier: none"
+   },
+   "issue": 6,
+   "label": "OK",
+   "last_check": "2026-10-30T07:41:52+00:00",
+   "liq": 27896.96,
+   "liq_at_flip": 27896.96,
    "mint": "Fek7BGWxw9MabKejxFdhEftygFkJXcQjezk99fkTmKaX",
    "pass_ts": "2026-10-30T03:44:42.758128+00:00",
    "reasons": [
-    "near ATH: -23% from high",
-    "15m: no confirmed higher low yet"
+    "pulled back -35% and holding higher low",
+    "15m higher low held (+4% over prior low)",
+    "5m higher low held (+3% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "TS"
   },
   "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump": {
@@ -234,6 +254,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T06:20:44+00:00",
+ "updated": "2026-10-30T07:41:52+00:00",
  "window_h": 24
 }
