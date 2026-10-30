@@ -104,20 +104,40 @@
    "symbol": "CHICO"
   },
   "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS": {
-   "checks": 1,
-   "fdv": 61574,
+   "checks": 2,
+   "fdv": 81280,
+   "fdv_at_flip": 81280,
    "first_label": "WAIT",
    "first_wait": "2026-10-30T21:33:48.527323+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-30T22:17:36+00:00",
-   "liq": 19856.82,
+   "flipped_at": "2026-10-30T23:14:19+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundler",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundler"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~3h): 0 fresh <7d, 0 share a non-CEX funder, 6 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
+   },
+   "issue": 7,
+   "label": "OK",
+   "last_check": "2026-10-30T23:14:19+00:00",
+   "liq": 22862.92,
+   "liq_at_flip": 22862.92,
    "mint": "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS",
    "pass_ts": "2026-10-30T21:33:48.527323+00:00",
    "reasons": [
-    "15m: no confirmed higher low yet",
-    "5m: broke below its latest higher low"
+    "pulled back -36% and holding higher low",
+    "15m higher low held (+44% over prior low)",
+    "5m higher low held (+10% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "TRK"
   },
   "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump": {
@@ -316,6 +336,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T22:17:36+00:00",
+ "updated": "2026-10-30T23:14:19+00:00",
  "window_h": 24
 }
