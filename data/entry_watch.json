@@ -1,19 +1,36 @@
 {
  "min_liq": 10000,
  "tokens": {
+  "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump": {
+   "checks": 1,
+   "fdv": 1478196,
+   "first_label": "WAIT",
+   "first_wait": "2026-10-30T15:49:26.389488+00:00",
+   "label": "WAIT",
+   "last_check": "2026-10-30T16:28:44+00:00",
+   "liq": 105478.97,
+   "mint": "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump",
+   "pass_ts": "2026-10-30T15:49:26.389488+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: broke below its latest higher low"
+   ],
+   "status": "watching",
+   "symbol": "HYPERCHAN"
+  },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 52,
-   "fdv": 2597509,
+   "checks": 53,
+   "fdv": 2574979,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T15:30:31+00:00",
-   "liq": 140926.31,
+   "last_check": "2026-10-30T16:28:44+00:00",
+   "liq": 140386.36,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
-   "pass_ts": "2026-10-30T03:44:37.552331+00:00",
+   "pass_ts": "2026-10-30T15:49:30.415303+00:00",
    "reasons": [
     "15m: no confirmed higher low yet",
-    "5m: still making lower lows (new low in the last candles)"
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -244,7 +261,7 @@
    "liq": 244272.3,
    "liq_at_flip": 244272.3,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
-   "pass_ts": "2026-10-30T03:44:33.941375+00:00",
+   "pass_ts": "2026-10-30T15:49:27.127943+00:00",
    "reasons": [
     "pulled back -38% and holding higher low",
     "15m higher low held (+20% over prior low)",
@@ -254,6 +271,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T15:30:31+00:00",
+ "updated": "2026-10-30T16:28:44+00:00",
  "window_h": 24
 }
