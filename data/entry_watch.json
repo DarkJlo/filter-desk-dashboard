@@ -2,13 +2,13 @@
  "min_liq": 10000,
  "tokens": {
   "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump": {
-   "checks": 4,
-   "fdv": 1023636,
+   "checks": 5,
+   "fdv": 935376,
    "first_label": "WAIT",
    "first_wait": "2026-10-30T15:49:26.389488+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T19:27:22+00:00",
-   "liq": 88174.53,
+   "last_check": "2026-10-30T20:18:44+00:00",
+   "liq": 84746.45,
    "mint": "3ApVr1xphYMpi9dn3rpqU4hwvpmCQDVwxET1rdCDpump",
    "pass_ts": "2026-10-30T15:49:26.389488+00:00",
    "reasons": [
@@ -19,19 +19,18 @@
    "symbol": "HYPERCHAN"
   },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 56,
-   "fdv": 3297458,
+   "checks": 57,
+   "fdv": 3426173,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T19:27:22+00:00",
-   "liq": 158948.29,
+   "last_check": "2026-10-30T20:18:44+00:00",
+   "liq": 162664.45,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-30T15:49:30.415303+00:00",
    "reasons": [
-    "near ATH: -17% from high",
-    "15m: still making lower lows",
-    "5m: broke below its latest higher low"
+    "near ATH: -14% from high",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -272,6 +271,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-30T19:27:22+00:00",
+ "updated": "2026-10-30T20:18:44+00:00",
  "window_h": 24
 }
