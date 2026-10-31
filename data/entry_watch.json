@@ -188,17 +188,18 @@
    "symbol": "TRK"
   },
   "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump": {
-   "checks": 2,
-   "fdv": 1107843,
+   "checks": 3,
+   "fdv": 448231,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T03:46:11.627891+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-31T05:20:56+00:00",
-   "liq": 92416.33,
+   "last_check": "2026-10-31T06:18:29+00:00",
+   "liq": 58595.72,
    "mint": "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump",
    "pass_ts": "2026-10-31T03:46:11.627891+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "BNB"
@@ -316,17 +317,17 @@
    "symbol": "ENVAR"
   },
   "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump": {
-   "checks": 2,
-   "fdv": 4802427,
+   "checks": 3,
+   "fdv": 5486213,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T03:46:12.283297+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-31T05:20:56+00:00",
-   "liq": 218208.18,
+   "last_check": "2026-10-31T06:18:29+00:00",
+   "liq": 233460.52,
    "mint": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
    "pass_ts": "2026-10-31T03:46:12.283297+00:00",
    "reasons": [
-    "near ATH: -15% from high",
+    "near ATH: -3% from high",
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
@@ -417,6 +418,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-31T05:20:56+00:00",
+ "updated": "2026-10-31T06:18:29+00:00",
  "window_h": 24
 }
