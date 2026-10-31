@@ -2073,3 +2073,21 @@
 2026-10-30T21:33:54+00:00 | KILL  | FBACZF1nWvsGubj2sJZsaAjgmKnxkUfYGYXZ1Zyjpump | warn: High holder concentration; top10 non-LP holders 62.4% > 30.0%; single holder 17.2% > 10.0%; on-chain top10 62.4% > 30.0%; on-chain single holder 17.2% > 10.0%
 2026-10-30T21:33:55+00:00 | KILL  | GydpvgKppv8a4gGQqAQsyQJxtQN4S6Ym9gKxjnN3mfun | top10 non-LP holders 69.1% > 30.0%; single holder 22.4% > 10.0%; on-chain top10 69.1% > 30.0%; on-chain single holder 22.4% > 10.0%
 2026-10-30T21:33:55+00:00 | KILL  | GyWkSn2ah7dqLyPeZAjEZmfxuU2H4nwfGvgJhfYDVegn | graph-detected insiders: 14; insider networks detected
+2026-10-31T03:46:11+00:00 | KILL  | HAsTKXYvv65zM7J6Cu5o5PcZsiKMQYo5oz4WPjgqwP6k | on-chain top10 38.7% > 30.0%; on-chain single holder 10.3% > 10.0%
+2026-10-31T03:46:11+00:00 | PASS  | EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump | clean
+2026-10-31T03:46:11+00:00 | PASS  | DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump | clean
+2026-10-31T03:46:12+00:00 | PASS  | HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump | clean
+2026-10-31T03:46:12+00:00 | PASS  | npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump | clean
+2026-10-31T03:46:12+00:00 | KILL  | HgxEGTZ1Epb64RrYqcuHkqb1gGWWnF5WcPTCDWzApump | dead pump: -65% from ATH, volume declining
+2026-10-31T03:46:13+00:00 | KILL  | 4kjruqGHDsSqkMdFfCjV7Vb62HPFhtXyWc2t6JpQzDnz | FDV/liq 102 > 50
+2026-10-31T03:46:13+00:00 | KILL  | FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump | lopsided h24 buys/sells 16524/6089
+2026-10-31T03:46:13+00:00 | KILL  | FWatMYieKhRuJ1yuTcmVG1njRhZWwqHwjR11pBympump | lopsided h24 buys/sells 7407/2386
+2026-10-31T03:46:14+00:00 | KILL  | 6nJVg7wV1UBaWBpHuP7pEHLBd26U4cj6vXnGShobpump | lopsided h24 buys/sells 45664/16321
+2026-10-31T03:46:14+00:00 | KILL  | Fek7BGWxw9MabKejxFdhEftygFkJXcQjezk99fkTmKaX | on-chain top10 35.6% > 30.0%; on-chain single holder 11.5% > 10.0%
+2026-10-31T03:46:14+00:00 | KILL  | Pmfm2RprxQRKZH1XWVsBUc2KgCTyzeDTSFbT1vJmogz | on-chain top10 30.7% > 30.0%
+2026-10-31T03:46:15+00:00 | KILL  | BUzMivuf5PqkB4tzrcvW7wVda5tuUbgWRzsZWmnwpump | lopsided h24 buys/sells 7150/3341
+2026-10-31T03:46:15+00:00 | KILL  | ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr | on-chain token2022: transfer fee 3.0%
+2026-10-31T03:46:15+00:00 | KILL  | peV9vtCTYauAHPmxmcyGM36U5JAhwPupNfsvPaLDe8U | on-chain: mint authority not null; on-chain token2022: transfer fee 0.5%; on-chain top10 58.7% > 30.0%; on-chain single holder 25.0% > 10.0%
+2026-10-31T03:46:16+00:00 | KILL  | 653joYuZ5EntuKd1bspZakjHdueMxHGs5Lvm7RdWpump | lopsided h24 buys/sells 3940/739
+2026-10-31T03:46:16+00:00 | KILL  | Hox1Kc7dzUuy84FCR8hCwZrnCj8UrcpoZkDntd1opump | lopsided h24 buys/sells 60640/22326; FDV/liq 93 > 50
+2026-10-31T03:46:16+00:00 | KILL  | 8FDW22Dov1Q2hrmb64uPKqyuFKfpGJRQvm9JGsuLpump | on-chain top10 48.4% > 30.0%; on-chain single holder 32.0% > 10.0%
