@@ -188,20 +188,49 @@
    "symbol": "TRK"
   },
   "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump": {
-   "checks": 3,
-   "fdv": 448231,
+   "checks": 4,
+   "fdv": 498405,
+   "fdv_at_flip": 498405,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T03:46:11.627891+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-31T06:18:29+00:00",
-   "liq": 58595.72,
+   "flipped_at": "2026-10-31T07:35:49+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": true,
+    "flags": "FUNDER CLUSTER HIGH RISK, bundle, flat, lopsided",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [
+     "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
+    ],
+    "tags": [
+     "bundle",
+     "flat",
+     "lopsided",
+     "rc_down",
+     "trader_cluster_funder"
+    ],
+    "trader_note": "\ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%",
+    "trader_tier": "funder",
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~7h): 14 fresh <7d, 14 share a non-CEX funder, 1 CEX-funded, 4 still holding, 11 sold out \u00b7 tier: HIGH (funder cluster)"
+   },
+   "label": "OK",
+   "last_check": "2026-10-31T07:35:49+00:00",
+   "liq": 62371.69,
+   "liq_at_flip": 62371.69,
    "mint": "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump",
    "pass_ts": "2026-10-31T03:46:11.627891+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows (new low in the last candles)"
+    "pulled back -75% and holding higher low",
+    "15m higher low held (+11% over prior low)",
+    "5m higher low held (+11% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-10-31T07:35:49+00:00",
+   "suppressed_reasons": [
+    "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
+   ],
    "symbol": "BNB"
   },
   "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump": {
@@ -317,19 +346,19 @@
    "symbol": "ENVAR"
   },
   "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump": {
-   "checks": 3,
-   "fdv": 5486213,
+   "checks": 4,
+   "fdv": 4810522,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T03:46:12.283297+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-31T06:18:29+00:00",
-   "liq": 233460.52,
+   "last_check": "2026-10-31T07:35:49+00:00",
+   "liq": 218515.25,
    "mint": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
    "pass_ts": "2026-10-31T03:46:12.283297+00:00",
    "reasons": [
-    "near ATH: -3% from high",
+    "near ATH: -15% from high",
     "15m: still making lower lows",
-    "5m: still making lower lows"
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "GATO"
@@ -418,6 +447,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-31T06:18:29+00:00",
+ "updated": "2026-10-31T07:35:49+00:00",
  "window_h": 24
 }
