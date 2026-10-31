@@ -346,19 +346,18 @@
    "symbol": "ENVAR"
   },
   "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump": {
-   "checks": 9,
-   "fdv": 6163534,
+   "checks": 10,
+   "fdv": 5710659,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T03:46:12.283297+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-31T12:15:15+00:00",
-   "liq": 247888.37,
+   "last_check": "2026-10-31T13:29:02+00:00",
+   "liq": 238737.76,
    "mint": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
    "pass_ts": "2026-10-31T03:46:12.283297+00:00",
    "reasons": [
-    "near ATH: -4% from high",
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "near ATH: -14% from high",
+    "15m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "GATO"
@@ -447,6 +446,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-31T12:15:15+00:00",
+ "updated": "2026-10-31T13:29:02+00:00",
  "window_h": 24
 }
