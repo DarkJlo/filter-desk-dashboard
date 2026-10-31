@@ -46,21 +46,20 @@
    "symbol": "HYPERCHAN"
   },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 58,
-   "fdv": 3350105,
+   "checks": 59,
+   "fdv": 2868759,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-10-30T21:17:31+00:00",
-   "liq": 161060.47,
+   "last_check": "2026-10-31T22:14:22+00:00",
+   "liq": 151700.92,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
-   "pass_ts": "2026-10-30T15:49:30.415303+00:00",
+   "pass_ts": "2026-10-31T21:35:15.662075+00:00",
    "reasons": [
-    "near ATH: -16% from high",
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
    ],
-   "status": "killed",
+   "status": "watching",
    "symbol": "JOB"
   },
   "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump": {
@@ -102,6 +101,23 @@
    ],
    "status": "flipped",
    "symbol": "CHICO"
+  },
+  "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray": {
+   "checks": 1,
+   "fdv": 344624,
+   "first_label": "WAIT",
+   "first_wait": "2026-10-31T21:35:13.780995+00:00",
+   "label": "WAIT",
+   "last_check": "2026-10-31T22:14:22+00:00",
+   "liq": 53545.04,
+   "mint": "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+   "pass_ts": "2026-10-31T21:35:13.780995+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "PEAK"
   },
   "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump": {
    "checks": 1,
@@ -336,7 +352,7 @@
    "liq": 34290.54,
    "liq_at_flip": 34290.54,
    "mint": "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump",
-   "pass_ts": "2026-10-28T07:50:45.513266+00:00",
+   "pass_ts": "2026-10-31T21:35:15.033567+00:00",
    "reasons": [
     "pulled back -33% and holding higher low",
     "15m higher low held (+55% over prior low)",
@@ -360,7 +376,7 @@
     "15m: broke below its latest higher low",
     "5m: still making lower lows (new low in the last candles)"
    ],
-   "status": "watching",
+   "status": "killed",
    "symbol": "GATO"
   },
   "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump": {
@@ -447,6 +463,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-10-31T21:15:02+00:00",
+ "updated": "2026-10-31T22:14:22+00:00",
  "window_h": 24
 }
