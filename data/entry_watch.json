@@ -336,18 +336,18 @@
    "symbol": "DUBBLE"
   },
   "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump": {
-   "checks": 8,
-   "fdv": 272708,
+   "checks": 9,
+   "fdv": 226530,
    "first_label": "WAIT",
    "first_wait": "2026-11-01T03:51:14.776580+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-01T11:14:33+00:00",
-   "liq": 47135.63,
+   "last_check": "2026-11-01T12:15:37+00:00",
+   "liq": 42949.32,
    "mint": "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump",
    "pass_ts": "2026-11-01T03:51:14.776580+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows (new low in the last candles)"
+    "15m: still making lower lows",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "SIS"
@@ -529,6 +529,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-01T11:14:33+00:00",
+ "updated": "2026-11-01T12:15:37+00:00",
  "window_h": 24
 }
