@@ -155,7 +155,7 @@
    "liq": 57647.99,
    "liq_at_flip": 57647.99,
    "mint": "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
-   "pass_ts": "2026-10-31T21:35:13.780995+00:00",
+   "pass_ts": "2026-11-01T03:51:19.662184+00:00",
    "reasons": [
     "pulled back -39% and holding higher low",
     "15m higher low held (+13% over prior low)",
@@ -335,6 +335,22 @@
    "status": "flipped",
    "symbol": "DUBBLE"
   },
+  "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump": {
+   "checks": 1,
+   "fdv": 643723,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-01T03:51:14.776580+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-01T04:30:38+00:00",
+   "liq": 71081.1,
+   "mint": "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump",
+   "pass_ts": "2026-11-01T03:51:14.776580+00:00",
+   "reasons": [
+    "15m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "SIS"
+  },
   "Fek7BGWxw9MabKejxFdhEftygFkJXcQjezk99fkTmKaX": {
    "checks": 4,
    "fdv": 107220,
@@ -512,6 +528,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-01T03:29:02+00:00",
+ "updated": "2026-11-01T04:30:38+00:00",
  "window_h": 24
 }
