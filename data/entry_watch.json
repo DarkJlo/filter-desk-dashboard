@@ -46,17 +46,18 @@
    "symbol": "HYPERCHAN"
   },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
-   "checks": 61,
-   "fdv": 2775935,
+   "checks": 62,
+   "fdv": 2785789,
    "first_label": "WAIT",
    "first_wait": "2026-10-27T21:28:11.272397+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-01T00:13:11+00:00",
-   "liq": 148925.28,
+   "last_check": "2026-11-01T01:46:05+00:00",
+   "liq": 149609.72,
    "mint": "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump",
    "pass_ts": "2026-10-31T21:35:15.662075+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "15m: still making lower lows",
+    "5m: broke below its latest higher low"
    ],
    "status": "watching",
    "symbol": "JOB"
@@ -102,20 +103,43 @@
    "symbol": "CHICO"
   },
   "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray": {
-   "checks": 3,
-   "fdv": 369879,
+   "checks": 4,
+   "fdv": 399516,
+   "fdv_at_flip": 399516,
    "first_label": "WAIT",
    "first_wait": "2026-10-31T21:35:13.780995+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-01T00:13:11+00:00",
-   "liq": 55325.99,
+   "flipped_at": "2026-11-01T01:46:05+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": true,
+    "flags": "5x killed",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 5,
+    "reasons": [
+     "repeat-killed: 5 KILL verdicts before this PASS (limit 3)"
+    ],
+    "tags": [],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~23h): 2 fresh <7d, 0 share a non-CEX funder, 8 CEX-funded, 8 still holding, 7 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-01T01:46:05+00:00",
+   "liq": 57647.99,
+   "liq_at_flip": 57647.99,
    "mint": "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
    "pass_ts": "2026-10-31T21:35:13.780995+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "pulled back -39% and holding higher low",
+    "15m higher low held (+13% over prior low)",
+    "5m higher low held (+13% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-01T01:46:05+00:00",
+   "suppressed_reasons": [
+    "repeat-killed: 5 KILL verdicts before this PASS (limit 3)"
+   ],
    "symbol": "PEAK"
   },
   "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump": {
@@ -462,6 +486,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-01T00:13:11+00:00",
+ "updated": "2026-11-01T01:46:05+00:00",
  "window_h": 24
 }
