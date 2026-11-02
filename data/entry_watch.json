@@ -575,23 +575,44 @@
    "symbol": "DESSA"
   },
   "wMHBD2B8KbDagvXUEapginhtJdrH4QSvSezBM8Tpump": {
-   "checks": 7,
-   "fdv": 1728104,
+   "checks": 8,
+   "fdv": 1843685,
+   "fdv_at_flip": 1843685,
    "first_label": "WAIT",
    "first_wait": "2026-11-02T15:57:24.657583+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-02T22:23:36+00:00",
-   "liq": 111531.73,
+   "flipped_at": "2026-11-02T23:20:48+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle, flat",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "flat"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~24h): 6 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 6 still holding, 9 sold out \u00b7 tier: none"
+   },
+   "issue": 8,
+   "label": "OK",
+   "last_check": "2026-11-02T23:20:48+00:00",
+   "liq": 115155.29,
+   "liq_at_flip": 115155.29,
    "mint": "wMHBD2B8KbDagvXUEapginhtJdrH4QSvSezBM8Tpump",
    "pass_ts": "2026-11-02T15:57:24.657583+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "pulled back -47% and holding higher low",
+    "15m higher low held (+2% over prior low)",
+    "5m higher low held (+3% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-02T22:23:36+00:00",
+ "updated": "2026-11-02T23:20:48+00:00",
  "window_h": 24
 }
