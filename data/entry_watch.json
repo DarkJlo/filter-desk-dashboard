@@ -46,19 +46,49 @@
    "symbol": "HYPERCHAN"
   },
   "8s4bNqEztH1JP7mkU747uMr7AckCQdiV47FDqYnDpump": {
-   "checks": 3,
-   "fdv": 3571901,
+   "checks": 4,
+   "fdv": 4217588,
+   "fdv_at_flip": 4217588,
    "first_label": "WAIT",
    "first_wait": "2026-11-02T03:53:47.603729+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-02T06:42:22+00:00",
-   "liq": 166012.32,
+   "flipped_at": "2026-11-02T08:02:58+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": true,
+    "flags": "FUNDER CLUSTER HIGH RISK, bundle, bundled_launch, flat, lopsided",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [
+     "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
+    ],
+    "tags": [
+     "bundle",
+     "bundled_launch",
+     "flat",
+     "lopsided",
+     "trader_cluster_funder"
+    ],
+    "trader_note": "\ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%",
+    "trader_tier": "funder",
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~2h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 11 still holding, 4 sold out \u00b7 tier: HIGH (funder cluster)"
+   },
+   "label": "OK",
+   "last_check": "2026-11-02T08:02:58+00:00",
+   "liq": 181630.21,
+   "liq_at_flip": 181630.21,
    "mint": "8s4bNqEztH1JP7mkU747uMr7AckCQdiV47FDqYnDpump",
    "pass_ts": "2026-11-02T03:53:47.603729+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "pulled back -30% and holding higher low",
+    "15m higher low held (+22% over prior low)",
+    "5m higher low held (+14% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-02T08:02:58+00:00",
+   "suppressed_reasons": [
+    "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
+   ],
    "symbol": "ANAKIN"
   },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
@@ -545,6 +575,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-02T06:42:22+00:00",
+ "updated": "2026-11-02T08:02:58+00:00",
  "window_h": 24
 }
