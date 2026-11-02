@@ -45,6 +45,23 @@
    ],
    "symbol": "HYPERCHAN"
   },
+  "8s4bNqEztH1JP7mkU747uMr7AckCQdiV47FDqYnDpump": {
+   "checks": 1,
+   "fdv": 2753240,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-02T03:53:47.603729+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-02T04:39:51+00:00",
+   "liq": 145741.54,
+   "mint": "8s4bNqEztH1JP7mkU747uMr7AckCQdiV47FDqYnDpump",
+   "pass_ts": "2026-11-02T03:53:47.603729+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "ANAKIN"
+  },
   "9Pq7aLAbhDG2tTnS22cm6kuysZVcZpLFE368HWuypump": {
    "checks": 64,
    "fdv": 2977222,
@@ -519,7 +536,7 @@
    "liq": 244272.3,
    "liq_at_flip": 244272.3,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
-   "pass_ts": "2026-11-01T21:35:48.102675+00:00",
+   "pass_ts": "2026-11-02T03:53:55.899747+00:00",
    "reasons": [
     "pulled back -38% and holding higher low",
     "15m higher low held (+20% over prior low)",
@@ -529,6 +546,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-02T03:31:52+00:00",
+ "updated": "2026-11-02T04:39:51+00:00",
  "window_h": 24
 }
