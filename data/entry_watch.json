@@ -575,23 +575,23 @@
    "symbol": "DESSA"
   },
   "wMHBD2B8KbDagvXUEapginhtJdrH4QSvSezBM8Tpump": {
-   "checks": 2,
-   "fdv": 1780099,
+   "checks": 3,
+   "fdv": 1777080,
    "first_label": "WAIT",
    "first_wait": "2026-11-02T15:57:24.657583+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-02T17:35:46+00:00",
-   "liq": 113301.4,
+   "last_check": "2026-11-02T18:33:04+00:00",
+   "liq": 112845.88,
    "mint": "wMHBD2B8KbDagvXUEapginhtJdrH4QSvSezBM8Tpump",
    "pass_ts": "2026-11-02T15:57:24.657583+00:00",
    "reasons": [
-    "15m: still making lower lows",
+    "15m: still making lower lows (new low in the last candles)",
     "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-02T17:35:46+00:00",
+ "updated": "2026-11-02T18:33:04+00:00",
  "window_h": 24
 }
