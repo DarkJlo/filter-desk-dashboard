@@ -262,18 +262,17 @@
    "symbol": "AgenC"
   },
   "E7ayy5Se6gjwCNtw9NP629AucnTgqab4SSmSxDpUpump": {
-   "checks": 6,
-   "fdv": 110378,
+   "checks": 7,
+   "fdv": 131205,
    "first_label": "WAIT",
    "first_wait": "2026-11-03T03:48:14.506854+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-03T10:36:57+00:00",
-   "liq": 27406.66,
+   "last_check": "2026-11-03T11:32:26+00:00",
+   "liq": 30075.75,
    "mint": "E7ayy5Se6gjwCNtw9NP629AucnTgqab4SSmSxDpUpump",
    "pass_ts": "2026-11-03T03:48:14.506854+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows (new low in the last candles)"
+    "15m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "WIF"
@@ -630,6 +629,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-03T10:36:57+00:00",
+ "updated": "2026-11-03T11:32:26+00:00",
  "window_h": 24
 }
