@@ -262,20 +262,42 @@
    "symbol": "AgenC"
   },
   "E7ayy5Se6gjwCNtw9NP629AucnTgqab4SSmSxDpUpump": {
-   "checks": 9,
-   "fdv": 127178,
+   "checks": 10,
+   "fdv": 127359,
+   "fdv_at_flip": 127359,
    "first_label": "WAIT",
    "first_wait": "2026-11-03T03:48:14.506854+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-03T13:51:30+00:00",
-   "liq": 29756.83,
+   "flipped_at": "2026-11-03T15:25:40+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle, bundled_launch, bundler",
+    "gate_version": "r10.4-2026-10-29",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "bundled_launch",
+     "bundler"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~1h): 2 fresh <7d, 0 share a non-CEX funder, 11 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
+   },
+   "issue": 9,
+   "label": "OK",
+   "last_check": "2026-11-03T15:25:40+00:00",
+   "liq": 29786.13,
+   "liq_at_flip": 29786.13,
    "mint": "E7ayy5Se6gjwCNtw9NP629AucnTgqab4SSmSxDpUpump",
    "pass_ts": "2026-11-03T03:48:14.506854+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "pulled back -67% and holding higher low",
+    "15m higher low held (+10% over prior low)",
+    "5m higher low held (+10% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "WIF"
   },
   "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS": {
@@ -630,6 +652,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-03T13:51:30+00:00",
+ "updated": "2026-11-03T15:25:40+00:00",
  "window_h": 24
 }
