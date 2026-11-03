@@ -46,18 +46,17 @@
    "symbol": "HYPERCHAN"
   },
   "7gCND4jhgJ8Mq1XxNhRdercinXh7fcCDPjA9uEQLk3f2": {
-   "checks": 3,
-   "fdv": 86814,
+   "checks": 4,
+   "fdv": 78111,
    "first_label": "WAIT",
    "first_wait": "2026-11-03T15:45:26.236301+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-03T18:27:05+00:00",
-   "liq": 59001.15,
+   "last_check": "2026-11-03T19:34:14+00:00",
+   "liq": 55540.87,
    "mint": "7gCND4jhgJ8Mq1XxNhRdercinXh7fcCDPjA9uEQLk3f2",
    "pass_ts": "2026-11-03T15:45:26.236301+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows"
+    "15m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "HAMSTER"
@@ -669,6 +668,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-03T18:27:05+00:00",
+ "updated": "2026-11-03T19:34:14+00:00",
  "window_h": 24
 }
