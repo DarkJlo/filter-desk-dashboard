@@ -46,18 +46,18 @@
    "symbol": "HYPERCHAN"
   },
   "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump": {
-   "checks": 3,
-   "fdv": 622708,
+   "checks": 4,
+   "fdv": 676840,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:45.277467+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-04T18:34:07+00:00",
-   "liq": 66795.52,
+   "last_check": "2026-11-04T19:42:05+00:00",
+   "liq": 69557.65,
    "mint": "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump",
    "pass_ts": "2026-11-04T15:55:45.277467+00:00",
    "reasons": [
     "15m: still making lower lows",
-    "5m: still making lower lows (new low in the last candles)"
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "SA"
@@ -629,17 +629,18 @@
    "symbol": "GATO"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 3,
-   "fdv": 6199392,
+   "checks": 4,
+   "fdv": 6462095,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:50.046054+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-04T18:34:07+00:00",
-   "liq": 217575.61,
+   "last_check": "2026-11-04T19:42:05+00:00",
+   "liq": 221705.56,
    "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
    "pass_ts": "2026-11-04T15:55:50.046054+00:00",
    "reasons": [
-    "near ATH: -23% from high"
+    "near ATH: -19% from high",
+    "15m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "RAMBO"
@@ -766,6 +767,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-04T18:34:07+00:00",
+ "updated": "2026-11-04T19:42:05+00:00",
  "window_h": 24
 }
