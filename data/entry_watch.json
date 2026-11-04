@@ -45,6 +45,23 @@
    ],
    "symbol": "HYPERCHAN"
   },
+  "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump": {
+   "checks": 1,
+   "fdv": 660514,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-04T15:55:45.277467+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-04T16:34:46+00:00",
+   "liq": 69045.43,
+   "mint": "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump",
+   "pass_ts": "2026-11-04T15:55:45.277467+00:00",
+   "reasons": [
+    "15m: broke below its latest higher low",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "SA"
+  },
   "7gCND4jhgJ8Mq1XxNhRdercinXh7fcCDPjA9uEQLk3f2": {
    "checks": 6,
    "fdv": 113020,
@@ -511,6 +528,23 @@
    "status": "flipped",
    "symbol": "TS"
   },
+  "FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump": {
+   "checks": 1,
+   "fdv": 928768,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-04T15:55:43.919564+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-04T16:34:46+00:00",
+   "liq": 82558.71,
+   "mint": "FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump",
+   "pass_ts": "2026-11-04T15:55:43.919564+00:00",
+   "reasons": [
+    "near ATH: -19% from high",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "VI"
+  },
   "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump": {
    "checks": 8,
    "fdv": 161761,
@@ -566,6 +600,24 @@
    ],
    "status": "killed",
    "symbol": "GATO"
+  },
+  "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
+   "checks": 1,
+   "fdv": 6592577,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-04T15:55:50.046054+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-04T16:34:46+00:00",
+   "liq": 225005.15,
+   "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
+   "pass_ts": "2026-11-04T15:55:50.046054+00:00",
+   "reasons": [
+    "near ATH: -4% from high",
+    "15m: still making lower lows",
+    "5m: no confirmed higher low yet"
+   ],
+   "status": "watching",
+   "symbol": "RAMBO"
   },
   "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump": {
    "checks": 3,
@@ -689,6 +741,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-04T15:32:07+00:00",
+ "updated": "2026-11-04T16:34:46+00:00",
  "window_h": 24
 }
