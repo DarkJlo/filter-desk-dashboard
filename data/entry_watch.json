@@ -214,46 +214,6 @@
    ],
    "symbol": "JOB"
   },
-  "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump": {
-   "checks": 2,
-   "fdv": 3432908,
-   "fdv_at_flip": 3432908,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-28T21:37:43.115488+00:00",
-   "flipped_at": "2026-10-28T23:16:22+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": true,
-    "flags": "bundle, flat, lopsided, 6x killed, traders unchecked",
-    "gate_version": "r10.3-2026-10-28",
-    "note": "issue opened before the r10.3 gate; it would be suppressed now",
-    "prior_kills": 6,
-    "reasons": [
-     "repeat-killed: 6 KILL verdicts before this PASS (limit 3)"
-    ],
-    "tags": [
-     "bundle",
-     "flat",
-     "lopsided"
-    ],
-    "tt_checked": false,
-    "tt_line": ""
-   },
-   "issue": 4,
-   "label": "OK",
-   "last_check": "2026-10-28T23:16:22+00:00",
-   "liq": 172018.72,
-   "liq_at_flip": 172018.72,
-   "mint": "9v4airX4Vt45ADFg3QQG9pXX68LkX9Big4GiYEuJpump",
-   "pass_ts": "2026-10-28T21:37:43.115488+00:00",
-   "reasons": [
-    "pulled back -59% and holding higher low",
-    "15m higher low held (+2% over prior low)",
-    "5m higher low held (+0% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "CHICO"
-  },
   "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray": {
    "checks": 4,
    "fdv": 399516,
@@ -655,19 +615,19 @@
    "symbol": "GATO"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 6,
-   "fdv": 6156186,
+   "checks": 7,
+   "fdv": 6056769,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:50.046054+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-04T21:30:05+00:00",
-   "liq": 215566.24,
+   "last_check": "2026-11-04T22:28:05+00:00",
+   "liq": 214616.1,
    "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
    "pass_ts": "2026-11-04T15:55:50.046054+00:00",
    "reasons": [
-    "near ATH: -23% from high",
+    "near ATH: -24% from high",
     "15m: broke below its latest higher low",
-    "5m: still making lower lows (new low in the last candles)"
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "RAMBO"
@@ -794,6 +754,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-04T21:30:05+00:00",
+ "updated": "2026-11-04T22:28:05+00:00",
  "window_h": 24
 }
