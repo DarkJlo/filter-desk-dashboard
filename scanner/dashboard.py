@@ -102,7 +102,7 @@ def tier_html(tier, tt):
     txt = html.escape(_tt.tier_warn(tier, tt if (tt and tt.get("n")) else None))
     if tier == _tt.TIER_FUNDER:
         return (f'<div style="background:#3b1216;border:1px solid #f6465d;color:#ff6b7f;font-weight:700;border-radius:6px;'
-                f'padding:4px 8px;margin:2px 0 4px" title="r10.4 HIGH tier: shared non-exchange funder among top traders. Verdict stays PASS; entry-watch alerts are suppressed.">{txt}</div>')
+                f'padding:4px 8px;margin:2px 0 4px" title="r10.4 HIGH tier: shared non-exchange funder among top traders. Verdict stays PASS below 12/15 (r10.5: 12+ of 15 sharing one funder is a KILL); entry-watch alerts are suppressed.">{txt}</div>')
     return f'<div style="color:#c9a227;font-size:12px;margin:2px 0" title="r10.4 LOW tier: fresh wallets but no shared funder (annotation only)">{txt}</div>'
 
 def traders_html(tt, tier=None):

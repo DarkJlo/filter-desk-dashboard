@@ -45,6 +45,7 @@ CO_CREATED_MIN, CO_CREATED_SECS = 3, 120  # ... unless >= 3 of its wallets here 
                                   # (bundled wallet creation, e.g. CHICO: 15 wallets in ONE dev tx) -> never "exchange"
 DUST_USD = 1.0                    # remaining position worth < $1 counts as sold out
 WARN_SHARED, WARN_FRESH = 5, 8    # r10.4: HIGH tier >= 5 share a non-CEX funder; LOW tier >= 8 fresh (no cluster)
+TRADER_CLUSTER_KILL_MIN = 12      # r10.5: >= 12 of the top 15 share one non-CEX funder -> verdict KILL (5-11 stay HIGH WARN)
 TT_MAX_CREDITS = int(os.environ.get("TT_MAX_CREDITS") or 170)
 TT_MAX_SECS = int(os.environ.get("TT_MAX_SECS") or 150)
 HELIUS_WORKERS = 3
@@ -289,6 +290,19 @@ def is_cluster_warn(s):
 
 def warn_text(s):
     return tier_warn(cluster_tier(s), s)
+
+def short_addr(a):
+    a = a or ""
+    return f"{a[:4]}\u2026{a[-4:]}" if len(a) > 10 else (a or "?")
+
+def cluster_kill_reason(s):
+    """r10.5: KILL reason when >= TRADER_CLUSTER_KILL_MIN of the top traders share one non-exchange funder, else None.
+    Only the shared-funder count matters (shared_funder_max already excludes CEX / >50 SOL / multi-mint funders);
+    fresh-only clusters (no shared funder) never kill. Missing / failed top-traders data -> None (verdict unchanged)."""
+    if not s or not s.get("n"): return None
+    k = _num(s, "shared_funder_max")
+    if k is None or k < TRADER_CLUSTER_KILL_MIN: return None
+    return f"FUNDER CLUSTER: {k}/{s.get('n') or TOP_N} top traders share funder {short_addr(s.get('shared_funder'))}"
 
 def top_traders(mint, pair=None, record_funders=True):
     """Best-effort summary dict. Never raises."""

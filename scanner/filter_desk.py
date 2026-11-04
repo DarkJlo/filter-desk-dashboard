@@ -18,7 +18,7 @@ from collections import Counter
 from datetime import datetime, timezone
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.4-2026-10-29"   # r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.5-2026-11-04"   # r10.5: KILL when >= 12/15 top traders share one non-exchange funder (top_traders.TRADER_CLUSTER_KILL_MIN; 5-11 stay HIGH WARN/PASS); r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -906,12 +906,14 @@ def order_warns(warns):
     w = list(warns or [])
     return [x for x in w if x.startswith("\U0001F6A9 FUNDER CLUSTER")] + [x for x in w if not x.startswith("\U0001F6A9 FUNDER CLUSTER")]
 
-# ---------------- r10.2 top traders (PASS only; WARN only; never changes the verdict) ----------------
+# ---------------- r10.2 top traders (would-be PASS only; WARN tiers; r10.5: >= 12/15 shared funder -> KILL) ----------------
 # scanner/top_traders.py: GeckoTerminal recent trades (keyless) -> top 15 wallets by USD volume -> Helius first tx
 # (age + funder, 10 credits each, cached per wallet) + one batched balance call. ~151 Helius credits per PASS,
 # hard cap TT_MAX_CREDITS (170). r10.4 tiers: HIGH "🚩 FUNDER CLUSTER (HIGH RISK)" (tag trader_cluster_funder, pass_tier
 # high_risk, first warning) when >= 5 of the top 15 share a non-CEX funder (any age); LOW "Fresh buyers:" (tag trader_fresh)
-# when >= 8 are wallets < 7 days old with no such cluster. Disable with env FD_TOP_TRADERS=0.
+# when >= 8 are wallets < 7 days old with no such cluster. r10.5: >= TRADER_CLUSTER_KILL_MIN (12) of the top 15 sharing
+# one non-CEX funder turns the PASS into KILL "FUNDER CLUSTER: N/15 top traders share funder ab12…yz89" (trader_verdict).
+# Disable with env FD_TOP_TRADERS=0 (no data -> no KILL).
 TT_SUMMARY_KEYS = ("n", "fresh_lt7d", "shared_funder_max", "cex_funded", "still_holding", "sold_out", "window_hours",
                    "helius_credits_est", "error")
 
@@ -932,10 +934,20 @@ def trader_check(mint, pair, M):
             if summ["tier"] == tt.TIER_FUNDER: W.insert(0, tt.warn_text(s))   # r10.4: HIGH tier is the first warning
             else: W.append(tt.warn_text(s))
         print(f"  {summ['line']} (Helius ~{s.get('helius_credits_est')} credits, {s.get('secs')}s)")
+        kr = tt.cluster_kill_reason(s)   # r10.5: >= TRADER_CLUSTER_KILL_MIN share one non-CEX funder
+        if kr: M["trader_kill"] = kr
         return s
     except Exception as e:
         M["top_traders"] = {"n": 0, "error": f"top traders failed: {type(e).__name__}"}
         print(f"  top traders failed: {type(e).__name__}"); return None
+
+def trader_verdict(mint, pair, M, v, R):
+    """r10.5: run the top-traders check on a would-be PASS; a >= 12/15 shared non-exchange funder overrides PASS -> KILL.
+    Below the threshold (or no data / check failed / disabled) the verdict is unchanged (r10.4 WARN tiers only)."""
+    if v != "PASS": return v, R
+    trader_check(mint, pair, M)
+    if M.get("trader_kill"): return "KILL", list(R or []) + [M["trader_kill"]]
+    return v, R
 
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
@@ -961,6 +973,7 @@ def log_check(mint, verdict, reasons, metrics):
             print(f"  (dashboard update failed: {e})")
 
 def tag(r):  # normalize reason for tally
+    if r.startswith("FUNDER CLUSTER"): return "FUNDER CLUSTER"   # r10.5 (strip the per-token funder address)
     return r.split(":")[0] + ":" + r.split(":")[1].split("(")[0].strip() if r.startswith(("missing data", "danger", "warn")) \
         else "".join(c for c in r if not c.isdigit() and c not in "$,.%").split(">")[0].split("<")[0].strip()
 
@@ -1236,7 +1249,7 @@ def run(mints, quiet=False):
         if v == "PASS":
             et = entry_timing(dex.get(m), M)   # r10: entry-timing label, does not change the verdict
             print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
-            trader_check(m, dex.get(m), M)   # r10.2: top traders, WARN only, best-effort, never changes the verdict
+            v, R = trader_verdict(m, dex.get(m), M, v, R)   # r10.2 top traders (best-effort); r10.5: >= 12/15 shared funder -> KILL
         M["stage_b_secs"] = round(time.time() - tb, 1)
         results[m] = (v, R, M)
     nb = min(len(surv_a), cap) if cap else len(surv_a)
@@ -1533,6 +1546,7 @@ if __name__ == "__main__":
                   f"trades {s.get('trades_seen')} (>${s.get('usd_min')})  Helius ~{s.get('helius_credits_est')} credits  {s.get('secs')}s")
             print("  " + tt.summary_line(s))
             if tt.is_cluster_warn(s): print("  " + tt.warn_text(s))
+            if tt.cluster_kill_reason(s): print("  r10.5 would KILL: " + tt.cluster_kill_reason(s))
             for r in s.get("wallets") or []:
                 fd = r.get("funder") or "?"
                 print(f"   {r['wallet'][:6]}… vol ${r['buy_usd'] + r['sell_usd']:>9,.0f} buy ${r['buy_usd']:>8,.0f} sell ${r['sell_usd']:>8,.0f} "
