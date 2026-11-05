@@ -292,19 +292,46 @@
    "symbol": "PEAK"
   },
   "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
-   "checks": 5,
-   "fdv": 166838,
+   "checks": 6,
+   "fdv": 282496,
+   "fdv_at_flip": 282496,
    "first_label": "WAIT",
    "first_wait": "2026-11-05T15:55:47.788926+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-05T20:28:48+00:00",
-   "liq": 33418.86,
+   "flipped_at": "2026-11-05T21:25:48+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "BUY",
+    "action_reasons": [
+     "top traders checked, no shared-funder cluster",
+     "liquidity $44K"
+    ],
+    "block": false,
+    "flags": "bundled_launch",
+    "gate_version": "r10.6-2026-11-05",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundled_launch"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~15h): 0 fresh <7d, 0 share a non-CEX funder, 6 CEX-funded, 4 still holding, 11 sold out \u00b7 tier: none"
+   },
+   "issue": 12,
+   "label": "OK",
+   "last_check": "2026-11-05T21:25:48+00:00",
+   "liq": 44150.22,
+   "liq_at_flip": 44150.22,
    "mint": "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump",
    "pass_ts": "2026-11-05T15:55:47.788926+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "holding higher low (14% below high)",
+    "15m higher low held (+35% over prior low)",
+    "5m higher low held (+61% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "inu"
   },
   "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump": {
@@ -725,6 +752,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T20:28:48+00:00",
+ "updated": "2026-11-05T21:25:48+00:00",
  "window_h": 24
 }
