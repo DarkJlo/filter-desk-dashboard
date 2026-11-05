@@ -42,7 +42,7 @@ def rules_version(e):
 _WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING WARN", "funding"),
               ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
               ("\U0001F6A9 FUNDER CLUSTER", "trader_cluster_funder"), ("Fresh buyers:", "trader_fresh"),
-              ("TRADER CLUSTER WARN", "trader_cluster"),
+              ("TRADER CLUSTER WARN", "trader_cluster"), ("\u26a0 TRADERS UNCHECKED", "traders_unchecked"),
               ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 
 def _tags(warns):
@@ -52,7 +52,7 @@ def tier_of(warns, tt=None):
     """Same tiers as filter_desk.pass_tier; r10.4 high_risk also re-derived for legacy trader_cluster records."""
     t = _tags(warns)
     risk, deg = t - {"rc_down", "lp_unverified"}, t & {"rc_down", "lp_unverified"}
-    high = "trader_cluster_funder" in t
+    high = "trader_cluster_funder" in t or "traders_unchecked" in t   # r10.6: missing top-traders data = HIGH
     if not high and ("trader_cluster" in t or tt):
         try:
             import top_traders as _tt
@@ -77,7 +77,9 @@ def enroll_meta(e):
             "entry_bundler_pct": (mt.get("bundler") or {}).get("bundler_pct"),
             # r10 entry timing at the enrolling PASS (None for older records) -> compare OK vs WAIT later
             "entry_label": (e.get("entry") or mt.get("entry")) if e.get("verdict") == "PASS" else None,
-            "entry_reasons": (e.get("entry_reasons") or mt.get("entry_reasons")) if e.get("verdict") == "PASS" else None}
+            "entry_reasons": (e.get("entry_reasons") or mt.get("entry_reasons")) if e.get("verdict") == "PASS" else None,
+            # r10.6 BUY / SKIP stamped at the enrolling PASS (None before r10.6)
+            "action": (e.get("action") or mt.get("action")) if e.get("verdict") == "PASS" else None}
 
 BY_T0 = {}   # (mint, timestamp) -> log entry, to backfill enrollment metadata
 
@@ -236,7 +238,9 @@ def summarize(T):
             "pass_degraded": lambda t: t["group"] == "pass" and "degraded" in (t.get("pass_tier") or ""),
             "pass_entry_ok": lambda t: t["group"] == "pass" and t.get("entry_label") == "OK",
             "pass_entry_wait": lambda t: t["group"] == "pass" and t.get("entry_label") == "WAIT",
-            "pass_entry_unknown": lambda t: t["group"] == "pass" and t.get("entry_label") == "UNKNOWN"}
+            "pass_entry_unknown": lambda t: t["group"] == "pass" and t.get("entry_label") == "UNKNOWN",
+            "pass_buy": lambda t: t["group"] == "pass" and t.get("action") == "BUY",
+            "pass_skip": lambda t: t["group"] == "pass" and t.get("action") == "SKIP"}
     for g, f in segs.items():
         xs = [t for t in T.values() if f(t) and t.get("entry_price")]
         m24 = [t["m24h"] for t in xs if t.get("m24h")]

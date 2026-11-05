@@ -33,7 +33,7 @@ def verdict(s=None, exc=None, v="PASS", R=None):
 
 class FunderClusterKill(unittest.TestCase):
     def test_version_and_constant(self):
-        self.assertEqual(fd.FILTER_VERSION, "r10.5-2026-11-04")
+        self.assertEqual(fd.FILTER_VERSION, "r10.6-2026-11-05")
         self.assertEqual(tt.TRADER_CLUSTER_KILL_MIN, 12)
         import entry_watch as ew
         self.assertEqual(ew.GATE_VERSION, fd.FILTER_VERSION)
@@ -68,7 +68,10 @@ class FunderClusterKill(unittest.TestCase):
         self.assertIsNone(tt.cluster_kill_reason(summ(1, fresh=15, funder=None)))
 
     def test_unavailable_data_no_kill(self):
-        self.assertEqual(verdict(summ(0, n=0, error="GeckoTerminal trades unavailable", shared_funder_max=None))[0], "PASS")
+        v, R, M = verdict(summ(0, n=0, error="GeckoTerminal trades unavailable", shared_funder_max=None))
+        self.assertEqual(v, "PASS")   # r10.6: still not a KILL, but a HIGH flag
+        self.assertTrue(M["warns"][-1].startswith("\u26a0 TRADERS UNCHECKED (HIGH RISK)"))
+        self.assertIn("traders_unchecked", fd.warn_tags(M["warns"])); self.assertEqual(fd.pass_tier(M["warns"]), "high_risk")
         self.assertEqual(verdict(summ(0, n=15, shared_funder_max=None, error="HELIUS_API_KEY missing (volume only)"))[0], "PASS")
         self.assertEqual(verdict(exc=RuntimeError("boom"))[0], "PASS")
         saved = os.environ.get("FD_TOP_TRADERS"); os.environ["FD_TOP_TRADERS"] = "0"

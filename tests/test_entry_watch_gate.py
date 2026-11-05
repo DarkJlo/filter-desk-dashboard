@@ -7,9 +7,10 @@ import filter_desk as fd
 
 MINT = "TESTmint1111111111111111111111111111111pump"
 
-def pas(ts="2026-10-28T20:00:00+00:00", tags=(), tt=None, entry="WAIT"):
+def pas(ts="2026-10-28T20:00:00+00:00", tags=(), tt=None, entry="WAIT", liq=50000):
     r = {"timestamp": ts, "mint": MINT, "verdict": "PASS", "entry": entry, "entry_reasons": [],
-         "metrics": {"symbol": "TST", "warn_tags": list(tags), "warns": [], "rules_version": fd.FILTER_VERSION}}
+         "metrics": {"symbol": "TST", "warn_tags": list(tags), "warns": [], "rules_version": fd.FILTER_VERSION,
+                     "liquidity_usd": liq, "fdv": 400000}}
     if tt is not None: r["top_traders"] = tt
     return r
 
@@ -60,7 +61,12 @@ class Gate(unittest.TestCase):
     def test_clean_flags_and_unchecked(self):
         g = ew.gate(pas(tt=CLEAN_TT), []); self.assertFalse(g["block"]); self.assertEqual(g["flags"], "")
         g = ew.gate(pas(tags=["bundle", "rc_down"]), [kill("2026-10-27T00:00:00+00:00")])
-        self.assertFalse(g["block"]); self.assertEqual(g["flags"], "bundle, 1x killed, traders unchecked")
+        self.assertEqual(g["flags"], "bundle, 1x killed, traders unchecked")
+        # r10.6: unchecked top traders = HIGH -> action SKIP -> no alert (but not a hard block: live check may clear it)
+        self.assertTrue(g["block"]); self.assertFalse(g["hard_block"]); self.assertEqual(g["action"], "SKIP")
+        self.assertIn("top traders unchecked (HIGH)", g["reasons"][-1])
+        g = ew.gate(pas(tags=["bundle", "rc_down"]), [], tt_override=CLEAN_TT)   # live check at flip came back clean
+        self.assertFalse(g["block"]); self.assertEqual(g["action"], "BUY")
 
     def test_issue_body_and_title(self):
         p = pas(tags=["flat"], tt=CLEAN_TT)
@@ -71,7 +77,9 @@ class Gate(unittest.TestCase):
         self.assertIn("Prior KILL verdicts for this mint: 1", body); self.assertIn("X check not run automatically", body)
         self.assertEqual(title, "ENTRY OK: TST @ $500K [warn: flat, 1x killed]")
         rec["gate"] = ew.gate(pas(tt=CLEAN_TT), [])
-        self.assertEqual(ew.issue_title(rec), "ENTRY OK: TST @ $500K")
+        self.assertEqual(ew.issue_title(rec), "BUY ENTRY OK: TST @ $500K")
+        self.assertIn("**Action: BUY** (r10.6)", ew.issue_body(rec, p))
+        self.assertIn("Sell 100% at 2x (FDV $1.00M). Stop: sell all at FDV $250K (-50%)", ew.issue_body(rec, p))
 
 class Tiers(unittest.TestCase):
     def test_warn_strings_and_tags(self):
@@ -122,7 +130,7 @@ class Tiers(unittest.TestCase):
                "fdv_at_flip": 500000, "liq_at_flip": 50000, "reasons": ["ok"], "gate": ew.gate(p, [])}
         self.assertIn("Fresh buyers: 11/15 top traders <7d old", ew.issue_body(rec, p))
         self.assertIn("annotation only", ew.issue_body(rec, p))
-        self.assertEqual(ew.issue_title(rec), "ENTRY OK: TST @ $500K [warn: fresh buyers 11/15 (no shared funder)]")
+        self.assertEqual(ew.issue_title(rec), "BUY ENTRY OK: TST @ $500K [warn: fresh buyers 11/15 (no shared funder)]")
 
 class MainFlow(unittest.TestCase):
     """Full main() with a temp log: a WAIT pass flips to OK; gated ones get status suppressed and no issue."""

@@ -15,10 +15,10 @@ Read-only: no keys, no signing. Every check appended to checks_log.jsonl.
 """
 import sys, json, os, time, requests
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.5-2026-11-04"   # r10.5: KILL when >= 12/15 top traders share one non-exchange funder (top_traders.TRADER_CLUSTER_KILL_MIN; 5-11 stay HIGH WARN/PASS); r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.6-2026-11-05"   # r10.6: lopsided flow = KILL, missing top-traders = HIGH flag, entry label = price structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL when >= 12/15 top traders share one non-exchange funder (top_traders.TRADER_CLUSTER_KILL_MIN; 5-11 stay HIGH WARN/PASS); r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -37,12 +37,22 @@ H1_ZERO_SELL_MAX_BUYS = 20    # h1 sells == 0 with h1 buys > 20 = kill
 # (startupSI killed at 5-9h with sells/buys 0.40-0.47, ran to ~20x; rugs Vader/CATONICE had 0.25-0.31)
 LOPSIDED_SOFT_MIN_AGE_H = 4.0     # pair age >= 4h ...
 LOPSIDED_SOFT_MIN_RATIO = 0.38    # ... and h24 sells/buys >= 0.38 (buys <= ~2.6x sells) -> LOPSIDED WARN
+# r10.6: the r8 soft band (same thresholds above) is a KILL again: every PASS token ever logged with the LOPSIDED WARN
+# rugged (10/10: ODIE, GTA, CHICO, DUBBLE, CATBOT, BNB, AgenC, SIS, AAPLCAT, ANAKIN). Reason text keeps the ratio + age.
 # r9 (WARN only, no verdict change): supply spread so thin that no non-LP wallet holds >= 1% and top10 < 7% at a
 # tradeable size looks like a wallet farm. Of 10 such tokens with liq >= $15k in the log, 6 went to ~$2-3k FDV
 # (supply dumped into a burned-LP pool: Doomsday, Vader, CATONICE, Piccolo, 3oUzvv, PIERRE-v1), 3 fell 60-97%
 # (MINTER, FTR, WORTHLESS), and 1 ran 24x (startupSI, identical profile). It cannot be a KILL; treat it as an exit-risk flag.
 FLAT_WARN_MAX_TOP10_PCT = 7.0
 FLAT_WARN_MAX_TOP1_PCT = 1.0
+# r10.6 action on every PASS: BUY or SKIP (+ short action_reasons) and, on BUY, a fixed exit plan off the check FDV.
+# BUY = no HIGH flag (no shared-funder cluster 5-11 and top-traders data present), no FLAT tag unless the top traders
+# are the fresh-only tier, no LOPSIDED tag, liquidity >= ACTION_MIN_LIQ_USD. Exit plan backtested Nov 5 on 5m GeckoTerminal
+# candles for r10+ PASSes ($6/trade at check FDV): sell 100% at 2x, stop -50%, else sell at 24h (docs/RULES_CHANGELOG.md).
+ACTION_MIN_LIQ_USD = 30_000
+EXIT_TAKE_PROFIT_MULT = 2.0
+EXIT_STOP_MULT = 0.5
+EXIT_MAX_HOLD_H = 24
 SELL_QUOTE_USD = 100
 SELL_SLIPPAGE_BPS = 1500
 MAX_SELL_IMPACT_PCT = 15.0
@@ -837,8 +847,8 @@ def evaluate_stage_a(mint, rep, pair):
             ratio = s / b if b else float("inf")
             M["sell_buy_ratio_h24"] = ratio if b else None
             if ratio < MIN_SELL_BUY_RATIO and age is not None and age >= LOPSIDED_SOFT_MIN_AGE_H * 60 \
-                    and ratio >= LOPSIDED_SOFT_MIN_RATIO:
-                M["warns"].append(f"LOPSIDED WARN: h24 buys/sells {b}/{s} (ratio {ratio:.2f}, pair {age/60:.1f}h old)")
+                    and ratio >= LOPSIDED_SOFT_MIN_RATIO:   # r8 soft band (was LOPSIDED WARN) -> r10.6 KILL
+                R.append(f"lopsided h24 buys/sells {b}/{s} (ratio {ratio:.2f}, pair {age/60:.1f}h old; r8 warn band, r10.6 KILL)")
             elif not (MIN_SELL_BUY_RATIO <= ratio <= MAX_SELL_BUY_RATIO):
                 R.append(f"lopsided h24 buys/sells {b}/{s}")
         t1 = (pair.get("txns") or {}).get("h1") or {}
@@ -886,13 +896,16 @@ WARN_TAGS = [("BUNDLER WARN", "bundler"), ("BUNDLE WARN", "bundle"), ("FUNDING W
              ("LOPSIDED WARN", "lopsided"), ("bundled launch", "bundled_launch"), ("FLAT WARN", "flat"),
              ("\U0001F6A9 FUNDER CLUSTER", "trader_cluster_funder"), ("Fresh buyers:", "trader_fresh"),   # r10.4 tiers
              ("TRADER CLUSTER WARN", "trader_cluster"),   # legacy r10.2/r10.3 (read via top_traders.trader_tier)
+             ("\u26a0 TRADERS UNCHECKED", "traders_unchecked"),   # r10.6 HIGH: top-traders data missing on a PASS
              ("rugcheck unavailable", "rc_down"), ("LP lock unverified", "lp_unverified")]
 DEGRADED_TAGS = {"rc_down", "lp_unverified"}   # a data source was skipped, not a risk signal by itself
 
 def warn_tags(warns):
     return sorted({tag for w in warns or [] for pfx, tag in WARN_TAGS if w.startswith(pfx)})
 
-HIGH_RISK_TAGS = {"trader_cluster_funder"}   # r10.4: shared non-exchange funder among top traders
+HIGH_RISK_TAGS = {"trader_cluster_funder", "traders_unchecked"}   # r10.4 funder cluster; r10.6 missing top-traders data
+HIGH_WARN_PREFIXES = ("\U0001F6A9 FUNDER CLUSTER", "\u26a0 TRADERS UNCHECKED")
+UNCHECKED_PREFIX = "\u26a0 TRADERS UNCHECKED"
 
 def pass_tier(warns):
     """clean | warn | degraded | degraded+warn | high_risk | degraded+high_risk  (outcomes segments clean vs warn).
@@ -902,9 +915,73 @@ def pass_tier(warns):
     return "+".join(x for x, on in (("degraded", deg), (top, risk)) if on) or "clean"
 
 def order_warns(warns):
-    """r10.4: the HIGH funder-cluster warning always comes first."""
+    """r10.4: the HIGH funder-cluster warning always comes first (r10.6: then the HIGH traders-unchecked flag)."""
     w = list(warns or [])
-    return [x for x in w if x.startswith("\U0001F6A9 FUNDER CLUSTER")] + [x for x in w if not x.startswith("\U0001F6A9 FUNDER CLUSTER")]
+    return [x for p in HIGH_WARN_PREFIXES for x in w if x.startswith(p)] + [x for x in w if not x.startswith(HIGH_WARN_PREFIXES)]
+
+# ---------------- r10.6 action: BUY / SKIP + exit plan (PASS only; never changes the verdict) ----------------
+def trader_data_ok(tt):
+    """True when a top-traders summary has usable wallet data (same test as the entry-watch gate)."""
+    return bool(tt and tt.get("n") and not str(tt.get("error") or "").startswith("HELIUS_API_KEY missing"))
+
+def unchecked_warn(tt):
+    why = (tt or {}).get("error") or ("check disabled or not run" if not tt else "no trader wallets")
+    return (f"{UNCHECKED_PREFIX} (HIGH RISK): top-traders data missing ({str(why)[:60]}) \u2014 "
+            f"all 3 past PASS tokens never checked rugged; treat like a funder cluster")
+
+def flag_missing_traders(M):
+    """r10.6: a PASS without usable top-traders data gets the HIGH 'traders_unchecked' warning (idempotent)."""
+    W = M.setdefault("warns", [])
+    if trader_data_ok(M.get("top_traders")):
+        M["warns"] = [w for w in W if not w.startswith(UNCHECKED_PREFIX)]; return False
+    if not any(w.startswith(UNCHECKED_PREFIX) for w in W): W.append(unchecked_warn(M.get("top_traders")))
+    return True
+
+def _mst(dt):
+    try:
+        from zoneinfo import ZoneInfo
+        return dt.astimezone(ZoneInfo("America/Phoenix")).strftime("%b %d %H:%M MST")
+    except Exception:
+        return dt.strftime("%b %d %H:%M UTC")
+
+def _usd(v):
+    return f"${v / 1e6:.2f}M" if v >= 1e6 else (f"${v / 1e3:.0f}K" if v >= 1e3 else f"${v:.0f}")
+
+def exit_plan(fdv, ts=None):
+    """r10.6 fixed exit plan off the check FDV (backtest winner): TP 2x, stop -50%, time stop 24h."""
+    if not fdv: return None
+    t0 = datetime.fromisoformat(ts) if ts else datetime.now(timezone.utc)
+    sell_by = t0 + timedelta(hours=EXIT_MAX_HOLD_H)
+    tp, sl = fdv * EXIT_TAKE_PROFIT_MULT, fdv * EXIT_STOP_MULT
+    return {"entry_fdv": fdv, "take_profit_fdv": tp, "stop_fdv": sl, "sell_by": sell_by.isoformat(timespec="seconds"),
+            "text": (f"Buy near FDV {_usd(fdv)}. Sell 100% at 2x (FDV {_usd(tp)}). Stop: sell all at FDV {_usd(sl)} (-50%). "
+                     f"Otherwise sell everything at 24h ({_mst(sell_by)}).")}
+
+def pass_action(metrics, tt=None, tags=None):
+    """r10.6: ('BUY' | 'SKIP', short reasons) for a PASS. Pure (no network); works on new and legacy log records."""
+    m = metrics or {}
+    if tt is None: tt = m.get("top_traders")
+    if tags is None: tags = m.get("warn_tags") if m.get("warn_tags") is not None else warn_tags(m.get("warns"))
+    tags = set(tags or [])
+    try:
+        import top_traders as _tt
+        tier = _tt.trader_tier(tt, tags)
+    except Exception:
+        tier = "funder" if "trader_cluster_funder" in tags else ("fresh" if "trader_fresh" in tags else None)
+    R = []
+    if "lopsided" in tags: R.append("lopsided buy/sell flow (r10.6 KILL rule)")
+    if not trader_data_ok(tt): R.append("top traders unchecked (HIGH)")
+    if tier == "funder":
+        k = (tt or {}).get("shared_funder_max")
+        R.append(f"funder cluster {k}/15 (HIGH)" if isinstance(k, int) else "funder cluster (HIGH)")
+    if "flat" in tags and tier != "fresh": R.append("flat holders (wallet-farm risk)")
+    liq = m.get("liquidity_usd")
+    if not isinstance(liq, (int, float)) or liq < ACTION_MIN_LIQ_USD:
+        R.append(f"liquidity {_usd(liq) if isinstance(liq, (int, float)) else '?'} < {_usd(ACTION_MIN_LIQ_USD)}")
+    if R: return "SKIP", R
+    ok = ["top traders checked, no shared-funder cluster" + (" (fresh buyers)" if tier == "fresh" else ""),
+          f"liquidity {_usd(liq)}"]
+    return "BUY", ok
 
 # ---------------- r10.2 top traders (would-be PASS only; WARN tiers; r10.5: >= 12/15 shared funder -> KILL) ----------------
 # scanner/top_traders.py: GeckoTerminal recent trades (keyless) -> top 15 wallets by USD volume -> Helius first tx
@@ -947,10 +1024,13 @@ def trader_verdict(mint, pair, M, v, R):
     if v != "PASS": return v, R
     trader_check(mint, pair, M)
     if M.get("trader_kill"): return "KILL", list(R or []) + [M["trader_kill"]]
+    if flag_missing_traders(M): print("  " + M["warns"][-1])   # r10.6: missing data = HIGH flag, not a KILL
     return v, R
 
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
+    if verdict == "PASS":
+        metrics["warns"] = list(metrics.get("warns") or []); flag_missing_traders(metrics)   # r10.6 HIGH flag
     if metrics.get("warns"): metrics["warns"] = order_warns(metrics["warns"])
     metrics["warn_tags"] = warn_tags(metrics.get("warns"))
     rec = {"timestamp": datetime.now(timezone.utc).isoformat(), "mint": mint, "verdict": verdict, "reasons": reasons}
@@ -960,6 +1040,12 @@ def log_check(mint, verdict, reasons, metrics):
         metrics["pass_tier"] = pass_tier(metrics.get("warns"))
         rec["entry"] = metrics.get("entry") or "UNKNOWN"          # r10 entry timing (PASS only)
         rec["entry_reasons"] = metrics.get("entry_reasons") or []
+        act, ar = pass_action(metrics, tt=rec.get("top_traders"), tags=metrics["warn_tags"])   # r10.6 BUY / SKIP
+        metrics["action"], metrics["action_reasons"] = act, ar
+        rec["action"] = act
+        if act == "BUY":
+            ep = exit_plan(metrics.get("fdv"), rec["timestamp"])
+            if ep: metrics["exit_plan"] = ep
     rec["metrics"] = metrics
     with open(LOG_PATH, "a") as f:
         f.write(json.dumps(rec, default=str) + "\n")
@@ -973,6 +1059,7 @@ def log_check(mint, verdict, reasons, metrics):
             print(f"  (dashboard update failed: {e})")
 
 def tag(r):  # normalize reason for tally
+    if r.startswith("lopsided h24"): r = r.split(" (")[0]   # r10.6: soft-band KILL tallies with the old lopsided KILL
     if r.startswith("FUNDER CLUSTER"): return "FUNDER CLUSTER"   # r10.5 (strip the per-token funder address)
     return r.split(":")[0] + ":" + r.split(":")[1].split("(")[0].strip() if r.startswith(("missing data", "danger", "warn")) \
         else "".join(c for c in r if not c.isdigit() and c not in "$,.%").split(">")[0].split("<")[0].strip()
@@ -1072,14 +1159,14 @@ def dead_pump(pair, M):
 
 # ---------------- r10 entry timing (label on PASS only; never changes the safety verdict) ----------------
 # A PASS says "probably not a rug". It says nothing about WHERE you buy. r10 adds entry = OK | WAIT | UNKNOWN:
-#   WAIT  if price >= ENTRY_NEAR_ATH_FRAC x ATH (buying the top, e.g. MCRIBINU passed -10% from ATH)
 #   WAIT  if the 15m (or 5m) chart has no held higher low (still sliding, e.g. ODIE passed -54% and went to -80%)
-#   OK    only if neither fires; UNKNOWN if candles are missing.
+#   OK    if the 15m higher low holds (and the 5m one too when 5m candles exist); UNKNOWN if candles are missing.
+#   r10.6: the r10 "near ATH" WAIT (price >= 0.75x ATH) is gone. It fired on most passes and the WAIT->OK flip
+#   bought winners higher (DESSA flipped at 1.76x its check FDV). The distance from the high is still shown as a note.
 # Swing low (fractal): candle i is a swing low if its low is strictly below the lows of the K candles before it
 # and <= the lows of the K candles after it (so only CONFIRMED lows count; the newest K candles can't be one).
 # "Held higher low" on a timeframe = within the window there are >= 2 swing lows, the latest is above the one
 # before it, no candle after the latest swing low has traded below it, and the current price is above it.
-ENTRY_NEAR_ATH_FRAC = 0.75        # price >= 0.75x ATH (within 25% of the high) -> WAIT
 ENTRY_TFS = [                     # (label, aggregate minutes, window hours, fractal K)
     ("15m", 15, 6.0, 2),          # last 6h = 24 candles, swing low = lowest of a 5-candle (75 min) span
     ("5m", 5, 3.0, 3),            # last 3h = 36 candles, swing low = lowest of a 7-candle (35 min) span
@@ -1145,8 +1232,6 @@ def _entry_timing(pair, M):
     W, notes, det = [], [], {"ath": ath, "cur": cur}
     dd = (1 - cur / ath) if (ath and cur) else None
     det["drawdown"] = dd
-    if dd is not None and cur >= ENTRY_NEAR_ATH_FRAC * ath:
-        W.append(f"near ATH: -{max(dd, 0) * 100:.0f}% from high")
     held_tfs = []
     for lab, agg, win_h, k in ENTRY_TFS:
         v = tf_rows.get(lab)
@@ -1159,13 +1244,14 @@ def _entry_timing(pair, M):
     M["entry_detail"] = det
     if W:
         M.update(entry="WAIT", entry_reasons=W)
-    elif dd is None or "15m" not in held_tfs:
+    elif "15m" not in held_tfs:
         miss = [lab for lab, *_ in ENTRY_TFS if not isinstance(det.get(lab), dict)]
-        M.update(entry="UNKNOWN", entry_reasons=["OHLCV unavailable: " + (", ".join(miss) or "ATH") +
+        M.update(entry="UNKNOWN", entry_reasons=["OHLCV unavailable: " + (", ".join(miss) or "15m") +
                                                  (" (no WAIT signal on the rest)" if held_tfs else "")])
     else:
         extra = "" if "5m" in held_tfs else " (5m unavailable)"
-        M.update(entry="OK", entry_reasons=[f"pulled back -{dd * 100:.0f}% and holding higher low{extra}"] + notes)
+        hi = f" ({max(dd, 0) * 100:.0f}% below high)" if dd is not None else ""
+        M.update(entry="OK", entry_reasons=[f"holding higher low{extra}{hi}"] + notes)
     return M["entry"]
 
 def prev_log(mint):
@@ -1447,6 +1533,9 @@ def report(mints, label):
         for w in M.get("warns") or []: print(f"      WARN: {w}")
         print(f"      ENTRY {M.get('entry') or 'UNKNOWN'}: {'; '.join(M.get('entry_reasons') or [])}")
         if M.get("top_traders_line"): print(f"      {M['top_traders_line']}")
+        act, ar = pass_action(M)   # r10.6
+        print(f"      ACTION {act}: {'; '.join(ar)}")
+        if act == "BUY": print(f"      EXIT PLAN: {(exit_plan(M.get('fdv')) or {}).get('text', 'n/a')}")
     print(f"\nRugCheck: ok {RC_STATE['ok']} | failed {RC_STATE['fails']} | skipped (down) {RC_STATE['skipped']}")
     print("\nKill-reason tally:")
     for k, c in tally.most_common(): print(f"  {c:3d}  {k}")

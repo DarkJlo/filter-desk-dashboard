@@ -64,6 +64,30 @@ def filter_version():
         return m.group(1) if m else "unknown"
     except Exception: return "unknown"
 
+def _fd():
+    """filter_desk, imported lazily (it imports this module lazily too). None if unavailable."""
+    try:
+        import filter_desk
+        return filter_desk
+    except Exception:
+        return None
+
+def action_of(r, m, tt_rec):
+    """r10.6 (action, reasons, exit plan text) for a PASS row; legacy rows are re-derived with today's BUY rules."""
+    act, ar, ep = m.get("action") or r.get("action"), m.get("action_reasons") or [], (m.get("exit_plan") or {}).get("text")
+    fd = _fd()
+    if not act and fd:
+        act, ar = fd.pass_action(m, tt=tt_rec)
+        ar = ar + ["(re-derived with r10.6 rules)"]
+    if act == "BUY" and not ep and fd: ep = (fd.exit_plan(m.get("fdv"), r["timestamp"]) or {}).get("text")
+    return act, ar, ep
+
+def action_html(act, ar):
+    if not act: return ""
+    cls = "act-buy" if act == "BUY" else "act-skip"
+    tip = html.escape("; ".join(ar or []), quote=True)
+    return f'<span class="pill {cls}" title="r10.6 action: {tip}">{act}</span> '
+
 STATUS_COL = {"WINNER": "#26d07c", "RUGGED": "#f6465d", "DEAD": "#f0b90b"}
 
 def oc_badge(OC, mint):
@@ -178,7 +202,7 @@ def watch_html(W):
                  f'<td>{_mst(r.get("first_wait"))}</td><td>{_mst(r.get("last_check"))}</td><td>{flip or "—"} {iss_html}</td></tr>')
     upd = _mst(W.get("updated"), "%b %d %H:%M MST")
     return (f'<h2>Entry watch <span class="nm" style="font-size:12px">updated {upd} · hourly at :47 · WAIT/ENTRY ? passes from the last 24h are re-checked; '
-            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo, unless the r10.4 gate suppresses it (HIGH funder cluster or 3+ prior KILLs; fresh-only buyers are only noted)</span></h2>'
+            f'first flip to ENTRY OK opens a GitHub issue that @mentions DarkJlo, only when the PASS action is BUY (r10.6 gate: SKIP = funder cluster, top traders unchecked, flat holders unless fresh-only, liquidity under $30K; also 3+ prior KILLs)</span></h2>'
             f'<table class="small" style="margin-bottom:22px"><thead><tr><th>Token</th><th>Watch</th><th>Label now</th><th>Reasons</th>'
             f'<th>First WAIT (MST)</th><th>Last check</th><th>Flipped (MST) · at flip</th></tr></thead><tbody>{rows}</tbody></table>')
 
@@ -321,7 +345,7 @@ def build():
         reasons = r.get("reasons") or []
         warns = m.get("warns") or []
         main = html.escape("; ".join(reasons[:3]) + (f" (+{len(reasons)-3})" if len(reasons) > 3 else ""))
-        ebadge = ""
+        ebadge = abadge = ""
         if r["verdict"] == "PASS":
             tier = record_tier(r, m); tt_rec = r.get("top_traders") or m.get("top_traders")
             rest = [w for w in warns if not (tier and w.startswith(LEGACY_TT_PREFIX))]   # tier text replaces old cluster warn
@@ -333,6 +357,14 @@ def build():
             if wr and r["timestamp"] >= (wr.get("first_wait") or ""): ebadge += watch_badge(wr)
             if el and er: main = f'<span class="nm">entry: {html.escape("; ".join(er))}</span><br>' + main
             main += traders_html(tt_rec, tier)
+            act, ar, ep = action_of(r, m, tt_rec)   # r10.6 BUY / SKIP, shown first
+            abadge = action_html(act, ar)
+            if act:
+                head = f'<b class="{"act-buy-t" if act == "BUY" else "act-skip-t"}">{act}</b>: {html.escape("; ".join(ar))}'
+                if ep: head += f'<br><b class="act-buy-t">Exit plan:</b> {html.escape(ep)}'
+                main = head + "<br>" + main
+            if "traders_unchecked" in set(m.get("warn_tags") or []) and tier != "funder":
+                ebadge = ' <span class="pill entry-sup" title="r10.6 HIGH: top-traders data missing">\u26a0 HIGH RISK</span>' + ebadge
             if tier == "funder": ebadge = ' <span class="pill entry-sup" title="r10.4 HIGH tier: funder cluster">\U0001F6A9 HIGH RISK</span>' + ebadge
         score = r.get("score", m.get("rc_score")); norm = r.get("score_normalised", m.get("rc_score_norm"))
         lp = r.get("lpLockedPct", m.get("rc_lpLockedPct", m.get("lp_locked_pct")))
@@ -342,7 +374,7 @@ def build():
         tok = f'<b>{html.escape(sym)}</b> <span class="nm">{html.escape(nm if nm != sym else "")}</span>' if sym else '<span class="nm">unknown</span>'
         tok += src_html(r, m)
         trs.append(f'<tr class="{v.lower()}"><td>{ts}</td><td><a href="https://gmgn.ai/sol/token/{mint}" target="_blank" title="{mint}">{short}</a></td>'
-                   f'<td>{tok}</td><td><span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{ebadge}{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
+                   f'<td>{tok}</td><td>{abadge}<span class="pill {v.lower()}" title="rules {html.escape(m.get("rules_version") or "pre-r8")}">{v}</span>{ebadge}{oc_badge(OC, mint)}</td><td class="r">{main}</td>'
                    f'<td>{num(score,"{:.0f}")} / {num(norm,"{:.0f}")} / {num(lp)}</td><td>{"$"+num(liq,"{:,.0f}") if liq else "—"}</td></tr>')
     now = datetime.now(TZ).strftime("%b %d, %Y %H:%M MST")
     last = datetime.fromisoformat(max(r["timestamp"] for r in rows)).astimezone(TZ).strftime("%b %d, %Y %H:%M MST") if rows else "never"
@@ -360,6 +392,8 @@ td{{padding:7px 8px;border-bottom:1px solid #161b22;white-space:nowrap}} td.r{{w
 .nm{{color:#6b7280}} a{{color:#8ab4f8;text-decoration:none}} .pill{{padding:2px 8px;border-radius:10px;font-weight:600;font-size:11px}}
 h2{{font-size:15px;color:#fff;margin:6px 0 8px}} table.small td,table.small th{{padding:4px 8px;font-size:12px}} .ver{{background:#1f2630;border:1px solid #2d3643;border-radius:10px;padding:1px 8px;font-size:11px;color:#8ab4f8;margin-left:8px;vertical-align:middle}}
 .pill.entry-ok{{background:#0e3b2a;color:#26d07c;border:1px solid #26d07c;cursor:help}} .pill.entry-wait{{background:#3a2f0b;color:#f0b90b;border:1px solid #f0b90b;cursor:help}} .pill.entry-unk{{background:#1f2630;color:#9aa4b2;border:1px solid #4b5563;cursor:help}} .pill.entry-sup{{background:#3b1216;color:#f6465d;border:1px solid #f6465d;cursor:help}}
+.pill.act-buy{{background:#26d07c;color:#0b0e11;font-size:13px;padding:3px 12px;cursor:help}} .pill.act-skip{{background:#2a3038;color:#9aa4b2;font-size:13px;padding:3px 12px;cursor:help}}
+.act-buy-t{{color:#26d07c}} .act-skip-t{{color:#9aa4b2}}
 .src{{color:#6b7280;font-size:10px;cursor:help}} .src.hot{{color:#c792ea}}
 .pill.pass{{background:#0e3b2a;color:#26d07c}} .pill.kill{{background:#3b1216;color:#f6465d}} .pill.error{{background:#3a2f0b;color:#f0b90b}}
 </style></head><body><h1>Filter Desk <span class="ver" title="current filter rules version (docs/RULES_CHANGELOG.md)">rules {filter_version()}</span></h1><div class="sub">Updated {now} · auto-refreshes every 60s <button onclick="location.href=location.pathname+'?t='+Date.now()">↻ Refresh</button>

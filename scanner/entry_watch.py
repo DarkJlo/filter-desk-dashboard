@@ -26,6 +26,10 @@ r10.4: the LOW tier (trader_fresh: >= 8 fresh wallets < 7d, no shared funder, e.
 opens with a "fresh buyers" flag in the title and the note in the body.
 Flips that do go out carry the flags in the body (top-traders line, WARN tags, prior KILL count, X-check reminder)
 and a short flag summary in the title.
+r10.6: the flip alerts ONLY when the PASS action is BUY (filter_desk.pass_action, re-run with the live top-traders
+summary and the liquidity at flip). SKIP suppresses it: top traders still unchecked after the live attempt (HIGH), a
+shared-funder cluster, FLAT holders (unless fresh-only buyers), a LOPSIDED tag, or liquidity < $30K. BUY issues carry
+the exit plan (sell 100% at 2x, stop -50%, else sell at 24h) computed off the FDV at flip.
   python scanner/entry_watch.py --gate <mint>   # print the gate decision for a mint from the current log (offline)
 """
 import sys, os, json, time
@@ -122,9 +126,11 @@ def tt_flagged(tt):
 def prior_kills(rows, mint, before):
     return sum(1 for e in rows if e.get("mint") == mint and e.get("verdict") == "KILL" and e["timestamp"] < before)
 
-def gate(pas, rows, tt_override=None):
+def gate(pas, rows, tt_override=None, liq=None):
     """Risk flags for a flip. {'block': bool, 'reasons': [...], 'tags': [...], 'tt_line': str, 'tt_checked': bool,
-    'prior_kills': int, 'flags': short title summary}. Pure: no network."""
+    'prior_kills': int, 'flags': short title summary, 'action': BUY|SKIP, 'action_reasons': [...],
+    'hard_block': bool (blocked even if a live top-traders check came back clean)}. Pure: no network.
+    liq = liquidity at flip (defaults to the PASS's)."""
     m = pas.get("mint") or ""
     tags = pass_tags(pas)
     tt = tt_override if tt_override is not None else (pas.get("top_traders") or (pas.get("metrics") or {}).get("top_traders"))
@@ -150,7 +156,14 @@ def gate(pas, rows, tt_override=None):
     flags += risk
     if pk: flags.append(f"{pk}x killed")
     if not tt_ok: flags.append("traders unchecked")
+    hard = bool(reasons)
+    met = dict(pas.get("metrics") or {})
+    if isinstance(liq, (int, float)): met["liquidity_usd"] = liq
+    act, act_r = fd.pass_action(met, tt=tt, tags=tags)   # r10.6: alerts fire only for BUY
+    if act != "BUY":
+        reasons.append("action SKIP (r10.6): " + "; ".join(act_r))
     return {"block": bool(reasons), "reasons": reasons, "tags": tags, "tt_line": line, "tt_checked": tt_ok,
+            "action": act, "action_reasons": act_r, "hard_block": hard,
             "trader_tier": tier, "trader_note": tier_text,
             "prior_kills": pk, "flags": ", ".join(flags), "gate_version": GATE_VERSION}
 
@@ -207,7 +220,10 @@ def issue_body(rec, pas, test=False):
         f"- Warns at PASS: " + ("; ".join(warns) or "none"),
         f"- First WAIT seen: " + ts(rec["first_wait"]).astimezone(fd_tz()).strftime("%b %d %H:%M MST"),
         "",
-        "**Risk flags (r10.4 gate)**",
+        f"**Action: {g.get('action') or '?'}** (r10.6) \u2014 " + "; ".join(g.get("action_reasons") or []),
+        "- Exit plan (off the FDV at flip): " + ((fd.exit_plan(rec.get("fdv_at_flip"), rec.get("flipped_at")) or {}).get("text") or "n/a"),
+        "",
+        "**Risk flags (r10.6 gate)**",
     ] + ([f"- **{g['trader_note']}**" if g.get("trader_tier") == "funder" else f"- {g['trader_note']} (low tier, annotation only: not gated)"]
          if g.get("trader_note") else []) + [
         "- WARN tags: " + (", ".join(g.get("tags") or []) or "none"),
@@ -226,7 +242,7 @@ def issue_body(rec, pas, test=False):
     return "\n".join(lines)
 
 def issue_title(rec, test=False):
-    t = ("[TEST] " if test else "") + f"ENTRY OK: {rec.get('symbol') or rec['mint'][:6]} @ ${money(rec.get('fdv_at_flip'))}"
+    t = ("[TEST] " if test else "") + ("BUY " if (rec.get("gate") or {}).get("action") == "BUY" else "") + f"ENTRY OK: {rec.get('symbol') or rec['mint'][:6]} @ ${money(rec.get('fdv_at_flip'))}"
     fl = (rec.get("gate") or {}).get("flags")
     return t + (f" [warn: {fl}]" if fl else "")
 
@@ -324,10 +340,10 @@ def main():
     sent = []
     for m in new:
         rec, pas = T[m], pass_by_mint.get(m) or {}
-        g = gate(pas, rows)
-        if not g["tt_checked"] and not g["block"]:
+        g = gate(pas, rows, liq=rec.get("liq_at_flip"))
+        if not g["tt_checked"] and not g["hard_block"]:   # r10.6: unchecked = SKIP, so try the live check first
             tt = live_traders(m, dex.get(m) or (fd.fetch_dex([m]).get(m) if os.environ.get("HELIUS_API_KEY") else None))
-            if tt: g = gate(pas, rows, tt_override=tt); rec["top_traders_at_flip"] = tt
+            if tt: g = gate(pas, rows, tt_override=tt, liq=rec.get("liq_at_flip")); rec["top_traders_at_flip"] = tt
         rec["gate"] = g
         if g["block"]:
             rec.update(status="suppressed", suppressed_at=iso(now), suppressed_reasons=g["reasons"])
