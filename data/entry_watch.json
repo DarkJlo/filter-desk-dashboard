@@ -615,18 +615,17 @@
    "symbol": "GATO"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 14,
-   "fdv": 5858231,
+   "checks": 15,
+   "fdv": 6831953,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:50.046054+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-05T06:42:15+00:00",
-   "liq": 212258.13,
+   "last_check": "2026-11-05T07:57:20+00:00",
+   "liq": 229332.75,
    "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
    "pass_ts": "2026-11-04T15:55:50.046054+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "near ATH: -15% from high"
    ],
    "status": "watching",
    "symbol": "RAMBO"
@@ -753,6 +752,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T06:42:15+00:00",
+ "updated": "2026-11-05T07:57:20+00:00",
  "window_h": 24
 }
