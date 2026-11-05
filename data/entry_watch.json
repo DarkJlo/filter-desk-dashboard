@@ -292,17 +292,17 @@
    "symbol": "PEAK"
   },
   "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
-   "checks": 3,
-   "fdv": 114839,
+   "checks": 4,
+   "fdv": 99379,
    "first_label": "WAIT",
    "first_wait": "2026-11-05T15:55:47.788926+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-05T18:24:23+00:00",
-   "liq": 27265.27,
+   "last_check": "2026-11-05T19:36:50+00:00",
+   "liq": 25320.47,
    "mint": "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump",
    "pass_ts": "2026-11-05T15:55:47.788926+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "inu"
@@ -725,6 +725,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T18:24:23+00:00",
+ "updated": "2026-11-05T19:36:50+00:00",
  "window_h": 24
 }
