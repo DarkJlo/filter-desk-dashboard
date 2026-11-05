@@ -77,7 +77,7 @@ class LogCheck(unittest.TestCase):
         self.assertEqual(r["action"], "BUY"); self.assertEqual(r["metrics"]["action"], "BUY")
         self.assertTrue(r["metrics"]["action_reasons"])
         self.assertEqual(r["metrics"]["exit_plan"]["take_profit_fdv"], 800000)
-        self.assertEqual(r["metrics"]["rules_version"], "r10.6-2026-11-05")
+        self.assertEqual(r["metrics"]["rules_version"], "r10.6.1-2026-11-06")
 
     def test_pass_missing_traders_high_skip(self):
         r = self.logged("PASS", met(tt_=None))

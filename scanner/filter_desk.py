@@ -18,7 +18,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.6-2026-11-05"   # r10.6: lopsided flow = KILL, missing top-traders = HIGH flag, entry label = price structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL when >= 12/15 top traders share one non-exchange funder (top_traders.TRADER_CLUSTER_KILL_MIN; 5-11 stay HIGH WARN/PASS); r10.4: tiered top-traders WARN (trader_cluster_funder HIGH gates alerts / trader_fresh LOW notes only); r10.3: entry-watch alert gate (trader_cluster / 3+ prior KILLs, no verdict change); r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.6.1-2026-11-06"   # r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -53,6 +53,9 @@ ACTION_MIN_LIQ_USD = 30_000
 EXIT_TAKE_PROFIT_MULT = 2.0
 EXIT_STOP_MULT = 0.5
 EXIT_MAX_HOLD_H = 24
+# r10.6.1 chase cap (entry-watch only): suppress a BUY flip alert when flip FDV has already run past the check
+# by this multiple (or fallen to the stop). Exit plan always uses the PASS check FDV / check time, not the flip.
+CHASE_CAP_MULT = 1.5
 SELL_QUOTE_USD = 100
 SELL_SLIPPAGE_BPS = 1500
 MAX_SELL_IMPACT_PCT = 15.0
@@ -956,6 +959,22 @@ def exit_plan(fdv, ts=None):
     return {"entry_fdv": fdv, "take_profit_fdv": tp, "stop_fdv": sl, "sell_by": sell_by.isoformat(timespec="seconds"),
             "text": (f"Buy near FDV {_usd(fdv)}. Sell 100% at 2x (FDV {_usd(tp)}). Stop: sell all at FDV {_usd(sl)} (-50%). "
                      f"Otherwise sell everything at 24h ({_mst(sell_by)}).")}
+
+def chase_cap(check_fdv, flip_fdv):
+    """r10.6.1: reason to suppress an entry-watch BUY alert when flip FDV is outside [EXIT_STOP_MULT, CHASE_CAP_MULT) × check FDV.
+    Returns None when the flip is within the band (or either FDV is missing / non-positive). Pure."""
+    try:
+        c, f = float(check_fdv), float(flip_fdv)
+    except (TypeError, ValueError):
+        return None
+    if c <= 0 or f <= 0:
+        return None
+    ratio = f / c
+    if ratio >= CHASE_CAP_MULT:
+        return f"chase cap: flip FDV {ratio:.2f}x check >= {CHASE_CAP_MULT}x"
+    if ratio <= EXIT_STOP_MULT:
+        return f"chase cap: flip FDV {ratio:.2f}x check <= {EXIT_STOP_MULT}x (stopped out)"
+    return None
 
 def pass_action(metrics, tt=None, tags=None):
     """r10.6: ('BUY' | 'SKIP', short reasons) for a PASS. Pure (no network); works on new and legacy log records."""

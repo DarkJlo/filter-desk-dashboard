@@ -79,7 +79,9 @@ class Gate(unittest.TestCase):
         rec["gate"] = ew.gate(pas(tt=CLEAN_TT), [])
         self.assertEqual(ew.issue_title(rec), "BUY ENTRY OK: TST @ $500K")
         self.assertIn("**Action: BUY** (r10.6)", ew.issue_body(rec, p))
-        self.assertIn("Sell 100% at 2x (FDV $1.00M). Stop: sell all at FDV $250K (-50%)", ew.issue_body(rec, p))
+        self.assertIn("Sell 100% at 2x (FDV $800K). Stop: sell all at FDV $200K (-50%)", ew.issue_body(rec, p))
+        self.assertIn("FDV at check: $400K", ew.issue_body(rec, p)); self.assertIn("FDV at flip: $500K", ew.issue_body(rec, p))
+        self.assertIn("Exit plan (off the PASS check FDV)", ew.issue_body(rec, p))
 
 class Tiers(unittest.TestCase):
     def test_warn_strings_and_tags(self):

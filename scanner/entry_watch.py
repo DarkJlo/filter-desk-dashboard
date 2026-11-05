@@ -28,8 +28,11 @@ Flips that do go out carry the flags in the body (top-traders line, WARN tags, p
 and a short flag summary in the title.
 r10.6: the flip alerts ONLY when the PASS action is BUY (filter_desk.pass_action, re-run with the live top-traders
 summary and the liquidity at flip). SKIP suppresses it: top traders still unchecked after the live attempt (HIGH), a
-shared-funder cluster, FLAT holders (unless fresh-only buyers), a LOPSIDED tag, or liquidity < $30K. BUY issues carry
-the exit plan (sell 100% at 2x, stop -50%, else sell at 24h) computed off the FDV at flip.
+shared-funder cluster, FLAT holders (unless fresh-only buyers), a LOPSIDED tag, or liquidity < $30K.
+r10.6.1 chase cap: even on BUY, suppress the issue when fdv_at_flip >= CHASE_CAP_MULT (1.5) x the PASS check FDV
+(late chase of a runner) or <= EXIT_STOP_MULT (0.5) x check FDV (already stopped out). Status "suppressed" with a
+"chase cap: ..." reason. BUY issue exit plan is anchored to the PASS check FDV / check time (2x / -50% / 24h), and the
+body shows both check and flip FDV. Existing issues are never closed or rewritten by this rule.
   python scanner/entry_watch.py --gate <mint>   # print the gate decision for a mint from the current log (offline)
 """
 import sys, os, json, time
@@ -214,14 +217,14 @@ def issue_body(rec, pas, test=False):
         + f"@{OWNER} **{rec.get('symbol') or m[:6]}** flipped from {rec.get('first_label') or 'WAIT'} to **ENTRY OK** at {flipped}.",
         "",
         f"- Mint: `{m}`",
-        f"- FDV at flip: ${money(rec.get('fdv_at_flip'))} · liquidity at flip: ${money(rec.get('liq_at_flip'))}",
+        f"- FDV at check: ${money(met.get('fdv'))} · FDV at flip: ${money(rec.get('fdv_at_flip'))} · liquidity at flip: ${money(rec.get('liq_at_flip'))}",
         f"- Entry reasons: " + ("; ".join(rec.get("reasons") or []) or "?"),
         f"- Original PASS: {passed} (rules {met.get('rules_version') or '?'}, tier {met.get('pass_tier') or '?'}, FDV then ${money(met.get('fdv'))})",
         f"- Warns at PASS: " + ("; ".join(warns) or "none"),
         f"- First WAIT seen: " + ts(rec["first_wait"]).astimezone(fd_tz()).strftime("%b %d %H:%M MST"),
         "",
         f"**Action: {g.get('action') or '?'}** (r10.6) \u2014 " + "; ".join(g.get("action_reasons") or []),
-        "- Exit plan (off the FDV at flip): " + ((fd.exit_plan(rec.get("fdv_at_flip"), rec.get("flipped_at")) or {}).get("text") or "n/a"),
+        "- Exit plan (off the PASS check FDV): " + ((fd.exit_plan(met.get("fdv"), pas.get("timestamp")) or {}).get("text") or "n/a"),
         "",
         "**Risk flags (r10.6 gate)**",
     ] + ([f"- **{g['trader_note']}**" if g.get("trader_tier") == "funder" else f"- {g['trader_note']} (low tier, annotation only: not gated)"]
@@ -345,9 +348,14 @@ def main():
             tt = live_traders(m, dex.get(m) or (fd.fetch_dex([m]).get(m) if os.environ.get("HELIUS_API_KEY") else None))
             if tt: g = gate(pas, rows, tt_override=tt, liq=rec.get("liq_at_flip")); rec["top_traders_at_flip"] = tt
         rec["gate"] = g
-        if g["block"]:
-            rec.update(status="suppressed", suppressed_at=iso(now), suppressed_reasons=g["reasons"])
-            print(f"SUPPRESSED {rec.get('symbol') or m[:6]} {m[:8]}: ENTRY OK flip, no issue opened: " + " | ".join(g["reasons"]))
+        check_fdv = (pas.get("metrics") or {}).get("fdv")
+        rec["fdv_at_check"] = check_fdv
+        chase = None if g["block"] else fd.chase_cap(check_fdv, rec.get("fdv_at_flip"))
+        if g["block"] or chase:
+            reasons = g["reasons"] if g["block"] else [chase]
+            rec.update(status="suppressed", suppressed_at=iso(now), suppressed_reasons=reasons)
+            if chase: rec["chase_cap"] = chase
+            print(f"SUPPRESSED {rec.get('symbol') or m[:6]} {m[:8]}: ENTRY OK flip, no issue opened: " + " | ".join(reasons))
         else:
             if g["flags"]: print(f"  flip {rec.get('symbol') or m[:6]} flags: {g['flags']}")
             sent.append(m)

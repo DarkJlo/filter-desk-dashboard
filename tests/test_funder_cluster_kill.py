@@ -33,7 +33,7 @@ def verdict(s=None, exc=None, v="PASS", R=None):
 
 class FunderClusterKill(unittest.TestCase):
     def test_version_and_constant(self):
-        self.assertEqual(fd.FILTER_VERSION, "r10.6-2026-11-05")
+        self.assertEqual(fd.FILTER_VERSION, "r10.6.1-2026-11-06")
         self.assertEqual(tt.TRADER_CLUSTER_KILL_MIN, 12)
         import entry_watch as ew
         self.assertEqual(ew.GATE_VERSION, fd.FILTER_VERSION)
