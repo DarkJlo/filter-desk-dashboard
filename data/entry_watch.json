@@ -45,6 +45,43 @@
    ],
    "symbol": "HYPERCHAN"
   },
+  "3SpVLU6UAYi7rqJxgWmsZYmfU5kvVTDK6HFxGPefLoat": {
+   "checks": 1,
+   "fdv": 72471,
+   "fdv_at_flip": 72471,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-05T03:54:16.823029+00:00",
+   "flipped_at": "2026-11-05T04:39:47+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "block": false,
+    "flags": "bundle",
+    "gate_version": "r10.5-2026-11-04",
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~3h): 2 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 2 still holding, 13 sold out \u00b7 tier: none"
+   },
+   "issue": 11,
+   "label": "OK",
+   "last_check": "2026-11-05T04:39:47+00:00",
+   "liq": 54378.09,
+   "liq_at_flip": 54378.09,
+   "mint": "3SpVLU6UAYi7rqJxgWmsZYmfU5kvVTDK6HFxGPefLoat",
+   "pass_ts": "2026-11-05T03:54:16.823029+00:00",
+   "reasons": [
+    "pulled back -62% and holding higher low",
+    "15m higher low held (+2% over prior low)",
+    "5m higher low held (+2% over prior low)"
+   ],
+   "status": "flipped",
+   "symbol": "SLOP"
+  },
   "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump": {
    "checks": 5,
    "fdv": 716194,
@@ -423,43 +460,6 @@
    ],
    "symbol": "BNB"
   },
-  "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump": {
-   "checks": 1,
-   "fdv": 2143662,
-   "fdv_at_flip": 2143662,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-28T21:37:38.056712+00:00",
-   "flipped_at": "2026-10-28T22:18:42+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": false,
-    "flags": "bundle, flat, lopsided, traders unchecked",
-    "gate_version": "r10.3-2026-10-28",
-    "prior_kills": 0,
-    "reasons": [],
-    "tags": [
-     "bundle",
-     "flat",
-     "lopsided"
-    ],
-    "tt_checked": false,
-    "tt_line": ""
-   },
-   "issue": 3,
-   "label": "OK",
-   "last_check": "2026-10-28T22:18:42+00:00",
-   "liq": 137501.94,
-   "liq_at_flip": 137501.94,
-   "mint": "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump",
-   "pass_ts": "2026-10-29T03:46:15.195247+00:00",
-   "reasons": [
-    "pulled back -49% and holding higher low",
-    "15m higher low held (+47% over prior low)",
-    "5m higher low held (+47% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "DUBBLE"
-  },
   "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump": {
    "checks": 12,
    "fdv": 111857,
@@ -615,18 +615,19 @@
    "symbol": "GATO"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 11,
-   "fdv": 6786935,
+   "checks": 12,
+   "fdv": 6113319,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:50.046054+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-05T03:32:47+00:00",
-   "liq": 228916.68,
+   "last_check": "2026-11-05T04:39:47+00:00",
+   "liq": 216855.77,
    "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
    "pass_ts": "2026-11-04T15:55:50.046054+00:00",
    "reasons": [
-    "near ATH: -15% from high",
-    "5m: still making lower lows"
+    "near ATH: -24% from high",
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "RAMBO"
@@ -753,6 +754,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T03:32:47+00:00",
+ "updated": "2026-11-05T04:39:47+00:00",
  "window_h": 24
 }
