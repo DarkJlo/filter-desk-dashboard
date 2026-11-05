@@ -291,6 +291,23 @@
    ],
    "symbol": "PEAK"
   },
+  "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
+   "checks": 1,
+   "fdv": 70353,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-05T15:55:47.788926+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-05T16:44:30+00:00",
+   "liq": 21095.04,
+   "mint": "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump",
+   "pass_ts": "2026-11-05T15:55:47.788926+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "inu"
+  },
   "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump": {
    "checks": 1,
    "fdv": 1719271,
@@ -616,6 +633,7 @@
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
    "checks": 21,
+   "expired_at": "2026-11-05T16:44:30+00:00",
    "fdv": 7000262,
    "first_label": "WAIT",
    "first_wait": "2026-11-04T15:55:50.046054+00:00",
@@ -627,52 +645,8 @@
    "reasons": [
     "5m: broke below its latest higher low"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "RAMBO"
-  },
-  "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump": {
-   "checks": 3,
-   "fdv": 2909770,
-   "fdv_at_flip": 2909770,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-29T03:46:15.479616+00:00",
-   "flipped_at": "2026-10-29T06:21:28+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": true,
-    "flags": "bundle, bundled_launch, flat, lopsided, trader_cluster, 1x killed",
-    "gate_version": "r10.3-2026-10-28",
-    "prior_kills": 1,
-    "reasons": [
-     "trader_cluster: Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
-    ],
-    "tags": [
-     "bundle",
-     "bundled_launch",
-     "flat",
-     "lopsided",
-     "trader_cluster"
-    ],
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
-   },
-   "label": "OK",
-   "last_check": "2026-10-29T06:21:28+00:00",
-   "liq": 152086.03,
-   "liq_at_flip": 152086.03,
-   "mint": "dyw5fDNv91eknniMG4tGCU1ZrzjuxbpsLiEzih6pump",
-   "pass_ts": "2026-10-29T15:50:28.705567+00:00",
-   "reasons": [
-    "pulled back -33% and holding higher low",
-    "15m higher low held (+18% over prior low)",
-    "5m higher low held (+19% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-10-29T06:21:28+00:00",
-   "suppressed_reasons": [
-    "trader_cluster: Top traders (15, last ~4h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 5 still holding, 10 sold out"
-   ],
-   "symbol": "CATBOT"
   },
   "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
    "checks": 6,
@@ -752,6 +726,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T15:37:34+00:00",
+ "updated": "2026-11-05T16:44:30+00:00",
  "window_h": 24
 }
