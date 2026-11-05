@@ -292,13 +292,13 @@
    "symbol": "PEAK"
   },
   "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
-   "checks": 4,
-   "fdv": 99379,
+   "checks": 5,
+   "fdv": 166838,
    "first_label": "WAIT",
    "first_wait": "2026-11-05T15:55:47.788926+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-05T19:36:50+00:00",
-   "liq": 25320.47,
+   "last_check": "2026-11-05T20:28:48+00:00",
+   "liq": 33418.86,
    "mint": "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump",
    "pass_ts": "2026-11-05T15:55:47.788926+00:00",
    "reasons": [
@@ -725,6 +725,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-05T19:36:50+00:00",
+ "updated": "2026-11-05T20:28:48+00:00",
  "window_h": 24
 }
