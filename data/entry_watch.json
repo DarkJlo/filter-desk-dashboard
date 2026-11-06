@@ -154,7 +154,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-06T15:46:29.765060+00:00",
+   "pass_ts": "2026-11-06T21:39:16.371051+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -425,43 +425,6 @@
    "status": "flipped",
    "symbol": "WIF"
   },
-  "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS": {
-   "checks": 2,
-   "fdv": 81280,
-   "fdv_at_flip": 81280,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-30T21:33:48.527323+00:00",
-   "flipped_at": "2026-10-30T23:14:19+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": false,
-    "flags": "bundler",
-    "gate_version": "r10.4-2026-10-29",
-    "prior_kills": 0,
-    "reasons": [],
-    "tags": [
-     "bundler"
-    ],
-    "trader_note": "",
-    "trader_tier": null,
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~3h): 0 fresh <7d, 0 share a non-CEX funder, 6 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
-   },
-   "issue": 7,
-   "label": "OK",
-   "last_check": "2026-10-30T23:14:19+00:00",
-   "liq": 22862.92,
-   "liq_at_flip": 22862.92,
-   "mint": "E8c9gvuE7gW4R8AVcaTCbbTG1zJGdUR9KGtS94eXBAGS",
-   "pass_ts": "2026-10-30T21:33:48.527323+00:00",
-   "reasons": [
-    "pulled back -36% and holding higher low",
-    "15m higher low held (+44% over prior low)",
-    "5m higher low held (+10% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "TRK"
-  },
   "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump": {
    "checks": 4,
    "fdv": 498405,
@@ -672,7 +635,7 @@
    "liq": 244272.3,
    "liq_at_flip": 244272.3,
    "mint": "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump",
-   "pass_ts": "2026-11-02T03:53:55.899747+00:00",
+   "pass_ts": "2026-11-06T21:39:21.512861+00:00",
    "reasons": [
     "pulled back -38% and holding higher low",
     "15m higher low held (+20% over prior low)",
@@ -720,6 +683,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-06T21:22:57+00:00",
+ "updated": "2026-11-06T22:22:02+00:00",
  "window_h": 24
 }
