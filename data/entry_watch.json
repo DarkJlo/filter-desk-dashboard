@@ -119,19 +119,49 @@
    "symbol": "HAMSTER"
   },
   "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump": {
-   "checks": 9,
-   "fdv": 222972,
+   "checks": 10,
+   "fdv": 254857,
+   "fdv_at_check": 368215,
+   "fdv_at_flip": 254857,
    "first_label": "WAIT",
    "first_wait": "2026-11-07T03:52:06.879749+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-07T12:18:40+00:00",
-   "liq": 37384.35,
+   "flipped_at": "2026-11-07T13:34:59+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "BUY",
+    "action_reasons": [
+     "top traders checked, no shared-funder cluster (fresh buyers)",
+     "liquidity $40K"
+    ],
+    "block": false,
+    "flags": "fresh buyers 15/15 (no shared funder), bundle, flat",
+    "gate_version": "r10.6.1-2026-11-06",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "flat",
+     "trader_fresh"
+    ],
+    "trader_note": "Fresh buyers: 15/15 top traders <7d old, no shared funder (could be new money chasing news)",
+    "trader_tier": "fresh",
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~4h): 15 fresh <7d, 0 share a non-CEX funder, 0 CEX-funded, 12 still holding, 3 sold out \u00b7 tier: LOW (fresh buyers, no shared funder)"
+   },
+   "issue": 13,
+   "label": "OK",
+   "last_check": "2026-11-07T13:34:59+00:00",
+   "liq": 40073.2,
+   "liq_at_flip": 40073.2,
    "mint": "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump",
    "pass_ts": "2026-11-07T03:52:06.879749+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "holding higher low (63% below high)",
+    "15m higher low held (+15% over prior low)",
+    "5m higher low held (+0% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "0DAY"
   },
   "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump": {
@@ -606,6 +636,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T12:18:40+00:00",
+ "updated": "2026-11-07T13:34:59+00:00",
  "window_h": 24
 }
