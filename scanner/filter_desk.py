@@ -11,6 +11,7 @@ Usage:
   python filter_desk.py --scan-all [N]    # fresh + older + trending feeds, prefiltered, ranked, top N checked
   python filter_desk.py --sources [N]     # r10.1 dry run: list scan-all candidates + source tags (no RugCheck/Helius)
   python filter_desk.py --entry <mint>... # r10 entry-timing label only (no Helius, not logged)
+  python filter_desk.py --intel <mint>... # r10.7 smart-money + dev-history lines only (~31 Helius credits, not logged)
 Read-only: no keys, no signing. Every check appended to checks_log.jsonl.
 """
 import sys, json, os, time, requests
@@ -18,7 +19,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.6.1-2026-11-06"   # r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.7-2026-11-07"   # r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -1046,6 +1047,32 @@ def trader_verdict(mint, pair, M, v, R):
     if flag_missing_traders(M): print("  " + M["warns"][-1])   # r10.6: missing data = HIGH flag, not a KILL
     return v, R
 
+# ---------------- r10.7 wallet intel (PASS only, ANNOTATION ONLY: never changes verdict or BUY/SKIP) ----------------
+# scanner/wallet_intel.py: smart money = wallets from data/smart_wallets.json (early / profit-taking in >= 2 independent
+# past winners, 0 rugs) found among this token's top traders + early buyers (first 100 txs from create + 60s);
+# dev history = creator's earlier pump.fun launches (now < $30K FDV = died) + whether it still holds its launch buy.
+# ~31 Helius credits per PASS (cap WI_MAX_CREDITS). Disable with env FD_WALLET_INTEL=0.
+def wallet_intel_check(mint, M):
+    if os.environ.get("FD_WALLET_INTEL", "1") == "0": return
+    try:
+        import wallet_intel as wi
+        sm, dv = wi.check(mint, M.get("top_traders_detail"))
+        M["smart_money"] = sm.get("count") or 0
+        M["smart_money_line"] = sm.get("line") or ""
+        M["smart_money_detail"] = {k: sm.get(k) for k in ("in_top", "in_early", "holding", "early_seen", "wallets", "error")}
+        M["dev_history"] = dv.get("line") or ""
+        M["dev_history_detail"] = {k: dv.get(k) for k in ("creator", "prior", "died", "survived", "best_sym", "best_fdv",
+                                                          "dev_buy", "sold_pct", "non_pump", "capped", "verdict", "error")}
+        M["wallet_intel_credits"] = sm.get("helius_credits")
+        print(f"  {M['smart_money_line']}\n  {M['dev_history']} (Helius ~{sm.get('helius_credits')} credits)")
+    except Exception as e:
+        M["smart_money_line"] = f"Smart money: n/a ({type(e).__name__})"; M["dev_history"] = f"Dev: n/a ({type(e).__name__})"
+        print("  wallet intel failed: " + type(e).__name__)
+
+def intel_lines(M):
+    """r10.7 annotation lines for alerts / issues (empty list when not checked)."""
+    return [x for x in ((M or {}).get("smart_money_line"), (M or {}).get("dev_history")) if isinstance(x, str) and x]
+
 def log_check(mint, verdict, reasons, metrics):
     metrics = dict(metrics or {}); metrics["rules_version"] = FILTER_VERSION
     if verdict == "PASS":
@@ -1355,6 +1382,7 @@ def run(mints, quiet=False):
             et = entry_timing(dex.get(m), M)   # r10: entry-timing label, does not change the verdict
             print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
             v, R = trader_verdict(m, dex.get(m), M, v, R)   # r10.2 top traders (best-effort); r10.5: >= 12/15 shared funder -> KILL
+            if v == "PASS": wallet_intel_check(m, M)   # r10.7 smart money + dev history (annotation only)
         M["stage_b_secs"] = round(time.time() - tb, 1)
         results[m] = (v, R, M)
     nb = min(len(surv_a), cap) if cap else len(surv_a)
@@ -1552,6 +1580,7 @@ def report(mints, label):
         for w in M.get("warns") or []: print(f"      WARN: {w}")
         print(f"      ENTRY {M.get('entry') or 'UNKNOWN'}: {'; '.join(M.get('entry_reasons') or [])}")
         if M.get("top_traders_line"): print(f"      {M['top_traders_line']}")
+        for l in intel_lines(M): print(f"      {l}")   # r10.7 annotation only
         act, ar = pass_action(M)   # r10.6
         print(f"      ACTION {act}: {'; '.join(ar)}")
         if act == "BUY": print(f"      EXIT PLAN: {(exit_plan(M.get('fdv')) or {}).get('text', 'n/a')}")
@@ -1567,7 +1596,7 @@ def _publish_dashboard():
         print(f"(dashboard publish failed: {e})")
 
 if __name__ == "__main__":
-    DRY = sys.argv[1:2] in (["--sources"], ["--traders"])   # dry runs: no git pull, no dashboard build/push
+    DRY = sys.argv[1:2] in (["--sources"], ["--traders"], ["--intel"])   # dry runs: no git pull, no dashboard build/push
     if not DRY:
         import atexit; atexit.register(_publish_dashboard)
     if not os.environ.get("FD_NO_PUSH") and not DRY:
@@ -1659,6 +1688,9 @@ if __name__ == "__main__":
                 fd = r.get("funder") or "?"
                 print(f"   {r['wallet'][:6]}… vol ${r['buy_usd'] + r['sell_usd']:>9,.0f} buy ${r['buy_usd']:>8,.0f} sell ${r['sell_usd']:>8,.0f} "
                       f"n={r['trades']:<3} age {r.get('age_d')}d funder {fd[:6]}…({r.get('funder_kind')}) holding={r.get('holding')}")
+    elif a[0] == "--intel":   # r10.7 smart money + dev history only (Helius ~31 credits/mint, not logged)
+        for m in a[1:]:
+            M = {}; wallet_intel_check(m, M)
     elif a[0] == "--scan-all":
         MODE["stage_b_max"] = STAGE_B_MAX_SCAN_ALL or None
         ranked, _dex = scan_all_candidates()

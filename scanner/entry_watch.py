@@ -233,6 +233,7 @@ def issue_body(rec, pas, test=False):
         "- " + (g.get("tt_line") or "Top traders: not checked on this PASS")
         + ("" if g.get("tt_checked") else (" (incomplete: treat as unknown)" if g.get("tt_line") else " (treat as unknown)")),
         "- Prior KILL verdicts for this mint: " + str(g.get("prior_kills", "?")),
+    ] + [f"- {l} (r10.7 annotation, not gated)" for l in fd.intel_lines(met)] + [
         "- " + X_REMINDER,
         "",
         f"[DexScreener](https://dexscreener.com/solana/{m}) · [GMGN](https://gmgn.ai/sol/token/{m}) · [Dashboard]({DASHBOARD})",

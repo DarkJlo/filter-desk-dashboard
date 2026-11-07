@@ -1,0 +1,375 @@
+{
+ "built": "2026-11-07T16:07:27+00:00",
+ "rules": "r10.7",
+ "definition": ">= 2 independent winners (2x before -50%) as early buyer (first 100 txs from create+60s) or profit-taking top trader; 0 rugs (or rugs < wins/2 with 4+ wins); bots/CEX/creators excluded",
+ "winners": 53,
+ "rugs": 99,
+ "sampled": 152,
+ "wallets": [
+  {
+   "wallet": "62qc2CNXwrYqQScmEdiZFFAnJR262PxWEuNQtxfafNgV",
+   "wins": [
+    "MUNK",
+    "PODCAT",
+    "CYBER",
+    "BLEP",
+    "Diamond"
+   ],
+   "win_mints": [
+    "9NeWwUenkEghAMXpvT6nszKZU862fJh49w8N1VHFkJ6U",
+    "4dDZ71dcY9vKgBdQkyvSwtpK59B6cqYA3gErGLk2yuut",
+    "7vNQLdtNK69sEPPfLMz5C5skffd4Lh9cQfHgjg7TvZD1",
+    "Hd81tGFqiLnFrrFTGSEA5oDV6x7Qg9FdKgSjg5xXhRBJ",
+    "3RCGjm2k3fgG2neLcG4QJknbNHB5pUbRDSyNhwKsDe51"
+   ],
+   "rugs": [],
+   "independent_wins": 4
+  },
+  {
+   "wallet": "A7hAgCzFw14fejgCp387JUJRMNyz4j89JKnhtKU8piqW",
+   "wins": [
+    "MUNK",
+    "PODCAT",
+    "CYBER",
+    "BLEP",
+    "Diamond"
+   ],
+   "win_mints": [
+    "9NeWwUenkEghAMXpvT6nszKZU862fJh49w8N1VHFkJ6U",
+    "4dDZ71dcY9vKgBdQkyvSwtpK59B6cqYA3gErGLk2yuut",
+    "7vNQLdtNK69sEPPfLMz5C5skffd4Lh9cQfHgjg7TvZD1",
+    "Hd81tGFqiLnFrrFTGSEA5oDV6x7Qg9FdKgSjg5xXhRBJ",
+    "3RCGjm2k3fgG2neLcG4QJknbNHB5pUbRDSyNhwKsDe51"
+   ],
+   "rugs": [],
+   "independent_wins": 4
+  },
+  {
+   "wallet": "GXPFM2caqTtQYC2cJ5yJRi9VDkpsYZXzYdwYpGnLmtDL",
+   "wins": [
+    "MUNK",
+    "Pok\u00e9mon",
+    "BLEP"
+   ],
+   "win_mints": [
+    "9NeWwUenkEghAMXpvT6nszKZU862fJh49w8N1VHFkJ6U",
+    "D42TjMjz5H7toPu5md5KBXreZkCSdZMEfLQwmBhJXvb1",
+    "Hd81tGFqiLnFrrFTGSEA5oDV6x7Qg9FdKgSjg5xXhRBJ"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "4FpuSLX6TLffEk9U9jQ9pwbwd4Aw2NCRBFZYQdf4X4Uk",
+   "wins": [
+    "BNICE",
+    "ZENO"
+   ],
+   "win_mints": [
+    "CNfzT1Ha63GTeJ99N9ii73HzCwyLUTXj3mbiwCyvtZD3",
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "4JuRFyomwK5o9QVvZ11avsBymkCDn8rvEroPCep2YfvV",
+   "wins": [
+    "ZENO",
+    "Leonida"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "5WHd4RgjgfJKGWH8kaNqh4zX7KyrXjyXpZovvzyjkF6L",
+   "wins": [
+    "ZENO",
+    "Leonida"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "5ZtzVYRuF7sEhot31S68xHRCKDMkDdFtTp1iujTRjowV",
+   "wins": [
+    "LUMI",
+    "Leonida"
+   ],
+   "win_mints": [
+    "653joYuZ5EntuKd1bspZakjHdueMxHGs5Lvm7RdWpump",
+    "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "69pDoe9j5MVh4vwLtVeEuLH29MuLD869qFDhVKaunnQz",
+   "wins": [
+    "BNICE",
+    "ZENO"
+   ],
+   "win_mints": [
+    "CNfzT1Ha63GTeJ99N9ii73HzCwyLUTXj3mbiwCyvtZD3",
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "6cMT8MZjRKvRKtuDJNbiaF4QrMnvWvdrZVpV3uLDACgr",
+   "wins": [
+    "PEAK",
+    "RETARD"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "6sURZH88qaD4T5rZgMgyD9rtc3j2WAMvkusbm5k3rWnk",
+   "wins": [
+    "ZENO",
+    "Leonida"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "8js6TMVeLQakEuxMXEwXUx1nPXACE7TbiCnjb9ZW7FGu",
+   "wins": [
+    "PEAK",
+    "RETARD"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "8p9ntf4ur4psHj9sSaHVLgetwyq1aqnJmtmm3EtJvKCz",
+   "wins": [
+    "PEAK",
+    "PARANOID"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "22rWiyDiY9GgxSrFiWC2vX1GxNxjkvrRPmZJDzv9pq6X"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "97tyysz1dsowtfnHTa82nhGHA6SAVQJq8Y35fWKLCGMK",
+   "wins": [
+    "ZENO",
+    "ACT2"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "4CZpvvrdqESTBfLvf6db7x7pH5CQHpigG2ywdm9xpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "AQdmrWxVph26KL4brdFscqyoZToLye7Buvw6zhfk9hWG",
+   "wins": [
+    "LUKE",
+    "SPURDO"
+   ],
+   "win_mints": [
+    "Ez7eEs53hQiXgCGmcbhdX5i1jgg2gC3F6MoeosuVpump",
+    "DJb6jwYTRTT4mtfMXoZmwvYuJ4Prd9t91LPxnEhiDUoq"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "CaJ69pFheW6bpE5vVGRAG1PhvYzEiydjX9opir4kcGUq",
+   "wins": [
+    "PMUP",
+    "inu"
+   ],
+   "win_mints": [
+    "35fWL6pdJqpconRZPrawUAQegw1QF3p2tgN7mzhTpump",
+    "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "DREAMmCvAw5T95SYTmFFkDDXqNFJqHbpdxvWToe5GoEu",
+   "wins": [
+    "SPURDO",
+    "FLOAT"
+   ],
+   "win_mints": [
+    "DJb6jwYTRTT4mtfMXoZmwvYuJ4Prd9t91LPxnEhiDUoq",
+    "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "G5RTLLF8XrDViXahPREPMD9hRo4WXvCX7Sw9QgNcWU3P",
+   "wins": [
+    "PEAK",
+    "RETARD"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "GjKvZbjb8gzkRKtUDXTr6PxS1QaRa5Jqg6V8vBTDVvLy",
+   "wins": [
+    "ZENO",
+    "Leonida"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "GpWzQoGQRY5Lcb4NTeZvb2HjCcG5y8Wy46TBejzZu18g",
+   "wins": [
+    "BNICE",
+    "PRIVACY"
+   ],
+   "win_mints": [
+    "CNfzT1Ha63GTeJ99N9ii73HzCwyLUTXj3mbiwCyvtZD3",
+    "9daaq4QBFia2C9BcAEwMP2RfWqseDsTYudqM4Lfmpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "H1TLERBQyQzSd5gbvbWwP97GjeL9txzWoN5BK4UG7xYm",
+   "wins": [
+    "STM",
+    "SPURDO"
+   ],
+   "win_mints": [
+    "8gnyYyngFtzPP6K9YRQ8a7kZWKQ5tzu5N2D23Rafxrn5",
+    "DJb6jwYTRTT4mtfMXoZmwvYuJ4Prd9t91LPxnEhiDUoq"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "HBWr1Y7q2PeYbmVFBN354MB6zhndQx3PkhfYAzjqPGDp",
+   "wins": [
+    "PEAK",
+    "RETARD"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "Hcz8aVv9Nus1Kk2JgZpoxFNjpQGqf1Vcyd8vpysgsQB3",
+   "wins": [
+    "PEAK",
+    "RETARD"
+   ],
+   "win_mints": [
+    "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
+    "ACv7iJ7xVfohvfXp3dt7AfAPcekL2dHsYCbJw8Vp1osr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "HkQ7hMjyoJeaAE1u9dbXMTkqrpXuZPpmtkc2g7QkNExQ",
+   "wins": [
+    "BNICE",
+    "PRIVACY"
+   ],
+   "win_mints": [
+    "CNfzT1Ha63GTeJ99N9ii73HzCwyLUTXj3mbiwCyvtZD3",
+    "9daaq4QBFia2C9BcAEwMP2RfWqseDsTYudqM4Lfmpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "Love7xa8oDKofvAW8Y6Xg9itxNuzsFGvYR1GpWxABFw",
+   "wins": [
+    "SPURDO",
+    "FLOAT"
+   ],
+   "win_mints": [
+    "DJb6jwYTRTT4mtfMXoZmwvYuJ4Prd9t91LPxnEhiDUoq",
+    "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "M3rrormwkUUHAKdviFPqniRrva4h3d5xw8j1uo31ZpH",
+   "wins": [
+    "DUBBLE",
+    "WEALTH"
+   ],
+   "win_mints": [
+    "FEXGegqeVm5vZurqyC7qsmkLqWspVV1ACb9bbLvcpump",
+    "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "PEACETDnqNiXCgyiX9V7BSHkwrK8aK3nY8BSdN5Sbfj",
+   "wins": [
+    "SPURDO",
+    "FLOAT"
+   ],
+   "win_mints": [
+    "DJb6jwYTRTT4mtfMXoZmwvYuJ4Prd9t91LPxnEhiDUoq",
+    "Bv1a7cEj5aRnJQhMw4kRQqAFesMSd5LwcDnUzq52BMmr"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  },
+  {
+   "wallet": "dsegg9CXSkMxMCzPz9YEYQ3PKrsonoAZoc5Sguk4BFn",
+   "wins": [
+    "ZENO",
+    "PRIVACY"
+   ],
+   "win_mints": [
+    "FMGe8RStdPc1YR59BBuV5Ui12DEe3Q2zVoihrJBbpump",
+    "9daaq4QBFia2C9BcAEwMP2RfWqseDsTYudqM4Lfmpump"
+   ],
+   "rugs": [],
+   "independent_wins": 2
+  }
+ ]
+}
