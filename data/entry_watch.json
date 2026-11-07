@@ -200,7 +200,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-07T03:52:05.035755+00:00",
+   "pass_ts": "2026-11-07T15:37:21.995224+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -523,24 +523,6 @@
    "status": "flipped",
    "symbol": "ENVAR"
   },
-  "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump": {
-   "checks": 18,
-   "fdv": 6212730,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-31T03:46:12.283297+00:00",
-   "label": "WAIT",
-   "last_check": "2026-10-31T21:15:02+00:00",
-   "liq": 249756.39,
-   "mint": "HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump",
-   "pass_ts": "2026-10-31T15:30:28.788900+00:00",
-   "reasons": [
-    "near ATH: -18% from high",
-    "15m: broke below its latest higher low",
-    "5m: still making lower lows (new low in the last candles)"
-   ],
-   "status": "killed",
-   "symbol": "GATO"
-  },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
    "checks": 21,
    "expired_at": "2026-11-05T16:44:30+00:00",
@@ -557,6 +539,22 @@
    ],
    "status": "expired",
    "symbol": "RAMBO"
+  },
+  "mV9kZc5WEcsupy9KYZo1c7x52Ys1A5CDK73Ysg6pump": {
+   "checks": 1,
+   "fdv": 876275,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-07T15:37:35.680758+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-07T16:17:51+00:00",
+   "liq": 76306.62,
+   "mint": "mV9kZc5WEcsupy9KYZo1c7x52Ys1A5CDK73Ysg6pump",
+   "pass_ts": "2026-11-07T15:37:35.680758+00:00",
+   "reasons": [
+    "15m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "ROCCO"
   },
   "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
    "checks": 6,
@@ -636,6 +634,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T15:17:35+00:00",
+ "updated": "2026-11-07T16:17:51+00:00",
  "window_h": 24
 }
