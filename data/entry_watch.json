@@ -200,7 +200,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-07T16:18:07.967436+00:00",
+   "pass_ts": "2026-11-07T17:17:41.115453+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -541,19 +541,49 @@
    "symbol": "RAMBO"
   },
   "mV9kZc5WEcsupy9KYZo1c7x52Ys1A5CDK73Ysg6pump": {
-   "checks": 2,
-   "fdv": 901728,
+   "checks": 3,
+   "fdv": 996292,
+   "fdv_at_check": 788099,
+   "fdv_at_flip": 996292,
    "first_label": "WAIT",
    "first_wait": "2026-11-07T15:37:35.680758+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-07T17:16:30+00:00",
-   "liq": 77508.07,
+   "flipped_at": "2026-11-07T18:14:55+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "BUY",
+    "action_reasons": [
+     "top traders checked, no shared-funder cluster (fresh buyers)",
+     "liquidity $82K"
+    ],
+    "block": false,
+    "flags": "fresh buyers 10/15 (no shared funder), bundle, flat",
+    "gate_version": "r10.7.1-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [],
+    "tags": [
+     "bundle",
+     "flat",
+     "trader_fresh"
+    ],
+    "trader_note": "Fresh buyers: 10/15 top traders <7d old, no shared funder (could be new money chasing news)",
+    "trader_tier": "fresh",
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~23h): 10 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 3 still holding, 12 sold out \u00b7 tier: LOW (fresh buyers, no shared funder)"
+   },
+   "issue": 14,
+   "label": "OK",
+   "last_check": "2026-11-07T18:14:55+00:00",
+   "liq": 81746.41,
+   "liq_at_flip": 81746.41,
    "mint": "mV9kZc5WEcsupy9KYZo1c7x52Ys1A5CDK73Ysg6pump",
    "pass_ts": "2026-11-07T15:37:35.680758+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "holding higher low (23% below high)",
+    "15m higher low held (+669% over prior low)",
+    "5m higher low held (+17% over prior low)"
    ],
-   "status": "watching",
+   "status": "flipped",
    "symbol": "ROCCO"
   },
   "npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump": {
@@ -634,6 +664,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T17:16:30+00:00",
+ "updated": "2026-11-07T18:14:55+00:00",
  "window_h": 24
 }
