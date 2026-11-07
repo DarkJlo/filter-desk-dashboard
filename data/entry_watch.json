@@ -200,7 +200,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-07T20:14:53.094679+00:00",
+   "pass_ts": "2026-11-07T21:35:14.110687+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -485,44 +485,6 @@
    ],
    "symbol": "VI"
   },
-  "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump": {
-   "checks": 8,
-   "fdv": 161761,
-   "fdv_at_flip": 161761,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-28T07:50:45.513266+00:00",
-   "flipped_at": "2026-10-28T14:32:36+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": false,
-    "flags": "bundle, bundled_launch, bundler, funding, traders unchecked",
-    "gate_version": "r10.3-2026-10-28",
-    "prior_kills": 0,
-    "reasons": [],
-    "tags": [
-     "bundle",
-     "bundled_launch",
-     "bundler",
-     "funding"
-    ],
-    "tt_checked": false,
-    "tt_line": ""
-   },
-   "issue": 2,
-   "label": "OK",
-   "last_check": "2026-10-28T14:32:36+00:00",
-   "liq": 34290.54,
-   "liq_at_flip": 34290.54,
-   "mint": "FuK9BkA4jXTBzj8HQRQT4538gy1BJzPYy9qwiHs2pump",
-   "pass_ts": "2026-10-31T21:35:15.033567+00:00",
-   "reasons": [
-    "pulled back -33% and holding higher low",
-    "15m higher low held (+55% over prior low)",
-    "5m higher low held (+55% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "ENVAR"
-  },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
    "checks": 21,
    "expired_at": "2026-11-05T16:44:30+00:00",
@@ -664,6 +626,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T21:16:26+00:00",
+ "updated": "2026-11-07T22:16:41+00:00",
  "window_h": 24
 }
