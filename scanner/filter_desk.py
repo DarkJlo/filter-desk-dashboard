@@ -19,7 +19,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.7.1-2026-11-07"   # r10.7.1: dev_tier good/bad/neutral/unknown from prior launches peak FDV (annotation only); r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.7.2-2026-11-07"   # r10.7.2: dev_tier bad -> SKIP actually wired into pass_action; r10.7.1: dev_tier good/bad/neutral/unknown from prior launches peak FDV (good = annotation only); r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -998,6 +998,7 @@ def pass_action(metrics, tt=None, tags=None):
     liq = m.get("liquidity_usd")
     if not isinstance(liq, (int, float)) or liq < ACTION_MIN_LIQ_USD:
         R.append(f"liquidity {_usd(liq) if isinstance(liq, (int, float)) else '?'} < {_usd(ACTION_MIN_LIQ_USD)}")
+    if m.get("dev_tier") == "bad": R.append("bad dev: serial launcher whose priors flopped (r10.7.1 SKIP)")
     if R: return "SKIP", R
     ok = ["top traders checked, no shared-funder cluster" + (" (fresh buyers)" if tier == "fresh" else ""),
           f"liquidity {_usd(liq)}"]

@@ -31,3 +31,13 @@ class DevTier(unittest.TestCase):
         self.assertEqual(wi.gt_peak("X", {"peak:X": [123.0, 2.0]}), (123.0, 2.0))
 
 if __name__ == "__main__": unittest.main()
+
+
+class TestBadDevSkip(unittest.TestCase):
+    def test_bad_dev_forces_skip(self):
+        import filter_desk as fd
+        tt = {"n": 15, "shared_funder_max": 2}
+        m = {"liquidity_usd": 167000, "dev_tier": "bad"}
+        act, r = fd.pass_action(m, tt=tt, tags=[])
+        self.assertEqual(act, "SKIP")
+        self.assertTrue(any("bad dev" in x for x in r))
