@@ -43,6 +43,14 @@ DIED_FDV = 30_000          # prior launch now below this (or no pair) counts as 
 WI_MAX_CREDITS = int(os.environ.get("WI_MAX_CREDITS") or 60)
 GTFA_CREDITS, RPC_CREDITS = 10, 1
 SERIAL_MIN, SERIAL_DIED_SHARE = 3, 0.75   # serial launcher: >= 3 earlier launches, >= 75% now dead
+# r10.7.1 dev tier from each prior launch's PEAK FDV (GeckoTerminal OHLCV, keyless, no Helius credits)
+TIER_MIN = 3               # need >= 3 prior launches with a known peak to call good/bad
+RAN_FDV = 300_000          # a prior launch "ran" if it ever peaked >= $300K
+FLOP_FDV = 60_000          # a prior launch "flopped" if it never peaked above $60K (most never left the curve)
+GOOD_SHARE, BAD_SHARE = 0.5, 0.75
+PEAK_MAX_MINTS = 10        # newest prior launches looked up per dev (2 GeckoTerminal calls each)
+GT = "https://api.geckoterminal.com/api/v2/networks/solana"
+GOOD_DEVS_PATH = os.path.join(DATA_DIR, "good_devs.json")
 
 # ---------------- Helius (credit-counted, key never printed) ----------------
 class Budget:
@@ -180,6 +188,26 @@ def smart_line(r, n_smart=None):
     return f"Smart money: {k} known winner wallet{'s' if k != 1 else ''} ({'; '.join(parts)})"
 
 # ---------------- dev history ----------------
+def dev_tier(peaks):
+    """Pure. peaks: [peak_fdv or None] for prior launches. 'good' when >= TIER_MIN known and >= 50% ran to $300K+;
+    'bad' when >= TIER_MIN known and >= 75% never topped $60K (backtest: 5/5 such PASSes rugged, max prior peak $85K);
+    'neutral' for first launches / mixed; 'unknown' when peaks could not be read."""
+    if peaks is None: return "unknown"
+    known = [p for p in peaks if p is not None]
+    if not peaks: return "neutral"
+    if len(known) < min(TIER_MIN, len(peaks)) or (len(known) < len(peaks) / 2): return "unknown"
+    if len(known) < TIER_MIN: return "neutral"
+    ran = sum(1 for p in known if p >= RAN_FDV); flop = sum(1 for p in known if p < FLOP_FDV)
+    if ran / len(known) >= GOOD_SHARE: return "good"
+    if flop / len(known) >= BAD_SHARE: return "bad"
+    return "neutral"
+
+def _median(xs):
+    xs = sorted(xs); n = len(xs)
+    return (xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2) if xs else 0
+
+def _k(v): return f"${v / 1e6:,.1f}M" if v >= 1e6 else f"${v / 1e3:,.0f}K"
+
 def dev_verdict(d):
     """Pure. 'serial' when the dev launched >= SERIAL_MIN tokens before this one and >= SERIAL_DIED_SHARE of them died
     (backtest: 5/5 such PASSes rugged); 'unknown' without history; else 'ok'. Dev selling its launch buy is NOT
@@ -196,16 +224,72 @@ def dev_line(d):
     elif d.get("prior") is None: s = "Dev: launch history n/a"
     elif d["prior"] == 0: s = "Dev: first pump.fun launch seen"
     else:
-        s = f"Dev: {d['prior']} prior launch{'es' if d['prior'] != 1 else ''}, {d.get('died', 0)} died <$30K"
-        if d.get("survived"): s += f", {d['survived']} still alive ({d.get('best_sym') or 'best'} ${d.get('best_fdv', 0) / 1e3:,.0f}K)"
+        s = f"Dev: {d['prior']} prior launch{'es' if d['prior'] != 1 else ''}"
+        pk = [p for p in (d.get("peaks") or []) if p is not None]
+        if pk:
+            ran = sum(1 for p in pk if p >= RAN_FDV)
+            s += f" ({len(pk)} checked: {ran} ran to $300K+, median peak {_k(_median(pk))}, best {_k(max(pk))}"
+            if d.get("peak_hours_med") is not None: s += f", runners peaked ~{d['peak_hours_med']:.0f}h after launch"
+            s += ")"
+        else:
+            s += f", {d.get('died', 0)} died <$30K"
+            if d.get("survived"): s += f", {d['survived']} still alive ({d.get('best_sym') or 'best'} ${d.get('best_fdv', 0) / 1e3:,.0f}K)"
         if d.get("capped"): s += " (100+ txs, partial)"
     if d.get("non_pump"): pass
     elif not d.get("dev_buy"): s += ", no dev buy at launch"
     elif d.get("sold_pct") is not None:
         sp = d["sold_pct"]
         s += ", dev sold 100% of launch buy" if sp >= 99.5 else (", dev still holds its launch buy" if sp <= 0.5 else f", dev sold {sp:.0f}% of launch buy")
-    if dev_verdict(d) == "serial": s = "\u26a0\ufe0f " + s + " (serial launcher: 5/5 past PASSes like this rugged)"
+    t = d.get("tier")
+    if t == "good": s = "\u2705 " + s + " (GOOD DEV: past launches ran; still use the exit plan)"
+    elif t == "bad": s = "\u26d4 " + s + " (BAD DEV: past launches never got going; 5/5 past PASSes like this rugged)"
+    elif t is None and dev_verdict(d) == "serial": s = "\u26a0\ufe0f " + s + " (serial launcher: 5/5 past PASSes like this rugged)"
     return s
+
+def gt_peak(mint, cache=None):
+    """(peak_fdv, hours_from_pool_create_to_peak) from GeckoTerminal 4h candles of the mint's top pool.
+    (0, None) when it has no pool (never graduated = flop); (None, None) on errors. Cached per mint."""
+    ck = "peak:" + mint
+    if cache is not None and ck in cache: return tuple(cache[ck])
+    res = (None, None)
+    for t in range(3):
+        try:
+            r = requests.get(f"{GT}/tokens/{mint}/pools?page=1", timeout=20)
+            if r.status_code == 429: time.sleep(15 + 5 * t); continue
+            if r.status_code == 404: res = (0, None); break
+            pools = (r.json() or {}).get("data") or []
+            if not pools: res = (0, None); break
+            a = pools[0]["attributes"]; time.sleep(2.1)
+            r2 = requests.get(f"{GT}/pools/{a['address']}/ohlcv/hour?aggregate=4&limit=1000&currency=usd&token=base", timeout=20)
+            if r2.status_code == 429: time.sleep(15 + 5 * t); continue
+            ol = ((r2.json() or {}).get("data") or {}).get("attributes", {}).get("ohlcv_list") or []
+            if not ol: res = (0, None); break
+            hi = max(ol, key=lambda c: c[2]); hrs = None
+            try:
+                from datetime import datetime
+                c0 = datetime.fromisoformat(a["pool_created_at"].replace("Z", "+00:00")).timestamp()
+                hrs = max(0.0, (hi[0] - c0) / 3600)
+            except Exception: pass
+            res = (float(hi[2]) * 1e9, hrs); break   # pump.fun supply = 1B
+        except Exception:
+            time.sleep(2)
+    if cache is not None and res[0] is not None: cache[ck] = list(res)
+    time.sleep(2.1)
+    return res
+
+def record_good_dev(d, mint, path=None):
+    """Append a GOOD-tier creator to data/good_devs.json (deduped). Best-effort."""
+    path = path or GOOD_DEVS_PATH
+    try:
+        try: j = json.load(open(path))
+        except Exception: j = {"note": "r10.7.1 creators whose prior launches mostly ran to $300K+", "devs": {}}
+        e = j["devs"].setdefault(d["creator"], {"seen_on": []})
+        e.update({"prior": d.get("prior"), "peaks": [round(p) for p in d.get("peaks") or [] if p is not None],
+                  "updated": int(time.time())})
+        if mint not in e["seen_on"]: e["seen_on"].append(mint)
+        json.dump(j, open(path, "w"), indent=1)
+    except Exception:
+        pass
 
 # ---------------- network (cached) ----------------
 def _load_cache():
@@ -259,7 +343,7 @@ def dev_history(mint, B, launch=None, cache=None):
         first = gtfa(mint, B, "asc", 1)
         launch = launch_info(first, mint) if first else None
     if not launch or not launch.get("creator"):
-        d["error"] = "creator unknown"; d["verdict"] = "unknown"; d["line"] = dev_line(d); return d
+        d["error"] = "creator unknown"; d["verdict"] = "unknown"; d["tier"] = "unknown"; d["line"] = dev_line(d); return d
     cr = d["creator"] = launch["creator"]; d["dev_buy"] = launch.get("dev_buy") or 0
     ck = "dev:" + cr
     mints = (cache.get(ck) or {}).get("mints")
@@ -284,6 +368,14 @@ def dev_history(mint, B, launch=None, cache=None):
             bm, (bf, _, bs) = max(alive, key=lambda x: x[1][0])
             d["best_fdv"], d["best_sym"] = bf, bs
         d["prior_mints"] = mints[:20]
+        if os.environ.get("FD_DEV_PEAKS", "1") != "0":
+            recent = mints[:PEAK_MAX_MINTS]
+            pk = [gt_peak(m, cache) for m in recent]
+            d["peaks"] = [p for p, _ in pk]
+            hrs = [h for p, h in pk if p and p >= RAN_FDV and h is not None]
+            d["peak_hours_med"] = _median(hrs) if hrs else None
+            d["tier"] = dev_tier(d["peaks"])
+            if d["tier"] == "good": record_good_dev(d, mint)
     # dev still holding? one batched balance call on its ATAs (Token + Token-2022)
     if not launch.get("pump"): d["dev_buy"] = None; d["non_pump"] = True   # non-pump launch: creator minted supply
     if d["dev_buy"] and _tt is not None:
@@ -296,6 +388,8 @@ def dev_history(mint, B, launch=None, cache=None):
                 except Exception: pass
             d["dev_balance"] = bal
             d["sold_pct"] = round(max(0.0, min(100.0, 100 * (1 - bal / d["dev_buy"]))), 1)
+    if d.get("prior") == 0: d["tier"] = "neutral"
+    elif d.get("prior") is None: d.setdefault("tier", "unknown")
     d["verdict"] = dev_verdict(d)
     d["line"] = dev_line(d)
     return d

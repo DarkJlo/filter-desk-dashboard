@@ -19,7 +19,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.7-2026-11-07"   # r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.7.1-2026-11-07"   # r10.7.1: dev_tier good/bad/neutral/unknown from prior launches peak FDV (annotation only); r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -1062,7 +1062,8 @@ def wallet_intel_check(mint, M):
         M["smart_money_detail"] = {k: sm.get(k) for k in ("in_top", "in_early", "holding", "early_seen", "wallets", "error")}
         M["dev_history"] = dv.get("line") or ""
         M["dev_history_detail"] = {k: dv.get(k) for k in ("creator", "prior", "died", "survived", "best_sym", "best_fdv",
-                                                          "dev_buy", "sold_pct", "non_pump", "capped", "verdict", "error")}
+                                                          "dev_buy", "sold_pct", "non_pump", "capped", "verdict", "tier", "peaks", "peak_hours_med", "error")}
+        M["dev_tier"] = dv.get("tier") or "unknown"
         M["wallet_intel_credits"] = sm.get("helius_credits")
         print(f"  {M['smart_money_line']}\n  {M['dev_history']} (Helius ~{sm.get('helius_credits')} credits)")
     except Exception as e:
