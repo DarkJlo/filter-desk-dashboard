@@ -119,17 +119,17 @@
    "symbol": "HAMSTER"
   },
   "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump": {
-   "checks": 5,
-   "fdv": 431060,
+   "checks": 6,
+   "fdv": 359057,
    "first_label": "WAIT",
    "first_wait": "2026-11-07T03:52:06.879749+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-07T08:29:29+00:00",
-   "liq": 52556.07,
+   "last_check": "2026-11-07T09:27:12+00:00",
+   "liq": 47839.15,
    "mint": "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump",
    "pass_ts": "2026-11-07T03:52:06.879749+00:00",
    "reasons": [
-    "15m: still making lower lows",
+    "15m: still making lower lows (new low in the last candles)",
     "5m: still making lower lows"
    ],
    "status": "watching",
@@ -607,6 +607,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T08:29:29+00:00",
+ "updated": "2026-11-07T09:27:12+00:00",
  "window_h": 24
 }
