@@ -118,6 +118,22 @@
    "status": "flipped",
    "symbol": "HAMSTER"
   },
+  "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump": {
+   "checks": 1,
+   "fdv": 422664,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-07T03:52:06.879749+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-07T04:31:25+00:00",
+   "liq": 51875.75,
+   "mint": "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump",
+   "pass_ts": "2026-11-07T03:52:06.879749+00:00",
+   "reasons": [
+    "15m: no confirmed higher low yet"
+   ],
+   "status": "watching",
+   "symbol": "0DAY"
+  },
   "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump": {
    "checks": 5,
    "fdv": 385801,
@@ -154,7 +170,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-06T21:39:16.371051+00:00",
+   "pass_ts": "2026-11-07T03:52:05.035755+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -339,53 +355,6 @@
    "status": "flipped",
    "symbol": "inu"
   },
-  "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump": {
-   "checks": 1,
-   "fdv": 1719271,
-   "fdv_at_flip": 1719271,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-31T03:46:11.963261+00:00",
-   "flipped_at": "2026-10-31T04:23:48+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": true,
-    "flags": "FUNDER CLUSTER HIGH RISK, bundle, bundled_launch, flat, lopsided, 1x killed",
-    "gate_version": "r10.4-2026-10-29",
-    "prior_kills": 1,
-    "reasons": [
-     "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
-    ],
-    "tags": [
-     "bundle",
-     "bundled_launch",
-     "flat",
-     "lopsided",
-     "rc_down",
-     "trader_cluster_funder"
-    ],
-    "trader_note": "\ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%",
-    "trader_tier": "funder",
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~3h): 15 fresh <7d, 15 share a non-CEX funder, 0 CEX-funded, 8 still holding, 7 sold out \u00b7 tier: HIGH (funder cluster)"
-   },
-   "label": "OK",
-   "last_check": "2026-10-31T04:23:48+00:00",
-   "liq": 117761.29,
-   "liq_at_flip": 117761.29,
-   "mint": "DDG8rjV3TViCqKRQED2QZq4MEaE1uqXgEiosBNpapump",
-   "pass_ts": "2026-10-31T03:46:11.963261+00:00",
-   "reasons": [
-    "pulled back -26% and holding higher low",
-    "15m higher low held (+5% over prior low)",
-    "5m higher low held (+5% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-10-31T04:23:48+00:00",
-   "suppressed_reasons": [
-    "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 15/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
-   ],
-   "symbol": "AgenC"
-  },
   "E7ayy5Se6gjwCNtw9NP629AucnTgqab4SSmSxDpUpump": {
    "checks": 10,
    "fdv": 127359,
@@ -424,52 +393,6 @@
    ],
    "status": "flipped",
    "symbol": "WIF"
-  },
-  "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump": {
-   "checks": 4,
-   "fdv": 498405,
-   "fdv_at_flip": 498405,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-31T03:46:11.627891+00:00",
-   "flipped_at": "2026-10-31T07:35:49+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": true,
-    "flags": "FUNDER CLUSTER HIGH RISK, bundle, flat, lopsided",
-    "gate_version": "r10.4-2026-10-29",
-    "prior_kills": 0,
-    "reasons": [
-     "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
-    ],
-    "tags": [
-     "bundle",
-     "flat",
-     "lopsided",
-     "rc_down",
-     "trader_cluster_funder"
-    ],
-    "trader_note": "\ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%",
-    "trader_tier": "funder",
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~7h): 14 fresh <7d, 14 share a non-CEX funder, 1 CEX-funded, 4 still holding, 11 sold out \u00b7 tier: HIGH (funder cluster)"
-   },
-   "label": "OK",
-   "last_check": "2026-10-31T07:35:49+00:00",
-   "liq": 62371.69,
-   "liq_at_flip": 62371.69,
-   "mint": "EYqygbhZjP7EbM4fSn8devctnksAvPAD1Bt57XBFpump",
-   "pass_ts": "2026-10-31T03:46:11.627891+00:00",
-   "reasons": [
-    "pulled back -75% and holding higher low",
-    "15m higher low held (+11% over prior low)",
-    "5m higher low held (+11% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-10-31T07:35:49+00:00",
-   "suppressed_reasons": [
-    "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 14/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
-   ],
-   "symbol": "BNB"
   },
   "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump": {
    "checks": 12,
@@ -683,6 +606,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-07T03:28:43+00:00",
+ "updated": "2026-11-07T04:31:25+00:00",
  "window_h": 24
 }
