@@ -47,12 +47,12 @@
    "last_check": "2026-11-08T00:15:40+00:00",
    "liq": 110346.49,
    "mint": "3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf",
-   "pass_ts": "2026-11-07T23:31:19.356799+00:00",
+   "pass_ts": "2026-11-08T00:21:05.787367+00:00",
    "reasons": [
     "15m: no confirmed higher low yet",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "killed",
    "symbol": "TAOLF"
   },
   "3rgFUpCG4Vs2twJordBqLgUtuzdr7yckJNP33fQypump": {
@@ -217,7 +217,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-07T23:31:21.533147+00:00",
+   "pass_ts": "2026-11-08T01:40:49.634306+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -643,6 +643,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T00:15:40+00:00",
+ "updated": "2026-11-08T01:46:35+00:00",
  "window_h": 24
 }
