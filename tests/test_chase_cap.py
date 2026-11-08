@@ -20,7 +20,7 @@ def pas(ts="2026-11-05T20:00:00+00:00", fdv=98000, liq=50000, entry="WAIT"):
 class ChaseCapPure(unittest.TestCase):
     def test_constant(self):
         self.assertEqual(fd.CHASE_CAP_MULT, 1.5)
-        self.assertEqual(fd.FILTER_VERSION, "r10.7.2-2026-11-07")
+        self.assertEqual(fd.FILTER_VERSION, "r10.7.3-2026-11-07")
         self.assertEqual(ew.GATE_VERSION, fd.FILTER_VERSION)
 
     def test_1_4x_allowed(self):

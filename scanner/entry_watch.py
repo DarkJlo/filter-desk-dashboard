@@ -337,6 +337,9 @@ def main():
         rec["checks"] = rec.get("checks", 0) + 1
         rec.update(label=lab, reasons=M.get("entry_reasons") or [], status="watching")
         print(f"{rec['symbol']:>12} {m[:8]} ENTRY {lab}: {'; '.join(rec['reasons'])}  (fdv ${money(rec['fdv'])}, liq ${money(liq)})")
+        if lab == "OK" and (fd.crash_guard(pair, M) or {}).get("hit"):   # r10.7.3: no flip on a crash bounce
+            cg = M["crash_guard"]; rec["reasons"] = rec["reasons"] + [f"crash guard: {cg['ratio'] * 100:.0f}% of 24h high (r10.7.3)"]
+            print(f"{'':>12} {m[:8]} crash guard hit, not flipping"); lab = "WAIT"; rec["label"] = lab
         if lab == "OK":
             rec.update(status="flipped", flipped_at=iso(now), flipped_by="watch", fdv_at_flip=rec["fdv"], liq_at_flip=liq, new_flip=True)
     new = [m for m, r in T.items() if r.pop("new_flip", False)]

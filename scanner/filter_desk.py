@@ -19,7 +19,7 @@ from collections import Counter
 from datetime import datetime, timezone, timedelta
 
 # ---------------- rules version (bump on ANY rule/threshold change; see docs/RULES_CHANGELOG.md) ----------------
-FILTER_VERSION = "r10.7.2-2026-11-07"   # r10.7.2: dev_tier bad -> SKIP actually wired into pass_action; r10.7.1: dev_tier good/bad/neutral/unknown from prior launches peak FDV (good = annotation only); r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
+FILTER_VERSION = "r10.7.3-2026-11-07"   # r10.7.3: crash guard (BUY -> SKIP when price <= 65% of prior 24h high, completed 15m candles); r10.7.2: dev_tier bad -> SKIP actually wired into pass_action; r10.7.1: dev_tier good/bad/neutral/unknown from prior launches peak FDV (good = annotation only); r10.7: smart-money + dev-history annotation lines on PASS (no gating change); r10.6.1: entry-watch chase cap (suppress BUY alert when flip FDV >= 1.5x or <= 0.5x check FDV; exit plan anchored to check FDV); r10.6: lopsided = KILL, missing top-traders = HIGH, entry = structure only, PASS action BUY/SKIP + exit plan; r10.5: KILL >=12/15 funder cluster; r10.4: tiered trader WARN; r10.3: entry-watch gate; r10.2 top-traders WARN; sourcing = r10.1
 SOURCING_VERSION = "r10.1-2026-10-28"
 
 # ---------------- thresholds ----------------
@@ -999,6 +999,9 @@ def pass_action(metrics, tt=None, tags=None):
     if not isinstance(liq, (int, float)) or liq < ACTION_MIN_LIQ_USD:
         R.append(f"liquidity {_usd(liq) if isinstance(liq, (int, float)) else '?'} < {_usd(ACTION_MIN_LIQ_USD)}")
     if m.get("dev_tier") == "bad": R.append("bad dev: serial launcher whose priors flopped (r10.7.1 SKIP)")
+    cg = m.get("crash_guard") or {}
+    if cg.get("hit"):
+        R.append(f"crash guard: price {cg.get('ratio', 0) * 100:.0f}% of its 24h high (r10.7.3 SKIP)")
     if R: return "SKIP", R
     ok = ["top traders checked, no shared-funder cluster" + (" (fresh buyers)" if tier == "fresh" else ""),
           f"liquidity {_usd(liq)}"]
@@ -1249,6 +1252,37 @@ def higher_low_state(rows, k, cur):
     if cur is not None and cur <= last: return False, "price back at/below latest low", d
     return True, f"higher low held (+{(last / prev - 1) * 100:.0f}% over prior low)", d
 
+CRASH_GUARD_RATIO = 0.65         # r10.7.3: BUY -> SKIP when check price <= 65% of the prior 24h high
+CRASH_GUARD_WINDOW_H = 24
+CRASH_GUARD_URL = "https://api.geckoterminal.com/api/v2/networks/solana/pools/{pool}/ohlcv/minute?aggregate=15&limit=110"
+
+def crash_guard_eval(rows, cur, now=None):
+    """Pure. rows = [ts, o, h, l, c, v] 15m candles. Uses only completed candles in the prior 24h
+    (the candle containing `now` is excluded). Returns dict(high24, cur, ratio, hit, candles) or None."""
+    now = time.time() if now is None else now
+    open_ts = int(now // 900) * 900
+    win = [r for r in (rows or []) if now - CRASH_GUARD_WINDOW_H * 3600 <= r[0] < open_ts]
+    if not win or not cur: return None
+    hi = max(float(r[2]) for r in win)
+    if hi <= 0: return None
+    ratio = float(cur) / hi
+    return {"high24": hi, "cur": float(cur), "ratio": round(ratio, 4), "hit": ratio <= CRASH_GUARD_RATIO, "candles": len(win)}
+
+def crash_guard(pair, M):
+    """Set M['crash_guard'] (r10.7.3). Free GeckoTerminal 15m OHLCV, no Helius. Never raises; missing data never blocks."""
+    try:
+        pool = (pair or {}).get("pairAddress")
+        try: cur = float(pair.get("priceUsd"))
+        except Exception: cur = M.get("cur_price")
+        if not pool or not cur:
+            M["crash_guard"] = {"hit": False, "note": "no pool/price"}; return M["crash_guard"]
+        j = gecko_get(CRASH_GUARD_URL.format(pool=pool), cache_ttl=ENTRY_CACHE_TTL)
+        rows = sorted(j["data"]["attributes"]["ohlcv_list"])
+        M["crash_guard"] = crash_guard_eval(rows, cur) or {"hit": False, "note": "no completed candles"}
+    except Exception as e:
+        M["crash_guard"] = {"hit": False, "note": f"unavailable: {str(e)[:60]}"}
+    return M["crash_guard"]
+
 def entry_timing(pair, M):
     """Set M['entry'] (OK/WAIT/UNKNOWN), M['entry_reasons'], M['entry_detail']. Never raises."""
     try:
@@ -1383,6 +1417,8 @@ def run(mints, quiet=False):
         if v == "PASS":
             et = entry_timing(dex.get(m), M)   # r10: entry-timing label, does not change the verdict
             print(f"  entry {et}: {'; '.join(M.get('entry_reasons') or [])}")
+            cg = crash_guard(dex.get(m), M)   # r10.7.3: BUY -> SKIP in pass_action when hit
+            if cg.get("ratio") is not None: print(f"  crash guard: {cg['ratio'] * 100:.0f}% of 24h high" + (" -> SKIP" if cg.get("hit") else ""))
             v, R = trader_verdict(m, dex.get(m), M, v, R)   # r10.2 top traders (best-effort); r10.5: >= 12/15 shared funder -> KILL
             if v == "PASS": wallet_intel_check(m, M)   # r10.7 smart money + dev history (annotation only)
         M["stage_b_secs"] = round(time.time() - tb, 1)
