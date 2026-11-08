@@ -3380,3 +3380,38 @@
 2026-11-08T15:39:00+00:00 | KILL  | CzwzQw6eGr9RjF3ZLmEPxcxspSk6csRg9Gpvsnycz5eD | graph-detected insiders: 5; insider networks detected
 2026-11-08T15:39:01+00:00 | KILL  | CVDBmv4hwRPhnBAZLrdWCyBGGmSpmKwhXsoCDQKpump | warn: High holder correlation; lopsided h24 buys/sells 2411/172
 2026-11-08T15:39:01+00:00 | KILL  | 8F3oV5RtUBfYfqqmHLW8YZxKx9JXE1zeyLm8NZfyQUCB | graph-detected insiders: 6; insider networks detected
+2026-11-08T21:42:08+00:00 | KILL  | FZxHLUGiGchY5uvvoeqh1EKiXTrGdN67WUBhUc1fLoat | graph-detected insiders: 4; insider networks detected
+2026-11-08T21:42:09+00:00 | KILL  | HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump | graph-detected insiders: 10; insider networks detected
+2026-11-08T21:42:09+00:00 | KILL  | BWh8q5etuPwekJ2JEDkbMxMQWy4FysoJ8LEwE3rFpump | graph-detected insiders: 434; insider networks detected; lopsided h24 buys/sells 177913/83502 (ratio 0.47, pair 24.9h old; r8 warn band, r10.6 KILL)
+2026-11-08T21:42:09+00:00 | KILL  | 483nprwoMSoGQgrojSHWiePMbKPre7ZRDy4f8YNSpump | warn: High holder correlation; lopsided h24 buys/sells 61845/25323 (ratio 0.41, pair 19.8h old; r8 warn band, r10.6 KILL)
+2026-11-08T21:42:10+00:00 | KILL  | AWaBBNoVuwQ22B8Y5nEtLne2uEfk8UaYEFws7vT7pump | bundlers: same-slot buyer groups hold 66.7% >= 20.0%
+2026-11-08T21:42:10+00:00 | KILL  | 2StNe98imN7M6K341a7a4xvc8eNTvLCde5EugAKfLoat | graph-detected insiders: 17; insider networks detected
+2026-11-08T21:42:10+00:00 | KILL  | 5BeD1Uc3Rz2Eha5FqGEnVUpGRNRk8khkXLXQNxynPyTx | dead pump: -83% from ATH, lower lows
+2026-11-08T21:42:11+00:00 | KILL  | 87CQtouHSb6YCXaPZ1pp8jD56VudRMXBVqU3oDMD1UJT | graph-detected insiders: 61; insider networks detected
+2026-11-08T21:42:11+00:00 | KILL  | BdouwEr3mwXkT6S6EmHNCjn9oEtykRKCKiUSTRF9pump | graph-detected insiders: 18; insider networks detected
+2026-11-08T21:42:12+00:00 | KILL  | 8UQdy5sHMVWUWSHeA5B3ZuuAVNumjSLPXdf19MXcpump | dead pump: -99% from ATH, lower lows
+2026-11-08T21:42:12+00:00 | KILL  | 8rHoAfpdE89bi1SRRKaYUWfng3YpntoxZQyEQy9GPmZV | graph-detected insiders: 293; insider networks detected
+2026-11-08T21:42:12+00:00 | PASS  | 8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump | clean
+2026-11-08T21:42:13+00:00 | KILL  | 5shzBFRCpn5H8fJcWyCpd1s7avjgY1gMbPBU6nFvukij | graph-detected insiders: 14; insider networks detected
+2026-11-08T21:42:13+00:00 | KILL  | CZRtwCDJy4cKNvtVwtgGqeEGzLnCDJdTkexgpEsMpump | missing data: bundle analysis
+2026-11-08T21:42:14+00:00 | KILL  | HYSQ3jfTF3gW4WKkNh62cszwaKeThamQYQAhoEL3BAGS | graph-detected insiders: 15; insider networks detected
+2026-11-08T21:42:14+00:00 | KILL  | 9PPMpwduf92BGy52pPef7gceC3T54H2SJac36Brxpump | high risk score (raw=17825, norm=58); danger: Top 10 holders high ownership; danger: Single holder ownership; danger: High ownership; top10 non-LP holders 87.6% > 30.0%; single holder 76.4% > 10.0%; on-chain top10 81.9% > 30.0%; on-chain single holder 76.4% > 10.0%
+2026-11-08T21:42:14+00:00 | KILL  | BWJfBNeXpapG7uoqByp5KSwWgCQba8QcDmA2DQiEpump | graph-detected insiders: 8; insider networks detected
+2026-11-08T21:42:15+00:00 | KILL  | CvwKoNKeC9e8gNpQddGKSbrfN4CyNREivXm9yECJsRx | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers; creator still holds 0.120%
+2026-11-08T21:42:15+00:00 | KILL  | GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump | graph-detected insiders: 850; insider networks detected
+2026-11-08T21:42:15+00:00 | KILL  | DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump | top10 non-LP holders 35.6% > 30.0%; single holder 14.3% > 10.0%; on-chain top10 35.6% > 30.0%; on-chain single holder 14.3% > 10.0%
+2026-11-08T21:42:16+00:00 | KILL  | 5NRzuqfyd4r7dHHKDpMY9HdGM2BMgSQhcZAbXTcfLoat | graph-detected insiders: 8; insider networks detected
+2026-11-08T21:42:16+00:00 | KILL  | Hy4iuJwuo9hAUMgMsNpFXANvKSnGmFFqcjBZuiCFpJCP | graph-detected insiders: 15; insider networks detected
+2026-11-08T21:42:17+00:00 | KILL  | 7ymF66Z6VhgNiwadtVhjTtT6U7iQRpSxeiRrhfufhigh | graph-detected insiders: 9; insider networks detected
+2026-11-08T21:42:17+00:00 | KILL  | DDmGnuvroxVrb7CSyjYcezFU8gnAfhKasg4ZZezmpump | warn: Copycat token; graph-detected insiders: 837; insider networks detected
+2026-11-08T21:42:17+00:00 | KILL  | HHgNzGNwvS4MPWqDXp2zkwLEpsxASiWZGtW3MYbV1NhF | graph-detected insiders: 11; insider networks detected
+2026-11-08T21:42:18+00:00 | KILL  | HW2Sz6nNonYCfD59Ng5AeV1xtuU43xu7oktb2PPfpump | graph-detected insiders: 4; insider networks detected
+2026-11-08T21:42:18+00:00 | KILL  | TiMSdJrkVwUpeEWJpuqRvHt4wVS7uH77LbNPGGVJXNw | creator still holds 0.693%
+2026-11-08T21:42:18+00:00 | KILL  | 3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf | graph-detected insiders: 6; insider networks detected
+2026-11-08T21:42:19+00:00 | KILL  | SCGBBnSwnekytGFHgyeHHxPMiN7xDxsWFGg9JgFSTNK | graph-detected insiders: 55; insider networks detected
+2026-11-08T21:42:19+00:00 | KILL  | LKsRfGJjy25VZQJZL5tBZ6aMdtxHHA6PZ7Fp4mohype | graph-detected insiders: 15; insider networks detected
+2026-11-08T21:42:20+00:00 | KILL  | 5yC9BM8KUsJTPbWPLfA2N8qH1s9V8DQ3Vcw1G6Jdpump | top10 non-LP holders 53.8% > 30.0%; single holder 30.0% > 10.0%; graph-detected insiders: 5; insider networks detected; on-chain top10 53.8% > 30.0%; on-chain single holder 30.0% > 10.0%
+2026-11-08T21:42:20+00:00 | KILL  | 2HhH7LwfNHrxqMrSoXZ6Ri7GdmRYSJ4e8qSra9Krpump | graph-detected insiders: 106; insider networks detected
+2026-11-08T21:42:20+00:00 | KILL  | D149uT9w2ieSz1Q8CEyT8ETEy4Ko4KXKWDWJfLfFCHqM | high risk score (raw=11400, norm=52); LP locked only 0.0%; danger: Large Amount of LP Unlocked; warn: Low amount of LP Providers
+2026-11-08T21:42:21+00:00 | KILL  | 792rosbxyZ7tYELnC4HhW1ok4enB8T5tnySSs6Mnikvq | graph-detected insiders: 3; insider networks detected
+2026-11-08T21:42:21+00:00 | KILL  | DGuudmnJZ6yeFJTQEM1FgFeWB7dz2mo8sqjRqDWDfhLn | high risk score (raw=50201, norm=71); danger: Mint Authority still enabled; warn: Fee config enabled; mint authority not null; top10 non-LP holders 30.1% > 30.0%; single holder 14.5% > 10.0%; graph-detected insiders: 57; insider networks detected; token2022: transfer fee 0.5%; on-chain: mint authority not null; on-chain token2022: transfer fee 0.5%; on-chain top10 30.1% > 30.0%; on-chain single holder 14.5% > 10.0%
