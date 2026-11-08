@@ -98,6 +98,39 @@
    ],
    "symbol": "SA"
   },
+  "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump": {
+   "checks": 0,
+   "fdv": 6562,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-08T15:38:44.447667+00:00",
+   "label": null,
+   "last_check": "2026-11-08T16:17:31+00:00",
+   "liq": 6476.03,
+   "mint": "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump",
+   "pass_ts": "2026-11-08T15:38:44.447667+00:00",
+   "reasons": [
+    "liquidity $6K < $10K; entry check skipped"
+   ],
+   "status": "low_liq",
+   "symbol": "MELT"
+  },
+  "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat": {
+   "checks": 1,
+   "fdv": 303467,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-08T15:38:51.596412+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-08T16:17:31+00:00",
+   "liq": 107322.42,
+   "mint": "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat",
+   "pass_ts": "2026-11-08T15:38:51.596412+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "APU"
+  },
   "7gCND4jhgJ8Mq1XxNhRdercinXh7fcCDPjA9uEQLk3f2": {
    "checks": 6,
    "fdv": 113020,
@@ -217,7 +250,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-08T03:52:16.057693+00:00",
+   "pass_ts": "2026-11-08T15:38:52.491824+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -318,46 +351,6 @@
     "trader_cluster_funder (HIGH): \ud83d\udea9 FUNDER CLUSTER (HIGH RISK): 5/15 top traders funded by one non-exchange wallet \u2014 CHICO/DUBBLE/CATBOT pattern, all dumped 58-94%"
    ],
    "symbol": "JOB"
-  },
-  "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray": {
-   "checks": 4,
-   "fdv": 399516,
-   "fdv_at_flip": 399516,
-   "first_label": "WAIT",
-   "first_wait": "2026-10-31T21:35:13.780995+00:00",
-   "flipped_at": "2026-11-01T01:46:05+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "block": true,
-    "flags": "5x killed",
-    "gate_version": "r10.4-2026-10-29",
-    "prior_kills": 5,
-    "reasons": [
-     "repeat-killed: 5 KILL verdicts before this PASS (limit 3)"
-    ],
-    "tags": [],
-    "trader_note": "",
-    "trader_tier": null,
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~23h): 2 fresh <7d, 0 share a non-CEX funder, 8 CEX-funded, 8 still holding, 7 sold out \u00b7 tier: none"
-   },
-   "label": "OK",
-   "last_check": "2026-11-01T01:46:05+00:00",
-   "liq": 57647.99,
-   "liq_at_flip": 57647.99,
-   "mint": "APLPiTjBWzwfZ5U1TBeqLF9XJ7dV7XKGe7j4BZhkDray",
-   "pass_ts": "2026-11-01T15:33:17.947831+00:00",
-   "reasons": [
-    "pulled back -39% and holding higher low",
-    "15m higher low held (+13% over prior low)",
-    "5m higher low held (+13% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-11-01T01:46:05+00:00",
-   "suppressed_reasons": [
-    "repeat-killed: 5 KILL verdicts before this PASS (limit 3)"
-   ],
-   "symbol": "PEAK"
   },
   "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
    "checks": 6,
@@ -626,6 +619,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T15:16:11+00:00",
+ "updated": "2026-11-08T16:17:31+00:00",
  "window_h": 24
 }
