@@ -172,7 +172,7 @@
    "liq": 40073.2,
    "liq_at_flip": 40073.2,
    "mint": "85mEALGuRCMmmMo7YD51pMfEjWisbHHRwZX8t7Bpump",
-   "pass_ts": "2026-11-07T18:25:38.058788+00:00",
+   "pass_ts": "2026-11-08T03:52:28.201490+00:00",
    "reasons": [
     "holding higher low (63% below high)",
     "15m higher low held (+15% over prior low)",
@@ -217,7 +217,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-08T01:40:49.634306+00:00",
+   "pass_ts": "2026-11-08T03:52:16.057693+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -441,23 +441,6 @@
    "status": "flipped",
    "symbol": "WIF"
   },
-  "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump": {
-   "checks": 12,
-   "fdv": 111857,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-01T03:51:14.776580+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-01T15:15:30+00:00",
-   "liq": 29934.53,
-   "mint": "FdKdpz11GsTofLaNiddrhxrsE4APZYSSfLFqQ9YKpump",
-   "pass_ts": "2026-11-01T03:51:14.776580+00:00",
-   "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
-   ],
-   "status": "killed",
-   "symbol": "SIS"
-  },
   "FpWWSqLNrjTTMDM41EXkvBmHBDkNdWrf9RwHL57xpump": {
    "checks": 2,
    "fdv": 697130,
@@ -643,6 +626,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T03:32:46+00:00",
+ "updated": "2026-11-08T04:34:34+00:00",
  "window_h": 24
 }
