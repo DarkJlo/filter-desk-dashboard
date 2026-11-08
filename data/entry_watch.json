@@ -100,12 +100,12 @@
   },
   "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump": {
    "checks": 0,
-   "fdv": 5752,
+   "fdv": 5749,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:44.447667+00:00",
    "label": null,
-   "last_check": "2026-11-08T19:24:17+00:00",
-   "liq": 5934.48,
+   "last_check": "2026-11-08T20:16:03+00:00",
+   "liq": 5930.45,
    "mint": "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump",
    "pass_ts": "2026-11-08T15:38:44.447667+00:00",
    "reasons": [
@@ -115,17 +115,18 @@
    "symbol": "MELT"
   },
   "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat": {
-   "checks": 4,
-   "fdv": 282511,
+   "checks": 5,
+   "fdv": 247609,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:51.596412+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-08T19:24:17+00:00",
-   "liq": 103416.84,
+   "last_check": "2026-11-08T20:16:03+00:00",
+   "liq": 96810.98,
    "mint": "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat",
    "pass_ts": "2026-11-08T15:38:51.596412+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "15m: broke below its latest higher low",
+    "5m: broke below its latest higher low"
    ],
    "status": "watching",
    "symbol": "APU"
@@ -618,6 +619,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T19:24:17+00:00",
+ "updated": "2026-11-08T20:16:03+00:00",
  "window_h": 24
 }
