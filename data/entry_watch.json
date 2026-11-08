@@ -100,12 +100,12 @@
   },
   "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump": {
    "checks": 0,
-   "fdv": 10387,
+   "fdv": 9699,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:44.447667+00:00",
    "label": null,
-   "last_check": "2026-11-08T21:17:56+00:00",
-   "liq": 8497.69,
+   "last_check": "2026-11-08T22:17:01+00:00",
+   "liq": 8073.42,
    "mint": "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump",
    "pass_ts": "2026-11-08T15:38:44.447667+00:00",
    "reasons": [
@@ -115,13 +115,13 @@
    "symbol": "MELT"
   },
   "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat": {
-   "checks": 6,
-   "fdv": 145226,
+   "checks": 7,
+   "fdv": 169894,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:51.596412+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-08T21:17:56+00:00",
-   "liq": 74412.44,
+   "last_check": "2026-11-08T22:17:01+00:00",
+   "liq": 79151.81,
    "mint": "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat",
    "pass_ts": "2026-11-08T15:38:51.596412+00:00",
    "reasons": [
@@ -250,7 +250,7 @@
    "liq": 52067.71,
    "liq_at_flip": 52067.71,
    "mint": "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump",
-   "pass_ts": "2026-11-08T15:38:52.491824+00:00",
+   "pass_ts": "2026-11-08T21:42:12.924061+00:00",
    "reasons": [
     "holding higher low (12% below high)",
     "15m higher low held (+19% over prior low)",
@@ -619,6 +619,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T21:17:56+00:00",
+ "updated": "2026-11-08T22:17:01+00:00",
  "window_h": 24
 }
