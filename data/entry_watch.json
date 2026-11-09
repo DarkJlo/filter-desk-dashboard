@@ -100,12 +100,12 @@
   },
   "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump": {
    "checks": 0,
-   "fdv": 9154,
+   "fdv": 9189,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:44.447667+00:00",
    "label": null,
-   "last_check": "2026-11-08T23:15:34+00:00",
-   "liq": 7809.4,
+   "last_check": "2026-11-09T00:17:25+00:00",
+   "liq": 7811.74,
    "mint": "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump",
    "pass_ts": "2026-11-08T15:38:44.447667+00:00",
    "reasons": [
@@ -115,17 +115,20 @@
    "symbol": "MELT"
   },
   "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat": {
-   "checks": 8,
-   "fdv": 203329,
+   "checks": 9,
+   "fdv": 191891,
    "first_label": "WAIT",
    "first_wait": "2026-11-08T15:38:51.596412+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-08T23:15:34+00:00",
-   "liq": 86896.94,
+   "last_check": "2026-11-09T00:17:25+00:00",
+   "liq": 83986.83,
    "mint": "6nGocDUtGSJoSz1gUPgFGTpHtUSK3s7FN6zhB6AfLoat",
    "pass_ts": "2026-11-08T15:38:51.596412+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "holding higher low (68% below high)",
+    "15m higher low held (+43% over prior low)",
+    "5m higher low held (+6% over prior low)",
+    "crash guard: 32% of 24h high (r10.7.3)"
    ],
    "status": "watching",
    "symbol": "APU"
@@ -618,6 +621,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-08T23:15:34+00:00",
+ "updated": "2026-11-09T00:17:25+00:00",
  "window_h": 24
 }
