@@ -148,64 +148,54 @@
    ],
    "symbol": "WEALTH"
   },
-  "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump": {
-   "checks": 6,
-   "fdv": 282496,
-   "fdv_at_flip": 282496,
+  "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
+   "checks": 2,
+   "fdv": 17493470,
+   "fdv_at_check": 11737977,
+   "fdv_at_flip": 17493470,
    "first_label": "WAIT",
-   "first_wait": "2026-11-05T15:55:47.788926+00:00",
-   "flipped_at": "2026-11-05T21:25:48+00:00",
+   "first_wait": "2026-11-12T21:50:31.271268+00:00",
+   "flipped_at": "2026-11-13T08:46:42+00:00",
    "flipped_by": "watch",
    "gate": {
-    "action": "BUY",
+    "action": "SKIP",
     "action_reasons": [
-     "top traders checked, no shared-funder cluster",
-     "liquidity $44K"
+     "flat holders (wallet-farm risk)"
     ],
-    "block": false,
-    "flags": "bundled_launch",
-    "gate_version": "r10.6-2026-11-05",
+    "block": true,
+    "flags": "bundle, bundled_launch, flat",
+    "gate_version": "r10.7.3-2026-11-07",
     "hard_block": false,
     "prior_kills": 0,
-    "reasons": [],
+    "reasons": [
+     "action SKIP (r10.6): flat holders (wallet-farm risk)"
+    ],
     "tags": [
-     "bundled_launch"
+     "bundle",
+     "bundled_launch",
+     "flat"
     ],
     "trader_note": "",
     "trader_tier": null,
     "tt_checked": true,
-    "tt_line": "Top traders (15, last ~15h): 0 fresh <7d, 0 share a non-CEX funder, 6 CEX-funded, 4 still holding, 11 sold out \u00b7 tier: none"
+    "tt_line": "Top traders (15, last ~9h): 2 fresh <7d, 0 share a non-CEX funder, 3 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
    },
-   "issue": 12,
    "label": "OK",
-   "last_check": "2026-11-05T21:25:48+00:00",
-   "liq": 44150.22,
-   "liq_at_flip": 44150.22,
-   "mint": "Bid8i1ocWssjRmKh2kcUfHxD1K6Sk7E5pV2PSVdepump",
-   "pass_ts": "2026-11-06T03:50:39.932204+00:00",
-   "reasons": [
-    "holding higher low (14% below high)",
-    "15m higher low held (+35% over prior low)",
-    "5m higher low held (+61% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "inu"
-  },
-  "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 1,
-   "fdv": 11557330,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-12T21:50:31.271268+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-13T01:28:55+00:00",
-   "liq": 296778.81,
+   "last_check": "2026-11-13T08:46:42+00:00",
+   "liq": 363474.07,
+   "liq_at_flip": 363474.07,
    "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
    "pass_ts": "2026-11-12T21:50:31.271268+00:00",
    "reasons": [
-    "15m: broke below its latest higher low",
-    "5m: still making lower lows"
+    "holding higher low (12% below high)",
+    "15m higher low held (+43% over prior low)",
+    "5m higher low held (+11% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-13T08:46:42+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): flat holders (wallet-farm risk)"
+   ],
    "symbol": "RAMBO"
   },
   "mV9kZc5WEcsupy9KYZo1c7x52Ys1A5CDK73Ysg6pump": {
@@ -294,6 +284,6 @@
    "symbol": "DESSA"
   }
  },
- "updated": "2026-11-13T01:28:55+00:00",
+ "updated": "2026-11-13T08:46:42+00:00",
  "window_h": 24
 }
