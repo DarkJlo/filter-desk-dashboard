@@ -272,7 +272,8 @@ def onchain_checks(mint, rep, M):
     if cluster >= UNIFORM_CLUSTER_MIN: M["cluster_flag"] = True  # judged by bundle analysis
     rc = M.get("top10_pct")
     if rc is not None and abs(rc - top10) > MAX_HOLDER_MISMATCH_PTS:
-        R.append(f"holder data mismatch (rugcheck {rc:.1f}% vs on-chain {top10:.1f}%)")
+        R.append(f"holder data mismatch (rugcheck {rc:.1f}% vs on-chain {top10:.1f}%)"
+                 + ("; rugcheck figure impossible, likely bad supply/decimals" if rc > 100 else ""))
     # authority agreement with rugcheck
     if rep is not None and (bool(M.get("mintAuthority")) != bool(info.get("mintAuthority")) or
                             bool(M.get("freezeAuthority")) != bool(info.get("freezeAuthority"))):
@@ -864,6 +865,12 @@ def evaluate_stage_a(mint, rep, pair):
         elif liq:
             if fdv / liq > MAX_FDV_LIQ_RATIO: R.append(f"FDV/liq {fdv/liq:.0f} > {MAX_FDV_LIQ_RATIO}")
     R += onchain_checks(mint, rep, M)
+    # r10.7.4 (reasons only): when RugCheck's holder % disagrees with on-chain (mismatch line present,
+    # e.g. RugCheck supply/decimals off by 10^6), drop the RugCheck-derived holder lines; the on-chain
+    # lines apply the same thresholds with correct numbers. Verdict unchanged (mismatch line still kills).
+    if any(r.startswith("holder data mismatch") for r in R) and M.get("oc_top10_pct") is not None:
+        R = [r for r in R if not (r.startswith("top10 non-LP holders ") or r.startswith("single holder "))]
+        M["top10_pct_rugcheck_ignored"] = M.get("top10_pct")
     flat_warn(M)
     if M.get("cluster_flag") and R: M["bundle_status"] = "not analyzed (already killed)"
     return R, M
