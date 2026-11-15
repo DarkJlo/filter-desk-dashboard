@@ -50,6 +50,23 @@
    ],
    "symbol": "WEALTH"
   },
+  "8cWGfiHyKqxgLrLtkPt2NnLkSUV2JbcLBf4RN6Fapump": {
+   "checks": 1,
+   "fdv": 46114,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-15T20:17:19.136820+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-15T21:18:25+00:00",
+   "liq": 15251.98,
+   "mint": "8cWGfiHyKqxgLrLtkPt2NnLkSUV2JbcLBf4RN6Fapump",
+   "pass_ts": "2026-11-15T20:17:19.136820+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "Nyajira"
+  },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
    "checks": 2,
    "fdv": 17493470,
@@ -145,6 +162,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-15T15:52:58+00:00",
+ "updated": "2026-11-15T21:18:25+00:00",
  "window_h": 24
 }
