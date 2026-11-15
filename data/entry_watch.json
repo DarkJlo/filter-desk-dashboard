@@ -1,23 +1,6 @@
 {
  "min_liq": 10000,
  "tokens": {
-  "3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf": {
-   "checks": 1,
-   "fdv": 319591,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-07T23:31:19.356799+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-08T00:15:40+00:00",
-   "liq": 110346.49,
-   "mint": "3hWkYmr81vZbyVnTPzcSjSNxxZuSmSdrQUohx86Rrxqf",
-   "pass_ts": "2026-11-08T00:21:05.787367+00:00",
-   "reasons": [
-    "15m: no confirmed higher low yet",
-    "5m: still making lower lows"
-   ],
-   "status": "killed",
-   "symbol": "TAOLF"
-  },
   "5PmU19opZfFbRTVHzhFdUDp5Z4RdaMxVh2uHxqbGpump": {
    "checks": 0,
    "expired_at": "2026-11-09T16:45:25+00:00",
@@ -197,8 +180,25 @@
     "action SKIP (r10.6): flat holders (wallet-farm risk)"
    ],
    "symbol": "RAMBO"
+  },
+  "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump": {
+   "checks": 1,
+   "fdv": 137108,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-15T00:47:24.341910+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-15T01:19:57+00:00",
+   "liq": 27018.26,
+   "mint": "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump",
+   "pass_ts": "2026-11-15T00:47:24.341910+00:00",
+   "reasons": [
+    "15m: broke below its latest higher low",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "duh"
   }
  },
- "updated": "2026-11-14T20:56:22+00:00",
+ "updated": "2026-11-15T01:19:57+00:00",
  "window_h": 24
 }
