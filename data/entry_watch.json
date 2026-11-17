@@ -3,6 +3,7 @@
  "tokens": {
   "8BMqmEFXDU6dWzU4we9Py5wRi8KpFQZSRPThQqLapump": {
    "checks": 2,
+   "expired_at": "2026-11-17T11:11:04+00:00",
    "fdv": 75238,
    "first_label": "WAIT",
    "first_wait": "2026-11-16T10:45:00.061677+00:00",
@@ -14,7 +15,7 @@
    "reasons": [
     "15m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "Pterodactyl"
   },
   "8Mi9E1V2bdPeAaRkR5yxUsAvpzP6UBUEEUrYmgKNpump": {
@@ -134,6 +135,7 @@
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
    "checks": 1,
+   "expired_at": "2026-11-17T11:11:04+00:00",
    "fdv": 2951,
    "first_label": "WAIT",
    "first_wait": "2026-11-16T10:45:04.459316+00:00",
@@ -145,7 +147,7 @@
    "reasons": [
     "liquidity $3K < $10K; entry check skipped"
    ],
-   "status": "low_liq",
+   "status": "expired",
    "symbol": "XRL"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
@@ -243,6 +245,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-17T02:37:32+00:00",
+ "updated": "2026-11-17T11:11:04+00:00",
  "window_h": 24
 }
