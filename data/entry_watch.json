@@ -84,6 +84,25 @@
    "status": "expired",
    "symbol": "Nyajira"
   },
+  "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
+   "checks": 1,
+   "fdv": 4934545,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-17T11:39:41.026527+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-17T20:01:32+00:00",
+   "liq": 197998.4,
+   "mint": "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump",
+   "pass_ts": "2026-11-17T11:39:41.026527+00:00",
+   "reasons": [
+    "holding higher low (79% below high)",
+    "15m higher low held (+0% over prior low)",
+    "5m higher low held (+4% over prior low)",
+    "crash guard: 21% of 24h high (r10.7.3)"
+   ],
+   "status": "watching",
+   "symbol": "BLOB"
+  },
   "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
    "checks": 1,
    "fdv": 52764,
@@ -132,6 +151,23 @@
     "action SKIP (r10.6): liquidity $16K < $30K"
    ],
    "symbol": "kibble"
+  },
+  "Dys6SYbjUsy8kksaqrXqo5L2GzgCYDiguGGcS8B5rkrv": {
+   "checks": 1,
+   "fdv": 85128,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-17T11:39:44.681578+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-17T20:01:32+00:00",
+   "liq": 51253.53,
+   "mint": "Dys6SYbjUsy8kksaqrXqo5L2GzgCYDiguGGcS8B5rkrv",
+   "pass_ts": "2026-11-17T11:39:44.681578+00:00",
+   "reasons": [
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "bul"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
    "checks": 1,
@@ -245,6 +281,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-17T11:11:04+00:00",
+ "updated": "2026-11-17T20:01:32+00:00",
  "window_h": 24
 }
