@@ -2,13 +2,13 @@
  "min_liq": 10000,
  "tokens": {
   "8BMqmEFXDU6dWzU4we9Py5wRi8KpFQZSRPThQqLapump": {
-   "checks": 1,
-   "fdv": 89833,
+   "checks": 2,
+   "fdv": 75238,
    "first_label": "WAIT",
    "first_wait": "2026-11-16T10:45:00.061677+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-16T18:56:00+00:00",
-   "liq": 21255.9,
+   "last_check": "2026-11-17T02:37:32+00:00",
+   "liq": 19507.55,
    "mint": "8BMqmEFXDU6dWzU4we9Py5wRi8KpFQZSRPThQqLapump",
    "pass_ts": "2026-11-16T10:45:00.061677+00:00",
    "reasons": [
@@ -68,6 +68,7 @@
   },
   "8cWGfiHyKqxgLrLtkPt2NnLkSUV2JbcLBf4RN6Fapump": {
    "checks": 3,
+   "expired_at": "2026-11-17T02:37:32+00:00",
    "fdv": 10008,
    "first_label": "WAIT",
    "first_wait": "2026-11-15T20:17:19.136820+00:00",
@@ -79,24 +80,72 @@
    "reasons": [
     "liquidity $6K < $10K; entry check skipped"
    ],
-   "status": "low_liq",
+   "status": "expired",
    "symbol": "Nyajira"
+  },
+  "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
+   "checks": 1,
+   "fdv": 52764,
+   "fdv_at_check": 60646,
+   "fdv_at_flip": 52764,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-16T23:45:41.434827+00:00",
+   "flipped_at": "2026-11-17T02:37:32+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "SKIP",
+    "action_reasons": [
+     "liquidity $16K < $30K"
+    ],
+    "block": true,
+    "flags": "bundle, bundled_launch",
+    "gate_version": "r10.7.3-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [
+     "action SKIP (r10.6): liquidity $16K < $30K"
+    ],
+    "tags": [
+     "bundle",
+     "bundled_launch"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~24h): 1 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 6 still holding, 9 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-17T02:37:32+00:00",
+   "liq": 16382.71,
+   "liq_at_flip": 16382.71,
+   "mint": "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump",
+   "pass_ts": "2026-11-16T23:45:41.434827+00:00",
+   "reasons": [
+    "holding higher low (30% below high)",
+    "15m higher low held (+2% over prior low)",
+    "5m higher low held (+2% over prior low)"
+   ],
+   "status": "suppressed",
+   "suppressed_at": "2026-11-17T02:37:32+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): liquidity $16K < $30K"
+   ],
+   "symbol": "kibble"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
    "checks": 1,
-   "fdv": 63156,
+   "fdv": 2951,
    "first_label": "WAIT",
    "first_wait": "2026-11-16T10:45:04.459316+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-16T18:56:00+00:00",
-   "liq": 17723.21,
+   "label": null,
+   "last_check": "2026-11-17T02:37:32+00:00",
+   "liq": 2864.05,
    "mint": "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g",
    "pass_ts": "2026-11-16T10:45:04.459316+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "liquidity $3K < $10K; entry check skipped"
    ],
-   "status": "watching",
+   "status": "low_liq",
    "symbol": "XRL"
   },
   "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
@@ -194,6 +243,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-16T18:56:00+00:00",
+ "updated": "2026-11-17T02:37:32+00:00",
  "window_h": 24
 }
