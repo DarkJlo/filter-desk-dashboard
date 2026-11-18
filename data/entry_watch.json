@@ -85,20 +85,18 @@
    "symbol": "Nyajira"
   },
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
-   "checks": 1,
-   "fdv": 4934545,
+   "checks": 2,
+   "fdv": 6778337,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T11:39:41.026527+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-17T20:01:32+00:00",
-   "liq": 197998.4,
+   "last_check": "2026-11-18T02:36:36+00:00",
+   "liq": 236165.69,
    "mint": "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump",
    "pass_ts": "2026-11-17T11:39:41.026527+00:00",
    "reasons": [
-    "holding higher low (79% below high)",
-    "15m higher low held (+0% over prior low)",
-    "5m higher low held (+4% over prior low)",
-    "crash guard: 21% of 24h high (r10.7.3)"
+    "15m: still making lower lows",
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "BLOB"
@@ -166,8 +164,43 @@
     "15m: still making lower lows (new low in the last candles)",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "killed",
    "symbol": "bul"
+  },
+  "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
+   "checks": 1,
+   "fdv": 219628,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-17T22:55:12.288868+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-18T02:36:36+00:00",
+   "liq": 34419.09,
+   "mint": "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump",
+   "pass_ts": "2026-11-17T22:55:12.288868+00:00",
+   "reasons": [
+    "holding higher low (56% below high)",
+    "15m higher low held (+105% over prior low)",
+    "5m higher low held (+12% over prior low)",
+    "crash guard: 44% of 24h high (r10.7.3)"
+   ],
+   "status": "watching",
+   "symbol": "LUNO"
+  },
+  "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump": {
+   "checks": 1,
+   "fdv": 127856,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-17T22:55:29.379516+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-18T02:36:36+00:00",
+   "liq": 26279.65,
+   "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
+   "pass_ts": "2026-11-17T22:55:29.379516+00:00",
+   "reasons": [
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "PumpMas"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
    "checks": 1,
@@ -281,6 +314,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-17T20:01:32+00:00",
+ "updated": "2026-11-18T02:36:36+00:00",
  "window_h": 24
 }
