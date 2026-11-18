@@ -86,6 +86,7 @@
   },
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
    "checks": 3,
+   "expired_at": "2026-11-18T19:07:06+00:00",
    "fdv": 2334480,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T11:39:41.026527+00:00",
@@ -97,7 +98,7 @@
    "reasons": [
     "15m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "BLOB"
   },
   "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
@@ -167,36 +168,69 @@
    "symbol": "bul"
   },
   "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
-   "checks": 2,
-   "fdv": 203288,
+   "checks": 3,
+   "fdv": 164243,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:12.288868+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-18T10:44:46+00:00",
-   "liq": 33139.73,
+   "last_check": "2026-11-18T19:07:06+00:00",
+   "liq": 29639.92,
    "mint": "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump",
-   "pass_ts": "2026-11-17T22:55:12.288868+00:00",
+   "pass_ts": "2026-11-18T11:09:08.350242+00:00",
    "reasons": [
-    "5m: no confirmed higher low yet"
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "LUNO"
   },
   "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump": {
-   "checks": 2,
-   "fdv": 87700,
+   "checks": 3,
+   "fdv": 138109,
+   "fdv_at_check": 123216,
+   "fdv_at_flip": 138109,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:29.379516+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-18T10:44:46+00:00",
-   "liq": 21595.39,
+   "flipped_at": "2026-11-18T19:07:06+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "SKIP",
+    "action_reasons": [
+     "liquidity $27K < $30K"
+    ],
+    "block": true,
+    "flags": "bundle, bundled_launch",
+    "gate_version": "r10.7.3-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [
+     "action SKIP (r10.6): liquidity $27K < $30K"
+    ],
+    "tags": [
+     "bundle",
+     "bundled_launch"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~23h): 0 fresh <7d, 0 share a non-CEX funder, 12 CEX-funded, 6 still holding, 9 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-18T19:07:06+00:00",
+   "liq": 27360.18,
+   "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
    "pass_ts": "2026-11-17T22:55:29.379516+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "holding higher low (27% below high)",
+    "15m higher low held (+26% over prior low)",
+    "5m higher low held (+88% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-18T19:07:06+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): liquidity $27K < $30K"
+   ],
    "symbol": "PumpMas"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
@@ -311,6 +345,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-18T10:44:46+00:00",
+ "updated": "2026-11-18T19:07:06+00:00",
  "window_h": 24
 }
