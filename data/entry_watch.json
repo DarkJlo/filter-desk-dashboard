@@ -85,18 +85,17 @@
    "symbol": "Nyajira"
   },
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
-   "checks": 2,
-   "fdv": 6778337,
+   "checks": 3,
+   "fdv": 2334480,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T11:39:41.026527+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-18T02:36:36+00:00",
-   "liq": 236165.69,
+   "last_check": "2026-11-18T10:44:46+00:00",
+   "liq": 138727.94,
    "mint": "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump",
    "pass_ts": "2026-11-17T11:39:41.026527+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: no confirmed higher low yet"
+    "15m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "BLOB"
@@ -168,35 +167,33 @@
    "symbol": "bul"
   },
   "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
-   "checks": 1,
-   "fdv": 219628,
+   "checks": 2,
+   "fdv": 203288,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:12.288868+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-18T02:36:36+00:00",
-   "liq": 34419.09,
+   "last_check": "2026-11-18T10:44:46+00:00",
+   "liq": 33139.73,
    "mint": "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump",
    "pass_ts": "2026-11-17T22:55:12.288868+00:00",
    "reasons": [
-    "holding higher low (56% below high)",
-    "15m higher low held (+105% over prior low)",
-    "5m higher low held (+12% over prior low)",
-    "crash guard: 44% of 24h high (r10.7.3)"
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "LUNO"
   },
   "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump": {
-   "checks": 1,
-   "fdv": 127856,
+   "checks": 2,
+   "fdv": 87700,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:29.379516+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-18T02:36:36+00:00",
-   "liq": 26279.65,
+   "last_check": "2026-11-18T10:44:46+00:00",
+   "liq": 21595.39,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
    "pass_ts": "2026-11-17T22:55:29.379516+00:00",
    "reasons": [
+    "15m: still making lower lows",
     "5m: still making lower lows"
    ],
    "status": "watching",
@@ -314,6 +311,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-18T02:36:36+00:00",
+ "updated": "2026-11-18T10:44:46+00:00",
  "window_h": 24
 }
