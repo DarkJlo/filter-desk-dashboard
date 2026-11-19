@@ -120,6 +120,7 @@
   },
   "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
    "checks": 5,
+   "expired_at": "2026-11-19T18:40:41+00:00",
    "fdv": 345155,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:12.288868+00:00",
@@ -132,7 +133,7 @@
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "LUNO"
   },
   "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump": {
@@ -251,6 +252,23 @@
    ],
    "symbol": "RAMBO"
   },
+  "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
+   "checks": 1,
+   "fdv": 7098537,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-19T11:10:28.345416+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-19T18:40:41+00:00",
+   "liq": 236188.59,
+   "mint": "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
+   "pass_ts": "2026-11-19T11:10:28.345416+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "ANTS"
+  },
   "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump": {
    "checks": 2,
    "fdv": 185721,
@@ -296,6 +314,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-19T09:30:13+00:00",
+ "updated": "2026-11-19T18:40:41+00:00",
  "window_h": 24
 }
