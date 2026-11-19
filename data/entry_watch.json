@@ -168,18 +168,18 @@
    "symbol": "bul"
   },
   "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
-   "checks": 3,
-   "fdv": 164243,
+   "checks": 4,
+   "fdv": 186547,
    "first_label": "WAIT",
    "first_wait": "2026-11-17T22:55:12.288868+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-18T19:07:06+00:00",
-   "liq": 29639.92,
+   "last_check": "2026-11-19T01:30:22+00:00",
+   "liq": 31708.91,
    "mint": "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump",
    "pass_ts": "2026-11-18T11:09:08.350242+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows"
+    "15m: still making lower lows",
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "LUNO"
@@ -345,6 +345,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-18T19:07:06+00:00",
+ "updated": "2026-11-19T01:30:22+00:00",
  "window_h": 24
 }
