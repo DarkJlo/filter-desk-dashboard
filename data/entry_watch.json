@@ -203,17 +203,18 @@
    "symbol": "XRL"
   },
   "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
-   "checks": 3,
-   "fdv": 4758254,
+   "checks": 4,
+   "fdv": 4707881,
    "first_label": "WAIT",
    "first_wait": "2026-11-19T11:10:28.345416+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-20T09:11:54+00:00",
-   "liq": 190807.58,
+   "last_check": "2026-11-20T18:01:55+00:00",
+   "liq": 185773.66,
    "mint": "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
    "pass_ts": "2026-11-19T22:40:41.496952+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "15m: still making lower lows",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "ANTS"
@@ -263,6 +264,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-20T09:11:54+00:00",
+ "updated": "2026-11-20T18:01:55+00:00",
  "window_h": 24
 }
