@@ -202,66 +202,16 @@
    "status": "expired",
    "symbol": "XRL"
   },
-  "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump": {
-   "checks": 2,
-   "fdv": 17493470,
-   "fdv_at_check": 11737977,
-   "fdv_at_flip": 17493470,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-12T21:50:31.271268+00:00",
-   "flipped_at": "2026-11-13T08:46:42+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "action": "SKIP",
-    "action_reasons": [
-     "flat holders (wallet-farm risk)"
-    ],
-    "block": true,
-    "flags": "bundle, bundled_launch, flat",
-    "gate_version": "r10.7.3-2026-11-07",
-    "hard_block": false,
-    "prior_kills": 0,
-    "reasons": [
-     "action SKIP (r10.6): flat holders (wallet-farm risk)"
-    ],
-    "tags": [
-     "bundle",
-     "bundled_launch",
-     "flat"
-    ],
-    "trader_note": "",
-    "trader_tier": null,
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~9h): 2 fresh <7d, 0 share a non-CEX funder, 3 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
-   },
-   "label": "OK",
-   "last_check": "2026-11-13T08:46:42+00:00",
-   "liq": 363474.07,
-   "liq_at_flip": 363474.07,
-   "mint": "KMifrkYmDdAKtVXAVBEPEQxJ7qP2iLgUcfZjUZipump",
-   "pass_ts": "2026-11-12T21:50:31.271268+00:00",
-   "reasons": [
-    "holding higher low (12% below high)",
-    "15m higher low held (+43% over prior low)",
-    "5m higher low held (+11% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-11-13T08:46:42+00:00",
-   "suppressed_reasons": [
-    "action SKIP (r10.6): flat holders (wallet-farm risk)"
-   ],
-   "symbol": "RAMBO"
-  },
   "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
-   "checks": 1,
-   "fdv": 7098537,
+   "checks": 2,
+   "fdv": 7303430,
    "first_label": "WAIT",
    "first_wait": "2026-11-19T11:10:28.345416+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-19T18:40:41+00:00",
-   "liq": 236188.59,
+   "last_check": "2026-11-20T00:55:50+00:00",
+   "liq": 236994.99,
    "mint": "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
-   "pass_ts": "2026-11-19T11:10:28.345416+00:00",
+   "pass_ts": "2026-11-19T22:40:41.496952+00:00",
    "reasons": [
     "15m: still making lower lows",
     "5m: still making lower lows"
@@ -314,6 +264,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-19T18:40:41+00:00",
+ "updated": "2026-11-20T00:55:50+00:00",
  "window_h": 24
 }
