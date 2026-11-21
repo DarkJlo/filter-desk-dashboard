@@ -204,6 +204,7 @@
   },
   "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
    "checks": 4,
+   "expired_at": "2026-11-21T00:15:45+00:00",
    "fdv": 4707881,
    "first_label": "WAIT",
    "first_wait": "2026-11-19T11:10:28.345416+00:00",
@@ -216,7 +217,7 @@
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "ANTS"
   },
   "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump": {
@@ -264,6 +265,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-20T18:01:55+00:00",
+ "updated": "2026-11-21T00:15:45+00:00",
  "window_h": 24
 }
