@@ -172,7 +172,7 @@
    "liq": 27360.18,
    "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-   "pass_ts": "2026-11-17T22:55:29.379516+00:00",
+   "pass_ts": "2026-11-21T20:55:07.613698+00:00",
    "reasons": [
     "holding higher low (27% below high)",
     "15m higher low held (+26% over prior low)",
@@ -184,6 +184,23 @@
     "action SKIP (r10.6): liquidity $27K < $30K"
    ],
    "symbol": "PumpMas"
+  },
+  "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
+   "checks": 1,
+   "fdv": 78792,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-21T20:55:03.578591+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-21T21:11:22+00:00",
+   "liq": 20408.99,
+   "mint": "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump",
+   "pass_ts": "2026-11-21T20:55:03.578591+00:00",
+   "reasons": [
+    "15m: broke below its latest higher low",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "nma"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
    "checks": 1,
@@ -265,6 +282,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-21T15:37:51+00:00",
+ "updated": "2026-11-21T21:11:22+00:00",
  "window_h": 24
 }
