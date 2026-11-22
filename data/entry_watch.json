@@ -18,23 +18,6 @@
    "status": "expired",
    "symbol": "Pterodactyl"
   },
-  "8cWGfiHyKqxgLrLtkPt2NnLkSUV2JbcLBf4RN6Fapump": {
-   "checks": 3,
-   "expired_at": "2026-11-17T02:37:32+00:00",
-   "fdv": 10008,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-15T20:17:19.136820+00:00",
-   "label": null,
-   "last_check": "2026-11-16T18:56:00+00:00",
-   "liq": 6479.98,
-   "mint": "8cWGfiHyKqxgLrLtkPt2NnLkSUV2JbcLBf4RN6Fapump",
-   "pass_ts": "2026-11-15T20:17:19.136820+00:00",
-   "reasons": [
-    "liquidity $6K < $10K; entry check skipped"
-   ],
-   "status": "expired",
-   "symbol": "Nyajira"
-  },
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
    "checks": 3,
    "expired_at": "2026-11-18T19:07:06+00:00",
@@ -51,6 +34,22 @@
    ],
    "status": "expired",
    "symbol": "BLOB"
+  },
+  "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump": {
+   "checks": 1,
+   "fdv": 72701,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-22T21:04:30.033427+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-22T22:49:09+00:00",
+   "liq": 19137.99,
+   "mint": "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump",
+   "pass_ts": "2026-11-22T21:04:30.033427+00:00",
+   "reasons": [
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "chego"
   },
   "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
    "checks": 1,
@@ -187,6 +186,7 @@
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
    "checks": 4,
+   "expired_at": "2026-11-22T22:49:09+00:00",
    "fdv": 41374,
    "first_label": "WAIT",
    "first_wait": "2026-11-21T20:55:03.578591+00:00",
@@ -199,7 +199,7 @@
     "15m: still making lower lows (new low in the last candles)",
     "5m: still making lower lows (new low in the last candles)"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "nma"
   },
   "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
@@ -285,6 +285,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-22T17:24:08+00:00",
+ "updated": "2026-11-22T22:49:09+00:00",
  "window_h": 24
 }
