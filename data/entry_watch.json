@@ -186,17 +186,18 @@
    "symbol": "PumpMas"
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
-   "checks": 3,
-   "fdv": 63121,
+   "checks": 4,
+   "fdv": 41374,
    "first_label": "WAIT",
    "first_wait": "2026-11-21T20:55:03.578591+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-22T08:50:53+00:00",
-   "liq": 18127.31,
+   "last_check": "2026-11-22T17:24:08+00:00",
+   "liq": 14526.71,
    "mint": "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump",
    "pass_ts": "2026-11-21T20:55:03.578591+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "nma"
@@ -252,7 +253,7 @@
    "liq": 27883.56,
    "liq_at_flip": 27883.56,
    "mint": "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump",
-   "pass_ts": "2026-11-22T01:01:03.349975+00:00",
+   "pass_ts": "2026-11-22T10:49:31.580157+00:00",
    "reasons": [
     "holding higher low (15% below high)",
     "15m higher low held (+3% over prior low)",
@@ -282,52 +283,8 @@
    ],
    "status": "expired",
    "symbol": "ANTS"
-  },
-  "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump": {
-   "checks": 2,
-   "fdv": 185721,
-   "fdv_at_check": 253091,
-   "fdv_at_flip": 253091,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-15T00:47:24.341910+00:00",
-   "flipped_at": "2026-11-15T10:28:12.698759+00:00",
-   "flipped_by": "scan",
-   "gate": {
-    "action": "BUY",
-    "action_reasons": [
-     "top traders checked, no shared-funder cluster",
-     "liquidity $38K"
-    ],
-    "block": false,
-    "flags": "bundle",
-    "gate_version": "r10.7.3-2026-11-07",
-    "hard_block": false,
-    "prior_kills": 0,
-    "reasons": [],
-    "tags": [
-     "bundle"
-    ],
-    "trader_note": "",
-    "trader_tier": null,
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~13h): 2 fresh <7d, 0 share a non-CEX funder, 8 CEX-funded, 7 still holding, 8 sold out \u00b7 tier: none"
-   },
-   "issue": 15,
-   "label": "OK",
-   "last_check": "2026-11-15T15:52:58+00:00",
-   "liq": 31951.11,
-   "liq_at_flip": 38065.36,
-   "mint": "ngwxpGYdkauMcxLFrNTKp8qBgK7JV53zVvd7F2spump",
-   "pass_ts": "2026-11-15T10:28:12.698759+00:00",
-   "reasons": [
-    "holding higher low (21% below high)",
-    "15m higher low held (+2% over prior low)",
-    "5m higher low held (+2% over prior low)"
-   ],
-   "status": "flipped",
-   "symbol": "duh"
   }
  },
- "updated": "2026-11-22T08:50:53+00:00",
+ "updated": "2026-11-22T17:24:08+00:00",
  "window_h": 24
 }
