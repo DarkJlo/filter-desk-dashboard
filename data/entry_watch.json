@@ -186,17 +186,16 @@
    "symbol": "PumpMas"
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
-   "checks": 2,
-   "fdv": 68553,
+   "checks": 3,
+   "fdv": 63121,
    "first_label": "WAIT",
    "first_wait": "2026-11-21T20:55:03.578591+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-22T01:35:32+00:00",
-   "liq": 18927.36,
+   "last_check": "2026-11-22T08:50:53+00:00",
+   "liq": 18127.31,
    "mint": "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump",
    "pass_ts": "2026-11-21T20:55:03.578591+00:00",
    "reasons": [
-    "15m: still making lower lows",
     "5m: still making lower lows"
    ],
    "status": "watching",
@@ -220,19 +219,50 @@
    "symbol": "XRL"
   },
   "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump": {
-   "checks": 1,
-   "fdv": 77276,
+   "checks": 2,
+   "fdv": 148384,
+   "fdv_at_check": 66748,
+   "fdv_at_flip": 148384,
    "first_label": "WAIT",
    "first_wait": "2026-11-22T01:01:03.349975+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-22T01:35:32+00:00",
-   "liq": 19517.62,
+   "flipped_at": "2026-11-22T08:50:53+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "SKIP",
+    "action_reasons": [
+     "liquidity $28K < $30K",
+     "crash guard: price 53% of its 24h high (r10.7.3 SKIP)"
+    ],
+    "block": true,
+    "flags": "",
+    "gate_version": "r10.7.3-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [
+     "action SKIP (r10.6): liquidity $28K < $30K; crash guard: price 53% of its 24h high (r10.7.3 SKIP)"
+    ],
+    "tags": [],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~5h): 2 fresh <7d, 0 share a non-CEX funder, 11 CEX-funded, 6 still holding, 9 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-22T08:50:53+00:00",
+   "liq": 27883.56,
+   "liq_at_flip": 27883.56,
    "mint": "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump",
    "pass_ts": "2026-11-22T01:01:03.349975+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "holding higher low (15% below high)",
+    "15m higher low held (+3% over prior low)",
+    "5m higher low held (+3% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-22T08:50:53+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): liquidity $28K < $30K; crash guard: price 53% of its 24h high (r10.7.3 SKIP)"
+   ],
    "symbol": "shep"
   },
   "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
@@ -298,6 +328,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-22T01:35:32+00:00",
+ "updated": "2026-11-22T08:50:53+00:00",
  "window_h": 24
 }
