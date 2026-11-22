@@ -172,7 +172,7 @@
    "liq": 27360.18,
    "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-   "pass_ts": "2026-11-21T20:55:07.613698+00:00",
+   "pass_ts": "2026-11-22T01:01:09.494656+00:00",
    "reasons": [
     "holding higher low (27% below high)",
     "15m higher low held (+26% over prior low)",
@@ -186,18 +186,18 @@
    "symbol": "PumpMas"
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
-   "checks": 1,
-   "fdv": 78792,
+   "checks": 2,
+   "fdv": 68553,
    "first_label": "WAIT",
    "first_wait": "2026-11-21T20:55:03.578591+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-21T21:11:22+00:00",
-   "liq": 20408.99,
+   "last_check": "2026-11-22T01:35:32+00:00",
+   "liq": 18927.36,
    "mint": "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump",
    "pass_ts": "2026-11-21T20:55:03.578591+00:00",
    "reasons": [
-    "15m: broke below its latest higher low",
-    "5m: still making lower lows (new low in the last candles)"
+    "15m: still making lower lows",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "nma"
@@ -218,6 +218,22 @@
    ],
    "status": "expired",
    "symbol": "XRL"
+  },
+  "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump": {
+   "checks": 1,
+   "fdv": 77276,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-22T01:01:03.349975+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-22T01:35:32+00:00",
+   "liq": 19517.62,
+   "mint": "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump",
+   "pass_ts": "2026-11-22T01:01:03.349975+00:00",
+   "reasons": [
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "shep"
   },
   "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
    "checks": 4,
@@ -282,6 +298,6 @@
    "symbol": "duh"
   }
  },
- "updated": "2026-11-21T21:11:22+00:00",
+ "updated": "2026-11-22T01:35:32+00:00",
  "window_h": 24
 }
