@@ -4715,3 +4715,41 @@
 2026-11-22T21:04:39+00:00 | KILL  | kPqBsUZuogprbq15ZpACwDzbUHSAxTxbhRrxmrDpump | graph-detected insiders: 155; insider networks detected
 2026-11-22T21:04:40+00:00 | KILL  | EoV9JQYi57tqjyQbWLdXVarYpEu82FsP8SDnkbFmpump | graph-detected insiders: 21; insider networks detected
 2026-11-22T21:04:40+00:00 | KILL  | 6C9r2gzu8Pr54hTevHo3x5gSj9JqtpApj7obJnrtpump | holder data mismatch (rugcheck 20302042.0% vs on-chain 21.4%); rugcheck figure impossible, likely bad supply/decimals
+2026-11-23T01:32:46+00:00 | KILL  | FuKY3dk7QmpbDdQRjzbjB3G6PiCuqKNvN4dAWDpwpump | graph-detected insiders: 79; insider networks detected
+2026-11-23T01:32:47+00:00 | KILL  | npz2FhoufQ7pKqhGpaipYWacrAkidyW2yDpVWSvpump | dead pump: -96% from ATH, lower lows
+2026-11-23T01:32:48+00:00 | KILL  | BzPyyYCTmQNq2BcfQ4ANAvCYk54rnmQEXMFvFT8RhWMi | graph-detected insiders: 8; insider networks detected
+2026-11-23T01:32:49+00:00 | KILL  | zcRvzm7gAfYGde8gRwaSYxNryL47SjLVUQLAf1bdoor | graph-detected insiders: 25; insider networks detected
+2026-11-23T01:32:50+00:00 | KILL  | 3BcJ4SSCfbxDMrWcUDucyCWxMjmy4M2ECCtvxu86pump | lopsided h24 buys/sells 52408/13894; holder data mismatch (rugcheck 5433741.1% vs on-chain 5.5%); rugcheck figure impossible, likely bad supply/decimals
+2026-11-23T01:32:51+00:00 | KILL  | E9rWKjVhHMxQkxfREr7Li8Yy46rVcWiWHoKVQAe9pump | holder data mismatch (rugcheck 24653765.0% vs on-chain 24.7%); rugcheck figure impossible, likely bad supply/decimals
+2026-11-23T01:32:51+00:00 | KILL  | B34nXKzCgsJb9ChLuSHPRpXLE3WFSWyeT8Cqkzzmpump | graph-detected insiders: 86; insider networks detected
+2026-11-23T01:32:52+00:00 | KILL  | 7R4MP6VX7n3RMNhL9zsk5Zu5ibZvwq8npUYnRq7epump | graph-detected insiders: 347; insider networks detected
+2026-11-23T01:32:53+00:00 | KILL  | UQLWvkwiSsnViuVBy7oArMtzb5RAZyrdJ79amQFrzoL | graph-detected insiders: 165; insider networks detected
+2026-11-23T01:32:54+00:00 | KILL  | 8T3ztDSKxYK15SUBseqLeviqQwfcG9wUeDGP1wjBpump | graph-detected insiders: 25; insider networks detected
+2026-11-23T01:32:54+00:00 | KILL  | FVzqGqRmr4UH1Fif6dewmwbJ1p4YUZCu8dcw4Efopump | graph-detected insiders: 141; insider networks detected
+2026-11-23T01:32:55+00:00 | KILL  | ANTBTZQ1EUuTxUs3tfeampxdqTWPHmwyJmcWj4xoAyNe | high risk score (raw=139593, norm=82); LP locked only 0.0%; danger: Mint Authority still enabled; danger: Permanent Control Enabled; danger: Freeze Authority still enabled; danger: Large Amount of LP Unlocked; danger: Low Liquidity; warn: Low amount of LP Providers; mint authority not null; freeze authority not null; graph-detected insiders: 5; insider networks detected; token2022: permanent delegate; on-chain: mint authority not null; on-chain: freeze authority not null; on-chain token2022: permanent delegate; on-chain top10 30.4% > 30.0%; holder data mismatch (rugcheck 61.5% vs on-chain 30.4%)
+2026-11-23T01:32:56+00:00 | KILL  | AQfw8J74V17erZsmMz4oK474eVLBaP44gD33vVbhtHo5 | graph-detected insiders: 4; insider networks detected
+2026-11-23T01:32:57+00:00 | KILL  | CUg7AzWL5p8imZVqqdjEPgRhUsXAkBMW5JxkSJ9fpump | graph-detected insiders: 12; insider networks detected
+2026-11-23T01:32:57+00:00 | KILL  | 3D7YQcnXi6RMjWxheiE8VLuGXJTtgQkmyugGYvzjpump | graph-detected insiders: 62; insider networks detected
+2026-11-23T01:32:58+00:00 | KILL  | 3zqvU9xY93yShLPkoti49ZzGyK1JQ7RV2ArYqDgGEBmv | graph-detected insiders: 27; insider networks detected
+2026-11-23T01:32:59+00:00 | PASS  | 8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump | clean
+2026-11-23T01:33:00+00:00 | KILL  | BjnxH6a3D6HQz1LRPsGX5TZmW3GwstpexSNrK2utpump | graph-detected insiders: 4; insider networks detected
+2026-11-23T01:33:00+00:00 | KILL  | 2Fm3qAJQ4s9Hcem4rLUsrfscFBYuMzpmmPbJiSADpump | bundlers: same-slot buyer groups hold 23.4% >= 20.0%
+2026-11-23T01:33:01+00:00 | KILL  | DUZrwdjEthcJ99ZiRXr31UuqTohoTg7VjTEyfGdBpump | graph-detected insiders: 2045; insider networks detected; lopsided h24 buys/sells 4848/2352 (ratio 0.49, pair 89.3h old; r8 warn band, r10.6 KILL)
+2026-11-23T01:33:02+00:00 | KILL  | DtcicPCKTKeAh7TDEzTym3hXeoHAoMiBdYJhMYxZpump | top10 non-LP holders 34.8% > 30.0%; single holder 13.3% > 10.0%; on-chain top10 34.8% > 30.0%; on-chain single holder 13.3% > 10.0%
+2026-11-23T01:33:03+00:00 | KILL  | 63aEoSt7oGthFR5koz1572CAL9dd7NYGp7sWeQyjpump | graph-detected insiders: 75; insider networks detected
+2026-11-23T01:33:03+00:00 | KILL  | HsprHxBRgiVaQdRf3TnKNuZZtaX9JUSPgMFdAkk6pump | graph-detected insiders: 26; insider networks detected
+2026-11-23T01:33:04+00:00 | KILL  | HuN5y4fJU7LNkaPjV9LhxkY7LUwpynW7yhL4qoVhpump | bundlers: same-slot buyer groups hold 33.2% >= 20.0%
+2026-11-23T01:33:05+00:00 | KILL  | 4npJ3avxnGhCzKbWQpLrQXAHsjWzKr4JqBsbu5Fspump | bundle: cluster of 19 holds 7.8% at 42.8x
+2026-11-23T01:33:06+00:00 | KILL  | EV7J2QaPXPytSkM1LD9GPRkgAbmSEr9R3kYiXBzbpump | top10 non-LP holders 57.0% > 30.0%; single holder 43.6% > 10.0%; on-chain top10 65.5% > 30.0%; on-chain single holder 43.6% > 10.0%
+2026-11-23T01:33:06+00:00 | KILL  | 2MdCPWNFufmJSZhajSvi1yqBFTB24GQ4ipjNcB8Vpump | graph-detected insiders: 38; insider networks detected
+2026-11-23T01:33:07+00:00 | KILL  | 8mnJZnxaNLqVwkaWWGH7dKmoEzyYzGJx5pHaCp7spump | graph-detected insiders: 59; insider networks detected
+2026-11-23T01:33:08+00:00 | KILL  | 6ZbWPYxFf8XyQ6dncrPAef1yz4W9nRF6rX3CYuE7pump | graph-detected insiders: 18; insider networks detected; lopsided h24 buys/sells 4595/36583
+2026-11-23T01:33:09+00:00 | KILL  | 5qaP7oKUqKffwwo5DaEqDoTtsBLMpdbQTxEkCDaTpump | warn: Copycat token; graph-detected insiders: 139; insider networks detected; holder data mismatch (rugcheck 16.4% vs on-chain 27.0%)
+2026-11-23T01:33:09+00:00 | KILL  | GexThZHgaswpAQ7Fi8QrHFubjPimUNSYhJiAA7XZpump | graph-detected insiders: 940; insider networks detected
+2026-11-23T01:33:10+00:00 | KILL  | 8J69rbLTzWWgUJziFY8jeu5tDwEPBwUz4pKBMr5rpump | graph-detected insiders: 1800; insider networks detected
+2026-11-23T01:33:11+00:00 | KILL  | BAKsQrynzwadyACDMsg3J5R8a4CTvj1u7kEYyjq7pump | holder data mismatch (rugcheck 5625717.7% vs on-chain 5.7%); rugcheck figure impossible, likely bad supply/decimals
+2026-11-23T01:33:12+00:00 | KILL  | 9M4PDviTGpG41e7SeKyJqwv71Nnq9EUwgC2ib1bppump | graph-detected insiders: 5; insider networks detected
+2026-11-23T01:33:12+00:00 | KILL  | kPqBsUZuogprbq15ZpACwDzbUHSAxTxbhRrxmrDpump | graph-detected insiders: 161; insider networks detected
+2026-11-23T01:33:13+00:00 | KILL  | 6J3ApVu8dSLg1TJjBLWSTgmnvJXcH2YyF2iDC48Fpump | high risk score (raw=105601, norm=79); danger: Creator history of rugged tokens; graph-detected insiders: 32; insider networks detected
+2026-11-23T01:33:14+00:00 | KILL  | DFKwjUFbbS3RZ3zFxoHkMgZVeLnrQLttgxhwbkdsidFD | graph-detected insiders: 4; insider networks detected
+2026-11-23T01:33:15+00:00 | KILL  | 51TUkCJcBPi5fj9gZgjnXh6Ny5RSiEbrxUBoikDLpump | graph-detected insiders: 4; insider networks detected
