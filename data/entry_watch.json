@@ -1,23 +1,6 @@
 {
  "min_liq": 10000,
  "tokens": {
-  "8BMqmEFXDU6dWzU4we9Py5wRi8KpFQZSRPThQqLapump": {
-   "checks": 2,
-   "expired_at": "2026-11-17T11:11:04+00:00",
-   "fdv": 75238,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-16T10:45:00.061677+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-17T02:37:32+00:00",
-   "liq": 19507.55,
-   "mint": "8BMqmEFXDU6dWzU4we9Py5wRi8KpFQZSRPThQqLapump",
-   "pass_ts": "2026-11-16T10:45:00.061677+00:00",
-   "reasons": [
-    "15m: still making lower lows"
-   ],
-   "status": "expired",
-   "symbol": "Pterodactyl"
-  },
   "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
    "checks": 3,
    "expired_at": "2026-11-18T19:07:06+00:00",
@@ -70,7 +53,7 @@
    "liq": 19137.99,
    "liq_at_flip": 29697.85,
    "mint": "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump",
-   "pass_ts": "2026-11-23T01:32:59.360236+00:00",
+   "pass_ts": "2026-11-23T12:05:20.158513+00:00",
    "reasons": [
     "holding higher low (25% below high)",
     "15m higher low held (+91% over prior low)",
@@ -216,6 +199,23 @@
    ],
    "symbol": "PumpMas"
   },
+  "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump": {
+   "checks": 1,
+   "fdv": 28801,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-23T12:05:20.767568+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-23T15:24:10+00:00",
+   "liq": 11967.01,
+   "mint": "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump",
+   "pass_ts": "2026-11-23T12:05:20.767568+00:00",
+   "reasons": [
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "earball"
+  },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
    "checks": 4,
    "expired_at": "2026-11-22T22:49:09+00:00",
@@ -234,22 +234,22 @@
    "status": "expired",
    "symbol": "nma"
   },
-  "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g": {
+  "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump": {
    "checks": 1,
-   "expired_at": "2026-11-17T11:11:04+00:00",
-   "fdv": 2951,
+   "fdv": 989986,
    "first_label": "WAIT",
-   "first_wait": "2026-11-16T10:45:04.459316+00:00",
-   "label": null,
-   "last_check": "2026-11-17T02:37:32+00:00",
-   "liq": 2864.05,
-   "mint": "Fww6zaNKcjpJaB33JayvUzsofBUobX5JaHiuQBN1Jf9g",
-   "pass_ts": "2026-11-16T10:45:04.459316+00:00",
+   "first_wait": "2026-11-23T12:05:24.797958+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-23T15:24:10+00:00",
+   "liq": 77156.27,
+   "mint": "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump",
+   "pass_ts": "2026-11-23T12:05:24.797958+00:00",
    "reasons": [
-    "liquidity $3K < $10K; entry check skipped"
+    "15m: still making lower lows",
+    "5m: still making lower lows"
    ],
-   "status": "expired",
-   "symbol": "XRL"
+   "status": "watching",
+   "symbol": "NOHR"
   },
   "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump": {
    "checks": 2,
@@ -317,6 +317,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-23T04:00:06+00:00",
+ "updated": "2026-11-23T15:24:10+00:00",
  "window_h": 24
 }
