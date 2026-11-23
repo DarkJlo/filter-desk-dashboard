@@ -38,17 +38,49 @@
   "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump": {
    "checks": 1,
    "fdv": 72701,
+   "fdv_at_check": 161287,
+   "fdv_at_flip": 161287,
    "first_label": "WAIT",
    "first_wait": "2026-11-22T21:04:30.033427+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-22T22:49:09+00:00",
+   "flipped_at": "2026-11-23T01:32:59.360236+00:00",
+   "flipped_by": "scan",
+   "gate": {
+    "action": "SKIP",
+    "action_reasons": [
+     "liquidity $30K < $30K"
+    ],
+    "block": true,
+    "flags": "bundled_launch",
+    "gate_version": "r10.7.3-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [
+     "action SKIP (r10.6): liquidity $30K < $30K"
+    ],
+    "tags": [
+     "bundled_launch"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~0h): 2 fresh <7d, 0 share a non-CEX funder, 11 CEX-funded, 3 still holding, 12 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-23T04:00:06+00:00",
    "liq": 19137.99,
+   "liq_at_flip": 29697.85,
    "mint": "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump",
-   "pass_ts": "2026-11-22T21:04:30.033427+00:00",
+   "pass_ts": "2026-11-23T01:32:59.360236+00:00",
    "reasons": [
-    "5m: still making lower lows"
+    "holding higher low (25% below high)",
+    "15m higher low held (+91% over prior low)",
+    "5m higher low held (+8% over prior low)"
    ],
-   "status": "watching",
+   "status": "suppressed",
+   "suppressed_at": "2026-11-23T04:00:06+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): liquidity $30K < $30K"
+   ],
    "symbol": "chego"
   },
   "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
@@ -285,6 +317,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-22T22:49:09+00:00",
+ "updated": "2026-11-23T04:00:06+00:00",
  "window_h": 24
 }
