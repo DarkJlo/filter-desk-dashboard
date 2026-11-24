@@ -66,55 +66,6 @@
    ],
    "symbol": "chego"
   },
-  "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump": {
-   "checks": 1,
-   "fdv": 52764,
-   "fdv_at_check": 60646,
-   "fdv_at_flip": 52764,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-16T23:45:41.434827+00:00",
-   "flipped_at": "2026-11-17T02:37:32+00:00",
-   "flipped_by": "watch",
-   "gate": {
-    "action": "SKIP",
-    "action_reasons": [
-     "liquidity $16K < $30K"
-    ],
-    "block": true,
-    "flags": "bundle, bundled_launch",
-    "gate_version": "r10.7.3-2026-11-07",
-    "hard_block": false,
-    "prior_kills": 0,
-    "reasons": [
-     "action SKIP (r10.6): liquidity $16K < $30K"
-    ],
-    "tags": [
-     "bundle",
-     "bundled_launch"
-    ],
-    "trader_note": "",
-    "trader_tier": null,
-    "tt_checked": true,
-    "tt_line": "Top traders (15, last ~24h): 1 fresh <7d, 0 share a non-CEX funder, 9 CEX-funded, 6 still holding, 9 sold out \u00b7 tier: none"
-   },
-   "label": "OK",
-   "last_check": "2026-11-17T02:37:32+00:00",
-   "liq": 16382.71,
-   "liq_at_flip": 16382.71,
-   "mint": "BtB54BEhTsx8syvWFUcMEe6vxASyL9zP7feXY5d1pump",
-   "pass_ts": "2026-11-16T23:45:41.434827+00:00",
-   "reasons": [
-    "holding higher low (30% below high)",
-    "15m higher low held (+2% over prior low)",
-    "5m higher low held (+2% over prior low)"
-   ],
-   "status": "suppressed",
-   "suppressed_at": "2026-11-17T02:37:32+00:00",
-   "suppressed_reasons": [
-    "action SKIP (r10.6): liquidity $16K < $30K"
-   ],
-   "symbol": "kibble"
-  },
   "Dys6SYbjUsy8kksaqrXqo5L2GzgCYDiguGGcS8B5rkrv": {
    "checks": 1,
    "fdv": 85128,
@@ -186,7 +137,7 @@
    "liq": 27360.18,
    "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-   "pass_ts": "2026-11-22T01:01:09.494656+00:00",
+   "pass_ts": "2026-11-24T02:08:12.573048+00:00",
    "reasons": [
     "holding higher low (27% below high)",
     "15m higher low held (+26% over prior low)",
@@ -201,19 +152,18 @@
   },
   "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump": {
    "checks": 1,
-   "fdv": 28801,
+   "fdv": 13676,
    "first_label": "WAIT",
    "first_wait": "2026-11-23T12:05:20.767568+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-23T15:24:10+00:00",
-   "liq": 11967.01,
+   "label": null,
+   "last_check": "2026-11-24T02:36:02+00:00",
+   "liq": 7598.78,
    "mint": "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump",
    "pass_ts": "2026-11-23T12:05:20.767568+00:00",
    "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows (new low in the last candles)"
+    "liquidity $8K < $10K; entry check skipped"
    ],
-   "status": "watching",
+   "status": "low_liq",
    "symbol": "earball"
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
@@ -235,21 +185,38 @@
    "symbol": "nma"
   },
   "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump": {
-   "checks": 1,
-   "fdv": 989986,
+   "checks": 2,
+   "fdv": 1097116,
    "first_label": "WAIT",
    "first_wait": "2026-11-23T12:05:24.797958+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-23T15:24:10+00:00",
-   "liq": 77156.27,
+   "last_check": "2026-11-24T02:36:02+00:00",
+   "liq": 79057,
    "mint": "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump",
    "pass_ts": "2026-11-23T12:05:24.797958+00:00",
+   "reasons": [
+    "15m: broke below its latest higher low",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "NOHR"
+  },
+  "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump": {
+   "checks": 1,
+   "fdv": 7886311,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-24T02:08:05.742364+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-24T02:36:02+00:00",
+   "liq": 216789.45,
+   "mint": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
+   "pass_ts": "2026-11-24T02:08:05.742364+00:00",
    "reasons": [
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
    "status": "watching",
-   "symbol": "NOHR"
+   "symbol": "BRUH"
   },
   "SPHFHU7sz2EZQYqyxMrZjgFdiYSCXJxRBE4giAjpump": {
    "checks": 2,
@@ -317,6 +284,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-23T15:24:10+00:00",
+ "updated": "2026-11-24T02:36:02+00:00",
  "window_h": 24
 }
