@@ -1,6 +1,23 @@
 {
  "min_liq": 10000,
  "tokens": {
+  "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
+   "checks": 1,
+   "fdv": 148944,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-24T13:24:04.486665+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-24T23:16:44+00:00",
+   "liq": 28589.35,
+   "mint": "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump",
+   "pass_ts": "2026-11-24T13:24:04.486665+00:00",
+   "reasons": [
+    "15m: still making lower lows",
+    "5m: still making lower lows"
+   ],
+   "status": "watching",
+   "symbol": "CUNTS"
+  },
   "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump": {
    "checks": 1,
    "fdv": 72701,
@@ -170,18 +187,17 @@
    "symbol": "NOHR"
   },
   "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump": {
-   "checks": 2,
-   "fdv": 5734373,
+   "checks": 3,
+   "fdv": 5601426,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T02:08:05.742364+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-24T12:56:26+00:00",
-   "liq": 184307.72,
+   "last_check": "2026-11-24T23:16:44+00:00",
+   "liq": 181179.35,
    "mint": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
    "pass_ts": "2026-11-24T02:08:05.742364+00:00",
    "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
+    "5m: broke below its latest higher low"
    ],
    "status": "watching",
    "symbol": "BRUH"
@@ -252,6 +268,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-24T12:56:26+00:00",
+ "updated": "2026-11-24T23:16:44+00:00",
  "window_h": 24
 }
