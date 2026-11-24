@@ -1,23 +1,6 @@
 {
  "min_liq": 10000,
  "tokens": {
-  "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump": {
-   "checks": 3,
-   "expired_at": "2026-11-18T19:07:06+00:00",
-   "fdv": 2334480,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-17T11:39:41.026527+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-18T10:44:46+00:00",
-   "liq": 138727.94,
-   "mint": "8s11PkgQt4ZzdZ7oo84hK5t9HG1EvdgAjcg4W7Lpump",
-   "pass_ts": "2026-11-17T11:39:41.026527+00:00",
-   "reasons": [
-    "15m: still making lower lows"
-   ],
-   "status": "expired",
-   "symbol": "BLOB"
-  },
   "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump": {
    "checks": 1,
    "fdv": 72701,
@@ -65,23 +48,6 @@
     "action SKIP (r10.6): liquidity $30K < $30K"
    ],
    "symbol": "chego"
-  },
-  "Dys6SYbjUsy8kksaqrXqo5L2GzgCYDiguGGcS8B5rkrv": {
-   "checks": 1,
-   "fdv": 85128,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-17T11:39:44.681578+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-17T20:01:32+00:00",
-   "liq": 51253.53,
-   "mint": "Dys6SYbjUsy8kksaqrXqo5L2GzgCYDiguGGcS8B5rkrv",
-   "pass_ts": "2026-11-17T11:39:44.681578+00:00",
-   "reasons": [
-    "15m: still making lower lows (new low in the last candles)",
-    "5m: still making lower lows"
-   ],
-   "status": "killed",
-   "symbol": "bul"
   },
   "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
    "checks": 5,
@@ -152,6 +118,7 @@
   },
   "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump": {
    "checks": 1,
+   "expired_at": "2026-11-24T12:56:26+00:00",
    "fdv": 13676,
    "first_label": "WAIT",
    "first_wait": "2026-11-23T12:05:20.767568+00:00",
@@ -163,7 +130,7 @@
    "reasons": [
     "liquidity $8K < $10K; entry check skipped"
    ],
-   "status": "low_liq",
+   "status": "expired",
    "symbol": "earball"
   },
   "Fvv62MhgjrXpvXmKcLci2HoiCAxFmSkUm1Niamvipump": {
@@ -186,6 +153,7 @@
   },
   "Jd3NCawdFiDNWpLiTtsMqoeoBMjC1ZQMrMScRVzpump": {
    "checks": 2,
+   "expired_at": "2026-11-24T12:56:26+00:00",
    "fdv": 1097116,
    "first_label": "WAIT",
    "first_wait": "2026-11-23T12:05:24.797958+00:00",
@@ -198,17 +166,17 @@
     "15m: broke below its latest higher low",
     "5m: still making lower lows (new low in the last candles)"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "NOHR"
   },
   "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump": {
-   "checks": 1,
-   "fdv": 7886311,
+   "checks": 2,
+   "fdv": 5734373,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T02:08:05.742364+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-24T02:36:02+00:00",
-   "liq": 216789.45,
+   "last_check": "2026-11-24T12:56:26+00:00",
+   "liq": 184307.72,
    "mint": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
    "pass_ts": "2026-11-24T02:08:05.742364+00:00",
    "reasons": [
@@ -284,6 +252,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-24T02:36:02+00:00",
+ "updated": "2026-11-24T12:56:26+00:00",
  "window_h": 24
 }
