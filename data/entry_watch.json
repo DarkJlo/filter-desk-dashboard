@@ -2,17 +2,18 @@
  "min_liq": 10000,
  "tokens": {
   "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
-   "checks": 2,
-   "fdv": 125879,
+   "checks": 3,
+   "fdv": 93764,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T13:24:04.486665+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-25T05:40:47+00:00",
-   "liq": 25975.28,
+   "last_check": "2026-11-25T16:06:41+00:00",
+   "liq": 22241.73,
    "mint": "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump",
-   "pass_ts": "2026-11-24T23:55:11.438965+00:00",
+   "pass_ts": "2026-11-25T12:11:54.348881+00:00",
    "reasons": [
-    "15m: still making lower lows"
+    "15m: price back at/below latest low",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "CUNTS"
@@ -64,24 +65,6 @@
     "action SKIP (r10.6): liquidity $30K < $30K"
    ],
    "symbol": "chego"
-  },
-  "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump": {
-   "checks": 5,
-   "expired_at": "2026-11-19T18:40:41+00:00",
-   "fdv": 345155,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-17T22:55:12.288868+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-19T09:30:13+00:00",
-   "liq": 44120.09,
-   "mint": "EVbsBwxqdbMqadwAsVZ6KP9SJiaNmLSHAAb4W2mUpump",
-   "pass_ts": "2026-11-18T11:09:08.350242+00:00",
-   "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
-   ],
-   "status": "expired",
-   "symbol": "LUNO"
   },
   "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump": {
    "checks": 3,
@@ -168,18 +151,18 @@
    "symbol": "nma"
   },
   "GqMg4TRt5U5HRK6oeZYwCF1Jz7Ym9MSzWSoFCtFsbzf6": {
-   "checks": 1,
-   "fdv": 141661,
+   "checks": 2,
+   "fdv": 141703,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T23:55:12.172842+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-25T05:40:47+00:00",
-   "liq": 26780.41,
+   "last_check": "2026-11-25T16:06:41+00:00",
+   "liq": 26671.45,
    "mint": "GqMg4TRt5U5HRK6oeZYwCF1Jz7Ym9MSzWSoFCtFsbzf6",
    "pass_ts": "2026-11-24T23:55:12.172842+00:00",
    "reasons": [
-    "15m: broke below its latest higher low",
-    "5m: no confirmed higher low yet"
+    "15m: still making lower lows (new low in the last candles)",
+    "5m: still making lower lows (new low in the last candles)"
    ],
    "status": "watching",
    "symbol": "SHHFT"
@@ -285,6 +268,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-25T05:40:47+00:00",
+ "updated": "2026-11-25T16:06:41+00:00",
  "window_h": 24
 }
