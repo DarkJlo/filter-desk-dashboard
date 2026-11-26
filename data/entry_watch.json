@@ -2,20 +2,18 @@
  "min_liq": 10000,
  "tokens": {
   "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
-   "checks": 4,
-   "fdv": 90562,
+   "checks": 5,
+   "fdv": 85746,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T13:24:04.486665+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-26T00:40:57+00:00",
-   "liq": 22480.29,
+   "last_check": "2026-11-26T08:54:37+00:00",
+   "liq": 21894.02,
    "mint": "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump",
    "pass_ts": "2026-11-25T12:11:54.348881+00:00",
    "reasons": [
-    "holding higher low (54% below high)",
-    "15m higher low held (+1% over prior low)",
-    "5m higher low held (+1% over prior low)",
-    "crash guard: 56% of 24h high (r10.7.3)"
+    "15m: still making lower lows",
+    "5m: still making lower lows"
    ],
    "status": "watching",
    "symbol": "CUNTS"
@@ -300,6 +298,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-26T00:40:57+00:00",
+ "updated": "2026-11-26T08:54:37+00:00",
  "window_h": 24
 }
