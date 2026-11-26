@@ -3,6 +3,7 @@
  "tokens": {
   "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
    "checks": 5,
+   "expired_at": "2026-11-26T19:16:39+00:00",
    "fdv": 85746,
    "first_label": "WAIT",
    "first_wait": "2026-11-24T13:24:04.486665+00:00",
@@ -15,7 +16,7 @@
     "15m: still making lower lows",
     "5m: still making lower lows"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "CUNTS"
   },
   "8xegBRcvNUMYTtxno5DnPLMMHRXQg9RrUVnQwEVppump": {
@@ -298,6 +299,6 @@
    "symbol": "ANTS"
   }
  },
- "updated": "2026-11-26T08:54:37+00:00",
+ "updated": "2026-11-26T19:16:39+00:00",
  "window_h": 24
 }
