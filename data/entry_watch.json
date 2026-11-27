@@ -1,6 +1,23 @@
 {
  "min_liq": 10000,
  "tokens": {
+  "6W3H5nEzuLUpTbcMrhRfMiDPCZ4QuBmZPBkeAMzypump": {
+   "checks": 1,
+   "fdv": 52303,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-27T11:52:52.060444+00:00",
+   "label": "WAIT",
+   "last_check": "2026-11-27T20:19:02+00:00",
+   "liq": 16242.02,
+   "mint": "6W3H5nEzuLUpTbcMrhRfMiDPCZ4QuBmZPBkeAMzypump",
+   "pass_ts": "2026-11-27T11:52:52.060444+00:00",
+   "reasons": [
+    "15m: broke below its latest higher low",
+    "5m: still making lower lows (new low in the last candles)"
+   ],
+   "status": "watching",
+   "symbol": "wizardcat"
+  },
   "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
    "checks": 5,
    "expired_at": "2026-11-26T19:16:39+00:00",
@@ -103,7 +120,7 @@
    "liq": 27360.18,
    "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-   "pass_ts": "2026-11-25T23:36:38.364699+00:00",
+   "pass_ts": "2026-11-27T11:53:04.967004+00:00",
    "reasons": [
     "holding higher low (27% below high)",
     "15m higher low held (+26% over prior low)",
@@ -115,6 +132,55 @@
     "action SKIP (r10.6): liquidity $27K < $30K"
    ],
    "symbol": "PumpMas"
+  },
+  "FK7bc3fR8UL8uogN2u8J9yEpEbQJKR7yKsp3G8rvpump": {
+   "checks": 1,
+   "fdv": 68550,
+   "fdv_at_check": 48587,
+   "fdv_at_flip": 68550,
+   "first_label": "WAIT",
+   "first_wait": "2026-11-27T11:53:01.980930+00:00",
+   "flipped_at": "2026-11-27T20:19:02+00:00",
+   "flipped_by": "watch",
+   "gate": {
+    "action": "SKIP",
+    "action_reasons": [
+     "liquidity $19K < $30K"
+    ],
+    "block": true,
+    "flags": "bundle, bundled_launch",
+    "gate_version": "r10.7.3-2026-11-07",
+    "hard_block": false,
+    "prior_kills": 0,
+    "reasons": [
+     "action SKIP (r10.6): liquidity $19K < $30K"
+    ],
+    "tags": [
+     "bundle",
+     "bundled_launch"
+    ],
+    "trader_note": "",
+    "trader_tier": null,
+    "tt_checked": true,
+    "tt_line": "Top traders (15, last ~24h): 1 fresh <7d, 0 share a non-CEX funder, 8 CEX-funded, 3 still holding, 12 sold out \u00b7 tier: none"
+   },
+   "label": "OK",
+   "last_check": "2026-11-27T20:19:02+00:00",
+   "liq": 18604.81,
+   "liq_at_flip": 18604.81,
+   "mint": "FK7bc3fR8UL8uogN2u8J9yEpEbQJKR7yKsp3G8rvpump",
+   "pass_ts": "2026-11-27T11:53:01.980930+00:00",
+   "reasons": [
+    "holding higher low (41% below high)",
+    "15m higher low held (+1% over prior low)",
+    "5m higher low held (+5% over prior low)"
+   ],
+   "status": "suppressed",
+   "suppressed_at": "2026-11-27T20:19:02+00:00",
+   "suppressed_reasons": [
+    "action SKIP (r10.6): liquidity $19K < $30K"
+   ],
+   "symbol": "hacked"
   },
   "FryQiSLqU7NfPvpQJRiYrVuvRRW66uB4FLorrKmjpump": {
    "checks": 1,
@@ -224,7 +290,7 @@
    "liq": 204787.19,
    "liq_at_flip": 204787.19,
    "mint": "PgFtGGquvnv2zEkjG2N2QPvBTBrafuExGYEqahRpump",
-   "pass_ts": "2026-11-25T23:36:37.017454+00:00",
+   "pass_ts": "2026-11-27T11:52:55.135313+00:00",
    "reasons": [
     "holding higher low (16% below high)",
     "15m higher low held (+1% over prior low)",
@@ -281,6 +347,6 @@
    "symbol": "shep"
   }
  },
- "updated": "2026-11-27T11:25:38+00:00",
+ "updated": "2026-11-27T20:19:02+00:00",
  "window_h": 24
 }
