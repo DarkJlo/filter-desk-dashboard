@@ -279,26 +279,8 @@
     "action SKIP (r10.6): liquidity $28K < $30K; crash guard: price 53% of its 24h high (r10.7.3 SKIP)"
    ],
    "symbol": "shep"
-  },
-  "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump": {
-   "checks": 4,
-   "expired_at": "2026-11-21T00:15:45+00:00",
-   "fdv": 4707881,
-   "first_label": "WAIT",
-   "first_wait": "2026-11-19T11:10:28.345416+00:00",
-   "label": "WAIT",
-   "last_check": "2026-11-20T18:01:55+00:00",
-   "liq": 185773.66,
-   "mint": "ejrz94zR4A2ScS8LdvRaQih2xUxaE2ydreqUNKmpump",
-   "pass_ts": "2026-11-19T22:40:41.496952+00:00",
-   "reasons": [
-    "15m: still making lower lows",
-    "5m: still making lower lows"
-   ],
-   "status": "expired",
-   "symbol": "ANTS"
   }
  },
- "updated": "2026-11-26T19:16:39+00:00",
+ "updated": "2026-11-27T02:24:40+00:00",
  "window_h": 24
 }
