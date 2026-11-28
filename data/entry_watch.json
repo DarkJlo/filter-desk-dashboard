@@ -3,6 +3,7 @@
  "tokens": {
   "6W3H5nEzuLUpTbcMrhRfMiDPCZ4QuBmZPBkeAMzypump": {
    "checks": 2,
+   "expired_at": "2026-11-28T12:23:43+00:00",
    "fdv": 57641,
    "first_label": "WAIT",
    "first_wait": "2026-11-27T11:52:52.060444+00:00",
@@ -15,7 +16,7 @@
     "15m: still making lower lows",
     "5m: no confirmed higher low yet"
    ],
-   "status": "watching",
+   "status": "expired",
    "symbol": "wizardcat"
   },
   "7CvW68FD9KjNYGByfykhaNps7VNPLN8dFwMRfmgQpump": {
@@ -169,7 +170,7 @@
    "liq": 18604.81,
    "liq_at_flip": 18604.81,
    "mint": "FK7bc3fR8UL8uogN2u8J9yEpEbQJKR7yKsp3G8rvpump",
-   "pass_ts": "2026-11-27T11:53:01.980930+00:00",
+   "pass_ts": "2026-11-28T11:28:37.655880+00:00",
    "reasons": [
     "holding higher low (41% below high)",
     "15m higher low held (+1% over prior low)",
@@ -347,6 +348,6 @@
    "symbol": "shep"
   }
  },
- "updated": "2026-11-28T02:57:32+00:00",
+ "updated": "2026-11-28T12:23:43+00:00",
  "window_h": 24
 }
