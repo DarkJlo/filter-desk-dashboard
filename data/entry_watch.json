@@ -2,18 +2,18 @@
  "min_liq": 10000,
  "tokens": {
   "6W3H5nEzuLUpTbcMrhRfMiDPCZ4QuBmZPBkeAMzypump": {
-   "checks": 1,
-   "fdv": 52303,
+   "checks": 2,
+   "fdv": 57641,
    "first_label": "WAIT",
    "first_wait": "2026-11-27T11:52:52.060444+00:00",
    "label": "WAIT",
-   "last_check": "2026-11-27T20:19:02+00:00",
-   "liq": 16242.02,
+   "last_check": "2026-11-28T02:57:32+00:00",
+   "liq": 17119.65,
    "mint": "6W3H5nEzuLUpTbcMrhRfMiDPCZ4QuBmZPBkeAMzypump",
    "pass_ts": "2026-11-27T11:52:52.060444+00:00",
    "reasons": [
-    "15m: broke below its latest higher low",
-    "5m: still making lower lows (new low in the last candles)"
+    "15m: still making lower lows",
+    "5m: no confirmed higher low yet"
    ],
    "status": "watching",
    "symbol": "wizardcat"
@@ -120,7 +120,7 @@
    "liq": 27360.18,
    "liq_at_flip": 27360.18,
    "mint": "EwUVBpdM5vw1CJHRMSLywzVjyQSJZpy6qboxEPBKpump",
-   "pass_ts": "2026-11-27T11:53:04.967004+00:00",
+   "pass_ts": "2026-11-27T23:18:20.665727+00:00",
    "reasons": [
     "holding higher low (27% below high)",
     "15m higher low held (+26% over prior low)",
@@ -347,6 +347,6 @@
    "symbol": "shep"
   }
  },
- "updated": "2026-11-27T20:19:02+00:00",
+ "updated": "2026-11-28T02:57:32+00:00",
  "window_h": 24
 }
